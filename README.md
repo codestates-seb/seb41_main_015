@@ -1,10 +1,5 @@
 # 책 빌리지(Book Village)
 
-<p align="center">
-  <br>
-  <img src="./images/common/stackover.png">
-  <br>
-</p>
 
 ## 목차
 1. [프로젝트 소개](#1-프로젝트-소개)
