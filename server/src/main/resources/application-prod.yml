@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url:  jdbc:mysql://${TODO_MYSQL_HOST}:${TODO_MYSQL_PORT}/${TODO_DATA_BASE_NAME}?useSSL=false
+    #jdbc:mysql://localhost:3306/test
+    username: ${TODO_MYSQL_USER_NAME}
+    password: ${TODO_MYSQL_PASSWORD}
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update  # (1) ??? ?? ??
+    show-sql: false      # (2) SQL ?? ??
+    properties:
+      hibernate:
+        format_sql: true  # (3) SQL pretty print
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+admin:
+  email: ${ADMIN1_EMAIL},${ADMIN2_EMAIL}
+
+#jwt:
+#  secret: ${JWT_SECRET}
+#  expiration: ${JWT_EXPIRATION}
+#  refresh:
+#    expiration: ${JWT_REFRESH_EXPIRATION}
