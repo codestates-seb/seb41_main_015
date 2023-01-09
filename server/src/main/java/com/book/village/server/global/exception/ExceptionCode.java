@@ -1,6 +1,7 @@
 package com.book.village.server.global.exception;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public enum ExceptionCode {

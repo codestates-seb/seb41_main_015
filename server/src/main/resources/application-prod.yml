@@ -13,10 +13,23 @@ spring:
       hibernate:
         format_sql: true  # (3) SQL pretty print
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${G_CLIENT_ID}
+            clientSecret: ${G_CLIENT_SECRET}
+            scope:
+              - email
+              - profile
 admin:
-  email: ${ADMIN1_EMAIL},${ADMIN2_EMAIL}
-
+  email: ${ADMIN1_EMAIL}
+jwt:
+  key:
+    secret: ${JWT_SECRET_KEY}               # 민감한 정보는 시스템 환경 변수에서 로드한다.
+  access-token-expiration-minutes: 30
+  refresh-token-expiration-minutes: 420
 #jwt:
 #  secret: ${JWT_SECRET}
 #  expiration: ${JWT_EXPIRATION}

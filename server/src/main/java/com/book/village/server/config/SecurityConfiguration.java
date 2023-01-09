@@ -1,0 +1,91 @@
+package com.book.village.server.config;
+
+import com.book.village.server.auth.filter.JwtVerificationFilter;
+import com.book.village.server.auth.handler.MemberAccessDeniedHandler;
+import com.book.village.server.auth.handler.MemberAuthenticationEntryPoint;
+import com.book.village.server.auth.handler.OAuth2MemberSuccessHandler;
+import com.book.village.server.auth.jwt.JwtTokenizer;
+import com.book.village.server.auth.service.CustomOAuth2MemberService;
+import com.book.village.server.auth.utils.CustomAuthorityUtils;
+import com.book.village.server.domain.member.repository.MemberRepository;
+import com.book.village.server.domain.member.service.MemberService;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+
+import static org.springframework.security.config.Customizer.withDefaults;
+
+@Configuration
+public class SecurityConfiguration {
+    private final JwtTokenizer jwtTokenizer;
+    private final CustomAuthorityUtils authorityUtils;
+    private final MemberService memberService;
+    private final MemberRepository memberRepository;
+    private final CustomOAuth2MemberService customOAuth2MemberService;
+
+
+    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils,
+                                 MemberService memberService, MemberRepository memberRepository, CustomOAuth2MemberService customOAuth2MemberService) {
+        this.jwtTokenizer = jwtTokenizer;
+        this.authorityUtils = authorityUtils;
+        this.memberService = memberService;
+        this.memberRepository = memberRepository;
+        this.customOAuth2MemberService = customOAuth2MemberService;
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+        http
+                .headers().frameOptions().disable()
+                .and()
+                .csrf().disable()
+                .cors(withDefaults())
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .formLogin().disable()
+                .httpBasic().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(new MemberAuthenticationEntryPoint())
+                .accessDeniedHandler(new MemberAccessDeniedHandler())
+                .and()
+                .apply(new CustomFilterConfigurer())
+                .and()
+                .authorizeHttpRequests(authorize -> authorize
+                        .anyRequest().permitAll())
+                .oauth2Login()
+                .successHandler(new OAuth2MemberSuccessHandler(jwtTokenizer, authorityUtils, memberService, memberRepository))
+                .userInfoEndpoint() // OAuth2 로그인 성공 이후 사용자 정보를 가져올 때 설정을 저장
+                .userService(customOAuth2MemberService); // OAuth2 로그인 성공 시, 후작업을 진행할 UserService 인터페이스 구현체 등록
+        return http.build();
+    }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource(){
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.addAllowedHeader("*");
+        configuration.setAllowedMethods(Arrays.asList("GET","POST","PATCH","DELETE"));
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**",configuration);
+        return source;
+    }
+
+    public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {
+        @Override
+        public void configure(HttpSecurity builder) throws Exception {
+            JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer, authorityUtils);
+
+            builder.addFilterAfter(jwtVerificationFilter, OAuth2LoginAuthenticationFilter.class);
+        }
+    }
+}
