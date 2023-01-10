@@ -1,6 +1,9 @@
 package com.book.village.server.auth.jwt;
 
+import com.book.village.server.global.exception.CustomLogicException;
+import com.book.village.server.global.exception.ExceptionCode;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -100,4 +103,19 @@ public class JwtTokenizer {
         return key;
     }
 
+
+    public String getEmailFromToken(String token, String encodedBase64SecretKey) {
+        Key key = getKeyFromBase64EncodedKey(encodedBase64SecretKey);
+        try {
+            String email = Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token).getBody().getSubject();
+            return email;
+        } catch (ExpiredJwtException ee) {
+            throw new CustomLogicException(ExceptionCode.EXPIRED_REFRESH_TOKEN);
+        } catch (Exception e) {
+            throw new CustomLogicException(ExceptionCode.TOKEN_INVALID);
+        }
+    }
 }

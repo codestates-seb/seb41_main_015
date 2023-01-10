@@ -13,6 +13,9 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.H2Dialect
+  redis:
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
   security:
     oauth2:
       client:
