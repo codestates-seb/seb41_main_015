@@ -7,10 +7,7 @@ import com.book.village.server.global.response.SingleResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -37,4 +34,10 @@ public class RequestController {
                 HttpStatus.CREATED);
     }
 
+    @PatchMapping("/{request-id}")
+    public ResponseEntity patchRequest(Principal principal,
+                                       @PathVariable("request-id") long requestId,
+                                       @Valid @RequestBody RequestDto.Patch requestPatchDto) {
+        return null;
+    }
 }
