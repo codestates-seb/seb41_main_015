@@ -2,8 +2,12 @@ package com.book.village.server.auth.filter;
 
 import com.book.village.server.auth.jwt.JwtTokenizer;
 import com.book.village.server.auth.utils.CustomAuthorityUtils;
+import com.book.village.server.global.exception.CustomLogicException;
+import com.book.village.server.global.exception.ExceptionCode;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,16 +25,19 @@ import java.util.Map;
 public class JwtVerificationFilter extends OncePerRequestFilter {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
+    private final RedisTemplate redisTemplate;
 
-    public JwtVerificationFilter(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils) {
+    public JwtVerificationFilter(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, RedisTemplate redisTemplate) {
         this.jwtTokenizer = jwtTokenizer;
         this.authorityUtils = authorityUtils;
+        this.redisTemplate = redisTemplate;
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
             Map<String, Object> claims = verifyJws(request);
+            verifyLogoutToken(request);
             setAuthenticationToContext(claims);
         } catch (SignatureException se) {
             request.setAttribute("exception", se);
@@ -54,6 +61,15 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
         Map<String, Object> claims = jwtTokenizer.getClaims(jws, base64EncodedSecretKey).getBody();
 
         return claims;
+    }
+    private void verifyLogoutToken(HttpServletRequest request){
+        String jws = request.getHeader("Authorization").replace("Bearer ", "");
+        ValueOperations valueOperations = redisTemplate.opsForValue();
+        String email = (String)valueOperations.get("logout:" + jws);
+
+        if (email != null) {
+            throw new CustomLogicException(ExceptionCode.ALREADY_LOGOUT_MEMBER);
+        }
     }
 
     private void setAuthenticationToContext(Map<String, Object> claims) {

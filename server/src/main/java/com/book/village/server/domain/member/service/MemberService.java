@@ -1,14 +1,21 @@
 package com.book.village.server.domain.member.service;
 
+import com.book.village.server.auth.jwt.JwtTokenizer;
 import com.book.village.server.auth.utils.CustomAuthorityUtils;
 import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.domain.member.repository.MemberRepository;
 import com.book.village.server.global.exception.CustomLogicException;
 import com.book.village.server.global.exception.ExceptionCode;
 import com.book.village.server.global.utils.CustomBeanUtils;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -17,11 +24,15 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final CustomBeanUtils<Member> customBeanUtils;
     private final CustomAuthorityUtils authorityUtils;
+    private final RedisTemplate redisTemplate;
+    private final JwtTokenizer jwtTokenizer;
 
-    public MemberService(MemberRepository memberRepository, CustomBeanUtils<Member> customBeanUtils, CustomAuthorityUtils authorityUtils) {
+    public MemberService(MemberRepository memberRepository, CustomBeanUtils<Member> customBeanUtils, CustomAuthorityUtils authorityUtils, RedisTemplate redisTemplate, JwtTokenizer jwtTokenizer) {
         this.memberRepository = memberRepository;
         this.customBeanUtils = customBeanUtils;
         this.authorityUtils = authorityUtils;
+        this.redisTemplate = redisTemplate;
+        this.jwtTokenizer = jwtTokenizer;
     }
 
     public Member createMember(Member member) {
@@ -48,5 +59,19 @@ public class MemberService {
 
     public Member updateMember(Member member, Member patchMember) {
         return customBeanUtils.copyNonNullProperties(patchMember, member);
+    }
+
+    public void registerLogoutToken(String jws) {
+        ValueOperations valueOperations = redisTemplate.opsForValue();
+        Jws<Claims> jwsClaims = jwtTokenizer.getClaims(
+                jws,
+                jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey())
+        );
+
+        Map<String, Object> claims = jwsClaims.getBody();
+
+        String email = (String)claims.get("username");
+        String logoutKey = "logout:" + jws;
+        valueOperations.set(logoutKey, email, Duration.ofMinutes(jwtTokenizer.getAccessTokenExpirationMinutes()));
     }
 }
