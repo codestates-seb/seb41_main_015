@@ -65,6 +65,8 @@ logging:
       springframework:
         orm:
           jpa: DEBUG
+admin:
+  email: ${ADMIN1_EMAIL}
 jwt:
   key:
     secret: ${JWT_SECRET_KEY}
