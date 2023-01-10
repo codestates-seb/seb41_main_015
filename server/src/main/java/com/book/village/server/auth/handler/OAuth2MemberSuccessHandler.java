@@ -99,8 +99,8 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         return UriComponentsBuilder
                 .newInstance()
                 .scheme("http")
-                .host("localhost")
-                .path("/receive-token.html")
+                .host("bookvillage.kro.kr")
+                .path("/shareList.js")
                 .queryParams(queryParams)
                 .build()
                 .toUri();
