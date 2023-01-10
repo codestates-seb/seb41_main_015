@@ -65,9 +65,9 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
     private void verifyLogoutToken(HttpServletRequest request){
         String jws = request.getHeader("Authorization").replace("Bearer ", "");
         ValueOperations valueOperations = redisTemplate.opsForValue();
-        String memberId = (String)valueOperations.get("logout:" + jws);
+        String email = (String)valueOperations.get("logout:" + jws);
 
-        if (memberId != null) {
+        if (email != null) {
             throw new CustomLogicException(ExceptionCode.ALREADY_LOGOUT_MEMBER);
         }
     }
