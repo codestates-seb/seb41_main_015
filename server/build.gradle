@@ -28,9 +28,15 @@ dependencies {
 	// jpa
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	// security 로그인 기능 완성 후 추가 예정
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// web 화면 구성
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	// OAuth2
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	// web mvc
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	//redis
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
@@ -52,9 +58,9 @@ dependencies {
 
 	implementation 'com.google.code.gson:gson'
 	// jwt
-//	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
-//	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
-//	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
 }
 
 tasks.named('test') {
