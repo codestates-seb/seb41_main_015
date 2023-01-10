@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const SInputList = styled.div`
   display: block;
@@ -76,15 +79,93 @@ const STitle = styled.h1`
 `;
 
 const SDefaultProfile = styled.div`
-  margin-left: 200px;
+  margin-left: 48%;
   img {
     height: 100px;
     width: 100px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
   }
 `;
 
 const MyPageEdit = () => {
+  //컴포넌트에서 바뀌는 값 관리
+  const [name, setName] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [phonNumber, setPhonNumber] = useState('');
+  const [profile, setProfile] = useState('');
+
+  //현재 접속한 페이지의 id값을 가져옴
+  const { id } = useParams();
+  //navigate
+  const navigate = useNavigate();
+
+  //input 입력값 상태 저장
+  const handleChangeName = (e) => {
+    setName(e.target.value);
+    console.log(e.target.value);
+  };
+  const handleChangeNickname = (e) => {
+    setNickname(e.target.value);
+    console.log(e.target.value);
+  };
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+    console.log(e.target.value);
+  };
+  const handleChangeAddress = (e) => {
+    setAddress(e.target.value);
+    console.log(e.target.value);
+  };
+  const handleChangePhonNumber = (e) => {
+    setPhonNumber(e.target.value);
+    console.log(e.target.value);
+  };
+  const handleChangeProfile = (e) => {
+    setProfile(e.target.value);
+    console.log(e.target.value);
+  };
+
+  //저장 버튼 클릭 시, 서버로 patch 요청
+  const handleClickSave = () => {
+    axios
+      .patch(`http://localhost8080/mypageEdit/${id}`, {
+        name,
+        nickname,
+        email,
+        address,
+        phonNumber,
+        profile,
+      })
+      .then(() => {
+        navigate('/mypage');
+        alert('프로필 수정이 완료되었습니다!');
+        console.log('수정완료');
+      })
+      .catch((err) => {
+        alert('수정이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요!');
+        console.error(err);
+      });
+  };
+
+  // 서버 연결 후 주석 풀기!
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost8080/mypageEdit/${id}`)
+  //     .then((res) => {
+  //       setName(res.data.name);
+  //       setNickname(res.data.nickname);
+  //       setEmail(res.data.email);
+  //       setAddress(res.data.address);
+  //       setPhonNumber(res.data.phonNumber);
+  //       setPhonNumber(res.data.profile);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }, []);
+
   return (
     <div>
       <STitle>회원정보 수정</STitle>
@@ -104,6 +185,8 @@ const MyPageEdit = () => {
             id="name"
             className="inputSize"
             placeholder="이름을 입력하십시오"
+            // value={name}
+            onChange={handleChangeName}
           ></input>
         </p>
         <p>
@@ -114,6 +197,8 @@ const MyPageEdit = () => {
             id="nickName"
             className="inputSize"
             placeholder="닉네임을 입력하십시오"
+            // value={nickname}
+            onChange={handleChangeNickname}
           ></input>
         </p>
         <p>
@@ -124,6 +209,8 @@ const MyPageEdit = () => {
             id="email"
             className="inputSize"
             placeholder="이메일을 입력하십시오"
+            // value={email}
+            onChange={handleChangeEmail}
           ></input>
         </p>
         <p>
@@ -134,6 +221,8 @@ const MyPageEdit = () => {
             id="address"
             className="inputSize"
             placeholder="주소를 입력하십시오"
+            // value={address}
+            onChange={handleChangeAddress}
           ></input>
         </p>
         <p>
@@ -144,6 +233,8 @@ const MyPageEdit = () => {
             id="phonNumber"
             className="inputSize"
             placeholder="전화번호를 입력하십시오"
+            // value={phonNumber}
+            onChange={handleChangePhonNumber}
           ></input>
         </p>
         <p>
@@ -154,13 +245,15 @@ const MyPageEdit = () => {
             id="profile"
             className="inputSize"
             placeholder="프로필을 url형태로 입력하십시오"
+            // value={profile}
+            onChange={handleChangeProfile}
           ></input>
         </p>
       </SInputList>
       <SWithdraw>회원탈퇴</SWithdraw>
       <SEditBtn>
         <SCancelBtn>취소</SCancelBtn>
-        <SSaveBtn>저장</SSaveBtn>
+        <SSaveBtn onClick={handleClickSave}>저장</SSaveBtn>
       </SEditBtn>
     </div>
   );
