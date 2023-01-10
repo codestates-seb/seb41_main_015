@@ -1,0 +1,33 @@
+= 북 빌리지
+:sectnums:
+:toc: left
+:toclevels: 4
+:toc-title: Table of Contents
+:source-highlighter: prettify
+
+api 뒤 _csrf 는 무시하시면 됩니다!
+
+채승윤
+김성수
+박종혁
+
+v1.0.0, 2022.01.10
+
+***
+== RequestController
+
+=== 요청 등록
+.curl-request
+include::{snippets}/post-request/curl-request.adoc[]
+
+.http-request
+include::{snippets}/post-request/http-request.adoc[]
+
+.request-fields
+include::{snippets}/post-request/request-fields.adoc[]
+
+.http-response
+include::{snippets}/post-request/http-response.adoc[]
+
+.response-headers
+include::{snippets}/post-request/response-headers.adoc[]
