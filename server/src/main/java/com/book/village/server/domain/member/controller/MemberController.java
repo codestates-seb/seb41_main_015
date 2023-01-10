@@ -29,7 +29,6 @@ public class MemberController {
 
     @GetMapping
     public ResponseEntity getMember(Principal principal){
-        System.out.println("principal = " + principal);
         Member member = memberService.findMember(principal.getName());
         return ResponseEntity.ok(new SingleResponse<>(memberMapper.memberToResponseMemberDto(member)));
     }
