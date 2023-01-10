@@ -9,7 +9,6 @@ const SLoginLayout = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
 
   h2 {
     font-size: 27px;
@@ -17,14 +16,23 @@ const SLoginLayout = styled.main`
     color: #bb2649;
   }
 
-  div {
+  .bottomText {
     margin-top: 30px;
+  }
+
+  .loginForm {
+    width: 448px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 `;
 
 const SLoginBox = styled.div`
   width: 448px;
-  height: 450px;
+  height: 430px;
   border-radius: 20px;
   box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, 0.16);
 
@@ -32,7 +40,7 @@ const SLoginBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 45px;
+  gap: 40px;
 
   button {
     display: flex;
@@ -41,7 +49,7 @@ const SLoginBox = styled.div`
     border: none;
     border-radius: 5px;
     width: 313px;
-    height: 53px;
+    height: 58px;
     font-weight: 700;
   }
 
@@ -60,24 +68,42 @@ const SLoginBox = styled.div`
 `;
 
 const Login = () => {
+  const handleSocialLogin = (type) => {
+    console.log(type + ' 소셜 로그인');
+    window.location.assign(
+      `https://serverbookvillage/kro.kr/oauth2/authorization/${type}`
+    );
+  };
+
   return (
     <SLoginLayout>
-      <h2>로그인</h2>
-      <SLoginBox>
-        <button className="withGoogle">
-          <Google />
-          구글 계정으로 로그인하기
-        </button>
-        <button className="withKakao">
-          <Kakao />
-          카카오 계정으로 로그인하기
-        </button>
-        <button className="withNaver">
-          <Naver />
-          네이버 계정으로 로그인하기
-        </button>
-      </SLoginBox>
-      <div>복잡한 과정 없이 간편하게 로그인하세요</div>
+      <div className="loginForm">
+        <h2>로그인</h2>
+        <SLoginBox>
+          <button
+            className="withGoogle"
+            onClick={() => handleSocialLogin('google')}
+          >
+            <Google />
+            구글 계정으로 로그인하기
+          </button>
+          <button
+            className="withKakao"
+            onClick={() => handleSocialLogin('kakao')}
+          >
+            <Kakao />
+            카카오 계정으로 로그인하기
+          </button>
+          <button
+            className="withNaver"
+            onClick={() => handleSocialLogin('naver')}
+          >
+            <Naver />
+            네이버 계정으로 로그인하기
+          </button>
+        </SLoginBox>
+        <div className="bottomText">복잡한 과정 없이 간편하게 로그인하세요</div>
+      </div>
     </SLoginLayout>
   );
 };
