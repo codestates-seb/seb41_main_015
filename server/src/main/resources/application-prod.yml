@@ -25,6 +25,7 @@ spring:
             scope:
               - email
               - profile
+            redirectUri: "https://serverbookvillage.kro.kr/login/oauth2/code/google"
           naver:
             clientId: ${N_CLIENT_ID}
             clientSecret: ${N_CLIENT_SECRET}
