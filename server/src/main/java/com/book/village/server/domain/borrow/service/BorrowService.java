@@ -27,7 +27,7 @@ public class BorrowService {
     }
 
     // Borrow 생성
-        // 생성시 딱히 검증할 필요가 있는 게 없음. 회원은 이미 인증 인가된 상태.
+    // 생성시 딱히 검증할 필요가 있는 게 없음. 회원은 이미 인증 인가된 상태.
     public Borrow createBorrow(Borrow borrow, String userEmail) {
 
         borrow.setMember(memberService.findMember(userEmail));  // 이메일로 인한 유저멤버 변경
@@ -40,11 +40,11 @@ public class BorrowService {
         Borrow findBorrow = findVerificationBorrow(borrow.getBorrowId());   // 게시글 유무 확인.
         // 회원은 이미 검증됨.
         // 존재하는 게시판인지
-            // 존재하지 않다면, 예외처리
-            // 존재하면 save
+        // 존재하지 않다면, 예외처리
+        // 존재하면 save
         // 게시판 쓴 유저와 동일한지
-            // 동일하지 않다면 예외처리
-            // 동일하면,
+        // 동일하지 않다면 예외처리
+        // 동일하면,
         // 위의 내용을 한번에 검증
         verificationBorrow(findBorrow, userEamil);  // 회원 이메일로 나눔글 작성자와 수정할 사람이 동일한 이메일인지 확인
         customBeanUtils.copyNonNullProperties(borrow, findBorrow);
@@ -59,7 +59,7 @@ public class BorrowService {
         // 게시글 존재 유무
         Optional<Borrow> OptionalBorrow = borrowRepository.findById(borrowId);  // 나눔글 정보 DB에서 조회.
         Borrow findBorrow = OptionalBorrow.orElseThrow(() ->
-            new CustomLogicException(ExceptionCode.BORROW_NOT_FOUND)); // 만약 null이면 없다고 에러
+                new CustomLogicException(ExceptionCode.BORROW_NOT_FOUND)); // 만약 null이면 없다고 에러
 
         return findBorrow;
     }

@@ -26,7 +26,7 @@ public class BorrowController {
     // Borrow 생성
     @PostMapping
     public ResponseEntity postBorrow(Principal principal,
-                                       @RequestBody BorrowDto.Post borrowPostDto) {
+                                     @RequestBody BorrowDto.Post borrowPostDto) {
         Borrow borrow = borrowMapper.borrowDtoPostToBorrow(borrowPostDto);
         Borrow createdBorrow = borrowService.createBorrow(borrow, principal.getName());
 
@@ -45,7 +45,4 @@ public class BorrowController {
 
         return new ResponseEntity<>(borrowMapper.borrowToBorrowDtoResponse(updatedBorrow), HttpStatus.OK);
     }
-
-
-
 }

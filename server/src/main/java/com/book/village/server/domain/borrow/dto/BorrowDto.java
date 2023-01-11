@@ -72,7 +72,7 @@ public class BorrowDto {
         private String publisher;   // 나눔 책 출판사
         private String displayName; // 회원 닉네임
         private String talkUrl;     // 톡링크
-        
+
         private LocalDateTime createAt;     // 나눔글 생성 일자
         private LocalDateTime modifiedAt;   // 나눔글 최근 수정 일자
     }
