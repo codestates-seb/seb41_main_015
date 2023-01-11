@@ -4,12 +4,15 @@ import com.book.village.server.auth.jwt.JwtTokenizer;
 import com.book.village.server.auth.utils.CustomAuthorityUtils;
 import com.book.village.server.global.exception.CustomLogicException;
 import com.book.village.server.global.exception.ExceptionCode;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.security.SignatureException;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -18,6 +21,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -40,11 +44,11 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
             verifyLogoutToken(request);
             setAuthenticationToContext(claims);
         } catch (SignatureException se) {
-            request.setAttribute("exception", se);
+            throw new CustomLogicException(ExceptionCode.TOKEN_INVALID);
         } catch (ExpiredJwtException ee) {
-            request.setAttribute("exception", ee);
+            throw new CustomLogicException(ExceptionCode.TOKEN_INVALID);
         } catch (Exception e) {
-            request.setAttribute("exception", e);
+            throw new CustomLogicException(ExceptionCode.TOKEN_INVALID);
         }
         filterChain.doFilter(request, response);
     }
@@ -58,17 +62,19 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
     private Map<String, Object> verifyJws(HttpServletRequest request) {
         String jws = request.getHeader("Authorization").replace("Bearer ", "");
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
-        Map<String, Object> claims = jwtTokenizer.getClaims(jws, base64EncodedSecretKey).getBody();
+        Jws<Claims> claimsJws= jwtTokenizer.getClaims(jws, base64EncodedSecretKey);
+        Map<String, Object> claims = claimsJws.getBody();
 
         return claims;
     }
-    private void verifyLogoutToken(HttpServletRequest request){
+    private void verifyLogoutToken(HttpServletRequest request) throws Exception {
         String jws = request.getHeader("Authorization").replace("Bearer ", "");
         ValueOperations valueOperations = redisTemplate.opsForValue();
+        
         String email = (String)valueOperations.get("logout:" + jws);
 
         if (email != null) {
-            throw new CustomLogicException(ExceptionCode.ALREADY_LOGOUT_MEMBER);
+            throw new Exception();
         }
     }
 
