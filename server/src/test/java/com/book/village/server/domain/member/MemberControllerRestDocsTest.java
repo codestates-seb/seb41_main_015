@@ -1,6 +1,5 @@
 package com.book.village.server.domain.member;
 
-import com.book.village.server.auth.jwt.repository.RefreshTokenRepository;
 import com.book.village.server.domain.member.controller.MemberController;
 import com.book.village.server.domain.member.dto.MemberDto;
 import com.book.village.server.domain.member.entity.Member;
