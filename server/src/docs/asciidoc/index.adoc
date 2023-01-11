@@ -29,5 +29,21 @@ include::{snippets}/post-request/request-fields.adoc[]
 .http-response
 include::{snippets}/post-request/http-response.adoc[]
 
-.response-headers
-include::{snippets}/post-request/response-headers.adoc[]
+.response-fields
+include::{snippets}/post-request/response-fields.adoc[]
+
+=== 요청 수정
+.curl-request
+include::{snippets}/patch-request/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-request/http-request.adoc[]
+
+.request-fields
+include::{snippets}/patch-request/request-fields.adoc[]
+
+.http-response
+include::{snippets}/patch-request/http-response.adoc[]
+
+.response-fields
+include::{snippets}/patch-request/response-fields.adoc[]

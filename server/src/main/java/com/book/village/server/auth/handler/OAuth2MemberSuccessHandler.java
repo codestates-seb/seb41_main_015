@@ -96,21 +96,21 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         queryParams.add("access_token", accessToken);
         queryParams.add("refresh_token", refreshToken);
 
-        return UriComponentsBuilder
-                .newInstance()
-                .scheme("http")
-                .host("bookvillage.kro.kr")
-                .path("/shareList.js")
-                .queryParams(queryParams)
-                .build()
-                .toUri();
 //        return UriComponentsBuilder
 //                .newInstance()
 //                .scheme("http")
-//                .host("localhost")
-//                .path("/receive-token.html")
+//                .host("bookvillage.kro.kr")
+//                .path("/shareList.js")
 //                .queryParams(queryParams)
 //                .build()
 //                .toUri();
+        return UriComponentsBuilder
+                .newInstance()
+                .scheme("http")
+                .host("localhost")
+                .path("/receive-token.html")
+                .queryParams(queryParams)
+                .build()
+                .toUri();
     }
 }

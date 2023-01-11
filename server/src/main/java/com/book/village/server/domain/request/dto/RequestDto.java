@@ -72,7 +72,10 @@ public class RequestDto {
     @Getter
     @Setter
     @Builder
-    public class Patch {
+    public static class Patch {
+
+        private long requestId;
+
         private String talkUrl;
 
         @NotBlank
