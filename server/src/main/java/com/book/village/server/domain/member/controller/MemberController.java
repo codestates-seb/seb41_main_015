@@ -28,6 +28,12 @@ public class MemberController {
         this.memberService = memberService;
         this.memberMapper = memberMapper;
     }
+    @PatchMapping
+    public ResponseEntity patchMember(Principal principal, @Valid @RequestBody MemberDto.Patch memberDto) {
+        Member member = memberService.findMember(principal.getName());
+        memberService.updateMember(member, memberMapper.patchMemberDtoToMember(memberDto));
+        return ResponseEntity.ok(new SingleResponse<>(memberMapper.memberToResponseMemberDto(member)));
+    }
 
     @GetMapping
     public ResponseEntity getMember(Principal principal){
@@ -42,12 +48,7 @@ public class MemberController {
 
         return ResponseEntity.ok(new MessageResponseDto("logout completed!"));
     }
-    @PatchMapping
-    public ResponseEntity patchMember(Principal principal, @Valid @RequestBody MemberDto.Patch memberDto) {
-        Member member = memberService.findMember(principal.getName());
-        memberService.updateMember(member, memberMapper.patchMemberDtoToMember(memberDto));
-        return ResponseEntity.ok(new SingleResponse<>(memberMapper.memberToResponseMemberDto(member)));
-    }
+
 
     @PatchMapping("/quit")
     public ResponseEntity quitMember(Principal principal){

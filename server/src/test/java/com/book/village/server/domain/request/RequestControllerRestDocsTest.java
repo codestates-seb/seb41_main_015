@@ -7,6 +7,7 @@ import com.book.village.server.domain.request.dto.RequestDto;
 import com.book.village.server.domain.request.entity.Request;
 import com.book.village.server.domain.request.mapper.RequestMapper;
 import com.book.village.server.domain.request.service.RequestService;
+import com.book.village.server.global.utils.GenerateMockToken;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,8 @@ import java.util.List;
 import static com.book.village.server.util.ApiDocumentUtils.getRequestPreProcessor;
 import static com.book.village.server.util.ApiDocumentUtils.getResponsePreProcessor;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
@@ -83,9 +86,6 @@ public class RequestControllerRestDocsTest {
                         modifiedAt);
         String accessToken = "tokenexample";
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.AUTHORIZATION, accessToken);
-
         given(requestMapper.requestPostDtoToRequest(Mockito.any(RequestDto.Post.class))).willReturn(new Request());
 
         given(requestService.createRequest(Mockito.any(Request.class), Mockito.anyString())).willReturn(new Request());
@@ -100,7 +100,7 @@ public class RequestControllerRestDocsTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .with(csrf())
                                 .content(content)
-                                .headers(headers));
+                                .headers(GenerateMockToken.getMockHeaderToken()));
 
         actions
                 .andExpect(status().isCreated())
@@ -113,6 +113,9 @@ public class RequestControllerRestDocsTest {
                 .andDo(document("post-request",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
+                        requestHeaders(
+                                headerWithName("Authorization").description("Bearer Token")
+                        ),
                         requestParameters(
                                 parameterWithName("_csrf").description("csrf")
                         ),

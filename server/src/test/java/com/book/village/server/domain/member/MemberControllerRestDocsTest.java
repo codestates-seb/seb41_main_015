@@ -1,5 +1,6 @@
 package com.book.village.server.domain.member;
 
+import com.book.village.server.auth.jwt.repository.RefreshTokenRepository;
 import com.book.village.server.domain.member.controller.MemberController;
 import com.book.village.server.domain.member.dto.MemberDto;
 import com.book.village.server.domain.member.entity.Member;
@@ -27,14 +28,13 @@ import java.util.List;
 import static com.book.village.server.util.ApiDocumentUtils.getRequestPreProcessor;
 import static com.book.village.server.util.ApiDocumentUtils.getResponsePreProcessor;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -86,7 +86,7 @@ public class MemberControllerRestDocsTest {
         );
 
         given(mapper.patchMemberDtoToMember(Mockito.any(MemberDto.Patch.class))).willReturn(new Member());
-
+        given(memberService.findMember(Mockito.anyString())).willReturn(new Member());
         given(memberService.updateMember(Mockito.any(Member.class),Mockito.any(Member.class))).willReturn(new Member());
 
         given(mapper.memberToResponseMemberDto(Mockito.any(Member.class))).willReturn(responseDto);
@@ -101,7 +101,6 @@ public class MemberControllerRestDocsTest {
                                 .content(content)
                                 .headers(GenerateMockToken.getMockHeaderToken())
                 );
-
         actions
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data.name").value(patch.getName()))
@@ -133,7 +132,7 @@ public class MemberControllerRestDocsTest {
                                         fieldWithPath("data.name").type(JsonFieldType.STRING).description("이름"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("닉네임"),
                                         fieldWithPath("data.address").type(JsonFieldType.STRING).description("주소"),
-                                        fieldWithPath("data.PhoneNumber").type(JsonFieldType.STRING).description("핸드폰 번호"),
+                                        fieldWithPath("data.phoneNumber").type(JsonFieldType.STRING).description("핸드폰 번호"),
                                         fieldWithPath("data.memberStatus").type(JsonFieldType.STRING).description("회원 상태"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("회원 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("회원 수정 일자")
@@ -142,5 +141,139 @@ public class MemberControllerRestDocsTest {
                 ));
     }
 
+    @Test
+    @DisplayName("회원 조회")
+    @WithMockUser
+    public void getMemberTest() throws Exception {
+        long memberId=1L;
 
+        LocalDateTime createdAt=LocalDateTime.now();
+        LocalDateTime modifiedAt=createdAt;
+
+        MemberDto.Response responseDto = new MemberDto.Response(
+                memberId,
+                "test1234@gmail.com",
+                "name1",
+                "user1",
+                "address1",
+                "010-1234-5678",
+                Member.MemberStatus.MEMBER_ACTIVE.getStatus(),
+                createdAt,
+                modifiedAt
+        );
+
+        given(memberService.findMember(Mockito.anyString())).willReturn(new Member());
+        given(mapper.memberToResponseMemberDto(Mockito.any(Member.class))).willReturn(responseDto);
+
+
+        ResultActions actions =
+                mockMvc.perform(
+                        get(url)
+                                .accept(MediaType.APPLICATION_JSON)
+                                .with(csrf())
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .headers(GenerateMockToken.getMockHeaderToken())
+                );
+        actions
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.memberId").value(responseDto.getMemberId()))
+                .andExpect(jsonPath("$.data.email").value(responseDto.getEmail()))
+                .andExpect(jsonPath("$.data.name").value(responseDto.getName()))
+                .andExpect(jsonPath("$.data.displayName").value(responseDto.getDisplayName()))
+                .andExpect(jsonPath("$.data.address").value(responseDto.getAddress()))
+                .andExpect(jsonPath("$.data.phoneNumber").value(responseDto.getPhoneNumber()))
+                .andDo(document("get-member",
+                        getResponsePreProcessor(),
+                        requestHeaders(
+                                headerWithName("Authorization").description("Bearer Token")
+                        ),
+                        // response body
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
+                                        fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("data.email").type(JsonFieldType.STRING).description("이메일"),
+                                        fieldWithPath("data.name").type(JsonFieldType.STRING).description("이름"),
+                                        fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("닉네임"),
+                                        fieldWithPath("data.address").type(JsonFieldType.STRING).description("주소"),
+                                        fieldWithPath("data.phoneNumber").type(JsonFieldType.STRING).description("핸드폰 번호"),
+                                        fieldWithPath("data.memberStatus").type(JsonFieldType.STRING).description("회원 상태"),
+                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("회원 생성 일자"),
+                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("회원 수정 일자")
+                                )
+                        )
+                ));
+    }
+
+    @Test
+    @DisplayName("로그아웃")
+    @WithMockUser
+    public void logoutMemberTest() throws Exception {
+        long memberId=1L;
+
+        LocalDateTime createdAt=LocalDateTime.now();
+        LocalDateTime modifiedAt=createdAt;
+
+        doNothing().when(memberService).registerLogoutToken(Mockito.anyString(),Mockito.anyString());
+
+        ResultActions actions =
+                mockMvc.perform(
+                        post(url+"/auth/logout")
+                                .accept(MediaType.APPLICATION_JSON)
+                                .with(csrf())
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .headers(GenerateMockToken.getMockHeaderToken())
+                );
+        actions
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message").value("logout completed!"))
+                .andDo(document("logout-member",
+                        getResponsePreProcessor(),
+                        requestHeaders(
+                                headerWithName("Authorization").description("Bearer Token")
+                        ),
+                        // response body
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("message").type(JsonFieldType.STRING).description("로그아웃 메세지")
+                                )
+                        )
+                ));
+    }
+
+    @Test
+    @DisplayName("회원 탈퇴")
+    @WithMockUser
+    public void quitMemberTest() throws Exception {
+        long memberId=1L;
+
+        LocalDateTime createdAt=LocalDateTime.now();
+        LocalDateTime modifiedAt=createdAt;
+
+        doNothing().when(memberService).quitMember(Mockito.anyString());
+
+        ResultActions actions =
+                mockMvc.perform(
+                        patch(url+"/quit")
+                                .accept(MediaType.APPLICATION_JSON)
+                                .with(csrf())
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .headers(GenerateMockToken.getMockHeaderToken())
+                );
+        actions
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message").value("quit member!"))
+                .andDo(document("quit-member",
+                        getResponsePreProcessor(),
+                        requestHeaders(
+                                headerWithName("Authorization").description("Bearer Token")
+                        ),
+                        // response body
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("message").type(JsonFieldType.STRING).description("탈퇴 메세지")
+                                )
+                        )
+                ));
+    }
 }
