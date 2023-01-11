@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import LoginModal from '../page/Login';
+import LoginModal from './LoginModal';
 import styled from 'styled-components';
 import logo from '../image/logo.svg';
 import { Link } from 'react-router-dom';

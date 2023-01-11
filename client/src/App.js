@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './page/Home';
 import CommonLayout from './page/CommonLayout';
 import Header from './components/Header';
-import LoginModal from './page/Login';
 import ShareList from './page/ShareList';
 import ShareAdd from './page/ShareAdd';
 import ShareEdit from './page/ShareEdit';
