@@ -8,6 +8,7 @@ public enum ExceptionCode {
 
     TITLE_NONE(400, "TITLE_NONE"),
     MEMBER_NOT_FOUND(404, "member not found"),
+    MEMBER_STATUS_QUIT(404, "member status is quit"),
 
     MEMBER_DUPLICATE(409, "MEMBER_DUPLICATE"),
     ALREADY_LOGOUT_MEMBER(409, "already logout member"),
