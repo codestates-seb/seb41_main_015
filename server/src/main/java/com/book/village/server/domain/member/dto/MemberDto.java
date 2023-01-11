@@ -1,5 +1,6 @@
 package com.book.village.server.domain.member.dto;
 
+import com.book.village.server.domain.member.entity.Member;
 import lombok.*;
 
 import javax.validation.constraints.Pattern;
@@ -29,6 +30,7 @@ public class MemberDto {
         private String name;
         private String displayName;
         private String phoneNumber;
+        private String memberStatus;
 
     }
 }
