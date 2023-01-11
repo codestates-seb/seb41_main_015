@@ -31,11 +31,10 @@ import java.util.Map;
 public class RefreshTokenController {
     private final JwtTokenizer jwtTokenizer;
     private final RefreshTokenService tokenService;
-    private final MemberService memberService;
-    private final CustomAuthorityUtils authorityUtils;
     @Getter
     @Value("${jwt.key.secret}")
     private String secretKey;
+
 
     @PostMapping("/auth/token")
     public ResponseEntity getAccessToken(HttpServletRequest request, HttpServletResponse response) {
@@ -47,19 +46,7 @@ public class RefreshTokenController {
         String email = jwtTokenizer.getEmailFromToken(token, encodedBase64SecretKey);
 
         tokenService.verifyToken(email, token);
-        Member member = memberService.findMember(email);
-        List<String> authorities = authorityUtils.createRoles(email);
-
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("username", email);
-        claims.put("roles", authorities);
-
-        String subject = email;
-        Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
-
-        String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
-
-        String accessToken = jwtTokenizer.generateAccessToken(claims, subject, expiration, base64EncodedSecretKey);
+        String accessToken= tokenService.getAccessToken(email);
 
         log.info("accessToken = {}", accessToken);
         response.addHeader("Authorization", accessToken);

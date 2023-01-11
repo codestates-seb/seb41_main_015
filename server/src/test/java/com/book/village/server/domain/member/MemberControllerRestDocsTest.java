@@ -5,8 +5,8 @@ import com.book.village.server.domain.member.dto.MemberDto;
 import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.domain.member.mapper.MemberMapper;
 import com.book.village.server.domain.member.service.MemberService;
+import com.book.village.server.global.utils.GenerateMockToken;
 import com.google.gson.Gson;
-import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -23,8 +23,9 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
+import static com.book.village.server.util.ApiDocumentUtils.getRequestPreProcessor;
+import static com.book.village.server.util.ApiDocumentUtils.getResponsePreProcessor;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
@@ -53,33 +54,36 @@ public class MemberControllerRestDocsTest {
 
     @Autowired
     private Gson gson;
+
     private static final String url = "/v1/members";
 
     @Test
     @DisplayName("회원 수정")
     @WithMockUser
-    public void patchQuestionTest() throws Exception {
+    public void patchMemberTest() throws Exception {
         long memberId=1L;
-        MemberDto.Patch patch = MemberDto.Patch.builder()
-                .name("name1")
-                .displayName("user1")
-                .address("address1")
-                .phoneNumber("010-1234-5678")
-                .build();
+        MemberDto.Patch patch = new MemberDto.Patch(
+                memberId,
+                "name1",
+                "user1",
+                "address1",
+                "010-1234-5678");
 
         LocalDateTime createdAt=LocalDateTime.now();
         LocalDateTime modifiedAt=createdAt;
         String content = gson.toJson(patch);
 
-        MemberDto.Response responseDto = MemberDto.Response.builder()
-                .memberId(memberId)
-                .email("test@gmail.com")
-                .name("name1")
-                .displayName("user1")
-                .phoneNumber("010-1234-5678")
-                .memberStatus(Member.MemberStatus.MEMBER_ACTIVE.getStatus())
-                .build();
-
+        MemberDto.Response responseDto = new MemberDto.Response(
+                memberId,
+                "test1234@gmail.com",
+                "name1",
+                "user1",
+                "address1",
+                "010-1234-5678",
+                Member.MemberStatus.MEMBER_ACTIVE.getStatus(),
+                createdAt,
+                modifiedAt
+        );
 
         given(mapper.patchMemberDtoToMember(Mockito.any(MemberDto.Patch.class))).willReturn(new Member());
 
@@ -95,55 +99,44 @@ public class MemberControllerRestDocsTest {
                                 .with(csrf())
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(content)
-                                .headers(GeneratedToken.getMockHeaderToken())
+                                .headers(GenerateMockToken.getMockHeaderToken())
                 );
 
         actions
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.questionId").value(patch.getQuestionId()))
-                .andExpect(jsonPath("$.data.title").value(patch.getTitle()))
-                .andExpect(jsonPath("$.data.content").value(patch.getContent()))
-                .andDo(document("patch-question",
+                .andExpect(jsonPath("$.data.name").value(patch.getName()))
+                .andExpect(jsonPath("$.data.displayName").value(patch.getDisplayName()))
+                .andExpect(jsonPath("$.data.address").value(patch.getAddress()))
+                .andExpect(jsonPath("$.data.phoneNumber").value(patch.getPhoneNumber()))
+                .andDo(document("patch-member",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         requestHeaders(
                                 headerWithName("Authorization").description("Bearer Token")
                         ),
-                        pathParameters(
-                                parameterWithName("question-id").description("질문 식별자")
-                        ),
                         // request body
                         requestFields(
                                 List.of(
-                                        fieldWithPath("questionId").type(JsonFieldType.NUMBER).description("질문 식별자").ignored(),
-                                        fieldWithPath("title").type(JsonFieldType.STRING).description("제목").optional(),
-                                        fieldWithPath("content").type(JsonFieldType.STRING).description("내용").optional(),
-                                        fieldWithPath("tag").type(JsonFieldType.ARRAY).description("태그").optional()
+                                        fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 식별자").ignored(),
+                                        fieldWithPath("name").type(JsonFieldType.STRING).description("이름").optional(),
+                                        fieldWithPath("displayName").type(JsonFieldType.STRING).description("닉네임").optional(),
+                                        fieldWithPath("address").type(JsonFieldType.STRING).description("주소").optional(),
+                                        fieldWithPath("phoneNumber").type(JsonFieldType.STRING).description("핸드폰 번호").optional()
                                 )
                         ),
                         // response body
                         responseFields(
                                 List.of(
                                         fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
-                                        fieldWithPath("data.questionId").type(JsonFieldType.NUMBER).description("질문 식별자"),
-                                        fieldWithPath("data.title").type(JsonFieldType.STRING).description("제목"),
-                                        fieldWithPath("data.content").type(JsonFieldType.STRING).description("내용"),
-                                        fieldWithPath("data.voteResult").type(JsonFieldType.NUMBER).description("투표 결과"),
-                                        fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("질문 작성자"),
-                                        fieldWithPath("data.email").type(JsonFieldType.STRING).description("질문 작성자 이메일"),
-                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("질문 작성 일자"),
-                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("질문 수정 일자"),
-                                        fieldWithPath("data.tag").type(JsonFieldType.ARRAY).description("태그"),
-                                        fieldWithPath("data.answers").type(JsonFieldType.ARRAY).description("답변"),
-                                        fieldWithPath("data.answerCount").type(JsonFieldType.NUMBER).description("답변 개수"),
-                                        fieldWithPath("data.answers.[].answerId").type(JsonFieldType.NUMBER).description("답변 식별자"),
-                                        fieldWithPath("data.answers.[].content").type(JsonFieldType.STRING).description("답변 내용"),
-                                        fieldWithPath("data.answers.[].voteResult").type(JsonFieldType.NUMBER).description("답변 투표"),
-                                        fieldWithPath("data.answers.[].questionId").type(JsonFieldType.NUMBER).description("답변 내부 질문 식별자"),
-                                        fieldWithPath("data.answers.[].displayName").type(JsonFieldType.STRING).description("답변 작성자"),
-                                        fieldWithPath("data.answers.[].email").type(JsonFieldType.STRING).description("답변 작성자 이메일"),
-                                        fieldWithPath("data.answers.[].createdAt").type(JsonFieldType.STRING).description("답변 생성 일자"),
-                                        fieldWithPath("data.answers.[].modifiedAt").type(JsonFieldType.STRING).description("답변 수정 일자")
+                                        fieldWithPath("data.memberId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("data.email").type(JsonFieldType.STRING).description("이메일"),
+                                        fieldWithPath("data.name").type(JsonFieldType.STRING).description("이름"),
+                                        fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("닉네임"),
+                                        fieldWithPath("data.address").type(JsonFieldType.STRING).description("주소"),
+                                        fieldWithPath("data.PhoneNumber").type(JsonFieldType.STRING).description("핸드폰 번호"),
+                                        fieldWithPath("data.memberStatus").type(JsonFieldType.STRING).description("회원 상태"),
+                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("회원 생성 일자"),
+                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("회원 수정 일자")
                                 )
                         )
                 ));

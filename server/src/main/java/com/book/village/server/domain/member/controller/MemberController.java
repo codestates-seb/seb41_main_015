@@ -22,13 +22,11 @@ import java.security.Principal;
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper memberMapper;
-    private final RefreshTokenService tokenService;
     private static final String BASE_URL = "/v1/members";
 
-    public MemberController(MemberService memberService, MemberMapper memberMapper, RefreshTokenService tokenService) {
+    public MemberController(MemberService memberService, MemberMapper memberMapper) {
         this.memberService = memberService;
         this.memberMapper = memberMapper;
-        this.tokenService = tokenService;
     }
 
     @GetMapping
@@ -40,8 +38,8 @@ public class MemberController {
     public ResponseEntity logoutMember(HttpServletRequest request, Principal principal) {
 
         String jws = request.getHeader("Authorization").replace("Bearer ", "");
-        memberService.registerLogoutToken(jws);
-        tokenService.deleteToken(principal.getName());
+        memberService.registerLogoutToken(jws, principal.getName());
+
         return ResponseEntity.ok(new MessageResponseDto("logout completed!"));
     }
     @PatchMapping
