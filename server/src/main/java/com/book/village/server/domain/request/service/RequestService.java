@@ -34,7 +34,7 @@ public class RequestService {
 
     public Request updateRequest(Request request, String userEmail) {
         Request findRequest = findVerifiedRequest(request.getRequestId());
-        if (findRequest.getMember().equals(memberService.findMember(userEmail))) {
+        if (findRequest.getMember().getEmail().equals(userEmail)) {
             beanUtils.copyNonNullProperties(request, findRequest);
             return requestRepository.save(findRequest);
         }
