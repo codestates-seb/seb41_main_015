@@ -60,6 +60,10 @@ public class MemberService {
     public Member updateMember(Member member, Member patchMember) {
         return customBeanUtils.copyNonNullProperties(patchMember, member);
     }
+    public void quitMember(String email){
+        Member findMember = findMember(email);
+        findMember.setMemberStatus(Member.MemberStatus.MEMBER_QUIT);
+    }
 
     public void registerLogoutToken(String jws) {
         ValueOperations valueOperations = redisTemplate.opsForValue();
