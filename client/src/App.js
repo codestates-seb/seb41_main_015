@@ -33,7 +33,7 @@ const App = () => {
           <Route path="/reqEdit" element={<ReqEdit />} />
           <Route path="/reqDetail" element={<ReqDetail />} />
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/mypageEdit" element={<MyPageEdit />} />
+          <Route path="/mypageEdit/:id" element={<MyPageEdit />} />
         </Route>
         {/* 푸터 필요없는 부분 */}
         <Route path="/login" element={<LoginModal />} />
