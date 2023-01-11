@@ -1,6 +1,8 @@
 package com.book.village.server.auth.handler;
 
 import com.book.village.server.auth.jwt.JwtTokenizer;
+import com.book.village.server.auth.jwt.entity.RefreshToken;
+import com.book.village.server.auth.jwt.repository.RefreshTokenRepository;
 import com.book.village.server.auth.utils.CustomAuthorityUtils;
 import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.domain.member.repository.MemberRepository;
@@ -27,12 +29,14 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
     private final CustomAuthorityUtils authorityUtils;
     private final MemberService memberService;
     private final MemberRepository memberRepository;
+    private final RefreshTokenRepository refreshTokenRepository;
 
-    public OAuth2MemberSuccessHandler(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, MemberService memberService, MemberRepository memberRepository) {
+    public OAuth2MemberSuccessHandler(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, MemberService memberService, MemberRepository memberRepository,RefreshTokenRepository refreshTokenRepository) {
         this.jwtTokenizer = jwtTokenizer;
         this.authorityUtils = authorityUtils;
         this.memberService = memberService;
         this.memberRepository = memberRepository;
+        this.refreshTokenRepository=refreshTokenRepository;
     }
 
     @Override
@@ -78,6 +82,11 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
 
         String refreshToken = jwtTokenizer.generateRefreshToken(subject, expiration, base64EncodedSecretKey);
+        RefreshToken token = RefreshToken.builder()
+                .refreshToken(refreshToken)
+                .member(memberService.findMember(username))
+                .build();
+        refreshTokenRepository.save(token);
 
         return refreshToken;
     }
@@ -90,10 +99,18 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         return UriComponentsBuilder
                 .newInstance()
                 .scheme("http")
-                .host("localhost")
-                .path("/receive-token.html")
+                .host("bookvillage.kro.kr")
+                .path("/shareList.js")
                 .queryParams(queryParams)
                 .build()
                 .toUri();
+//        return UriComponentsBuilder
+//                .newInstance()
+//                .scheme("http")
+//                .host("localhost")
+//                .path("/receive-token.html")
+//                .queryParams(queryParams)
+//                .build()
+//                .toUri();
     }
 }

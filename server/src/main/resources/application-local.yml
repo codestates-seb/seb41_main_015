@@ -13,6 +13,9 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.H2Dialect
+  redis:
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
   security:
     oauth2:
       client:
@@ -62,6 +65,8 @@ logging:
       springframework:
         orm:
           jpa: DEBUG
+admin:
+  email: ${ADMIN1_EMAIL}
 jwt:
   key:
     secret: ${JWT_SECRET_KEY}
