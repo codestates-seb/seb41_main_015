@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './page/Home';
 import CommonLayout from './page/CommonLayout';
 import Header from './components/Header';
-import Login from './page/Login';
+import LoginModal from './page/Login';
 import ShareList from './page/ShareList';
 import ShareAdd from './page/ShareAdd';
 import ShareEdit from './page/ShareEdit';
@@ -36,7 +36,7 @@ const App = () => {
           <Route path="/mypageEdit" element={<MyPageEdit />} />
         </Route>
         {/* 푸터 필요없는 부분 */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginModal />} />
         <Route path="/oauth" element={<Callback />} />
       </Routes>
     </BrowserRouter>
