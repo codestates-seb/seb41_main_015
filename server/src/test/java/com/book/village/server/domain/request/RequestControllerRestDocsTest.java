@@ -7,6 +7,7 @@ import com.book.village.server.domain.request.dto.RequestDto;
 import com.book.village.server.domain.request.entity.Request;
 import com.book.village.server.domain.request.mapper.RequestMapper;
 import com.book.village.server.domain.request.service.RequestService;
+import com.book.village.server.global.utils.GenerateMockToken;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,15 +17,12 @@ import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDoc
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -55,9 +53,6 @@ public class RequestControllerRestDocsTest {
     @MockBean
     private RequestMapper requestMapper;
 
-    @MockBean
-    private MemberService memberService;
-
     @Autowired
     private Gson gson;
 
@@ -82,10 +77,6 @@ public class RequestControllerRestDocsTest {
                         "displayName",
                         createdAt,
                         modifiedAt);
-        String accessToken = "accessTokenExample";
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.AUTHORIZATION, accessToken);
 
         given(requestMapper.requestPostDtoToRequest(Mockito.any(RequestDto.Post.class))).willReturn(new Request());
 
@@ -101,7 +92,7 @@ public class RequestControllerRestDocsTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .with(csrf())
                                 .content(content)
-                                .headers(headers));
+                                .headers(GenerateMockToken.getMockHeaderToken()));
 
         actions
                 .andExpect(status().isCreated())
@@ -176,9 +167,7 @@ public class RequestControllerRestDocsTest {
                         createdAt,
                         modifiedAt);
 
-        String accessToken = "accessTokenExample";
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.AUTHORIZATION, accessToken);
+
 
         given(requestMapper.requestPatchDtoToRequest(Mockito.any(RequestDto.Patch.class))).willReturn(new Request());
         given(requestService.updateRequest(Mockito.any(Request.class), Mockito.anyString())).willReturn(new Request());
@@ -191,8 +180,7 @@ public class RequestControllerRestDocsTest {
                                 .with(csrf())
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(content)
-                                .headers(headers)
-                );
+                                .headers(GenerateMockToken.getMockHeaderToken()));
 
         actions
                 .andExpect((status().isOk()))
