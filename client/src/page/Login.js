@@ -3,58 +3,71 @@ import { ReactComponent as Google } from '../image/google.svg';
 import { ReactComponent as Kakao } from '../image/kakao.svg';
 import { ReactComponent as Naver } from '../image/naver.svg';
 
-const SLoginLayout = styled.main`
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+const SModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+`;
 
-  h2 {
-    font-size: 27px;
-    font-weight: 700;
-    color: #bb2649;
+const SLoginModal = styled.div`
+  width: 448px;
+  height: 430px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  border: 1px solid #aaaaaa;
+  background-color: #ffffff;
+
+  .modalContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+
+    h2 {
+      margin-bottom: 30px;
+      color: #bb2649;
+    }
+  }
+
+  .close {
+    padding-top: 3px;
+    position: absolute;
+    right: 13px;
+    font-size: 2rem;
+    color: #aaaaaa;
+    cursor: pointer;
   }
 
   .bottomText {
-    margin-top: 30px;
+    font-size: 0.8rem;
   }
-
-  .loginForm {
-    width: 448px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-`;
-
-const SLoginBox = styled.div`
-  width: 448px;
-  height: 430px;
-  border-radius: 20px;
-  box-shadow: 0px 5px 20px 10px rgba(0, 0, 0, 0.16);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
 
   button {
+    margin: 10px 0px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 40px;
     align-items: center;
     border: none;
     border-radius: 5px;
-    width: 313px;
+    width: 360px;
     height: 58px;
     font-weight: 700;
   }
 
   .withGoogle {
+    margin-top: 20px;
     border: 1px solid #c0c0c0;
+    .googleText {
+      padding: 0 0.5rem;
+    }
   }
 
   .withKakao {
@@ -67,45 +80,58 @@ const SLoginBox = styled.div`
   }
 `;
 
-const Login = () => {
+const LoginModal = ({ isModalOpen, handleCloseModal }) => {
   const handleSocialLogin = (type) => {
-    console.log(type + ' 소셜 로그인');
+    // window.location.assign(
+    //   `https://serverbookvillage.kro.kr/oauth2/authorization/${type}`
+    // );
+
+    // 테스트용
     window.location.assign(
-      `https://serverbookvillage/kro.kr/oauth2/authorization/${type}`
+      'http://localhost:3000/oauth?access_token=something&refresh_token=something2&membership=new'
     );
   };
 
   return (
-    <SLoginLayout>
-      <div className="loginForm">
-        <h2>로그인</h2>
-        <SLoginBox>
-          <button
-            className="withGoogle"
-            onClick={() => handleSocialLogin('google')}
-          >
-            <Google />
-            구글 계정으로 로그인하기
-          </button>
-          <button
-            className="withKakao"
-            onClick={() => handleSocialLogin('kakao')}
-          >
-            <Kakao />
-            카카오 계정으로 로그인하기
-          </button>
-          <button
-            className="withNaver"
-            onClick={() => handleSocialLogin('naver')}
-          >
-            <Naver />
-            네이버 계정으로 로그인하기
-          </button>
-        </SLoginBox>
-        <div className="bottomText">복잡한 과정 없이 간편하게 로그인하세요</div>
-      </div>
-    </SLoginLayout>
+    <>
+      {isModalOpen ? (
+        <SModalBackground onClick={handleCloseModal}>
+          <SLoginModal onClick={(e) => e.stopPropagation()}>
+            <div className="close" onClick={handleCloseModal}>
+              &times;
+            </div>
+            <div className="modalContent">
+              <h2>로그인</h2>
+              <div className="bottomText">
+                복잡한 과정 없이 간편하게 로그인하세요
+              </div>
+              <button
+                className="withGoogle"
+                onClick={() => handleSocialLogin('google')}
+              >
+                <Google />
+                <div className="googleText">구글 계정으로 로그인하기</div>
+              </button>
+              <button
+                className="withKakao"
+                onClick={() => handleSocialLogin('kakao')}
+              >
+                <Kakao />
+                카카오 계정으로 로그인하기
+              </button>
+              <button
+                className="withNaver"
+                onClick={() => handleSocialLogin('naver')}
+              >
+                <Naver />
+                네이버 계정으로 로그인하기
+              </button>
+            </div>
+          </SLoginModal>
+        </SModalBackground>
+      ) : null}
+    </>
   );
 };
 
-export default Login;
+export default LoginModal;
