@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import LoginModal from '../page/Login';
 import styled from 'styled-components';
 import logo from '../image/logo.svg';
 import { Link } from 'react-router-dom';
@@ -72,6 +74,13 @@ const SLoginBtn = styled.button`
 `;
 
 const Header = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <StyledHeader>
       <SHeaderLogo>
@@ -92,7 +101,11 @@ const Header = () => {
           커뮤니티
         </Link>
       </SNavContainer>
-      <SLoginBtn>로그인</SLoginBtn>
+      <SLoginBtn onClick={handleOpenModal}>로그인</SLoginBtn>
+      <LoginModal
+        isModalOpen={isModalOpen}
+        handleCloseModal={handleCloseModal}
+      />
     </StyledHeader>
   );
 };

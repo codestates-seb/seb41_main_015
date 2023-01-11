@@ -36,7 +36,6 @@ const App = () => {
           <Route path="/mypageEdit/:id" element={<MyPageEdit />} />
         </Route>
         {/* 푸터 필요없는 부분 */}
-        <Route path="/login" element={<LoginModal />} />
         <Route path="/oauth" element={<Callback />} />
       </Routes>
     </BrowserRouter>
