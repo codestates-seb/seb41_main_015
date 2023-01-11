@@ -14,6 +14,7 @@ import ReqEdit from './page/ReqEdit';
 import ReqDetail from './page/ReqDetail';
 import MyPage from './page/MyPage';
 import MyPageEdit from './page/MyPageEdit';
+import Callback from './page/Callback';
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
         </Route>
         {/* 푸터 필요없는 부분 */}
         <Route path="/login" element={<Login />} />
+        <Route path="/oauth" element={<Callback />} />
       </Routes>
     </BrowserRouter>
   );

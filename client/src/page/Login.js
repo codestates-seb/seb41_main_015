@@ -69,9 +69,13 @@ const SLoginBox = styled.div`
 
 const Login = () => {
   const handleSocialLogin = (type) => {
-    console.log(type + ' 소셜 로그인');
+    // window.location.assign(
+    //   `https://serverbookvillage.kro.kr/oauth2/authorization/${type}`
+    // );
+
+    // 테스트용
     window.location.assign(
-      `https://serverbookvillage/kro.kr/oauth2/authorization/${type}`
+      'http://localhost:3000/oauth?access_token=something&refresh_token=something2&membership=new'
     );
   };
 
