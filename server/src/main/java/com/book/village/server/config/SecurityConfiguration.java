@@ -1,5 +1,6 @@
 package com.book.village.server.config;
 
+import com.book.village.server.auth.filter.AuthExceptionHandlerFilter;
 import com.book.village.server.auth.filter.JwtVerificationFilter;
 import com.book.village.server.auth.handler.MemberAccessDeniedHandler;
 import com.book.village.server.auth.handler.MemberAuthenticationEntryPoint;
@@ -13,6 +14,7 @@ import com.book.village.server.domain.member.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -28,6 +30,7 @@ import java.util.Arrays;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
+@EnableRedisRepositories
 public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
@@ -73,6 +76,7 @@ public class SecurityConfiguration {
                 .successHandler(new OAuth2MemberSuccessHandler(jwtTokenizer, authorityUtils, memberService, memberRepository, refreshTokenRepository))
                 .userInfoEndpoint() // OAuth2 로그인 성공 이후 사용자 정보를 가져올 때 설정을 저장
                 .userService(customOAuth2MemberService); // OAuth2 로그인 성공 시, 후작업을 진행할 UserService 인터페이스 구현체 등록
+
         return http.build();
     }
     @Bean
@@ -91,6 +95,8 @@ public class SecurityConfiguration {
     public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {
         @Override
         public void configure(HttpSecurity builder) throws Exception {
+            AuthExceptionHandlerFilter authExceptionHandlerFilter = new AuthExceptionHandlerFilter();
+            builder.addFilterBefore(authExceptionHandlerFilter, LogoutFilter.class);
             JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer, authorityUtils,redisTemplate);
             builder.addFilterAfter(jwtVerificationFilter, OAuth2LoginAuthenticationFilter.class);
         }
