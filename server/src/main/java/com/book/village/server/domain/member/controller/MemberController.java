@@ -7,6 +7,7 @@ import com.book.village.server.domain.member.mapper.MemberMapper;
 import com.book.village.server.domain.member.service.MemberService;
 import com.book.village.server.global.response.MessageResponseDto;
 import com.book.village.server.global.response.SingleResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -48,5 +49,11 @@ public class MemberController {
         Member member = memberService.findMember(principal.getName());
         memberService.updateMember(member, memberMapper.patchMemberDtoToMember(memberDto));
         return ResponseEntity.ok(new SingleResponse<>(memberMapper.memberToResponseMemberDto(member)));
+    }
+
+    @PatchMapping("/quit")
+    public ResponseEntity quitMember(Principal principal){
+        memberService.quitMember(principal.getName());
+        return ResponseEntity.ok(new MessageResponseDto("quit member!"));
     }
 }
