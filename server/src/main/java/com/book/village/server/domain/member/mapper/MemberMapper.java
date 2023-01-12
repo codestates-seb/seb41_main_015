@@ -17,7 +17,10 @@ public interface MemberMapper {
             response.name(member.getName());
             response.displayName(member.getDisplayName());
             response.phoneNumber(member.getPhoneNumber());
+            response.address(member.getAddress());
             response.memberStatus(member.getMemberStatus().getStatus());
+            response.createdAt(member.getCreatedAt());
+            response.modifiedAt(member.getModifiedAt());
             return response.build();
         }
     };

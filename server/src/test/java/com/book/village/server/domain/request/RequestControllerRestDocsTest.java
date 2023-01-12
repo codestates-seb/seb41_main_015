@@ -29,6 +29,8 @@ import java.util.List;
 import static com.book.village.server.util.ApiDocumentUtils.getRequestPreProcessor;
 import static com.book.village.server.util.ApiDocumentUtils.getResponsePreProcessor;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
@@ -105,6 +107,9 @@ public class RequestControllerRestDocsTest {
                 .andDo(document("post-request",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
+                        requestHeaders(
+                                headerWithName("Authorization").description("Bearer Token")
+                        ),
                         requestParameters(
                                 parameterWithName("_csrf").description("csrf")
                         ),
