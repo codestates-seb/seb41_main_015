@@ -15,7 +15,11 @@ public enum ExceptionCode {
     REFRESH_TOKEN_NOT_FOUND(404, "refresh token not found"),
     EXPIRED_REFRESH_TOKEN(401, "refresh token expired"),
 
-    TOKEN_INVALID(401 , "TOKEN_INVALID");
+    TOKEN_INVALID(401 , "TOKEN_INVALID"),
+
+    REQUEST_NOT_FOUND(404,"Request not found"),
+    REQUEST_WRITER_NOT_MATCH(409, "Request writer not match");
+
 
     @Getter
     private final int code;

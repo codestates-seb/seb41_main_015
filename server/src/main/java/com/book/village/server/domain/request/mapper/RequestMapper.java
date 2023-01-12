@@ -37,4 +37,5 @@ public interface RequestMapper {
                 .build();
     }
 
+    Request requestPatchDtoToRequest(RequestDto.Patch requestPatchDto);
 }
