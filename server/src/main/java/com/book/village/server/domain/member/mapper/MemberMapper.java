@@ -7,5 +7,21 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface MemberMapper {
     Member patchMemberDtoToMember(MemberDto.Patch memberDto);
-    MemberDto.Response memberToResponseMemberDto(Member member);
+    default MemberDto.Response memberToResponseMemberDto(Member member){
+        if (member == null) {
+            return null;
+        } else {
+            MemberDto.Response.ResponseBuilder response = MemberDto.Response.builder();
+            response.memberId(member.getMemberId());
+            response.email(member.getEmail());
+            response.name(member.getName());
+            response.displayName(member.getDisplayName());
+            response.phoneNumber(member.getPhoneNumber());
+            response.address(member.getAddress());
+            response.memberStatus(member.getMemberStatus().getStatus());
+            response.createdAt(member.getCreatedAt());
+            response.modifiedAt(member.getModifiedAt());
+            return response.build();
+        }
+    };
 }

@@ -2,6 +2,8 @@ package com.book.village.server.auth.filter;
 
 import com.book.village.server.auth.jwt.JwtTokenizer;
 import com.book.village.server.auth.utils.CustomAuthorityUtils;
+import com.book.village.server.domain.member.entity.Member;
+import com.book.village.server.domain.member.service.MemberService;
 import com.book.village.server.global.exception.CustomLogicException;
 import com.book.village.server.global.exception.ExceptionCode;
 import io.jsonwebtoken.Claims;
@@ -12,7 +14,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -21,7 +22,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.EOFException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -30,11 +30,13 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
     private final RedisTemplate redisTemplate;
+    private final MemberService memberService;
 
-    public JwtVerificationFilter(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, RedisTemplate redisTemplate) {
+    public JwtVerificationFilter(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, RedisTemplate redisTemplate,MemberService memberService) {
         this.jwtTokenizer = jwtTokenizer;
         this.authorityUtils = authorityUtils;
         this.redisTemplate = redisTemplate;
+        this.memberService = memberService;
     }
 
     @Override
@@ -42,6 +44,7 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
         try {
             Map<String, Object> claims = verifyJws(request);
             verifyLogoutToken(request);
+            verifyActiveMember(claims);
             setAuthenticationToContext(claims);
         } catch (SignatureException se) {
             throw new CustomLogicException(ExceptionCode.TOKEN_INVALID);
@@ -75,6 +78,12 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
 
         if (email != null) {
             throw new Exception();
+        }
+    }
+    private void verifyActiveMember(Map<String, Object> claims){
+        String username = (String) claims.get("username");
+        if(memberService.findMember(username).getMemberStatus()== Member.MemberStatus.MEMBER_QUIT){
+            throw new CustomLogicException(ExceptionCode.MEMBER_STATUS_QUIT);
         }
     }
 

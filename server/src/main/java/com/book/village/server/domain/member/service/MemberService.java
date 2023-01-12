@@ -1,6 +1,8 @@
 package com.book.village.server.domain.member.service;
 
 import com.book.village.server.auth.jwt.JwtTokenizer;
+import com.book.village.server.auth.jwt.repository.RefreshTokenRepository;
+import com.book.village.server.auth.jwt.service.RefreshTokenService;
 import com.book.village.server.auth.utils.CustomAuthorityUtils;
 import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.domain.member.repository.MemberRepository;
@@ -26,13 +28,15 @@ public class MemberService {
     private final CustomAuthorityUtils authorityUtils;
     private final RedisTemplate redisTemplate;
     private final JwtTokenizer jwtTokenizer;
+    private final RefreshTokenRepository tokenRepository;
 
-    public MemberService(MemberRepository memberRepository, CustomBeanUtils<Member> customBeanUtils, CustomAuthorityUtils authorityUtils, RedisTemplate redisTemplate, JwtTokenizer jwtTokenizer) {
+    public MemberService(MemberRepository memberRepository, CustomBeanUtils<Member> customBeanUtils, CustomAuthorityUtils authorityUtils, RedisTemplate redisTemplate, JwtTokenizer jwtTokenizer, RefreshTokenRepository tokenRepository) {
         this.memberRepository = memberRepository;
         this.customBeanUtils = customBeanUtils;
         this.authorityUtils = authorityUtils;
         this.redisTemplate = redisTemplate;
         this.jwtTokenizer = jwtTokenizer;
+        this.tokenRepository = tokenRepository;
     }
 
     public Member createMember(Member member) {
@@ -60,8 +64,12 @@ public class MemberService {
     public Member updateMember(Member member, Member patchMember) {
         return customBeanUtils.copyNonNullProperties(patchMember, member);
     }
+    public void quitMember(String email){
+        Member findMember = findMember(email);
+        findMember.setMemberStatus(Member.MemberStatus.MEMBER_QUIT);
+    }
 
-    public void registerLogoutToken(String jws) {
+    public void registerLogoutToken(String jws, String pemail) {
         ValueOperations valueOperations = redisTemplate.opsForValue();
         Jws<Claims> jwsClaims = jwtTokenizer.getClaims(
                 jws,
@@ -73,5 +81,6 @@ public class MemberService {
         String email = (String)claims.get("username");
         String logoutKey = "logout:" + jws;
         valueOperations.set(logoutKey, email, Duration.ofMinutes(jwtTokenizer.getAccessTokenExpirationMinutes()));
+        tokenRepository.delete(tokenRepository.findByMember(memberRepository.findByEmail(pemail).get()).get());
     }
 }
