@@ -12,7 +12,7 @@ const SShareTop = styled.div`
   margin-top: 30px;
   justify-content: space-between;
   p {
-    color: #545454;
+    color: #212124;
   }
   .fs-23 {
     font-weight: 700;
@@ -98,7 +98,7 @@ const SBookContainer = styled.li`
     padding: 0;
   }
   .coverBox {
-    margin: 1rem;
+    margin-right: 1rem;
     height: 207px;
     float: left;
   }
@@ -109,11 +109,12 @@ const SBookContainer = styled.li`
   .informationBox {
     margin-left: 0;
     margin-right: 1rem;
+    color: #212124;
   }
   .fs-18 {
     font-size: 18px;
     font-weight: 700;
-    color: #545454;
+    color: #212124;
     @media screen and (max-width: 1023px) {
       font-size: 16px;
     }
@@ -144,17 +145,21 @@ const SBookContainer = styled.li`
     margin: auto;
   }
   .mt-20 {
-    margin-top: 20px;
+    margin-top: 0px;
+    height: 100%;
   }
   .shareTitle {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 20px 0px;
     font-size: 20px;
     font-weight: 700;
     text-align: start;
+    color: #212124;
     @media all and (min-width: 480px) and (max-width: 1023px) {
       margin-left: 3%;
     }
+  }
+  .f-row {
+    flex-direction: column;
   }
 `;
 
@@ -180,7 +185,25 @@ const ShareList = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  //!서버연결 후 주석 풀기
+  //!서버연결 후 주석 풀기 (비동기 처리)
+  // useEffect(() => {
+  //   const listData = async () => {
+  //     try {
+  //       const res = await axios.get('http://localhost8080/sharelist');
+  //       setCover(res.data.cover);
+  //       setTitle(res.data.title);
+  //       setWriter(res.data.writer);
+  //       setPublisher(res.data.publisher);
+  //       setCreatedAt(res.data.createdAt);
+  //     } catch (error) {
+  //       console.error(error);
+  //       alert('정보를 불러오는데 실패했습니다');
+  //     }
+  //   };
+  //   listData();
+  // }, []);
+
+  // 비동기 처리x
   // useEffect(() => {
   //   axios
   //     .get('http://localhost8080/sharelist')
@@ -235,8 +258,8 @@ const ShareList = () => {
                 </div>
                 <p className="fs-12 createdAt-r">{book.createdAt}</p>
               </div>
-              <p className="word-break mt-20 mfs-16">{book.contents}</p>
             </div>
+            <p className="word-break mt-20 mfs-16">{book.contents}</p>
           </SBookContainer>
         ))}
       </SBookList>
