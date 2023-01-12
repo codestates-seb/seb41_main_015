@@ -61,8 +61,7 @@ public class BorrowDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Response {
-        private long borrowId;  //  식별자
-
+        private Long borrowId;  //  식별자
 
         private String title;   //  나눔글 제목
         private String content; //  나눔글 본문

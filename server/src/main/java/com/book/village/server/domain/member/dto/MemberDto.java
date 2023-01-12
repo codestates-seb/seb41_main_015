@@ -15,7 +15,7 @@ public class MemberDto {
     @Builder
     public static class Patch{
 
-        private long memberId;
+        private Long memberId;
 
         @Pattern(regexp = "^[a-zA-Z0-9가-힣+_.-]+$") //영문 한글 숫자
         private String name;
