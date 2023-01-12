@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { useNavigate, createBrowserHistory } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const StyledShareAdd = styled.div`
   h2 {
@@ -121,14 +124,56 @@ const SButtonBox = styled.div`
 `;
 
 const ShareAdd = () => {
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
+  const [inputs, setInputs] = useState({
+    bookname: '',
+    author: '',
+    publisher: '',
+    link: '',
+    title: '',
+    content: '',
+  });
+
+  const { bookname, author, publisher, link, title, content } = inputs;
+
+  const handleChangeString = (e, type) => {
+    setInputs({ ...inputs, [`${type}`]: e.target.value });
+    console.log(e.target.value);
+  };
+
+  const handleClickSubmit = () => {
+    axios
+      .post(`url`, {
+        bookname,
+        author,
+        publisher,
+        link,
+        title,
+        content,
+      })
+      .then((res) => {
+        navigate('/shareDetail');
+      })
+      .catch((err) => {
+        Swal.fire(
+          '나눔글 작성 실패',
+          '글 작성이 완료되지 않았습니다.',
+          'warning'
+        );
+        console.log(err);
+      });
+  };
+
+  // 책 표지 업로드
   const [bookImg, setBookImg] = useState(
     'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg'
   );
-
   const uploadImg = (e) => {
     setBookImg(URL.createObjectURL(e.target.files[0]));
   };
-
   const deleteImg = () => {
     URL.revokeObjectURL(bookImg);
     setBookImg(
@@ -159,22 +204,50 @@ const ShareAdd = () => {
         </SInputLeft>
         <SInputRight>
           <div>
-            <input placeholder="책 제목을 입력해주세요." />
+            <input
+              name="bookname"
+              // value={bookname}
+              onChange={(e) => handleChangeString(e, bookname)}
+              placeholder="책 제목을 입력해주세요."
+            />
           </div>
           <div>
-            <input placeholder="저자를 입력해주세요." />
+            <input
+              name="author"
+              // value={author}
+              onChange={(e) => handleChangeString(e, author)}
+              placeholder="저자를 입력해주세요."
+            />
           </div>
           <div>
-            <input placeholder="출판사를 입력해주세요." />
+            <input
+              name="publisher"
+              // value={publisher}
+              onChange={(e) => handleChangeString(e, publisher)}
+              placeholder="출판사를 입력해주세요."
+            />
           </div>
           <div>
-            <input placeholder="오픈채팅 대화방 링크를 입력해주세요." />
+            <input
+              name="link"
+              // value={link}
+              onChange={(e) => handleChangeString(e, link)}
+              placeholder="오픈채팅 대화방 링크를 입력해주세요."
+            />
           </div>
           <div>
-            <input placeholder="게시글 제목을 입력해주세요." />
+            <input
+              name="title"
+              // value={title}
+              onChange={(e) => handleChangeString(e, title)}
+              placeholder="게시글 제목을 입력해주세요."
+            />
           </div>
           <div>
             <textarea
+              name="content"
+              // value={content}
+              onChange={(e) => handleChangeString(e, content)}
               className="inputContent"
               placeholder="게시글 내용을 입력해주세요. (ex. 책 상태, 구매 시기 등)"
             />
@@ -182,8 +255,12 @@ const ShareAdd = () => {
         </SInputRight>
       </SInputContainer>
       <SButtonBox>
-        <button className="cancelBtn">취소</button>
-        <button className="submitBtn">등록</button>
+        <button className="cancelBtn" onClick={goBack}>
+          취소
+        </button>
+        <button className="submitBtn" onClick={handleClickSubmit}>
+          등록
+        </button>
       </SButtonBox>
     </StyledShareAdd>
   );
