@@ -1,11 +1,9 @@
-= 북 빌리지
+= Book Village 북 빌리지
 :sectnums:
 :toc: left
 :toclevels: 4
 :toc-title: Table of Contents
 :source-highlighter: prettify
-
-api 뒤 _csrf 는 무시하시면 됩니다!
 
 채승윤
 김성수
@@ -13,7 +11,117 @@ api 뒤 _csrf 는 무시하시면 됩니다!
 
 v1.0.0, 2022.01.10
 
-*** RequestController
+_csrf 참조하지 않으셔도 됩니다.
+
+Base url : https://serverbookvillage.kro.kr
+
+***
+== MemberController
+
+=== 회원 수정
+.curl-request
+include::{snippets}/patch-member/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-member/http-request.adoc[]
+
+.request-headers
+include::{snippets}/patch-member/request-headers.adoc[]
+
+.request-fields
+include::{snippets}/patch-member/request-fields.adoc[]
+
+.request-body
+include::{snippets}/patch-member/request-body.adoc[]
+
+.http-response
+include::{snippets}/patch-member/http-response.adoc[]
+
+.response-fields
+include::{snippets}/patch-member/response-fields.adoc[]
+
+.response-body
+include::{snippets}/patch-member/response-body.adoc[]
+
+=== 회원 조회
+.curl-request
+include::{snippets}/get-member/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-member/http-request.adoc[]
+
+.request-headers
+include::{snippets}/get-member/request-headers.adoc[]
+
+.http-response
+include::{snippets}/get-member/http-response.adoc[]
+
+.response-fields
+include::{snippets}/get-member/response-fields.adoc[]
+
+.response-body
+include::{snippets}/get-member/response-body.adoc[]
+
+=== 로그아웃
+.curl-request
+include::{snippets}/logout-member/curl-request.adoc[]
+
+.http-request
+include::{snippets}/logout-member/http-request.adoc[]
+
+.request-headers
+include::{snippets}/logout-member/request-headers.adoc[]
+
+.http-response
+include::{snippets}/logout-member/http-response.adoc[]
+
+.response-fields
+include::{snippets}/logout-member/response-fields.adoc[]
+
+.response-body
+include::{snippets}/logout-member/response-body.adoc[]
+
+=== 회원 탈퇴
+.curl-request
+include::{snippets}/quit-member/curl-request.adoc[]
+
+.http-request
+include::{snippets}/quit-member/http-request.adoc[]
+
+.request-headers
+include::{snippets}/quit-member/request-headers.adoc[]
+
+.http-response
+include::{snippets}/quit-member/http-response.adoc[]
+
+.response-fields
+include::{snippets}/quit-member/response-fields.adoc[]
+
+.response-body
+include::{snippets}/quit-member/response-body.adoc[]
+
+***
+== RefreshTokenController
+
+=== 액세스 토큰 재발급
+.curl-request
+include::{snippets}/getAccessToken-refreshToken/curl-request.adoc[]
+
+.http-request
+include::{snippets}/getAccessToken-refreshToken/http-request.adoc[]
+
+.request-headers
+include::{snippets}/getAccessToken-refreshToken/request-headers.adoc[]
+
+.http-response
+include::{snippets}/getAccessToken-refreshToken/http-response.adoc[]
+
+.response-headers
+include::{snippets}/getAccessToken-refreshToken/response-headers.adoc[]
+
+***
+== RequestController
+
 === 요청 등록
 .curl-request
 include::{snippets}/post-request/curl-request.adoc[]
@@ -21,11 +129,54 @@ include::{snippets}/post-request/curl-request.adoc[]
 .http-request
 include::{snippets}/post-request/http-request.adoc[]
 
+.request-headers
+include::{snippets}/post-request/request-headers.adoc[]
+
+.request-parameters
+include::{snippets}/post-request/request-parameters.adoc[]
+
 .request-fields
 include::{snippets}/post-request/request-fields.adoc[]
+
+.request-body
+include::{snippets}/post-request/request-body.adoc[]
 
 .http-response
 include::{snippets}/post-request/http-response.adoc[]
 
-.response-headers
-include::{snippets}/post-request/response-headers.adoc[]
+.response-fields
+include::{snippets}/post-request/response-fields.adoc[]
+
+.response-body
+include::{snippets}/post-request/response-body.adoc[]
+
+=== 요청 수정
+.curl-request
+include::{snippets}/patch-request/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-request/http-request.adoc[]
+
+.request-headers
+include::{snippets}/patch-request/request-headers.adoc[]
+
+.request-fields
+include::{snippets}/patch-request/request-fields.adoc[]
+
+.request-parameters
+include::{snippets}/post-request/request-parameters.adoc[]
+
+.path-parameters
+include::{snippets}/patch-request/path-parameters.adoc[]
+
+.request-body
+include::{snippets}/patch-request/request-body.adoc[]
+
+.http-response
+include::{snippets}/patch-request/http-response.adoc[]
+
+.response-fields
+include::{snippets}/patch-request/response-fields.adoc[]
+
+.response-body
+include::{snippets}/patch-request/response-body.adoc[]
