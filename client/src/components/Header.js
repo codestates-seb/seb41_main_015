@@ -1,6 +1,9 @@
+import { useState } from 'react';
+import LoginModal from './LoginModal';
 import styled from 'styled-components';
 import logo from '../image/logo.svg';
 import { Link } from 'react-router-dom';
+import mypage from '../image/mypage.svg';
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -9,9 +12,11 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   box-shadow: 0px 4px 4px 0px #b9b9b940;
+  background-color: #ffffff;
   /* position: fixed; */
 `;
-const SHeaderLogo = styled.div`
+
+const SHeaderLogo = styled.a`
   display: flex;
   align-items: center;
   position: fixed;
@@ -55,26 +60,68 @@ const SNavContainer = styled.ol`
   }
 `;
 
-const SLoginBtn = styled.button`
+// 로그인
+// const SLoginBtn = styled.button`
+//   width: 90px;
+//   height: 33px;
+//   font-size: 16px;
+//   font-weight: 600;
+//   color: #bb2649;
+//   border: 1px solid #bb2649;
+//   border-radius: 20px;
+//   position: fixed;
+//   right: 3%;
+//   :hover {
+//     color: #ffffff;
+//     background-color: #bb2649;
+//   }
+// `;
+
+// 로그아웃
+const SLogout = styled.div`
+  display: flex;
+  align-items: center;
+  align-items: center;
+  position: fixed;
+  right: 3%;
+  @media screen and (max-width: 550px) {
+    .mypage {
+      display: none;
+    }
+  }
+  .mypage {
+    display: flex;
+    margin-right: 15px;
+  }
+`;
+
+const SLogoutBtn = styled.button`
   width: 90px;
   height: 33px;
   font-size: 16px;
   font-weight: 600;
-  color: #bb2649;
+  color: #ffffff;
+  background-color: #bb2649;
   border: 1px solid #bb2649;
   border-radius: 20px;
-  position: fixed;
-  right: 3%;
   :hover {
-    color: #ffffff;
-    background-color: #bb2649;
+    color: #bb2649;
+    border: 1px solid #bb2649;
+    background-color: #ffffff;
   }
 `;
 
 const Header = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <StyledHeader>
-      <SHeaderLogo>
+      <SHeaderLogo href="/">
         <img src={logo} alt="logo" className="logo" />
         <div className="logoFont">book village</div>
       </SHeaderLogo>
@@ -92,7 +139,19 @@ const Header = () => {
           커뮤니티
         </Link>
       </SNavContainer>
-      <SLoginBtn>로그인</SLoginBtn>
+      {/* 로그인 */}
+      {/* <SLoginBtn onClick={handleOpenModal}>로그인</SLoginBtn>
+      <LoginModal
+        isModalOpen={isModalOpen}
+        handleCloseModal={handleCloseModal}
+      /> */}
+      {/* 로그아웃 */}
+      <SLogout>
+        <Link to="/mypage">
+          <img src={mypage} alt="mypage" className="mypage" />
+        </Link>
+        <SLogoutBtn>로그아웃</SLogoutBtn>
+      </SLogout>
     </StyledHeader>
   );
 };

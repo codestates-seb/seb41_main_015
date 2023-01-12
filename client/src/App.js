@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './page/Home';
 import CommonLayout from './page/CommonLayout';
 import Header from './components/Header';
-import Login from './page/Login';
 import ShareList from './page/ShareList';
 import ShareAdd from './page/ShareAdd';
 import ShareEdit from './page/ShareEdit';
@@ -14,6 +13,7 @@ import ReqEdit from './page/ReqEdit';
 import ReqDetail from './page/ReqDetail';
 import MyPage from './page/MyPage';
 import MyPageEdit from './page/MyPageEdit';
+import Callback from './page/Callback';
 
 const App = () => {
   return (
@@ -32,10 +32,10 @@ const App = () => {
           <Route path="/reqEdit" element={<ReqEdit />} />
           <Route path="/reqDetail" element={<ReqDetail />} />
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/mypageEdit" element={<MyPageEdit />} />
+          <Route path="/mypageEdit/:id" element={<MyPageEdit />} />
         </Route>
         {/* 푸터 필요없는 부분 */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/oauth" element={<Callback />} />
       </Routes>
     </BrowserRouter>
   );
