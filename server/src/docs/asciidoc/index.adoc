@@ -149,3 +149,28 @@ include::{snippets}/post-request/response-fields.adoc[]
 
 .response-body
 include::{snippets}/post-request/response-body.adoc[]
+
+=== 요청 수정
+.curl-request
+include::{snippets}/patch-request/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-request/http-request.adoc[]
+
+.request-headers
+include::{snippets}/patch-request/request-headers.adoc[]
+
+.request-fields
+include::{snippets}/patch-request/request-fields.adoc[]
+
+.request-body
+include::{snippets}/patch-request/request-body.adoc[]
+
+.http-response
+include::{snippets}/patch-request/http-response.adoc[]
+
+.response-fields
+include::{snippets}/patch-request/response-fields.adoc[]
+
+.response-body
+include::{snippets}/patch-request/response-body.adoc[]
