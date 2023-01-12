@@ -21,6 +21,11 @@ const SDetailWrap = styled.div`
     margin: 24px 24px 24px 0px;
     width: 350px;
   }
+
+  @media screen and (max-width: 1100px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const SRightSide = styled.div`
@@ -46,6 +51,10 @@ const SRightSide = styled.div`
 
   .description {
     font-size: 1.05rem;
+  }
+  @media screen and (max-width: 1100px) {
+    width: 100%;
+    padding: 0px 24px;
   }
 `;
 
