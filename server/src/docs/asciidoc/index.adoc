@@ -13,7 +13,9 @@ api 뒤 _csrf 는 무시하시면 됩니다!
 
 v1.0.0, 2022.01.10
 
-*** RequestController
+***
+== RequestController
+
 === 요청 등록
 .curl-request
 include::{snippets}/post-request/curl-request.adoc[]
@@ -27,5 +29,21 @@ include::{snippets}/post-request/request-fields.adoc[]
 .http-response
 include::{snippets}/post-request/http-response.adoc[]
 
-.response-headers
-include::{snippets}/post-request/response-headers.adoc[]
+.response-fields
+include::{snippets}/post-request/response-fields.adoc[]
+
+=== 요청 수정
+.curl-request
+include::{snippets}/patch-request/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-request/http-request.adoc[]
+
+.request-fields
+include::{snippets}/patch-request/request-fields.adoc[]
+
+.http-response
+include::{snippets}/patch-request/http-response.adoc[]
+
+.response-fields
+include::{snippets}/patch-request/response-fields.adoc[]
