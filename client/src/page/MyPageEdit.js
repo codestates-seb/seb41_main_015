@@ -127,17 +127,31 @@ const MyPageEdit = () => {
     console.log(e.target.value);
   };
 
+  //base url
+  const url = 'https://serverbookvillage.kro.kr';
   //저장 버튼 클릭 시, 서버로 patch 요청
   const handleClickSave = () => {
     axios
-      .patch(`http://localhost8080/mypageEdit/${id}`, {
-        name,
-        nickname,
-        email,
-        address,
-        phonNumber,
-        profile,
-      })
+      .patch(
+        url + `/v1/members`,
+        {
+          name,
+          nickname,
+          email,
+          address,
+          phonNumber,
+          profile,
+        }
+        //토큰 부분
+        // {
+        //   headers: {
+        //     'Content-Type': 'application/json;charset=UTF-8',
+        //     Accept: 'application/json',
+        //     Authorization:
+        //       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJVU0VSIl0sInVzZXJuYW1lIjoidGpkdG40NDg0QGdtYWlsLmNvbSIsInN1YiI6InRqZHRuNDQ4NEBnbWFpbC5jb20iLCJpYXQiOjE2NzM1MTIzNjcsImV4cCI6MTY3MzUxNDE2N30.XcstPpk7smmT-_qAkeoo0jHQObjbrb9xEFt0XO5kxtQ ',
+        //   },
+        // }
+      )
       .then(() => {
         navigate('/mypage');
         alert('프로필 수정이 완료되었습니다!');
@@ -150,21 +164,29 @@ const MyPageEdit = () => {
   };
 
   // 서버 연결 후 주석 풀기!
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost8080/mypageEdit/${id}`)
-  //     .then((res) => {
-  //       setName(res.data.name);
-  //       setNickname(res.data.nickname);
-  //       setEmail(res.data.email);
-  //       setAddress(res.data.address);
-  //       setPhonNumber(res.data.phonNumber);
-  //       setPhonNumber(res.data.profile);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get(url + `/v1/members`, {
+        //토큰 부분
+        // headers: {
+        //   'Content-Type': 'application/json;charset=UTF-8',
+        //   Accept: 'application/json',
+        //   Authorization:
+        //     'Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJVU0VSIl0sInVzZXJuYW1lIjoidGpkdG40NDg0QGdtYWlsLmNvbSIsInN1YiI6InRqZHRuNDQ4NEBnbWFpbC5jb20iLCJpYXQiOjE2NzM1MTIzNjcsImV4cCI6MTY3MzUxNDE2N30.XcstPpk7smmT-_qAkeoo0jHQObjbrb9xEFt0XO5kxtQ',
+        // },
+      })
+      .then((res) => {
+        setName(res.data.name);
+        setNickname(res.data.nickname);
+        setEmail(res.data.email);
+        setAddress(res.data.address);
+        setPhonNumber(res.data.phonNumber);
+        setPhonNumber(res.data.profile);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <div>
