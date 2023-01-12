@@ -1,9 +1,6 @@
 package com.book.village.server.domain.borrow.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.Lob;
@@ -57,10 +54,12 @@ public class BorrowDto {
         private String talkUrl;     // 톡 링크
     }
 
-    @AllArgsConstructor
-    @Setter
+
     @Getter
+    @Setter
     @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Response {
         private long borrowId;  //  식별자
 
@@ -73,9 +72,8 @@ public class BorrowDto {
         private String displayName; // 회원 닉네임
         private String talkUrl;     // 톡링크
 
-        private LocalDateTime createAt;     // 나눔글 생성 일자
+        private LocalDateTime createdAt;     // 나눔글 생성 일자
         private LocalDateTime modifiedAt;   // 나눔글 최근 수정 일자
     }
-
 
 }

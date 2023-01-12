@@ -1,12 +1,10 @@
-package com.book.village.server.domain.request;
+package com.book.village.server.domain.borrow;
 
-
-import com.book.village.server.domain.member.service.MemberService;
-import com.book.village.server.domain.request.controller.RequestController;
-import com.book.village.server.domain.request.dto.RequestDto;
-import com.book.village.server.domain.request.entity.Request;
-import com.book.village.server.domain.request.mapper.RequestMapper;
-import com.book.village.server.domain.request.service.RequestService;
+import com.book.village.server.domain.borrow.controller.BorrowController;
+import com.book.village.server.domain.borrow.dto.BorrowDto;
+import com.book.village.server.domain.borrow.entity.Borrow;
+import com.book.village.server.domain.borrow.mapper.BorrowMapper;
+import com.book.village.server.domain.borrow.service.BorrowService;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,13 +16,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -40,59 +36,67 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(RequestController.class)
+@WebMvcTest(BorrowController.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
-public class RequestControllerRestDocsTest {
+class BorrowControllerRestDocsTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private RequestService requestService;
+    private BorrowMapper borrowMapper;
 
     @MockBean
-    private RequestMapper requestMapper;
-
-    @MockBean
-    private MemberService memberService;
+    private BorrowService borrowService;
 
     @Autowired
     private Gson gson;
 
-    private static final String BASE_URL = "/v1/requests";
+    private static final String BASE_URL = "/v1/borrow";
 
     @Test
-    @DisplayName("요청 게시글 생성")
+    @DisplayName("나눔 게시글 작성😁😁😁😁😁")
     @WithMockUser
-    public void createRequestTest() throws Exception {
+    void postBorrow() throws Exception {
+        // given
         LocalDateTime createdAt = LocalDateTime.now();
-        LocalDateTime modifiedAt = LocalDateTime.now();
-        RequestDto.Post post = new RequestDto.Post("talkUrl", "title", "content", "bookTitle", "author", "publisher");
+        LocalDateTime modifiedAt = createdAt;
+        BorrowDto.Post post =
+                new BorrowDto.Post("title",
+                "content",
+                "bookTitle",
+                "author",
+                "publisher",
+                "displayName",
+                "talkUrl");
         String content = gson.toJson(post);
-        RequestDto.Response responseDto =
-                new RequestDto.Response(1L,
-                        "talkUrl",
+
+        BorrowDto.Response responseDto =
+                new BorrowDto.Response(1,
                         "title",
                         "content",
                         "bookTitle",
                         "author",
                         "publisher",
                         "displayName",
+                        "talkUrl",
                         createdAt,
                         modifiedAt);
+
+
         String accessToken = "tokenexample";
 
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.AUTHORIZATION, accessToken);
 
-        given(requestMapper.requestPostDtoToRequest(Mockito.any(RequestDto.Post.class))).willReturn(new Request());
+        given(borrowMapper.borrowDtoPostToBorrow(Mockito.any(BorrowDto.Post.class))).willReturn(new Borrow());
 
-        given(requestService.createRequest(Mockito.any(Request.class), Mockito.anyString())).willReturn(new Request());
+        given(borrowService.createBorrow(Mockito.any(Borrow.class), Mockito.anyString())).willReturn(new Borrow());
 
-        given(requestMapper.requestToRequestResponseDto(Mockito.any(Request.class))).willReturn(responseDto);
+        given(borrowMapper.borrowToBorrowDtoResponse(Mockito.any(Borrow.class))).willReturn(responseDto);
 
-
+        // when
         ResultActions actions =
                 mockMvc.perform(
                         post(BASE_URL)
@@ -102,15 +106,19 @@ public class RequestControllerRestDocsTest {
                                 .content(content)
                                 .headers(headers));
 
+
+        // then
         actions
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.data.talkUrl").value(post.getTalkUrl()))
+
                 .andExpect(jsonPath("$.data.title").value(post.getTitle()))
                 .andExpect(jsonPath("$.data.content").value(post.getContent()))
                 .andExpect(jsonPath("$.data.bookTitle").value(post.getBookTitle()))
                 .andExpect(jsonPath("$.data.author").value(post.getAuthor()))
                 .andExpect(jsonPath("$.data.publisher").value(post.getPublisher()))
-                .andDo(document("post-request",
+                .andExpect(jsonPath("$.data.displayName").value(post.getDisplayName()))
+                .andExpect(jsonPath("$.data.talkUrl").value(post.getTalkUrl()))
+                .andDo(document("post-borrow",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         requestParameters(
@@ -118,32 +126,36 @@ public class RequestControllerRestDocsTest {
                         ),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
-                                        fieldWithPath("title").type(JsonFieldType.STRING).description("게시글 제목"),
-                                        fieldWithPath("content").type(JsonFieldType.STRING).description("게시글 본문"),
-                                        fieldWithPath("bookTitle").type(JsonFieldType.STRING).description("책 제목"),
-                                        fieldWithPath("author").type(JsonFieldType.STRING).description("저자"),
-                                        fieldWithPath("publisher").type(JsonFieldType.STRING).description("출판사")
+                                        fieldWithPath("title").type(JsonFieldType.STRING).description("나눔게시글 제목"),
+                                        fieldWithPath("content").type(JsonFieldType.STRING).description("나눔게시글 본문"),
+                                        fieldWithPath("bookTitle").type(JsonFieldType.STRING).description(" 제목"),
+                                        fieldWithPath("author").type(JsonFieldType.STRING).description("나눌 책 저자"),
+                                        fieldWithPath("publisher").type(JsonFieldType.STRING).description("나눌 책 출판사"),
+                                        fieldWithPath("displayName").type(JsonFieldType.STRING).description("나눔 게시글 작성자 닉네임"),
+                                        fieldWithPath("talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크")
                                 )
-
                         ),
                         responseFields(
                                 List.of(
                                         fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
-                                        fieldWithPath("data.requestId").type(JsonFieldType.NUMBER).description("요청 식별자"),
-                                        fieldWithPath("data.talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
-                                        fieldWithPath("data.title").type(JsonFieldType.STRING).description("게시글 제목"),
+                                        fieldWithPath("data.borrowId").type(JsonFieldType.NUMBER).description("나눔 게시글 식별자"),
+                                        fieldWithPath("data.title").type(JsonFieldType.STRING).description("나눔게시글 제목"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("게시글 본문"),
-                                        fieldWithPath("data.bookTitle").type(JsonFieldType.STRING).description("책 제목"),
-                                        fieldWithPath("data.author").type(JsonFieldType.STRING).description("저자"),
-                                        fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
+                                        fieldWithPath("data.bookTitle").type(JsonFieldType.STRING).description("나눌 책 제목"),
+                                        fieldWithPath("data.author").type(JsonFieldType.STRING).description("나눌 책 저자"),
+                                        fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("나눌 책 출판사"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
-                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
-                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자")
+                                        fieldWithPath("data.talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
+                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("나눔 게시글 생성 일자"),
+                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("나눔 게시글 최신 수정 일자")
                                 )
                         )
+
                 ));
-
-
     }
+
+
+//    @Test
+//    void patchBorrow() {
+//    }
 }
