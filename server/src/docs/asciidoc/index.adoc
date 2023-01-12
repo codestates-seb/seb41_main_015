@@ -164,7 +164,7 @@ include::{snippets}/patch-request/request-headers.adoc[]
 include::{snippets}/patch-request/request-fields.adoc[]
 
 .request-parameters
-include::{snippets}/post-request/request-parameters.adoc[]
+include::{snippets}/patch-request/request-parameters.adoc[]
 
 .path-parameters
 include::{snippets}/patch-request/path-parameters.adoc[]
