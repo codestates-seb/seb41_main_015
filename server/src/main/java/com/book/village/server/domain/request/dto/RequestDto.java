@@ -68,6 +68,30 @@ public class RequestDto {
 
     }
 
+    @AllArgsConstructor
+    @Getter
+    @Setter
+    @Builder
+    public static class Patch {
 
+        private long requestId;
 
+        private String talkUrl;
+
+        @NotBlank
+        private String title;
+
+        @NotBlank
+        @Lob
+        private String content;
+
+        @NotBlank
+        private String bookTitle;
+
+        @NotBlank
+        private String author;
+
+        @NotBlank
+        private String publisher;
+    }
 }
