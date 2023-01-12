@@ -38,6 +38,9 @@ public class RequestController {
     public ResponseEntity patchRequest(Principal principal,
                                        @PathVariable("request-id") long requestId,
                                        @Valid @RequestBody RequestDto.Patch requestPatchDto) {
-        return null;
+        requestPatchDto.setRequestId(requestId);
+        Request request = requestService.updateRequest(requestMapper.requestPatchDtoToRequest(requestPatchDto), principal.getName());
+        return new ResponseEntity(
+                new SingleResponse<>(requestMapper.requestToRequestResponseDto(request)), HttpStatus.OK);
     }
 }

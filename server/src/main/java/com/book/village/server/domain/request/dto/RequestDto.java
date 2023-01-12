@@ -72,23 +72,21 @@ public class RequestDto {
     @Getter
     @Setter
     @Builder
-    public class Patch {
+    public static class Patch {
+
+        private long requestId;
+
         private String talkUrl;
 
-        @NotBlank
         private String title;
 
-        @NotBlank
         @Lob
         private String content;
 
-        @NotBlank
         private String bookTitle;
 
-        @NotBlank
         private String author;
 
-        @NotBlank
         private String publisher;
     }
 }

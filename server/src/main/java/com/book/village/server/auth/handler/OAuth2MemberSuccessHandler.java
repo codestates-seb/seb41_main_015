@@ -7,6 +7,8 @@ import com.book.village.server.auth.utils.CustomAuthorityUtils;
 import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.domain.member.repository.MemberRepository;
 import com.book.village.server.domain.member.service.MemberService;
+import com.book.village.server.global.exception.CustomLogicException;
+import com.book.village.server.global.exception.ExceptionCode;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -44,22 +46,13 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         var oAuth2User = (OAuth2User)authentication.getPrincipal();
         String email = String.valueOf(oAuth2User.getAttributes().get("email"));
         List<String> authorities = authorityUtils.createRoles(email);
-
-        saveMember(email);
-        redirect(request, response, email, authorities);
-    }
-    private void saveMember(String email) {
         if(!memberRepository.findByEmail(email).isPresent()){
             Member member = new Member(email);
             memberService.createMember(member);
+            redirect(request,response,email, authorities, true);
+            return;
         }
-    }
-    private void redirect(HttpServletRequest request, HttpServletResponse response, String username, List<String> authorities) throws IOException {
-        String accessToken = delegateAccessToken(username, authorities);
-        String refreshToken = delegateRefreshToken(username);
-
-        String uri = createURI(accessToken, refreshToken).toString();
-        getRedirectStrategy().sendRedirect(request, response, uri);
+        redirect(request,response,email, authorities, false);
     }
     private String delegateAccessToken(String username, List<String> authorities) {
         Map<String, Object> claims = new HashMap<>();
@@ -91,16 +84,26 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         return refreshToken;
     }
 
-    private URI createURI(String accessToken, String refreshToken) {
+    private void redirect(HttpServletRequest request, HttpServletResponse response, String username, List<String> authorities, boolean newbie) throws IOException {
+        String accessToken = delegateAccessToken(username, authorities);
+        String refreshToken = delegateRefreshToken(username);
+
+        String uri = createURI(accessToken, refreshToken, newbie).toString();
+        getRedirectStrategy().sendRedirect(request, response, uri);
+    }
+
+    private URI createURI(String accessToken, String refreshToken, boolean newbie) {
         MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
         queryParams.add("access_token", accessToken);
         queryParams.add("refresh_token", refreshToken);
+        if(newbie) queryParams.add("membership", "new");
+        else queryParams.add("membership","existing");
 
         return UriComponentsBuilder
                 .newInstance()
                 .scheme("http")
                 .host("bookvillage.kro.kr")
-                .path("/shareList.js")
+                .path("/main")
                 .queryParams(queryParams)
                 .build()
                 .toUri();
