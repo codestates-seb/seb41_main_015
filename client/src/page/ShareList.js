@@ -72,23 +72,21 @@ const SBookContainer = styled.li`
   display: flex;
   flex-direction: row;
   border: 1.5px solid #dddada;
-  border-left: hidden;
-  border-right: hidden;
-  margin-bottom: 20px;
-  width: 80%;
-  height: 270px;
+  width: 40%;
+  height: 100%;
+  padding: 0 18px;
+  margin: 1rem;
   .coverBox {
-    margin-left: 30px;
-    margin-top: 30px;
+    margin: 1rem;
+    height: 207px;
   }
   .bookCover {
     height: 207px;
     width: 140px;
   }
   .informationBox {
-    width: 50%;
-    margin-left: 20px;
-    margin-top: 30px;
+    margin-left: 0;
+    margin-right: 1rem;
   }
   .fs-18 {
     font-size: 18px;
@@ -110,17 +108,24 @@ const SBookContainer = styled.li`
   .mb-15 {
     margin-bottom: 15px;
   }
-  .float-r {
-    float: right;
-    margin: 0px;
+  .createdAt-r {
+    text-align: right;
+    margin: auto;
   }
-  .mt-30 {
-    margin-top: 30px;
+  .mt-20 {
+    margin-top: 20px;
   }
 `;
 
 const SBookList = styled.ol`
-  padding-left: 250px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  float: left;
+  width: 100%;
+  margin: 0 auto;
+  padding-inline-start: 0px;
 `;
 
 const ShareList = () => {
@@ -171,8 +176,8 @@ const ShareList = () => {
                 <p className="fs-16">{book.writer} 저자 /</p>
                 <p className="fs-16">{book.publisher}</p>
               </div>
-              <p className="fs-12 float-r">{book.createdAt}</p>
-              <p className="word-break mt-30">{book.contents}</p>
+              <p className="fs-12 createdAt-r">{book.createdAt}</p>
+              <p className="word-break mt-20">{book.contents}</p>
             </div>
           </SBookContainer>
         ))}
