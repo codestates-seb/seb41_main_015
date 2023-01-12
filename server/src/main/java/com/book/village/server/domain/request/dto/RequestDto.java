@@ -78,20 +78,15 @@ public class RequestDto {
 
         private String talkUrl;
 
-        @NotBlank
         private String title;
 
-        @NotBlank
         @Lob
         private String content;
 
-        @NotBlank
         private String bookTitle;
 
-        @NotBlank
         private String author;
 
-        @NotBlank
         private String publisher;
     }
 }
