@@ -33,7 +33,9 @@ public interface RequestMapper {
                 .bookTitle(request.getBookTitle())
                 .author(request.getAuthor())
                 .publisher(request.getPublisher())
-                .displayName(request.getDisplayName())
+                .displayName(request.getMember().getDisplayName())
+                .createdAt(request.getCreatedAt())
+                .modifiedAt(request.getModifiedAt())
                 .build();
     }
 
