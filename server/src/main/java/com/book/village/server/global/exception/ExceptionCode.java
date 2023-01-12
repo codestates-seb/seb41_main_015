@@ -15,6 +15,9 @@ public enum ExceptionCode {
     REFRESH_TOKEN_NOT_FOUND(404, "refresh token not found"),
     EXPIRED_REFRESH_TOKEN(401, "refresh token expired"),
 
+    BORROW_NOT_FOUND(404, "BORROW_NOT_FOUND"), // 나눔글 존재 하지 않음.
+    BORROW_USER_DIFFERENT(403, "BORROW_USER_DIFFERENT"),    // 나눔글 작성자가 아닌 사람이 수정하려고 할 때
+
     TOKEN_INVALID(401 , "TOKEN_INVALID");
 
     @Getter
