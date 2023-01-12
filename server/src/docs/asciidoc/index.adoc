@@ -16,53 +16,6 @@ _csrf 참조하지 않으셔도 됩니다.
 Base url : https://serverbookvillage.kro.kr
 
 ***
-== RequestController
-
-=== 요청 등록
-.curl-request
-include::{snippets}/post-request/curl-request.adoc[]
-
-.http-request
-include::{snippets}/post-request/http-request.adoc[]
-
-.request-headers
-include::{snippets}/post-request/request-headers.adoc[]
-
-.request-parameters
-include::{snippets}/post-request/request-parameters.adoc[]
-
-.request-fields
-include::{snippets}/post-request/request-fields.adoc[]
-
-.request-body
-include::{snippets}/post-request/request-body.adoc[]
-
-.http-response
-include::{snippets}/post-request/http-response.adoc[]
-
-.response-fields
-include::{snippets}/post-request/response-fields.adoc[]
-
-.response-body
-include::{snippets}/post-request/response-body.adoc[]
-
-=== 요청 수정
-.curl-request
-include::{snippets}/patch-request/curl-request.adoc[]
-
-.http-request
-include::{snippets}/patch-request/http-request.adoc[]
-
-.request-fields
-include::{snippets}/patch-request/request-fields.adoc[]
-
-.http-response
-include::{snippets}/patch-request/http-response.adoc[]
-
-.response-fields
-include::{snippets}/patch-request/response-fields.adoc[]
-
-***
 == MemberController
 
 === 회원 수정
@@ -146,3 +99,84 @@ include::{snippets}/quit-member/response-fields.adoc[]
 
 .response-body
 include::{snippets}/quit-member/response-body.adoc[]
+
+***
+== RefreshTokenController
+
+=== 액세스 토큰 재발급
+.curl-request
+include::{snippets}/getAccessToken-refreshToken/curl-request.adoc[]
+
+.http-request
+include::{snippets}/getAccessToken-refreshToken/http-request.adoc[]
+
+.request-headers
+include::{snippets}/getAccessToken-refreshToken/request-headers.adoc[]
+
+.http-response
+include::{snippets}/getAccessToken-refreshToken/http-response.adoc[]
+
+.response-headers
+include::{snippets}/getAccessToken-refreshToken/response-headers.adoc[]
+
+***
+== RequestController
+
+=== 요청 등록
+.curl-request
+include::{snippets}/post-request/curl-request.adoc[]
+
+.http-request
+include::{snippets}/post-request/http-request.adoc[]
+
+.request-headers
+include::{snippets}/post-request/request-headers.adoc[]
+
+.request-parameters
+include::{snippets}/post-request/request-parameters.adoc[]
+
+.request-fields
+include::{snippets}/post-request/request-fields.adoc[]
+
+.request-body
+include::{snippets}/post-request/request-body.adoc[]
+
+.http-response
+include::{snippets}/post-request/http-response.adoc[]
+
+.response-fields
+include::{snippets}/post-request/response-fields.adoc[]
+
+.response-body
+include::{snippets}/post-request/response-body.adoc[]
+
+=== 요청 수정
+.curl-request
+include::{snippets}/patch-request/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-request/http-request.adoc[]
+
+.request-headers
+include::{snippets}/patch-request/request-headers.adoc[]
+
+.request-fields
+include::{snippets}/patch-request/request-fields.adoc[]
+
+.request-parameters
+include::{snippets}/patch-request/request-parameters.adoc[]
+
+.path-parameters
+include::{snippets}/patch-request/path-parameters.adoc[]
+
+.request-body
+include::{snippets}/patch-request/request-body.adoc[]
+
+.http-response
+include::{snippets}/patch-request/http-response.adoc[]
+
+.response-fields
+include::{snippets}/patch-request/response-fields.adoc[]
+
+.response-body
+include::{snippets}/patch-request/response-body.adoc[]

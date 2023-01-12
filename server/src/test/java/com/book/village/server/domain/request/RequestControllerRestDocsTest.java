@@ -35,8 +35,7 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
+import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -198,6 +197,12 @@ public class RequestControllerRestDocsTest {
                 .andDo(document("patch-request",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
+                        requestHeaders(
+                                headerWithName("Authorization").description("Bearer Token")
+                        ),
+                        pathParameters(
+                                parameterWithName("request-id").description("요청 식별자")
+                        ),
                         requestParameters(
                                 parameterWithName("_csrf").description("csrf")
                         ),
