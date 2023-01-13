@@ -9,6 +9,7 @@ import com.book.village.server.domain.member.repository.MemberRepository;
 import com.book.village.server.domain.member.service.MemberService;
 import com.book.village.server.global.exception.CustomLogicException;
 import com.book.village.server.global.exception.ExceptionCode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -32,6 +33,8 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
     private final MemberService memberService;
     private final MemberRepository memberRepository;
     private final RefreshTokenRepository refreshTokenRepository;
+    @Value("${spring.datasource.url}")
+    private String serverType;
 
     public OAuth2MemberSuccessHandler(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, MemberService memberService, MemberRepository memberRepository,RefreshTokenRepository refreshTokenRepository) {
         this.jwtTokenizer = jwtTokenizer;
@@ -99,6 +102,16 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         if(newbie) queryParams.add("membership", "new");
         else queryParams.add("membership","existing");
 
+        if (serverType.equals("jdbc:h2:mem:test")){
+            return UriComponentsBuilder
+                    .newInstance()
+                    .scheme("http")
+                    .host("localhost")
+                    .path("/receive-token.html")
+                    .queryParams(queryParams)
+                    .build()
+                    .toUri();
+        }
         return UriComponentsBuilder
                 .newInstance()
                 .scheme("http")
@@ -107,13 +120,5 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                 .queryParams(queryParams)
                 .build()
                 .toUri();
-//        return UriComponentsBuilder
-//                .newInstance()
-//                .scheme("http")
-//                .host("localhost")
-//                .path("/receive-token.html")
-//                .queryParams(queryParams)
-//                .build()
-//                .toUri();
     }
 }
