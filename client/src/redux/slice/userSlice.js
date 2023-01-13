@@ -34,7 +34,7 @@ const userSlice = createSlice({
       state.refreshToken = null;
       state.membership = null;
     },
-    // 닉네임을 입력한 유저의 membership 상태를 existing으로 바꾸는 리듀서
+    // 닉네임을 입력한 신규회원의 membership 상태를 existing으로 바꾸는 리듀서
     // 메인에 다시 접속했을 때 닉네임 설정 모달이 다시 뜨지 않도록 하기 위함
     setExisting: (state) => {
       sessionStorage.setItem('membership', 'existing');
@@ -43,5 +43,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, setExisting } = userSlice.actions;
 export default userSlice.reducer;
