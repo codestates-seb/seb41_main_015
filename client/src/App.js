@@ -26,11 +26,11 @@ const App = () => {
           <Route path="/shareList" element={<ShareList />} />
           <Route path="/shareAdd" element={<ShareAdd />} />
           <Route path="/shareEdit" element={<ShareEdit />} />
-          <Route path="/shareDetail" element={<ShareDetail />} />
+          <Route path="/shareDetail/:id" element={<ShareDetail />} />
           <Route path="/reqList" element={<ReqList />} />
           <Route path="/reqAdd" element={<ReqAdd />} />
           <Route path="/reqEdit" element={<ReqEdit />} />
-          <Route path="/reqDetail" element={<ReqDetail />} />
+          <Route path="/reqDetail/:id" element={<ReqDetail />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/mypageEdit" element={<MyPageEdit />} />
         </Route>
