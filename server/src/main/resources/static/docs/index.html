@@ -462,8 +462,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_요청_등록">3.1. 요청 등록</a></li>
 <li><a href="#_요청_수정">3.2. 요청 수정</a></li>
-<li><a href="#_나눔글_등록">3.3. 나눔글 등록</a></li>
-<li><a href="#_나눔_수정">3.4. 나눔 수정</a></li>
+</ul>
+</li>
+<li><a href="#_borrowcontroller">4. BorrowController</a>
+<ul class="sectlevel2">
+<li><a href="#_나눔글_등록">4.1. 나눔글 등록</a></li>
+<li><a href="#_나눔_수정">4.2. 나눔 수정</a></li>
 </ul>
 </li>
 </ul>
@@ -497,7 +501,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/members?_csrf=fca5c8f7-94a9-410e-bd51-1561f797d4e3' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/members?_csrf=72338377-87dd-4e30-b24a-215843cfa1e6' -i -X PATCH \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -513,7 +517,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/members?_csrf=fca5c8f7-94a9-410e-bd51-1561f797d4e3 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/members?_csrf=72338377-87dd-4e30-b24a-215843cfa1e6 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -619,8 +623,8 @@ Content-Length: 336
     "address" : "address1",
     "phoneNumber" : "010-1234-5678",
     "memberStatus" : "활동중",
-    "createdAt" : "2023-01-12T22:23:11.1457025",
-    "modifiedAt" : "2023-01-12T22:23:11.1457025"
+    "createdAt" : "2023-01-13T14:22:00.6840942",
+    "modifiedAt" : "2023-01-13T14:22:00.6840942"
   }
 }</code></pre>
 </div>
@@ -704,8 +708,8 @@ Content-Length: 336
     "address" : "address1",
     "phoneNumber" : "010-1234-5678",
     "memberStatus" : "활동중",
-    "createdAt" : "2023-01-12T22:23:11.1457025",
-    "modifiedAt" : "2023-01-12T22:23:11.1457025"
+    "createdAt" : "2023-01-13T14:22:00.6840942",
+    "modifiedAt" : "2023-01-13T14:22:00.6840942"
   }
 }</code></pre>
 </div>
@@ -716,7 +720,7 @@ Content-Length: 336
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/members?_csrf=044eeb11-3114-42b2-a094-1cfb2ae66a2a' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/members?_csrf=34723664-77e3-49c0-bc46-d0582b36a0a6' -i -X GET \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
@@ -725,7 +729,7 @@ Content-Length: 336
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/members?_csrf=044eeb11-3114-42b2-a094-1cfb2ae66a2a HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/members?_csrf=34723664-77e3-49c0-bc46-d0582b36a0a6 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -773,8 +777,8 @@ Content-Length: 336
     "address" : "address1",
     "phoneNumber" : "010-1234-5678",
     "memberStatus" : "활동중",
-    "createdAt" : "2023-01-12T22:23:11.2904505",
-    "modifiedAt" : "2023-01-12T22:23:11.2904505"
+    "createdAt" : "2023-01-13T14:22:00.7829413",
+    "modifiedAt" : "2023-01-13T14:22:00.7829413"
   }
 }</code></pre>
 </div>
@@ -858,8 +862,8 @@ Content-Length: 336
     "address" : "address1",
     "phoneNumber" : "010-1234-5678",
     "memberStatus" : "활동중",
-    "createdAt" : "2023-01-12T22:23:11.2904505",
-    "modifiedAt" : "2023-01-12T22:23:11.2904505"
+    "createdAt" : "2023-01-13T14:22:00.7829413",
+    "modifiedAt" : "2023-01-13T14:22:00.7829413"
   }
 }</code></pre>
 </div>
@@ -874,7 +878,7 @@ Content-Length: 336
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
-    -d '_csrf=37effa68-4cfa-4989-8a16-7f7106455843'</code></pre>
+    -d '_csrf=b7fc5732-d788-450b-9f5c-0d8edc7c37a0'</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -886,7 +890,7 @@ Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
 Host: localhost:8080
 
-_csrf=37effa68-4cfa-4989-8a16-7f7106455843</code></pre>
+_csrf=b7fc5732-d788-450b-9f5c-0d8edc7c37a0</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1061,7 +1065,7 @@ Content-Length: 34
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcmlvbmNzeUBnbWFpbC5jb20iLCJpYXQiOjE2NzM0NDE1MzMsImV4cCI6MTY3MzQ2NjczM30.xxnf6XFYFvQfyCRTr0jFBK5sr7Ol2yDfQcTjQ4K7hiw' \
-    -d '_csrf=d530a207-ef1a-4fd0-ba99-58bb779324af'</code></pre>
+    -d '_csrf=63e3b4d3-49cf-41ea-a47a-d0bdf698809d'</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1073,7 +1077,7 @@ Accept: application/json
 Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcmlvbmNzeUBnbWFpbC5jb20iLCJpYXQiOjE2NzM0NDE1MzMsImV4cCI6MTY3MzQ2NjczM30.xxnf6XFYFvQfyCRTr0jFBK5sr7Ol2yDfQcTjQ4K7hiw
 Host: localhost:8080
 
-_csrf=d530a207-ef1a-4fd0-ba99-58bb779324af</code></pre>
+_csrf=63e3b4d3-49cf-41ea-a47a-d0bdf698809d</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1143,7 +1147,7 @@ Content-Length: 35
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests?_csrf=02c1cf64-a31b-4b08-940d-c940fb4ca919' -i -X POST \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests?_csrf=321aa028-a077-4d61-ba0a-79b4325ea779' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -1160,7 +1164,7 @@ Content-Length: 35
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/requests?_csrf=02c1cf64-a31b-4b08-940d-c940fb4ca919 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/requests?_csrf=321aa028-a077-4d61-ba0a-79b4325ea779 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -1286,7 +1290,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 349
+Content-Length: 351
 
 {
   "data" : {
@@ -1298,8 +1302,8 @@ Content-Length: 349
     "author" : "author",
     "publisher" : "publisher",
     "displayName" : "displayName",
-    "createdAt" : "2023-01-12T22:23:14.523228",
-    "modifiedAt" : "2023-01-12T22:23:14.523228"
+    "createdAt" : "2023-01-13T14:22:02.5984372",
+    "modifiedAt" : "2023-01-13T14:22:02.5984372"
   }
 }</code></pre>
 </div>
@@ -1389,8 +1393,8 @@ Content-Length: 349
     "author" : "author",
     "publisher" : "publisher",
     "displayName" : "displayName",
-    "createdAt" : "2023-01-12T22:23:14.523228",
-    "modifiedAt" : "2023-01-12T22:23:14.523228"
+    "createdAt" : "2023-01-13T14:22:02.5984372",
+    "modifiedAt" : "2023-01-13T14:22:02.5984372"
   }
 }</code></pre>
 </div>
@@ -1401,7 +1405,7 @@ Content-Length: 349
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/1?_csrf=d9edfa31-58c8-4ddf-a6ad-89d256d7f34c' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/1?_csrf=768820eb-c4c4-4034-afec-b8ec8134c65f' -i -X PATCH \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -1419,7 +1423,7 @@ Content-Length: 349
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/requests/1?_csrf=d9edfa31-58c8-4ddf-a6ad-89d256d7f34c HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/requests/1?_csrf=768820eb-c4c4-4034-afec-b8ec8134c65f HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -1571,7 +1575,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 349
+Content-Length: 351
 
 {
   "data" : {
@@ -1583,8 +1587,8 @@ Content-Length: 349
     "author" : "author",
     "publisher" : "publisher",
     "displayName" : "displayName",
-    "createdAt" : "2023-01-12T22:23:14.427747",
-    "modifiedAt" : "2023-01-12T22:23:14.427747"
+    "createdAt" : "2023-01-13T14:22:02.5320783",
+    "modifiedAt" : "2023-01-13T14:22:02.5320783"
   }
 }</code></pre>
 </div>
@@ -1674,19 +1678,25 @@ Content-Length: 349
     "author" : "author",
     "publisher" : "publisher",
     "displayName" : "displayName",
-    "createdAt" : "2023-01-12T22:23:14.427747",
-    "modifiedAt" : "2023-01-12T22:23:14.427747"
+    "createdAt" : "2023-01-13T14:22:02.5320783",
+    "modifiedAt" : "2023-01-13T14:22:02.5320783"
   }
 }</code></pre>
 </div>
 </div>
+<hr>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_borrowcontroller">4. BorrowController</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_나눔글_등록">3.3. 나눔글 등록</h3>
+<h3 id="_나눔글_등록">4.1. 나눔글 등록</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/borrow?_csrf=1334c1a8-9e84-4467-b4a7-a652f78def22' -i -X POST \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/borrow?_csrf=f8d0850d-6483-460c-9d58-01f7a2a6df2c' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -1704,7 +1714,7 @@ Content-Length: 349
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/borrow?_csrf=1334c1a8-9e84-4467-b4a7-a652f78def22 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/borrow?_csrf=f8d0850d-6483-460c-9d58-01f7a2a6df2c HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -1849,8 +1859,8 @@ Content-Length: 350
     "publisher" : "publisher",
     "displayName" : "displayName",
     "talkUrl" : "talkUrl",
-    "createdAt" : "2023-01-12T22:23:09.2523451",
-    "modifiedAt" : "2023-01-12T22:23:09.2523451"
+    "createdAt" : "2023-01-13T14:21:59.3104406",
+    "modifiedAt" : "2023-01-13T14:21:59.3114414"
   }
 }</code></pre>
 </div>
@@ -1940,19 +1950,19 @@ Content-Length: 350
     "publisher" : "publisher",
     "displayName" : "displayName",
     "talkUrl" : "talkUrl",
-    "createdAt" : "2023-01-12T22:23:09.2523451",
-    "modifiedAt" : "2023-01-12T22:23:09.2523451"
+    "createdAt" : "2023-01-13T14:21:59.3104406",
+    "modifiedAt" : "2023-01-13T14:21:59.3114414"
   }
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_나눔_수정">3.4. 나눔 수정</h3>
+<h3 id="_나눔_수정">4.2. 나눔 수정</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/borrow/1?_csrf=eac5ce01-699e-4ba4-87f1-6d44dfc93386' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/borrow/1?_csrf=1a126390-5c44-4831-9eaf-99d7fe2a189e' -i -X PATCH \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -1970,7 +1980,7 @@ Content-Length: 350
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/borrow/1?_csrf=eac5ce01-699e-4ba4-87f1-6d44dfc93386 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/borrow/1?_csrf=1a126390-5c44-4831-9eaf-99d7fe2a189e HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -2129,8 +2139,8 @@ Content-Length: 350
     "publisher" : "publisher",
     "displayName" : "displayName",
     "talkUrl" : "talkUrl",
-    "createdAt" : "2023-01-12T22:23:09.7286951",
-    "modifiedAt" : "2023-01-12T22:23:09.7286951"
+    "createdAt" : "2023-01-13T14:21:59.6711655",
+    "modifiedAt" : "2023-01-13T14:21:59.6711655"
   }
 }</code></pre>
 </div>
@@ -2220,8 +2230,8 @@ Content-Length: 350
     "publisher" : "publisher",
     "displayName" : "displayName",
     "talkUrl" : "talkUrl",
-    "createdAt" : "2023-01-12T22:23:09.7286951",
-    "modifiedAt" : "2023-01-12T22:23:09.7286951"
+    "createdAt" : "2023-01-13T14:21:59.6711655",
+    "modifiedAt" : "2023-01-13T14:21:59.6711655"
   }
 }</code></pre>
 </div>
@@ -2233,7 +2243,7 @@ Content-Length: 350
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-01-12 18:15:17 +0900
+Last updated 2023-01-13 14:00:39 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
