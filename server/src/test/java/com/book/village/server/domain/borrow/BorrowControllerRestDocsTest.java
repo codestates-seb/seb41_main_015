@@ -27,10 +27,14 @@ import java.util.List;
 import static com.book.village.server.util.ApiDocumentUtils.getRequestPreProcessor;
 import static com.book.village.server.util.ApiDocumentUtils.getResponsePreProcessor;
 import static org.mockito.BDDMockito.given;
+
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
+
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -57,6 +61,7 @@ class BorrowControllerRestDocsTest {
     private static final String BASE_URL = "/v1/borrow";
 
     private static final LocalDateTime time = LocalDateTime.now();
+
 
     @Test
     @DisplayName("나눔 게시글 작성😊😊😊😊")
@@ -87,8 +92,6 @@ class BorrowControllerRestDocsTest {
                         "talkUrl",
                         createdAt,
                         modifiedAt);
-
-
 
         given(borrowMapper.borrowDtoPostToBorrow(Mockito.any(BorrowDto.Post.class))).willReturn(new Borrow());
 
@@ -164,6 +167,7 @@ class BorrowControllerRestDocsTest {
         // given
         Long borrowId = 1L;
         LocalDateTime createdAt = time;
+
         LocalDateTime modifiedAt = LocalDateTime.now();
 
         BorrowDto.Patch patch =
@@ -258,6 +262,7 @@ class BorrowControllerRestDocsTest {
                 ));
     }
 
+
     @Test
     @DisplayName("나눔 게시글 하나 조회😁😁")
     @WithMockUser
@@ -327,7 +332,4 @@ class BorrowControllerRestDocsTest {
                         )
                 ));
     }
-
-
-
 }

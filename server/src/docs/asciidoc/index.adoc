@@ -181,6 +181,8 @@ include::{snippets}/patch-request/response-fields.adoc[]
 .response-body
 include::{snippets}/patch-request/response-body.adoc[]
 
+
+
 ***
 == BorrowController
 

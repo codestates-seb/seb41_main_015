@@ -40,8 +40,8 @@ public class Borrow extends Auditable {
     private String talkUrl;
 
     @ManyToOne
-//    @JoinColumn(name = "MEMBER_ID")
-//    @Setter
+    @JoinColumn(name = "MEMBER_ID")
+    @Setter
     private Member member;
 
 }

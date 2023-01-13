@@ -51,6 +51,7 @@ public class MemberController {
     }
 
 
+
     @PatchMapping("/quit")
     public ResponseEntity quitMember(Principal principal){
         memberService.quitMember(principal.getName());
