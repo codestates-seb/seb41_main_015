@@ -11,7 +11,9 @@ const SWrapEdit = styled.div`
 `;
 const SInputList = styled.div`
   margin: 0 5%;
-
+  input:disabled {
+    background: #f2f2f2;
+  }
   p {
     margin-bottom: 31px;
   }
@@ -97,12 +99,13 @@ const SDefaultProfile = styled.div`
 
 const MyPageEdit = () => {
   //컴포넌트에서 바뀌는 값 관리
+  const [memberId, setMemberId] = useState('');
   const [name, setName] = useState('');
   const [displayName, setDisplayName] = useState('');
-  // const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  // const [profile, setProfile] = useState('');
+  const [profile, setProfile] = useState('');
 
   //현재 접속한 페이지의 id값을 가져옴
   // const { id } = useParams();
@@ -117,29 +120,24 @@ const MyPageEdit = () => {
   const handleChangeDisplayName = (e) => {
     setDisplayName(e.target.value);
   };
-  // const handleChangeEmail = (e) => {
-  //   setEmail(e.target.value);
-  // };
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
   const handleChangeAddress = (e) => {
     setAddress(e.target.value);
   };
   const handleChangePhoneNumber = (e) => {
     setPhoneNumber(e.target.value);
   };
-  // const handleChangeProfile = (e) => {
-  //   setProfile(e.target.value);
-  // };
+  const handleChangeProfile = (e) => {
+    setProfile(e.target.value);
+  };
 
   //base url
   const url = 'https://serverbookvillage.kro.kr';
 
-  //임시 토큰
-  // const token =
-  //   'eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJVU0VSIl0sInVzZXJuYW1lIjoiZ3J3MDcyMzY3MEBnbWFpbC5jb20iLCJzdWIiOiJncncwNzIzNjcwQGdtYWlsLmNvbSIsImlhdCI6MTY3MzU5MDY4MiwiZXhwIjoxNjczNTkyNDgyfQ.MGn55U1rZv5_pZCLoxkAdfL-aRnSUnvuijZVcFXxsfc';
-
   //전역상태값 가져오기
   const user = useSelector((state) => state.user);
-  console.log(user);
 
   //저장 버튼 클릭 시, 서버로 patch 요청
   const handleClickSave = () => {
@@ -147,6 +145,7 @@ const MyPageEdit = () => {
       .patch(
         `${url}/v1/members`,
         {
+          memberId,
           name,
           displayName,
           address,
@@ -184,16 +183,20 @@ const MyPageEdit = () => {
             Authorization: `Bearer ${user.accessToken}`,
           },
         });
-        setName(res.data.name);
-        setDisplayName(res.data.displayName);
-        setAddress(res.data.address);
-        setPhoneNumber(res.data.phoneNumber);
+        console.log(res.data.data);
+        setMemberId(res.data.data.memberId);
+        setName(res.data.data.name);
+        setEmail(res.data.data.email);
+        setDisplayName(res.data.data.displayName);
+        setAddress(res.data.data.address);
+        setPhoneNumber(res.data.data.phoneNumber);
       } catch (error) {
         console.error(error);
         alert('정보를 불러오는데 실패했습니다');
       }
     };
     editData();
+    console.log('렌더링 중!');
   }, []);
   //   axios
   //     .get(url + '/v1/members', {
@@ -235,9 +238,10 @@ const MyPageEdit = () => {
             </label>
             <input
               id="name"
+              type="text"
               className="inputSize"
               placeholder="이름을 입력하십시오"
-              value={name}
+              value={name || ''}
               onChange={handleChangeName}
             ></input>
           </p>
@@ -247,9 +251,10 @@ const MyPageEdit = () => {
             </label>
             <input
               id="nickName"
+              type="text"
               className="inputSize"
               placeholder="닉네임을 입력하십시오"
-              value={displayName}
+              value={displayName || ''}
               onChange={handleChangeDisplayName}
             ></input>
           </p>
@@ -259,10 +264,12 @@ const MyPageEdit = () => {
             </label>
             <input
               id="email"
+              type="text"
               className="inputSize"
               placeholder="이메일을 입력하십시오"
-              // value={email}
-              // onChange={handleChangeEmail}
+              disabled
+              value={email || ''}
+              onChange={handleChangeEmail}
             ></input>
           </p>
           <p>
@@ -271,9 +278,10 @@ const MyPageEdit = () => {
             </label>
             <input
               id="address"
+              type="text"
               className="inputSize"
               placeholder="주소를 입력하십시오"
-              value={address}
+              value={address || ''}
               onChange={handleChangeAddress}
             ></input>
           </p>
@@ -283,9 +291,10 @@ const MyPageEdit = () => {
             </label>
             <input
               id="phonNumber"
+              type="text"
               className="inputSize"
               placeholder="전화번호를 입력하십시오"
-              value={phoneNumber}
+              value={phoneNumber || ''}
               onChange={handleChangePhoneNumber}
             ></input>
           </p>
@@ -295,17 +304,18 @@ const MyPageEdit = () => {
             </label>
             <input
               id="profile"
+              type="file"
               className="inputSize"
               placeholder="프로필을 url형태로 입력하십시오"
-              // value={profile}
-              // onChange={handleChangeProfile}
+              value={profile || ''}
+              onChange={handleChangeProfile}
             ></input>
           </p>
           <SWithdraw>회원탈퇴</SWithdraw>
         </SInputList>
       </SWrapEdit>
       <SEditBtn>
-        <SCancelBtn>취소</SCancelBtn>
+        <SCancelBtn onClick={() => navigate('/mypage')}>취소</SCancelBtn>
         <SSaveBtn onClick={handleClickSave}>저장</SSaveBtn>
       </SEditBtn>
     </div>
