@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import logo from '../image/logo.svg';
 import { Link } from 'react-router-dom';
 import mypage from '../image/mypage.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../redux/slice/userSlice';
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -114,13 +116,21 @@ const SLogoutBtn = styled.button`
 `;
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const accessToken = useSelector((state) => state.user.accessToken);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <StyledHeader>
       <SHeaderLogo href="/">
@@ -141,7 +151,7 @@ const Header = () => {
           커뮤니티
         </Link>
       </SNavContainer>
-      {!sessionStorage.getItem('accessToken') ? (
+      {!accessToken ? (
         <>
           <SLoginBtn onClick={handleOpenModal}>로그인</SLoginBtn>
           <LoginModal
@@ -154,7 +164,7 @@ const Header = () => {
           <Link to="/mypage">
             <img src={mypage} alt="mypage" className="mypage" />
           </Link>
-          <SLogoutBtn>로그아웃</SLogoutBtn>
+          <SLogoutBtn onClick={handleLogout}>로그아웃</SLogoutBtn>
         </SLogout>
       )}
     </StyledHeader>
