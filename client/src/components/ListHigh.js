@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as Search } from '../image/SearchIcon.svg';
-import { useNavigate, useParams } from 'react-router-dom';
-import ShareList from '../page/ShareList';
+import { useNavigate } from 'react-router-dom';
 
 const SShareTop = styled.div`
   display: flex;
@@ -80,25 +79,28 @@ const SRegister = styled.button`
   }
 `;
 
-const ListHigh = () => {
+const ListHigh = ({ page }) => {
   const navigate = useNavigate();
+  const route = page === 'share' ? '/shareAdd' : '/reqAdd';
 
   return (
     <SShareTop>
       <div className="ml-5">
         <p className="fs-23 mb-5">
-          {<ShareList /> ? (
-            '현재 빌리지에 올라온 목록입니다!'
-          ) : (
-            '빌리지 사람들이 찾고 있는 책이에요!'
-          )}
+          {page === 'share'
+            ? '현재 빌리지에 올라온 목록입니다!'
+            : '빌리지 사람들이 찾고 있는 책이에요!'}
         </p>
-        <p className="fs-16">찾고있는 책이 있다면 연락해보세요!</p>
+        <p className="fs-16">
+          {page === 'share'
+            ? '찾고 있는 책이 있다면 연락해보세요!'
+            : '내가 갖고 있는 책이라면 연락해보세요!'}
+        </p>
       </div>
       <div className="searchBox">
         <input className="search" />
         <Search className="search-icon" />
-        <SRegister onClick={() => navigate('/shareAdd')}>책 등록하기</SRegister>
+        <SRegister onClick={() => navigate(route)}>책 등록하기</SRegister>
       </div>
     </SShareTop>
   );
