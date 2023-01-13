@@ -9,7 +9,6 @@ const StyledFooter = styled.footer`
   background-color: #f2f2f2;
   display: flex;
   flex-flow: row wrap;
-  position: fixed;
   bottom: 0;
   justify-content: center;
 

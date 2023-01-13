@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ReactComponent as Search } from '../image/SearchIcon.svg';
 import shareListData from '../data/shareListData.json';
+import ListHigh from '../components/ListHigh';
 
 const SShareTop = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ const SShareTop = styled.div`
   margin-top: 30px;
   justify-content: space-between;
   p {
-    color: #545454;
+    color: #212124;
   }
   .fs-23 {
     font-weight: 700;
@@ -84,7 +85,7 @@ const SRegister = styled.button`
 
 const SBookContainer = styled.li`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   border: 1.5px solid #dddada;
   width: 40%;
   height: 100%;
@@ -93,25 +94,28 @@ const SBookContainer = styled.li`
 
   @media all and (min-width: 480px) and (max-width: 1023px) {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: auto;
     padding: 0;
   }
   .coverBox {
-    margin: 1rem;
+    margin-right: 1rem;
     height: 207px;
+    float: left;
   }
   .bookCover {
-    height: 207px;
+    height: 180px;
     width: 140px;
   }
   .informationBox {
     margin-left: 0;
     margin-right: 1rem;
+    color: #212124;
   }
   .fs-18 {
     font-size: 18px;
     font-weight: 700;
+    color: #212124;
     @media screen and (max-width: 1023px) {
       font-size: 16px;
     }
@@ -142,7 +146,21 @@ const SBookContainer = styled.li`
     margin: auto;
   }
   .mt-20 {
-    margin-top: 20px;
+    margin-top: 0px;
+    height: 100%;
+  }
+  .shareTitle {
+    margin: 20px 0px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: start;
+    color: #212124;
+    @media all and (min-width: 480px) and (max-width: 1023px) {
+      margin-left: 3%;
+    }
+  }
+  .f-row {
+    flex-direction: column;
   }
 `;
 
@@ -158,8 +176,9 @@ const SBookList = styled.ol`
 `;
 
 const ShareList = () => {
-  const [cover, setCover] = useState('');
   const [title, setTitle] = useState('');
+  const [cover, setCover] = useState('');
+  const [bookTitle, setBookTitle] = useState('');
   const [writer, setWriter] = useState('');
   const [publisher, setPublisher] = useState('');
   const [createdAt, setCreatedAt] = useState('');
@@ -167,7 +186,25 @@ const ShareList = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  //!서버연결 후 주석 풀기
+  //!서버연결 후 주석 풀기 (비동기 처리)
+  // useEffect(() => {
+  //   const listData = async () => {
+  //     try {
+  //       const res = await axios.get('http://localhost8080/sharelist');
+  //       setCover(res.data.cover);
+  //       setTitle(res.data.title);
+  //       setWriter(res.data.writer);
+  //       setPublisher(res.data.publisher);
+  //       setCreatedAt(res.data.createdAt);
+  //     } catch (error) {
+  //       console.error(error);
+  //       alert('정보를 불러오는데 실패했습니다');
+  //     }
+  //   };
+  //   listData();
+  // }, []);
+
+  // 비동기 처리x
   // useEffect(() => {
   //   axios
   //     .get('http://localhost8080/sharelist')
@@ -186,6 +223,7 @@ const ShareList = () => {
 
   return (
     <>
+      {/* <ListHigh /> */}
       <SShareTop>
         <div className="ml-5">
           <p className="fs-23 mb-5">현재 빌리지에 올라온 목록입니다!</p>
@@ -202,25 +240,28 @@ const ShareList = () => {
       <SBookList>
         {shareListData.books.map((book) => (
           <SBookContainer key={book.id}>
-            <div className="coverBox">
-              <img
-                className="bookCover"
-                src={book.image}
-                alt="bookCover"
-                onClick={() => {
-                  navigate(`/shareDetail/${id}`);
-                }}
-              />
-            </div>
-            <div className="informationBox">
-              <p className="fs-18 mb-15">{book.title}</p>
-              <div className="item-flex">
-                <p className="mfs-16">{book.writer} 저자 /</p>
-                <p className="mfs-16">{book.publisher}</p>
+            <div className="shareTitle">{book.title}</div>
+            <div className="f-row">
+              <div className="coverBox">
+                <img
+                  className="bookCover"
+                  src={book.image}
+                  alt="bookCover"
+                  onClick={() => {
+                    navigate(`/shareDetail/${id}`);
+                  }}
+                />
               </div>
-              <p className="fs-12 createdAt-r">{book.createdAt}</p>
-              <p className="word-break mt-20 mfs-16">{book.contents}</p>
+              <div className="informationBox">
+                <p className="fs-18 mb-15">{book.bookTitle}</p>
+                <div className="item-flex">
+                  <p className="mfs-16">{book.writer} 저자 /</p>
+                  <p className="mfs-16">{book.publisher}</p>
+                </div>
+                <p className="fs-12 createdAt-r">{book.createdAt}</p>
+              </div>
             </div>
+            <p className="word-break mt-20 mfs-16">{book.contents}</p>
           </SBookContainer>
         ))}
       </SBookList>
