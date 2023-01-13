@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const SWrapEdit = styled.div`
@@ -99,16 +99,12 @@ const SDefaultProfile = styled.div`
 
 const MyPageEdit = () => {
   //컴포넌트에서 바뀌는 값 관리
-  const [memberId, setMemberId] = useState('');
   const [name, setName] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [profile, setProfile] = useState('');
-
-  //현재 접속한 페이지의 id값을 가져옴
-  // const { id } = useParams();
 
   //경로 이동
   const navigate = useNavigate();
@@ -139,13 +135,38 @@ const MyPageEdit = () => {
   //전역상태값 가져오기
   const user = useSelector((state) => state.user);
 
+  // 서버 연결 후 주석 풀기!
+  useEffect(() => {
+    const editData = async () => {
+      try {
+        const res = await axios.get(url + '/v1/members', {
+          // 토큰 부분
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            Accept: 'application/json',
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        });
+        // console.log(res.data.data);
+        setName(res.data.data.name);
+        setEmail(res.data.data.email);
+        setDisplayName(res.data.data.displayName);
+        setAddress(res.data.data.address);
+        setPhoneNumber(res.data.data.phoneNumber);
+      } catch (error) {
+        console.error(error);
+        alert('정보를 불러오는데 실패했습니다');
+      }
+    };
+    editData();
+  }, []);
+
   //저장 버튼 클릭 시, 서버로 patch 요청
   const handleClickSave = () => {
     axios
       .patch(
         `${url}/v1/members`,
         {
-          memberId,
           name,
           displayName,
           address,
@@ -161,9 +182,7 @@ const MyPageEdit = () => {
         }
       )
       .then(() => {
-        navigate('/mypage');
         alert('프로필 수정이 완료되었습니다!');
-        console.log('수정완료');
       })
       .catch((err) => {
         alert('수정이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요!');
@@ -171,54 +190,19 @@ const MyPageEdit = () => {
       });
   };
 
-  // 서버 연결 후 주석 풀기!
-  useEffect(() => {
-    const editData = async () => {
-      try {
-        const res = await axios.get(url + '/v1/members', {
-          // 토큰 부분
-          headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            Accept: 'application/json',
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-        });
-        console.log(res.data.data);
-        setMemberId(res.data.data.memberId);
-        setName(res.data.data.name);
-        setEmail(res.data.data.email);
-        setDisplayName(res.data.data.displayName);
-        setAddress(res.data.data.address);
-        setPhoneNumber(res.data.data.phoneNumber);
-      } catch (error) {
-        console.error(error);
-        alert('정보를 불러오는데 실패했습니다');
-      }
-    };
-    editData();
-    console.log('렌더링 중!');
-  }, []);
-  //   axios
-  //     .get(url + '/v1/members', {
-  //       // 토큰 부분
-  //       headers: {
-  //         'Content-Type': 'application/json;charset=UTF-8',
-  //         Accept: 'application/json',
-  //         Authorization: `Bearer ${user.accessToken}`,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       setName(res.data.name);
-  //       setDisplayName(res.data.displayName);
-  //       setEmail(res.data.email);
-  //       setAddress(res.data.address);
-  //       setPhoneNumber(res.data.phoneNumber);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //       alert('회원정보를 불러오는데 실패했습니다');
-  //     });
-  // }, []);
+  //회원탈퇴(주석 풀 것!)
+  const handleClickQuit = () => {
+    alert(`${name}님, 회원탈퇴가 정상적으로 이루어졌습니다`);
+    // axios
+    //   .patch(url + '/v1/members/quit', {
+    //     headers: {
+    //       Authorization: `Bearer ${user.accessToken}`,
+    //     },
+    //   })
+    //   .then(() => {
+    //     alert(`${name}님, 회원탈퇴가 정상적으로 이루어졌습니다`);
+    //   });
+  };
 
   return (
     <div>
@@ -311,7 +295,7 @@ const MyPageEdit = () => {
               onChange={handleChangeProfile}
             ></input>
           </p>
-          <SWithdraw>회원탈퇴</SWithdraw>
+          <SWithdraw onClick={handleClickQuit}>회원탈퇴</SWithdraw>
         </SInputList>
       </SWrapEdit>
       <SEditBtn>
