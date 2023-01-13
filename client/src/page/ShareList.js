@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ReactComponent as Search } from '../image/SearchIcon.svg';
 import shareListData from '../data/shareListData.json';
+import ListHigh from '../components/ListHigh';
 
 const SShareTop = styled.div`
   display: flex;
@@ -222,6 +223,7 @@ const ShareList = () => {
 
   return (
     <>
+      {/* <ListHigh /> */}
       <SShareTop>
         <div className="ml-5">
           <p className="fs-23 mb-5">현재 빌리지에 올라온 목록입니다!</p>
