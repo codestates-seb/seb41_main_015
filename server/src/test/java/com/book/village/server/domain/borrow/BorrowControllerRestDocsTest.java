@@ -15,7 +15,6 @@ import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDoc
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -31,8 +30,7 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -58,12 +56,14 @@ class BorrowControllerRestDocsTest {
 
     private static final String BASE_URL = "/v1/borrow";
 
+    private static final LocalDateTime time = LocalDateTime.now();
+
     @Test
     @DisplayName("나눔 게시글 작성😊😊😊😊")
     @WithMockUser
     void postBorrowTest() throws Exception {
         // given
-        LocalDateTime createdAt = LocalDateTime.now();
+        LocalDateTime createdAt = time;
         LocalDateTime modifiedAt = LocalDateTime.now();
         BorrowDto.Post post =
                 new BorrowDto.Post("title",
@@ -158,12 +158,12 @@ class BorrowControllerRestDocsTest {
 
 
     @Test
-    @DisplayName("나눔 게시글 수정😊😊😊😊😊")
+    @DisplayName("나눔 게시글 수정😊😊😊😊")
     @WithMockUser
     void patchBorrowTest() throws Exception {
         // given
-        long borrowId = 1L;
-        LocalDateTime createdAt = LocalDateTime.now();
+        Long borrowId = 1L;
+        LocalDateTime createdAt = time;
         LocalDateTime modifiedAt = LocalDateTime.now();
 
         BorrowDto.Patch patch =
@@ -187,10 +187,6 @@ class BorrowControllerRestDocsTest {
                         "talkUrl",
                         createdAt,
                         modifiedAt);
-
-//        String accessToken = "tokenexample";
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.add(HttpHeaders.AUTHORIZATION, accessToken);
 
 
         given(borrowMapper.borrowDtoPatchToBorrow(Mockito.any(BorrowDto.Patch.class))).willReturn(new Borrow());
@@ -261,4 +257,77 @@ class BorrowControllerRestDocsTest {
 
                 ));
     }
+
+    @Test
+    @DisplayName("나눔 게시글 하나 조회😁😁")
+    @WithMockUser
+    void getBorrowTest() throws Exception {
+        // given
+        Long borrowId = 1L;
+        LocalDateTime createdAt = time;
+        LocalDateTime modifiedAt = LocalDateTime.now();
+
+        BorrowDto.Response responseDto =
+                new BorrowDto.Response(1L,
+                        "title",
+                        "content",
+                        "bookTitle",
+                        "author",
+                        "publisher",
+                        "displayName",
+                        "talkUrl",
+                        createdAt,
+                        modifiedAt);
+
+
+        given(borrowService.findVerificationBorrow(Mockito.any(Long.class))).willReturn(new Borrow());
+        given(borrowMapper.borrowToBorrowDtoResponse(Mockito.any(Borrow.class))).willReturn(responseDto);
+
+        // when
+        ResultActions actions =
+                mockMvc.perform(
+                        get(BASE_URL + "/{borrow-id}", borrowId)
+                                .with(csrf())
+                        // JSON으로 받을 내용이 없음.
+                );
+
+        // then
+        actions
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data.borrowId").value(responseDto.getBorrowId()))
+                .andExpect(jsonPath("$.data.title").value(responseDto.getTitle()))
+                .andExpect(jsonPath("$.data.content").value(responseDto.getContent()))
+                .andExpect(jsonPath("$.data.bookTitle").value(responseDto.getBookTitle()))
+                .andExpect(jsonPath("$.data.author").value(responseDto.getAuthor()))
+                .andExpect(jsonPath("$.data.publisher").value(responseDto.getPublisher()))
+                .andExpect(jsonPath("$.data.talkUrl").value(responseDto.getTalkUrl()))
+                .andDo(document("get-borrow",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("borrow-id").description("나눔 식별자")
+                        ),
+                        requestParameters(
+                                parameterWithName("_csrf").description("csrf")
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
+                                        fieldWithPath("data.borrowId").type(JsonFieldType.NUMBER).description("나눔 게시글 식별자"),
+                                        fieldWithPath("data.title").type(JsonFieldType.STRING).description("나눔게시글 제목"),
+                                        fieldWithPath("data.content").type(JsonFieldType.STRING).description("게시글 본문"),
+                                        fieldWithPath("data.bookTitle").type(JsonFieldType.STRING).description("나눌 책 제목"),
+                                        fieldWithPath("data.author").type(JsonFieldType.STRING).description("나눌 책 저자"),
+                                        fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("나눌 책 출판사"),
+                                        fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                        fieldWithPath("data.talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
+                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("나눔 게시글 생성 일자"),
+                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("나눔 게시글 최신 수정 일자")
+                                )
+                        )
+                ));
+    }
+
+
+
 }

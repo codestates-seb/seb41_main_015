@@ -39,12 +39,22 @@ public class BorrowController {
     @PatchMapping("/{borrow-id}")
     public ResponseEntity patchBorrow(Principal principal,
                                       @RequestBody BorrowDto.Patch borrowPatch,
-                                      @PathVariable("borrow-id") long borrowId) {
+                                      @PathVariable("borrow-id") Long borrowId) {
         borrowPatch.setBorrowId(borrowId);
         Borrow borrow = borrowMapper.borrowDtoPatchToBorrow(borrowPatch);    // 엔티티로 매핑
 
         Borrow updatedBorrow = borrowService.updateBorrow(borrow, principal.getName());
 
         return new ResponseEntity<>(new SingleResponse<>(borrowMapper.borrowToBorrowDtoResponse(updatedBorrow)), HttpStatus.OK);
+    }
+
+//     Borrow 조회
+//      그냥 조회는 인증 굳이 필요없음.
+    @GetMapping("/{borrow-id}")
+    public ResponseEntity getBorrow(@PathVariable("borrow-id")Long borrowId) {
+        // 서비스클래스에서 검증처리 됨.
+        Borrow getBorrow = borrowService.findVerificationBorrow(borrowId);
+        // 결과가 나오면 return
+        return new ResponseEntity(new SingleResponse<>(borrowMapper.borrowToBorrowDtoResponse(getBorrow)), HttpStatus.OK);
     }
 }

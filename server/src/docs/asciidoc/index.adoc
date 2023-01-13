@@ -181,8 +181,10 @@ include::{snippets}/patch-request/response-fields.adoc[]
 .response-body
 include::{snippets}/patch-request/response-body.adoc[]
 
+***
+== BorrowController
 
-=== 나눔글 등록
+=== 나눔 등록
 .curl-request
 include::{snippets}/post-borrow/curl-request.adoc[]
 
