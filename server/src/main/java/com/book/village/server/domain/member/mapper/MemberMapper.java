@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface MemberMapper {
-    Member patchMemberDtoToMember(MemberDto.Patch memberDto);
+    Member patchMemberDtoToMember(MemberDto.Patch memberPatchDto);
     default MemberDto.Response memberToResponseMemberDto(Member member){
         if (member == null) {
             return null;

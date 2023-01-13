@@ -40,7 +40,7 @@ public class RefreshTokenController {
         String accessToken= tokenService.getAccessToken(email);
 
         log.info("accessToken = {}", accessToken);
-        response.addHeader("Authorization", accessToken);
+        response.addHeader("Authorization", "Bearer "+accessToken);
 
         return ResponseEntity.ok(new MessageResponseDto("access token created!"));
     }

@@ -9,6 +9,7 @@ import com.book.village.server.domain.member.repository.MemberRepository;
 import com.book.village.server.domain.member.service.MemberService;
 import com.book.village.server.global.exception.CustomLogicException;
 import com.book.village.server.global.exception.ExceptionCode;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -33,8 +34,6 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
     private final MemberService memberService;
     private final MemberRepository memberRepository;
     private final RefreshTokenRepository refreshTokenRepository;
-    @Value("${spring.datasource.url}")
-    private String serverType;
 
     public OAuth2MemberSuccessHandler(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, MemberService memberService, MemberRepository memberRepository,RefreshTokenRepository refreshTokenRepository) {
         this.jwtTokenizer = jwtTokenizer;
@@ -82,8 +81,12 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                 .refreshToken(refreshToken)
                 .member(memberService.findMember(username))
                 .build();
+        if(refreshTokenRepository.findByMember(memberService.findMember(username)).isPresent()){
+            refreshTokenRepository.delete(refreshTokenRepository.findByMember(memberService.findMember(username)).get());
+            refreshTokenRepository.save(token);
+            return refreshToken;
+        }
         refreshTokenRepository.save(token);
-
         return refreshToken;
     }
 
@@ -101,7 +104,6 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         queryParams.add("refresh_token", refreshToken);
         if(newbie) queryParams.add("membership", "new");
         else queryParams.add("membership","existing");
-
 
 //        return UriComponentsBuilder
 //                .newInstance()
