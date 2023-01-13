@@ -18,8 +18,10 @@ public enum ExceptionCode {
     TOKEN_INVALID(401 , "TOKEN_INVALID"),
 
     REQUEST_NOT_FOUND(404,"Request not found"),
-    REQUEST_WRITER_NOT_MATCH(409, "Request writer not match");
+    REQUEST_WRITER_NOT_MATCH(409, "Request writer not match"),
 
+    BORROW_NOT_FOUND(404, "BORROW_NOT_FOUND"), // 나눔글 존재 하지 않음.
+    BORROW_USER_DIFFERENT(403, "BORROW_USER_DIFFERENT");   // 나눔글 작성자가 아닌 사람이 수정하려고 할 때
 
     @Getter
     private final int code;

@@ -9,6 +9,7 @@ import com.book.village.server.domain.member.repository.MemberRepository;
 import com.book.village.server.domain.member.service.MemberService;
 import com.book.village.server.global.exception.CustomLogicException;
 import com.book.village.server.global.exception.ExceptionCode;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -80,8 +81,12 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                 .refreshToken(refreshToken)
                 .member(memberService.findMember(username))
                 .build();
+        if(refreshTokenRepository.findByMember(memberService.findMember(username)).isPresent()){
+            refreshTokenRepository.delete(refreshTokenRepository.findByMember(memberService.findMember(username)).get());
+            refreshTokenRepository.save(token);
+            return refreshToken;
+        }
         refreshTokenRepository.save(token);
-
         return refreshToken;
     }
 
