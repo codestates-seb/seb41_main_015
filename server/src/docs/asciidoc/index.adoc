@@ -181,6 +181,61 @@ include::{snippets}/patch-request/response-fields.adoc[]
 .response-body
 include::{snippets}/patch-request/response-body.adoc[]
 
+=== 요청 조회
+.curl-request
+include::{snippets}/get-requests/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-requests/http-request.adoc[]
+
+.http-response
+include::{snippets}/get-requests/http-response.adoc[]
+
+.response-fields
+include::{snippets}/get-requests/response-fields.adoc[]
+
+=== 모든 요청 조회
+.curl-request
+include::{snippets}/get-requests/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-requests/http-request.adoc[]
+
+.http-response
+include::{snippets}/get-requests/http-response.adoc[]
+
+.response-fields
+include::{snippets}/get-requests/response-fields.adoc[]
+
+=== 나의 요청 조회
+.curl-request
+include::{snippets}/get-myrequests/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-myrequests/http-request.adoc[]
+
+.http-response
+include::{snippets}/get-myrequests/http-response.adoc[]
+
+.response-requests
+include::{snippets}/get-myrequests/response-fields.adoc[]
+
+=== 요청 검색
+.curl-request
+include::{snippets}/search-requests/curl-request.adoc[]
+
+.http-request
+include::{snippets}/search-requests/http-request.adoc[]
+
+.request-parameters
+include::{snippets}/search-requests/request-parameters.adoc[]
+
+.http-response
+include::{snippets}/search-requests/http-response.adoc[]
+
+.response-fields
+include::{snippets}/search-requests/response-fields.adoc[]
+
 
 ***
 == BorrowController
