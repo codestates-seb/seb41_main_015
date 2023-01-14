@@ -12,6 +12,7 @@ public class CommunityDto {
     @ToString
     @Builder
     public static class Post{
+        private String type;
         private String title;
         @Lob
         private String content;
@@ -21,10 +22,12 @@ public class CommunityDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Getter
+    @Setter
     @ToString
     @Builder
     public static class Patch{
         private Long communityId;
+        private String type;
         private String title;
         @Lob
         private String content;
@@ -34,10 +37,12 @@ public class CommunityDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Getter
+    @Setter
     @ToString
     @Builder
     public static class Response{
         private Long communityId;
+        private String type;
         private String title;
         @Lob
         private String content;

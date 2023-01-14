@@ -19,8 +19,12 @@ public class Community extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long communityId;
 
+    @Column(nullable = false)
+    private String type;
+
     @Column(length = 100, nullable = false)
     private String title;
+
 
     @Column(nullable = false)
     @Lob
