@@ -26,7 +26,7 @@ public class Member extends Auditable {
     @Column(length = 30)
     private String name;
 
-    @Column(length = 30)
+    @Column(unique = true, length = 30)
     private String displayName;
 
     @ColumnDefault("''")
