@@ -511,7 +511,7 @@ public class CommunityControllerRestDocsTest {
                 );
         actions
                 .andExpect(status().isNoContent())
-                .andDo(document("get-community",
+                .andDo(document("delete-community",
                         getResponsePreProcessor(),
                         requestHeaders(
                                 headerWithName("Authorization").description("Bearer Token")
