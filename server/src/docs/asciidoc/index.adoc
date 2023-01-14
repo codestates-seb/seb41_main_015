@@ -245,7 +245,7 @@ include::{snippets}/patch-borrow/response-fields.adoc[]
 include::{snippets}/patch-borrow/response-body.adoc[]
 
 ***
-== MemberController
+== CommunityController
 
 === 커뮤니티 등록
 .curl-request
@@ -375,3 +375,115 @@ include::{snippets}/delete-community/path-parameters.adoc[]
 
 .http-response
 include::{snippets}/delete-community/http-response.adoc[]
+
+***
+== CommunityCommentController
+=== 커뮤니티 댓글 등록
+.curl-request
+include::{snippets}/post-community-comment/curl-request.adoc[]
+
+.http-request
+include::{snippets}/post-community-comment/http-request.adoc[]
+
+.request-headers
+include::{snippets}/post-community-comment/request-headers.adoc[]
+
+.path-parameters
+include::{snippets}/post-community-comment/path-parameters.adoc[]
+
+.request-fields
+include::{snippets}/post-community-comment/request-fields.adoc[]
+
+.request-body
+include::{snippets}/post-community-comment/request-body.adoc[]
+
+.http-response
+include::{snippets}/post-community-comment/http-response.adoc[]
+
+.response-fields
+include::{snippets}/post-community-comment/response-fields.adoc[]
+
+.response-body
+include::{snippets}/post-community-comment/response-body.adoc[]
+
+=== 커뮤니티 댓글 수정
+.curl-request
+include::{snippets}/patch-community-comment/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-community-comment/http-request.adoc[]
+
+.request-headers
+include::{snippets}/patch-community-comment/request-headers.adoc[]
+
+.path-parameters
+include::{snippets}/patch-community-comment/path-parameters.adoc[]
+
+.request-fields
+include::{snippets}/patch-community-comment/request-fields.adoc[]
+
+.request-body
+include::{snippets}/patch-community-comment/request-body.adoc[]
+
+.http-response
+include::{snippets}/patch-community-comment/http-response.adoc[]
+
+.response-fields
+include::{snippets}/patch-community-comment/response-fields.adoc[]
+
+.response-body
+include::{snippets}/patch-community-comment/response-body.adoc[]
+
+=== 커뮤니티 댓글 조회
+.curl-request
+include::{snippets}/get-community-comment/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-community-comment/http-request.adoc[]
+
+.path-parameters
+include::{snippets}/get-community-comment/path-parameters.adoc[]
+
+.http-response
+include::{snippets}/get-community-comment/http-response.adoc[]
+
+.response-fields
+include::{snippets}/get-community-comment/response-fields.adoc[]
+
+.response-body
+include::{snippets}/get-community-comment/response-body.adoc[]
+
+=== 모든 나의 커뮤니티 댓글 조회
+.curl-request
+include::{snippets}/get-community-comments-mine/curl-request.adoc[]
+
+.http-request
+include::{snippets}/get-community-comments-mine/http-request.adoc[]
+
+.request-headers
+include::{snippets}/get-community-comments-mine/request-headers.adoc[]
+
+.http-response
+include::{snippets}/get-community-comments-mine/http-response.adoc[]
+
+.response-fields
+include::{snippets}/get-community-comments-mine/response-fields.adoc[]
+
+.response-body
+include::{snippets}/get-community-comments-mine/response-body.adoc[]
+
+=== 커뮤니티 댓글 삭제
+.curl-request
+include::{snippets}/delete-community-comment/curl-request.adoc[]
+
+.http-request
+include::{snippets}/delete-community-comment/http-request.adoc[]
+
+.request-headers
+include::{snippets}/delete-community-comment/request-headers.adoc[]
+
+.path-parameters
+include::{snippets}/delete-community-comment/path-parameters.adoc[]
+
+.http-response
+include::{snippets}/delete-community-comment/http-response.adoc[]

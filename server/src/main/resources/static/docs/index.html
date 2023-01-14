@@ -470,7 +470,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_나눔_수정">4.2. 나눔 수정</a></li>
 </ul>
 </li>
-<li><a href="#_membercontroller_2">5. MemberController</a>
+<li><a href="#_communitycontroller">5. CommunityController</a>
 <ul class="sectlevel2">
 <li><a href="#_커뮤니티_등록">5.1. 커뮤니티 등록</a></li>
 <li><a href="#_커뮤니티_수정">5.2. 커뮤니티 수정</a></li>
@@ -478,6 +478,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_모든_커뮤니티_조회">5.4. 모든 커뮤니티 조회</a></li>
 <li><a href="#_나의_모든_커뮤니티_조회">5.5. 나의 모든 커뮤니티 조회</a></li>
 <li><a href="#_커뮤니티_삭제">5.6. 커뮤니티 삭제</a></li>
+</ul>
+</li>
+<li><a href="#_communitycommentcontroller">6. CommunityCommentController</a>
+<ul class="sectlevel2">
+<li><a href="#_커뮤니티_댓글_등록">6.1. 커뮤니티 댓글 등록</a></li>
+<li><a href="#_커뮤니티_댓글_수정">6.2. 커뮤니티 댓글 수정</a></li>
+<li><a href="#_커뮤니티_댓글_조회">6.3. 커뮤니티 댓글 조회</a></li>
+<li><a href="#_모든_나의_커뮤니티_댓글_조회">6.4. 모든 나의 커뮤니티 댓글 조회</a></li>
+<li><a href="#_커뮤니티_댓글_삭제">6.5. 커뮤니티 댓글 삭제</a></li>
 </ul>
 </li>
 </ul>
@@ -511,7 +520,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/members?_csrf=9f97efea-1c30-4fbf-a0a3-7438880c3664' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/members?_csrf=c07c8427-ed2c-4d28-8f98-37e4aa4b584e' -i -X PATCH \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -527,7 +536,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/members?_csrf=9f97efea-1c30-4fbf-a0a3-7438880c3664 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/members?_csrf=c07c8427-ed2c-4d28-8f98-37e4aa4b584e HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -636,8 +645,8 @@ Content-Length: 336
     "address" : "address1",
     "phoneNumber" : "010-1234-5678",
     "memberStatus" : "활동중",
-    "createdAt" : "2023-01-14T19:25:33.0743357",
-    "modifiedAt" : "2023-01-14T19:25:33.0743357"
+    "createdAt" : "2023-01-14T22:45:46.7247654",
+    "modifiedAt" : "2023-01-14T22:45:46.7247654"
   }
 }</code></pre>
 </div>
@@ -721,8 +730,8 @@ Content-Length: 336
     "address" : "address1",
     "phoneNumber" : "010-1234-5678",
     "memberStatus" : "활동중",
-    "createdAt" : "2023-01-14T19:25:33.0743357",
-    "modifiedAt" : "2023-01-14T19:25:33.0743357"
+    "createdAt" : "2023-01-14T22:45:46.7247654",
+    "modifiedAt" : "2023-01-14T22:45:46.7247654"
   }
 }</code></pre>
 </div>
@@ -733,7 +742,7 @@ Content-Length: 336
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/members?_csrf=587c0a23-84ec-4db3-baae-808c4e447429' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/members?_csrf=aba169d3-13f8-4d74-abee-de05433a6ccb' -i -X GET \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
@@ -742,7 +751,7 @@ Content-Length: 336
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/members?_csrf=587c0a23-84ec-4db3-baae-808c4e447429 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/members?_csrf=aba169d3-13f8-4d74-abee-de05433a6ccb HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -793,8 +802,8 @@ Content-Length: 336
     "address" : "address1",
     "phoneNumber" : "010-1234-5678",
     "memberStatus" : "활동중",
-    "createdAt" : "2023-01-14T19:25:33.2043267",
-    "modifiedAt" : "2023-01-14T19:25:33.2043267"
+    "createdAt" : "2023-01-14T22:45:46.8847358",
+    "modifiedAt" : "2023-01-14T22:45:46.8847358"
   }
 }</code></pre>
 </div>
@@ -878,8 +887,8 @@ Content-Length: 336
     "address" : "address1",
     "phoneNumber" : "010-1234-5678",
     "memberStatus" : "활동중",
-    "createdAt" : "2023-01-14T19:25:33.2043267",
-    "modifiedAt" : "2023-01-14T19:25:33.2043267"
+    "createdAt" : "2023-01-14T22:45:46.8847358",
+    "modifiedAt" : "2023-01-14T22:45:46.8847358"
   }
 }</code></pre>
 </div>
@@ -894,7 +903,7 @@ Content-Length: 336
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
-    -d '_csrf=9a53dd47-a7b6-4e6e-818a-c1f23611ff64'</code></pre>
+    -d '_csrf=62291fc1-b8cd-469a-9067-947932cbf29a'</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -906,7 +915,7 @@ Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
 Host: localhost:8080
 
-_csrf=9a53dd47-a7b6-4e6e-818a-c1f23611ff64</code></pre>
+_csrf=62291fc1-b8cd-469a-9067-947932cbf29a</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1087,7 +1096,7 @@ Content-Length: 34
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcmlvbmNzeUBnbWFpbC5jb20iLCJpYXQiOjE2NzM0NDE1MzMsImV4cCI6MTY3MzQ2NjczM30.xxnf6XFYFvQfyCRTr0jFBK5sr7Ol2yDfQcTjQ4K7hiw' \
-    -d '_csrf=2a5886cf-fcb6-4ad7-bb39-c3f5472d3fe1'</code></pre>
+    -d '_csrf=004d42d0-4594-4329-ab49-237181883937'</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1099,7 +1108,7 @@ Accept: application/json
 Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcmlvbmNzeUBnbWFpbC5jb20iLCJpYXQiOjE2NzM0NDE1MzMsImV4cCI6MTY3MzQ2NjczM30.xxnf6XFYFvQfyCRTr0jFBK5sr7Ol2yDfQcTjQ4K7hiw
 Host: localhost:8080
 
-_csrf=2a5886cf-fcb6-4ad7-bb39-c3f5472d3fe1</code></pre>
+_csrf=004d42d0-4594-4329-ab49-237181883937</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1172,7 +1181,7 @@ Content-Length: 35
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests?_csrf=464ba389-ff1b-431c-b96b-196bebc26b48' -i -X POST \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests?_csrf=1a8acfe0-2292-4cb9-b67a-318203fe1c00' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -1189,7 +1198,7 @@ Content-Length: 35
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/requests?_csrf=464ba389-ff1b-431c-b96b-196bebc26b48 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/requests?_csrf=1a8acfe0-2292-4cb9-b67a-318203fe1c00 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -1330,8 +1339,8 @@ Content-Length: 351
     "author" : "author",
     "publisher" : "publisher",
     "displayName" : "displayName",
-    "createdAt" : "2023-01-14T19:25:37.4443237",
-    "modifiedAt" : "2023-01-14T19:25:37.4443237"
+    "createdAt" : "2023-01-14T22:45:50.6043219",
+    "modifiedAt" : "2023-01-14T22:45:50.6043219"
   }
 }</code></pre>
 </div>
@@ -1421,8 +1430,8 @@ Content-Length: 351
     "author" : "author",
     "publisher" : "publisher",
     "displayName" : "displayName",
-    "createdAt" : "2023-01-14T19:25:37.4443237",
-    "modifiedAt" : "2023-01-14T19:25:37.4443237"
+    "createdAt" : "2023-01-14T22:45:50.6043219",
+    "modifiedAt" : "2023-01-14T22:45:50.6043219"
   }
 }</code></pre>
 </div>
@@ -1433,7 +1442,7 @@ Content-Length: 351
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/1?_csrf=4ba517cc-ed84-4e42-baf8-70d7553df060' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/1?_csrf=6210c0da-f446-4ff1-9775-e3d1885e4e37' -i -X PATCH \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -1451,7 +1460,7 @@ Content-Length: 351
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/requests/1?_csrf=4ba517cc-ed84-4e42-baf8-70d7553df060 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/requests/1?_csrf=6210c0da-f446-4ff1-9775-e3d1885e4e37 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -1618,8 +1627,8 @@ Content-Length: 351
     "author" : "author",
     "publisher" : "publisher",
     "displayName" : "displayName",
-    "createdAt" : "2023-01-14T19:25:37.3483236",
-    "modifiedAt" : "2023-01-14T19:25:37.3483236"
+    "createdAt" : "2023-01-14T22:45:50.5233369",
+    "modifiedAt" : "2023-01-14T22:45:50.5233369"
   }
 }</code></pre>
 </div>
@@ -1709,8 +1718,8 @@ Content-Length: 351
     "author" : "author",
     "publisher" : "publisher",
     "displayName" : "displayName",
-    "createdAt" : "2023-01-14T19:25:37.3483236",
-    "modifiedAt" : "2023-01-14T19:25:37.3483236"
+    "createdAt" : "2023-01-14T22:45:50.5233369",
+    "modifiedAt" : "2023-01-14T22:45:50.5233369"
   }
 }</code></pre>
 </div>
@@ -1727,7 +1736,7 @@ Content-Length: 351
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/borrow?_csrf=b1839e87-4915-4f66-8f12-57f7c9207699' -i -X POST \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/borrow?_csrf=6a69bea2-2d7e-491a-bc4c-faa8f4d7cd7c' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -1745,7 +1754,7 @@ Content-Length: 351
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/borrow?_csrf=b1839e87-4915-4f66-8f12-57f7c9207699 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/borrow?_csrf=6a69bea2-2d7e-491a-bc4c-faa8f4d7cd7c HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -1893,8 +1902,8 @@ Content-Length: 350
     "publisher" : "publisher",
     "displayName" : "displayName",
     "talkUrl" : "talkUrl",
-    "createdAt" : "2023-01-14T19:25:25.8383302",
-    "modifiedAt" : "2023-01-14T19:25:25.8383302"
+    "createdAt" : "2023-01-14T22:45:38.9616172",
+    "modifiedAt" : "2023-01-14T22:45:38.9616172"
   }
 }</code></pre>
 </div>
@@ -1984,8 +1993,8 @@ Content-Length: 350
     "publisher" : "publisher",
     "displayName" : "displayName",
     "talkUrl" : "talkUrl",
-    "createdAt" : "2023-01-14T19:25:25.8383302",
-    "modifiedAt" : "2023-01-14T19:25:25.8383302"
+    "createdAt" : "2023-01-14T22:45:38.9616172",
+    "modifiedAt" : "2023-01-14T22:45:38.9616172"
   }
 }</code></pre>
 </div>
@@ -1996,7 +2005,7 @@ Content-Length: 350
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/borrow/1?_csrf=3ad16f05-e604-4377-8291-2f1603b6aa54' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/borrow/1?_csrf=7e98622d-2045-40db-a14b-53268be035d6' -i -X PATCH \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -2014,7 +2023,7 @@ Content-Length: 350
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/borrow/1?_csrf=3ad16f05-e604-4377-8291-2f1603b6aa54 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/borrow/1?_csrf=7e98622d-2045-40db-a14b-53268be035d6 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -2176,8 +2185,8 @@ Content-Length: 350
     "publisher" : "publisher",
     "displayName" : "displayName",
     "talkUrl" : "talkUrl",
-    "createdAt" : "2023-01-14T19:25:26.5623308",
-    "modifiedAt" : "2023-01-14T19:25:26.5623308"
+    "createdAt" : "2023-01-14T22:45:39.6345466",
+    "modifiedAt" : "2023-01-14T22:45:39.6345466"
   }
 }</code></pre>
 </div>
@@ -2267,8 +2276,8 @@ Content-Length: 350
     "publisher" : "publisher",
     "displayName" : "displayName",
     "talkUrl" : "talkUrl",
-    "createdAt" : "2023-01-14T19:25:26.5623308",
-    "modifiedAt" : "2023-01-14T19:25:26.5623308"
+    "createdAt" : "2023-01-14T22:45:39.6345466",
+    "modifiedAt" : "2023-01-14T22:45:39.6345466"
   }
 }</code></pre>
 </div>
@@ -2278,14 +2287,14 @@ Content-Length: 350
 </div>
 </div>
 <div class="sect1">
-<h2 id="_membercontroller_2">5. MemberController</h2>
+<h2 id="_communitycontroller">5. CommunityController</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_커뮤니티_등록">5.1. 커뮤니티 등록</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities?_csrf=1e3680e3-138b-4faa-97da-46ba627471c6' -i -X POST \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities?_csrf=256d7601-add1-49e6-b93b-ead000777976' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -2300,7 +2309,7 @@ Content-Length: 350
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/communities?_csrf=1e3680e3-138b-4faa-97da-46ba627471c6 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/communities?_csrf=256d7601-add1-49e6-b93b-ead000777976 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -2400,8 +2409,8 @@ Content-Length: 258
     "title" : "title1",
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-14T19:25:31.031332",
-    "modifiedAt" : "2023-01-14T19:25:31.031332"
+    "createdAt" : "2023-01-14T22:45:42.233253",
+    "modifiedAt" : "2023-01-14T22:45:42.233253"
   }
 }</code></pre>
 </div>
@@ -2473,8 +2482,8 @@ Content-Length: 258
     "title" : "title1",
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-14T19:25:31.031332",
-    "modifiedAt" : "2023-01-14T19:25:31.031332"
+    "createdAt" : "2023-01-14T22:45:42.233253",
+    "modifiedAt" : "2023-01-14T22:45:42.233253"
   }
 }</code></pre>
 </div>
@@ -2485,7 +2494,7 @@ Content-Length: 258
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/1?_csrf=36b0187d-bfd7-431f-be46-45dc9e26f561' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/1?_csrf=ac63c460-8a95-45c3-919b-afb2d247c772' -i -X PATCH \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -2501,7 +2510,7 @@ Content-Length: 258
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/communities/1?_csrf=36b0187d-bfd7-431f-be46-45dc9e26f561 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/communities/1?_csrf=ac63c460-8a95-45c3-919b-afb2d247c772 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -2627,8 +2636,8 @@ Content-Length: 260
     "title" : "title1",
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-14T19:25:31.1003247",
-    "modifiedAt" : "2023-01-14T19:25:31.1003247"
+    "createdAt" : "2023-01-14T22:45:42.3332477",
+    "modifiedAt" : "2023-01-14T22:45:42.3332477"
   }
 }</code></pre>
 </div>
@@ -2700,8 +2709,8 @@ Content-Length: 260
     "title" : "title1",
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-14T19:25:31.1003247",
-    "modifiedAt" : "2023-01-14T19:25:31.1003247"
+    "createdAt" : "2023-01-14T22:45:42.3332477",
+    "modifiedAt" : "2023-01-14T22:45:42.3332477"
   }
 }</code></pre>
 </div>
@@ -2712,7 +2721,7 @@ Content-Length: 260
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/1?_csrf=d7c3bc79-6c00-4851-82aa-66f6e1d3f952' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/1?_csrf=28a73b0b-62a3-4eb7-b355-a69b14f12d5f' -i -X GET \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json'</code></pre>
 </div>
@@ -2720,7 +2729,7 @@ Content-Length: 260
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/1?_csrf=d7c3bc79-6c00-4851-82aa-66f6e1d3f952 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/1?_csrf=28a73b0b-62a3-4eb7-b355-a69b14f12d5f HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Host: localhost:8080</code></pre>
@@ -2759,7 +2768,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 260
+Content-Length: 258
 
 {
   "data" : {
@@ -2768,8 +2777,8 @@ Content-Length: 260
     "title" : "title1",
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-14T19:25:30.7223288",
-    "modifiedAt" : "2023-01-14T19:25:30.7223288"
+    "createdAt" : "2023-01-14T22:45:41.886293",
+    "modifiedAt" : "2023-01-14T22:45:41.886293"
   }
 }</code></pre>
 </div>
@@ -2841,8 +2850,8 @@ Content-Length: 260
     "title" : "title1",
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-14T19:25:30.7223288",
-    "modifiedAt" : "2023-01-14T19:25:30.7223288"
+    "createdAt" : "2023-01-14T22:45:41.886293",
+    "modifiedAt" : "2023-01-14T22:45:41.886293"
   }
 }</code></pre>
 </div>
@@ -2853,7 +2862,7 @@ Content-Length: 260
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=0f424f83-126a-4045-9d6d-71b32a997b21' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=4171a813-c693-438f-879e-d96787203cc1' -i -X GET \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json'</code></pre>
 </div>
@@ -2861,7 +2870,7 @@ Content-Length: 260
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=0f424f83-126a-4045-9d6d-71b32a997b21 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=4171a813-c693-438f-879e-d96787203cc1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Host: localhost:8080</code></pre>
@@ -2921,16 +2930,16 @@ Content-Length: 695
     "title" : "title1",
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-14T19:25:30.8323254",
-    "modifiedAt" : "2023-01-14T19:25:30.8323254"
+    "createdAt" : "2023-01-14T22:45:41.9922867",
+    "modifiedAt" : "2023-01-14T22:45:41.9922867"
   }, {
     "communityId" : 2,
     "type" : "free",
     "title" : "title2",
     "content" : "content2",
     "displayName" : "displayName2",
-    "createdAt" : "2023-01-13T19:25:30.8323254",
-    "modifiedAt" : "2023-01-13T19:25:30.8323254"
+    "createdAt" : "2023-01-13T22:45:41.9922867",
+    "modifiedAt" : "2023-01-13T22:45:41.9922867"
   } ],
   "pageInfo" : {
     "currentPage" : 0,
@@ -3051,16 +3060,16 @@ Content-Length: 695
     "title" : "title1",
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-14T19:25:30.8323254",
-    "modifiedAt" : "2023-01-14T19:25:30.8323254"
+    "createdAt" : "2023-01-14T22:45:41.9922867",
+    "modifiedAt" : "2023-01-14T22:45:41.9922867"
   }, {
     "communityId" : 2,
     "type" : "free",
     "title" : "title2",
     "content" : "content2",
     "displayName" : "displayName2",
-    "createdAt" : "2023-01-13T19:25:30.8323254",
-    "modifiedAt" : "2023-01-13T19:25:30.8323254"
+    "createdAt" : "2023-01-13T22:45:41.9922867",
+    "modifiedAt" : "2023-01-13T22:45:41.9922867"
   } ],
   "pageInfo" : {
     "currentPage" : 0,
@@ -3080,7 +3089,7 @@ Content-Length: 695
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/mine?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=c09a30a3-5fee-4397-b408-4730f3aa4b97' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/mine?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=9b6aa196-2da3-4dca-b0d4-450cb5006ec5' -i -X GET \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
@@ -3089,7 +3098,7 @@ Content-Length: 695
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/mine?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=c09a30a3-5fee-4397-b408-4730f3aa4b97 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/mine?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=9b6aa196-2da3-4dca-b0d4-450cb5006ec5 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -3169,16 +3178,16 @@ Content-Length: 695
     "title" : "title1",
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-14T19:25:30.9703317",
-    "modifiedAt" : "2023-01-14T19:25:30.9703317"
+    "createdAt" : "2023-01-14T22:45:42.1592619",
+    "modifiedAt" : "2023-01-14T22:45:42.1592619"
   }, {
     "communityId" : 2,
     "type" : "free",
     "title" : "title2",
     "content" : "content2",
     "displayName" : "displayName2",
-    "createdAt" : "2023-01-13T19:25:30.9703317",
-    "modifiedAt" : "2023-01-13T19:25:30.9703317"
+    "createdAt" : "2023-01-13T22:45:42.1592619",
+    "modifiedAt" : "2023-01-13T22:45:42.1592619"
   } ],
   "pageInfo" : {
     "currentPage" : 0,
@@ -3299,16 +3308,16 @@ Content-Length: 695
     "title" : "title1",
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-14T19:25:30.9703317",
-    "modifiedAt" : "2023-01-14T19:25:30.9703317"
+    "createdAt" : "2023-01-14T22:45:42.1592619",
+    "modifiedAt" : "2023-01-14T22:45:42.1592619"
   }, {
     "communityId" : 2,
     "type" : "free",
     "title" : "title2",
     "content" : "content2",
     "displayName" : "displayName2",
-    "createdAt" : "2023-01-13T19:25:30.9703317",
-    "modifiedAt" : "2023-01-13T19:25:30.9703317"
+    "createdAt" : "2023-01-13T22:45:42.1592619",
+    "modifiedAt" : "2023-01-13T22:45:42.1592619"
   } ],
   "pageInfo" : {
     "currentPage" : 0,
@@ -3328,7 +3337,7 @@ Content-Length: 695
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/1?_csrf=e2f92090-7bba-4f2f-a6d9-aaa0a76c65ff' -i -X DELETE \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/1?_csrf=88637826-2d73-4e06-956a-f95a8c66ea3b' -i -X DELETE \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
@@ -3337,7 +3346,7 @@ Content-Length: 695
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /v1/communities/1?_csrf=e2f92090-7bba-4f2f-a6d9-aaa0a76c65ff HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /v1/communities/1?_csrf=88637826-2d73-4e06-956a-f95a8c66ea3b HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -3397,6 +3406,730 @@ Expires: 0
 X-Frame-Options: DENY</code></pre>
 </div>
 </div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_communitycommentcontroller">6. CommunityCommentController</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_커뮤니티_댓글_등록">6.1. 커뮤니티 댓글 등록</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/1?_csrf=ebdacf10-8f2e-473e-8b25-b4250c27d4bb' -i -X POST \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
+    -d '{
+  "content" : "content1"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/communities/comments/1?_csrf=ebdacf10-8f2e-473e-8b25-b4250c27d4bb HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
+Content-Length: 30
+Host: localhost:8080
+
+{
+  "content" : "content1"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 46. request-headers</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer Token</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 47. /v1/communities/comments/{community-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>community-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">커뮤니티 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 48. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">내용</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "content" : "content1"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 220
+
+{
+  "data" : {
+    "communityCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-14T22:45:44.5889937",
+    "modifiedAt" : "2023-01-14T22:45:44.5889937"
+  }
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 49. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">결과 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.communityCommentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">커뮤니티 댓글 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 수정 일자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "data" : {
+    "communityCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-14T22:45:44.5889937",
+    "modifiedAt" : "2023-01-14T22:45:44.5889937"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_커뮤니티_댓글_수정">6.2. 커뮤니티 댓글 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/1?_csrf=e5fd010a-1dd0-4f16-a68e-570acd5bb31b' -i -X PATCH \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
+    -d '{
+  "communityCommentId" : 1,
+  "content" : "content1"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/communities/comments/1?_csrf=e5fd010a-1dd0-4f16-a68e-570acd5bb31b HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
+Content-Length: 59
+Host: localhost:8080
+
+{
+  "communityCommentId" : 1,
+  "content" : "content1"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 50. request-headers</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer Token</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 51. /v1/communities/comments/{communityComment-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>communityComment-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">커뮤니티 댓글 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 52. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "communityCommentId" : 1,
+  "content" : "content1"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 220
+
+{
+  "data" : {
+    "communityCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-14T22:45:44.5060008",
+    "modifiedAt" : "2023-01-14T22:45:44.5060008"
+  }
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 53. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">결과 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.communityCommentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">커뮤니티 댓글 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 수정 일자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "data" : {
+    "communityCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-14T22:45:44.5060008",
+    "modifiedAt" : "2023-01-14T22:45:44.5060008"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_커뮤니티_댓글_조회">6.3. 커뮤니티 댓글 조회</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/1?_csrf=0c142831-e9a7-4a61-acc5-995948033e54' -i -X GET \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/comments/1?_csrf=0c142831-e9a7-4a61-acc5-995948033e54 HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 54. /v1/communities/comments/{communityComment-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>communityComment-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">커뮤니티 댓글 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 220
+
+{
+  "data" : {
+    "communityCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-14T22:45:44.6979805",
+    "modifiedAt" : "2023-01-14T22:45:44.6979805"
+  }
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 55. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">결과 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.communityCommentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">커뮤니티 댓글 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 수정 일자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "data" : {
+    "communityCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-14T22:45:44.6979805",
+    "modifiedAt" : "2023-01-14T22:45:44.6979805"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_모든_나의_커뮤니티_댓글_조회">6.4. 모든 나의 커뮤니티 댓글 조회</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/mine?_csrf=87eb8b11-25cd-45c4-89e5-cae9a890b8b5' -i -X GET \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/comments/mine?_csrf=87eb8b11-25cd-45c4-89e5-cae9a890b8b5 HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 56. request-headers</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer Token</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 429
+
+{
+  "data" : [ {
+    "communityCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-14T22:45:44.7469768",
+    "modifiedAt" : "2023-01-14T22:45:44.7469768"
+  }, {
+    "communityCommentId" : 2,
+    "content" : "content2",
+    "displayName" : "displayName2",
+    "createdAt" : "2023-01-13T22:45:44.7469768",
+    "modifiedAt" : "2023-01-13T22:45:44.7469768"
+  } ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 57. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">결과 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].communityCommentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">커뮤니티 댓글 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 수정 일자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "data" : [ {
+    "communityCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-14T22:45:44.7469768",
+    "modifiedAt" : "2023-01-14T22:45:44.7469768"
+  }, {
+    "communityCommentId" : 2,
+    "content" : "content2",
+    "displayName" : "displayName2",
+    "createdAt" : "2023-01-13T22:45:44.7469768",
+    "modifiedAt" : "2023-01-13T22:45:44.7469768"
+  } ]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_커뮤니티_댓글_삭제">6.5. 커뮤니티 댓글 삭제</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/1?_csrf=dfc86eca-1d87-4e8e-87a3-204f8d85d86a' -i -X DELETE \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /v1/communities/comments/1?_csrf=dfc86eca-1d87-4e8e-87a3-204f8d85d86a HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 58. request-headers</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer Token</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 59. /v1/communities/comments/{communityComment-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>communityComment-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">커뮤니티 댓글 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -3404,7 +4137,7 @@ X-Frame-Options: DENY</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-01-14 19:23:16 +0900
+Last updated 2023-01-14 22:45:11 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
