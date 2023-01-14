@@ -10,7 +10,6 @@ public class CommunityCommentDto {
     @NoArgsConstructor
     @Getter
     @ToString
-    @Builder
     public static class Post{
         @Lob
         private String content;
@@ -21,7 +20,6 @@ public class CommunityCommentDto {
     @Getter
     @Setter
     @ToString
-    @Builder
     public static class Patch{
         private Long communityCommentId;
 
@@ -34,7 +32,6 @@ public class CommunityCommentDto {
     @Getter
     @Setter
     @ToString
-    @Builder
     public static class Response{
         private Long communityCommentId;
         @Lob

@@ -5,6 +5,7 @@ import com.book.village.server.domain.community.dto.CommunityDto;
 import com.book.village.server.domain.community.entity.Community;
 import com.book.village.server.domain.community.mapper.CommunityMapper;
 import com.book.village.server.domain.community.service.CommunityService;
+import com.book.village.server.domain.community_comment.dto.CommunityCommentDto;
 import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.global.utils.GenerateMockToken;
 import com.google.gson.Gson;
@@ -76,12 +77,18 @@ public class CommunityControllerRestDocsTest {
         LocalDateTime modifiedAt=createdAt;
         String content = gson.toJson(post);
 
+        List<CommunityCommentDto.Response> cCommentResponse=List.of(new CommunityCommentDto.Response(
+                1L, "content1", "displayName1",createdAt, createdAt),
+                new CommunityCommentDto.Response(2L, "content2", "displayName2",createdAt, createdAt)
+        );
+
         CommunityDto.Response response = new CommunityDto.Response(
                 communityId,
                 "free",
                 "title1",
                 "content1",
                 "displayName1",
+                cCommentResponse,
                 createdAt,
                 modifiedAt
         );
@@ -128,11 +135,17 @@ public class CommunityControllerRestDocsTest {
                                         fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
                                         fieldWithPath("data.communityId").type(JsonFieldType.NUMBER).description("커뮤니티 식별자"),
                                         fieldWithPath("data.type").type(JsonFieldType.STRING).description("카테고리[notice, free, study, recommend]"),
-                                        fieldWithPath("data.title").type(JsonFieldType.STRING).description("제목"),
-                                        fieldWithPath("data.content").type(JsonFieldType.STRING).description("내용"),
-                                        fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("작성자"),
-                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("생성 일자"),
-                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("수정 일자")
+                                        fieldWithPath("data.title").type(JsonFieldType.STRING).description("커뮤니티 제목"),
+                                        fieldWithPath("data.content").type(JsonFieldType.STRING).description("커뮤니티 내용"),
+                                        fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("커뮤니티 작성자"),
+                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("커뮤니티 생성 일자"),
+                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("커뮤니티 수정 일자"),
+                                        fieldWithPath("data.communityComments").type(JsonFieldType.ARRAY).description("댓글 정보"),
+                                        fieldWithPath("data.communityComments.[].communityCommentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
+                                        fieldWithPath("data.communityComments.[].content").type(JsonFieldType.STRING).description("댓글 내용"),
+                                        fieldWithPath("data.communityComments.[].displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                        fieldWithPath("data.communityComments.[].createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
+                                        fieldWithPath("data.communityComments.[].modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
                         )
                 ));
@@ -155,12 +168,18 @@ public class CommunityControllerRestDocsTest {
         LocalDateTime modifiedAt=createdAt;
         String content = gson.toJson(patch);
 
+        List<CommunityCommentDto.Response> cCommentResponse=List.of(new CommunityCommentDto.Response(
+                        1L, "content1", "displayName1",createdAt, createdAt),
+                new CommunityCommentDto.Response(2L, "content2", "displayName2",createdAt, createdAt)
+        );
+
         CommunityDto.Response response = new CommunityDto.Response(
                 communityId,
                 "free",
                 "title1",
                 "content1",
                 "displayName1",
+                cCommentResponse,
                 createdAt,
                 modifiedAt
         );
@@ -216,7 +235,13 @@ public class CommunityControllerRestDocsTest {
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("내용"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("작성자"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("생성 일자"),
-                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("수정 일자")
+                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("수정 일자"),
+                                        fieldWithPath("data.communityComments").type(JsonFieldType.ARRAY).description("댓글 정보"),
+                                        fieldWithPath("data.communityComments.[].communityCommentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
+                                        fieldWithPath("data.communityComments.[].content").type(JsonFieldType.STRING).description("댓글 내용"),
+                                        fieldWithPath("data.communityComments.[].displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                        fieldWithPath("data.communityComments.[].createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
+                                        fieldWithPath("data.communityComments.[].modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
                         )
                 ));
@@ -231,12 +256,18 @@ public class CommunityControllerRestDocsTest {
         LocalDateTime createdAt=LocalDateTime.now();
         LocalDateTime modifiedAt=createdAt;
 
+        List<CommunityCommentDto.Response> cCommentResponse=List.of(new CommunityCommentDto.Response(
+                        1L, "content1", "displayName1",createdAt, createdAt),
+                new CommunityCommentDto.Response(2L, "content2", "displayName2",createdAt, createdAt)
+        );
+
         CommunityDto.Response response = new CommunityDto.Response(
                 communityId,
                 "free",
                 "title1",
                 "content1",
                 "displayName1",
+                cCommentResponse,
                 createdAt,
                 modifiedAt
         );
@@ -274,7 +305,13 @@ public class CommunityControllerRestDocsTest {
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("내용"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("작성자"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("생성 일자"),
-                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("수정 일자")
+                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("수정 일자"),
+                                        fieldWithPath("data.communityComments").type(JsonFieldType.ARRAY).description("댓글 정보"),
+                                        fieldWithPath("data.communityComments.[].communityCommentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
+                                        fieldWithPath("data.communityComments.[].content").type(JsonFieldType.STRING).description("댓글 내용"),
+                                        fieldWithPath("data.communityComments.[].displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                        fieldWithPath("data.communityComments.[].createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
+                                        fieldWithPath("data.communityComments.[].modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
                         )
                 ));
@@ -294,6 +331,7 @@ public class CommunityControllerRestDocsTest {
                 "title1",
                 "content1",
                 "displayName1",
+                null,
                 createdAt1,
                 createdAt1
         );
@@ -303,6 +341,7 @@ public class CommunityControllerRestDocsTest {
                 "title2",
                 "content2",
                 "displayName2",
+                null,
                 createdAt2,
                 createdAt2
         );
@@ -317,14 +356,16 @@ public class CommunityControllerRestDocsTest {
                 "title1",
                 "content1",
                 "displayName1",
-                new Member()));
+                new Member(),
+                null));
         list.add(new Community(
                 2L,
                 "free",
                 "title2",
                 "content2",
                 "displayName2",
-                new Member()));
+                new Member(),
+                null));
 
         given(communityService.findCommunities(Mockito.any(Pageable.class))).willReturn(new PageImpl<>(
                 list,
@@ -365,6 +406,7 @@ public class CommunityControllerRestDocsTest {
                                         fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("작성자"),
                                         fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("생성 일자"),
                                         fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("수정 일자"),
+                                        fieldWithPath("data.[].communityComments").type(JsonFieldType.NULL).description("댓글 정보"),
                                         fieldWithPath("pageInfo").type(JsonFieldType.OBJECT).description("페이지 정보"),
                                         fieldWithPath("pageInfo.currentPage").type(JsonFieldType.NUMBER).description("페이지 번호"),
                                         fieldWithPath("pageInfo.totalPage").type(JsonFieldType.NUMBER).description("총 페이지 수"),
@@ -392,6 +434,7 @@ public class CommunityControllerRestDocsTest {
                 "title1",
                 "content1",
                 "displayName1",
+                null,
                 createdAt1,
                 createdAt1
         );
@@ -401,6 +444,7 @@ public class CommunityControllerRestDocsTest {
                 "title2",
                 "content2",
                 "displayName2",
+                null,
                 createdAt2,
                 createdAt2
         );
@@ -415,14 +459,16 @@ public class CommunityControllerRestDocsTest {
                 "title1",
                 "content1",
                 "displayName1",
-                new Member()));
+                new Member(),
+                null));
         list.add(new Community(
                 2L,
                 "free",
                 "title2",
                 "content2",
                 "displayName2",
-                new Member()));
+                new Member(),
+                null));
 
         given(communityService.findMyCommunities(Mockito.anyString(), Mockito.any(Pageable.class))).willReturn(new PageImpl<>(
                 list,
@@ -467,6 +513,7 @@ public class CommunityControllerRestDocsTest {
                                         fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("작성자"),
                                         fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("생성 일자"),
                                         fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("수정 일자"),
+                                        fieldWithPath("data.[].communityComments").type(JsonFieldType.NULL).description("댓글 정보"),
                                         fieldWithPath("pageInfo").type(JsonFieldType.OBJECT).description("페이지 정보"),
                                         fieldWithPath("pageInfo.currentPage").type(JsonFieldType.NUMBER).description("페이지 번호"),
                                         fieldWithPath("pageInfo.totalPage").type(JsonFieldType.NUMBER).description("총 페이지 수"),
@@ -489,12 +536,19 @@ public class CommunityControllerRestDocsTest {
         LocalDateTime createdAt=LocalDateTime.now();
         LocalDateTime modifiedAt=createdAt;
 
+        List<CommunityCommentDto.Response> cCommentResponse=List.of(new CommunityCommentDto.Response(
+                        1L, "content1", "displayName1",createdAt, createdAt),
+                new CommunityCommentDto.Response(2L, "content2", "displayName2",createdAt, createdAt)
+        );
+
+
         CommunityDto.Response response = new CommunityDto.Response(
                 communityId,
                 "free",
                 "title1",
                 "content1",
                 "displayName1",
+                cCommentResponse,
                 createdAt,
                 modifiedAt
         );

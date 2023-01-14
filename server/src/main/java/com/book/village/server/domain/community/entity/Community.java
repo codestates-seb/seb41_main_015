@@ -1,5 +1,6 @@
 package com.book.village.server.domain.community.entity;
 
+import com.book.village.server.domain.community_comment.entity.CommunityComment;
 import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.global.audit.Auditable;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -36,4 +39,8 @@ public class Community extends Auditable {
     @ManyToOne
     @JoinColumn(name = "MEMEBER_ID")
     private Member member;
+
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "community", orphanRemoval = true)
+    private List<CommunityComment> communityComments =new ArrayList<>();
+
 }
