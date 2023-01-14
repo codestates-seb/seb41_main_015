@@ -4,6 +4,8 @@ import com.book.village.server.domain.request.dto.RequestDto;
 import com.book.village.server.domain.request.entity.Request;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface RequestMapper {
 
@@ -40,4 +42,6 @@ public interface RequestMapper {
     }
 
     Request requestPatchDtoToRequest(RequestDto.Patch requestPatchDto);
+
+    List<RequestDto.Response> requestsToRequestResponseDtos(List<Request> myRequests);
 }
