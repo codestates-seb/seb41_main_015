@@ -52,8 +52,7 @@ public class RequestService {
     }
 
     public List<Request> findMyRequests(String userEmail) {
-        List<Request> findRequests = requestRepository.findAllByMember_Email(userEmail);
-        return findRequests;
+        return requestRepository.findAllByMember_Email(userEmail);
     }
 
     public Page<Request> findRequests(Pageable pageable) {
@@ -84,5 +83,15 @@ public class RequestService {
             default:
                 return new PageImpl<>(Collections.emptyList());
         }
+    }
+
+    public void deleteRequest(long requestId, String userEmail) {
+        Request findRequest = findVerifiedRequest(requestId);
+        if (findRequest.getMember().getEmail().equals(userEmail)) {
+            requestRepository.delete(findRequest);
+            return;
+        }
+        throw new CustomLogicException(ExceptionCode.REQUEST_WRITER_NOT_MATCH);
+
     }
 }

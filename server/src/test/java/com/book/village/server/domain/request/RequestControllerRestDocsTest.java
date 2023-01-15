@@ -31,12 +31,11 @@ import java.util.List;
 import static com.book.village.server.util.ApiDocumentUtils.getRequestPreProcessor;
 import static com.book.village.server.util.ApiDocumentUtils.getResponsePreProcessor;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -570,4 +569,32 @@ public class RequestControllerRestDocsTest {
                     ));
 
     }
+
+    @Test
+    @WithMockUser
+    @DisplayName("요청 삭제")
+    public void deleteRequestTest() throws Exception {
+        long requestId = 1L;
+        doNothing().when(requestService).deleteRequest(Mockito.anyLong(), Mockito.anyString());
+
+        ResultActions actions = mockMvc.perform(
+                delete(BASE_URL + "/{request-id}", requestId)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .with(csrf())
+                        .headers(GenerateMockToken.getMockHeaderToken()));
+
+        actions.andExpect(status().isNoContent())
+                .andDo(document(
+                                "delete-request",
+                                requestHeaders(
+                                        headerWithName("Authorization").description("Bearer Token")
+                                ),
+                                pathParameters(
+                                        parameterWithName("request-id").description("요청 식별자"))
+                        )
+                );
+
+    }
+
 }

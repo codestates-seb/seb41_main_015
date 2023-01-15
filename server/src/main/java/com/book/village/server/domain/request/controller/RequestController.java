@@ -83,4 +83,12 @@ public class RequestController {
                 new PageResponseDto<>(requestMapper.requestsToRequestResponseDtos(requests.getContent()),
                         new PageInfo(requests.getPageable(), requests.getTotalElements())), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{request-id}")
+    public ResponseEntity deleteRequest(@PathVariable("request-id") long requestId,
+                                        Principal principal) {
+        requestService.deleteRequest(requestId, principal.getName());
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
 }
