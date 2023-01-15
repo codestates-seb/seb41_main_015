@@ -424,7 +424,7 @@ public class RequestControllerRestDocsTest {
             given(requestMapper.requestsToRequestResponseDtos(Mockito.anyList())).willReturn(responseList);
 
             ResultActions actions =
-                    mockMvc.perform(get(BASE_URL + "/all",
+                    mockMvc.perform(get(BASE_URL,
                             getRequestPreProcessor(),
                             getResponsePreProcessor())
                             .param("page", "2")
