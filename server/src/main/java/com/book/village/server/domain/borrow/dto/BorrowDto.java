@@ -1,10 +1,12 @@
 package com.book.village.server.domain.borrow.dto;
 
+import com.book.village.server.domain.borrowcomment.dto.BorrowCommentDto;
 import lombok.*;
 
 import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class BorrowDto {
 
@@ -71,6 +73,8 @@ public class BorrowDto {
         private String publisher;   // 나눔 책 출판사
         private String displayName; // 회원 닉네임
         private String talkUrl;     // 톡링크
+
+        private List<BorrowCommentDto.Response> borrowComments; // 나눔 댓글리스트.
 
         private LocalDateTime createdAt;     // 나눔글 생성 일자
         private LocalDateTime modifiedAt;   // 나눔글 최근 수정 일자

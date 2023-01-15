@@ -2,42 +2,47 @@ package com.book.village.server.domain.borrowcomment.dto;
 
 import lombok.*;
 
+import javax.persistence.Lob;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Getter
 public class BorrowCommentDto {
 
     @AllArgsConstructor
-    @Setter
+    @NoArgsConstructor
     @Getter
-    @Builder
+    @ToString
     public static class Post {
+        @Lob
         private String content;
+
     }
 
     @AllArgsConstructor
-    @Setter
+    @NoArgsConstructor
     @Getter
-    @Builder
+    @Setter
+    @ToString
     public static class Patch {
         private Long borrowCommentId;
+        @Lob
         private String content;
     }
 
 
+    @AllArgsConstructor
+    @NoArgsConstructor
     @Getter
     @Setter
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
+    @ToString
     public static class Response {
         private Long borrowCommentId;
-        private Long memberId;
-        private Long borrowId;
+        @Lob
         private String content;
         private String displayName;
         private LocalDateTime createdAt;
-        private LocalDateTime modifedAt;
+        private LocalDateTime modifiedAt;
     }
 
 }

@@ -4,6 +4,9 @@ import com.book.village.server.domain.borrow.dto.BorrowDto;
 import com.book.village.server.domain.borrow.entity.Borrow;
 import org.mapstruct.Mapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface BorrowMapper {
 
@@ -43,4 +46,19 @@ public interface BorrowMapper {
                 .build();
     }
 
+
+    default List<BorrowDto.Response> borrowsToBorrowResponseDtos(List<Borrow> borrows) {
+        if(borrows == null) {
+            return null;
+        }
+        List<BorrowDto.Response> list = new ArrayList<BorrowDto.Response>(
+                borrows.size() );
+
+        for( Borrow borrow : borrows) {
+            BorrowDto.Response response = borrowToBorrowDtoResponse( borrow );
+            response.setBorrowComments(null);
+            list.add(response);
+        }
+        return list;
+    }
 }
