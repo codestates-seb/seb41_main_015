@@ -376,6 +376,25 @@ include::{snippets}/delete-community/path-parameters.adoc[]
 .http-response
 include::{snippets}/delete-community/http-response.adoc[]
 
+=== 커뮤니티 검색
+.curl-request
+include::{snippets}/search-communities/curl-request.adoc[]
+
+.http-request
+include::{snippets}/search-communities/http-request.adoc[]
+
+.request-parameters
+include::{snippets}/search-communities/request-parameters.adoc[]
+
+.http-response
+include::{snippets}/search-communities/http-response.adoc[]
+
+.response-fields
+include::{snippets}/search-communities/response-fields.adoc[]
+
+.response-body
+include::{snippets}/search-communities/response-body.adoc[]
+
 ***
 == CommunityCommentController
 === 커뮤니티 댓글 등록

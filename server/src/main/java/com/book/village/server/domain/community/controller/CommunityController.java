@@ -73,4 +73,12 @@ public class CommunityController {
         communityService.deleteCommunity(communityId,principal.getName());
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity searchCommunity(@RequestParam String keyword , @RequestParam String field, @PageableDefault Pageable pageable){
+        Page<Community> communities = communityService.searchCommunity(keyword, field, pageable);
+        return new ResponseEntity<>(new PageResponseDto<>(mapper.communitiesToCommunityResponseDtos(communities.getContent()),
+                new PageInfo(communities.getPageable(), communities.getTotalElements())), HttpStatus.OK);
+    }
+
 }

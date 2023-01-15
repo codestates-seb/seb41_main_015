@@ -7,11 +7,13 @@ import com.book.village.server.global.exception.CustomLogicException;
 import com.book.village.server.global.exception.ExceptionCode;
 import com.book.village.server.global.utils.CustomBeanUtils;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.Optional;
 
 @Service
@@ -68,5 +70,20 @@ public class CommunityService {
                 optionalCommunity.orElseThrow(()->
                         new CustomLogicException(ExceptionCode.COMMUNITY_NOT_FOUND));
         return community;
+    }
+
+    public Page<Community> searchCommunity(String keyword, String field, Pageable pageable){
+        switch(field){
+            case "title":
+                return repository.findAllByTitleContaining(keyword , pageable);
+            case "content":
+                return repository.findAllByContentContaining(keyword , pageable);
+            case "type":
+                return repository.findAllByType(keyword , pageable);
+            case "displayName":
+                return repository.findAllByDisplayName(keyword , pageable);
+            default:
+                return new PageImpl<>(Collections.emptyList());
+        }
     }
 }
