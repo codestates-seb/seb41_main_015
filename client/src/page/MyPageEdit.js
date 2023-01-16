@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import axios from 'axios';
+// import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import instanceAxios from '../reissue/instanceAxios';
 
 const SWrapEdit = styled.div`
   display: flex;
@@ -132,21 +133,11 @@ const MyPageEdit = () => {
   //base url
   const url = 'https://serverbookvillage.kro.kr';
 
-  //전역상태값 가져오기
-  const user = useSelector((state) => state.user);
-
   // 서버 연결 후 주석 풀기!
   useEffect(() => {
     const editData = async () => {
       try {
-        const res = await axios.get(url + '/v1/members', {
-          // 토큰 부분
-          headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            Accept: 'application/json',
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-        });
+        const res = await instanceAxios.get('/v1/members');
         // console.log(res.data.data);
         setName(res.data.data.name);
         setEmail(res.data.data.email);
@@ -163,24 +154,13 @@ const MyPageEdit = () => {
 
   //저장 버튼 클릭 시, 서버로 patch 요청
   const handleClickSave = () => {
-    axios
-      .patch(
-        `${url}/v1/members`,
-        {
-          name,
-          displayName,
-          address,
-          phoneNumber,
-        },
-        // 토큰 부분
-        {
-          headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            Accept: 'application/json',
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-        }
-      )
+    instanceAxios
+      .patch('/v1/members', {
+        name,
+        displayName,
+        address,
+        phoneNumber,
+      })
       .then(() => {
         alert('프로필 수정이 완료되었습니다!');
       })
@@ -192,16 +172,9 @@ const MyPageEdit = () => {
 
   //회원탈퇴(주석 풀 것!)
   const handleClickQuit = () => {
-    alert(`${name}님, 회원탈퇴가 정상적으로 이루어졌습니다`);
-    // axios
-    //   .patch(url + '/v1/members/quit', {
-    //     headers: {
-    //       Authorization: `Bearer ${user.accessToken}`,
-    //     },
-    //   })
-    //   .then(() => {
-    //     alert(`${name}님, 회원탈퇴가 정상적으로 이루어졌습니다`);
-    //   });
+    instanceAxios.patch('/v1/members/quit').then(() => {
+      alert(`${name}님, 회원탈퇴가 정상적으로 이루어졌습니다`);
+    });
   };
 
   return (
