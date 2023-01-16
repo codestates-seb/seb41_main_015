@@ -1,6 +1,6 @@
-package com.book.village.server.domain.community.entity;
+package com.book.village.server.domain.community_comment.entity;
 
-import com.book.village.server.domain.community_comment.entity.CommunityComment;
+import com.book.village.server.domain.community.entity.Community;
 import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.global.audit.Auditable;
 import lombok.AllArgsConstructor;
@@ -9,25 +9,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Community extends Auditable {
+public class CommunityComment extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long communityId;
-
-    @Column(nullable = false)
-    private String type;
-
-    @Column(length = 100, nullable = false)
-    private String title;
-
+    private Long communityCommentId;
 
     @Column(nullable = false)
     @Lob
@@ -37,10 +28,10 @@ public class Community extends Auditable {
     private String displayName;
 
     @ManyToOne
+    @JoinColumn(name = "COMMUNITY_ID")
+    private Community community;
+
+    @ManyToOne
     @JoinColumn(name = "MEMEBER_ID")
     private Member member;
-
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "community", orphanRemoval = true)
-    private List<CommunityComment> communityComments =new ArrayList<>();
-
 }
