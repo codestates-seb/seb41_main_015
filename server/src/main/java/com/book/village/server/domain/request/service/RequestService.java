@@ -51,8 +51,8 @@ public class RequestService {
         return findVerifiedRequest(requestId);
     }
 
-    public List<Request> findMyRequests(String userEmail) {
-        return requestRepository.findAllByMember_Email(userEmail);
+    public List<Request> findMyRequests(String userEmail,Pageable pageable) {
+        return requestRepository.findAllByMember_Email(userEmail, pageable);
     }
 
     public Page<Request> findRequests(Pageable pageable) {

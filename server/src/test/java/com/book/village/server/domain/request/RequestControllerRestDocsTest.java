@@ -17,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
@@ -350,7 +351,7 @@ public class RequestControllerRestDocsTest {
             requestList.add(new Request());
             requestList.add(new Request());
 
-            given(requestService.findMyRequests(Mockito.anyString())).willReturn(requestList);
+            given(requestService.findMyRequests(Mockito.anyString(),Mockito.any(Pageable.class))).willReturn(requestList);
             given(requestMapper.requestsToRequestResponseDtos(Mockito.anyList())).willReturn(responseList);
 
             ResultActions actions =

@@ -60,8 +60,8 @@ public class RequestController {
     }
 
     @GetMapping("/mine")
-    public ResponseEntity getMyRequests(Principal principal) {
-        List<Request> myRequests = requestService.findMyRequests(principal.getName());
+    public ResponseEntity getMyRequests(@PageableDefault Pageable pageable, Principal principal) {
+        List<Request> myRequests = requestService.findMyRequests(principal.getName(),pageable);
         return new ResponseEntity(new ListResponse<>(requestMapper.requestsToRequestResponseDtos(myRequests)),
                 HttpStatus.OK);
     }

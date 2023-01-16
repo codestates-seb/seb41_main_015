@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Long> {
-    List<Request> findAllByMember_Email(String email);
+    List<Request> findAllByMember_Email(String email,Pageable pageable);
 
     Page<Request> findAll(Pageable pageable);
 
