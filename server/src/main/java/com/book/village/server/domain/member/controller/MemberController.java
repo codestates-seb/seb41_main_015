@@ -31,7 +31,6 @@ public class MemberController {
     @PatchMapping
     public ResponseEntity patchMember(Principal principal, @Valid @RequestBody MemberDto.Patch memberDto) {
         Member member = memberService.findMember(principal.getName());
-        System.out.println("member.getMemberId() = " + member.getMemberId());
         memberService.updateMember(member, memberMapper.patchMemberDtoToMember(memberDto));
         return ResponseEntity.ok(new SingleResponse<>(memberMapper.memberToResponseMemberDto(member)));
     }
