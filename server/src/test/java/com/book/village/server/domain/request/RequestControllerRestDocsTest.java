@@ -5,6 +5,7 @@ import com.book.village.server.domain.request.dto.RequestDto;
 import com.book.village.server.domain.request.entity.Request;
 import com.book.village.server.domain.request.mapper.RequestMapper;
 import com.book.village.server.domain.request.service.RequestService;
+import com.book.village.server.domain.request_comment.entity.RequestComment;
 import com.book.village.server.global.utils.GenerateMockToken;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.DisplayName;
@@ -69,6 +70,8 @@ public class RequestControllerRestDocsTest {
         LocalDateTime modifiedAt = LocalDateTime.now();
         RequestDto.Post post = new RequestDto.Post("talkUrl", "title", "content", "bookTitle", "author", "publisher");
         String content = gson.toJson(post);
+        List<RequestComment> requestComments = new ArrayList<>();
+
         RequestDto.Response responseDto =
                 new RequestDto.Response(1L,
                         "talkUrl",
@@ -78,6 +81,7 @@ public class RequestControllerRestDocsTest {
                         "author",
                         "publisher",
                         "displayName",
+                        requestComments,
                         createdAt,
                         modifiedAt);
 
@@ -136,6 +140,7 @@ public class RequestControllerRestDocsTest {
                                         fieldWithPath("data.author").type(JsonFieldType.STRING).description("저자"),
                                         fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                        fieldWithPath("data.requestComments").type(JsonFieldType.ARRAY).description("요청 댓글"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자")
                                 )
@@ -162,6 +167,8 @@ public class RequestControllerRestDocsTest {
                 "publisher");
         String content = gson.toJson(patch);
 
+        List<RequestComment> requestComments = new ArrayList<>();
+
         RequestDto.Response response =
                 new RequestDto.Response(1L, "talkUrl",
                         "title",
@@ -170,6 +177,7 @@ public class RequestControllerRestDocsTest {
                         "author",
                         "publisher",
                         "displayName",
+                        requestComments,
                         createdAt,
                         modifiedAt);
 
@@ -230,6 +238,7 @@ public class RequestControllerRestDocsTest {
                                         fieldWithPath("data.author").type(JsonFieldType.STRING).description("저자"),
                                         fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                        fieldWithPath("data.requestComments").type(JsonFieldType.ARRAY).description("요청 댓글"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자")
                                 )
@@ -245,6 +254,8 @@ public class RequestControllerRestDocsTest {
             long requestId = 1L;
             LocalDateTime createdAt = LocalDateTime.now();
             LocalDateTime modifiedAt = LocalDateTime.now();
+            List<RequestComment> requestComments = new ArrayList<>();
+
             RequestDto.Response response =
                     new RequestDto.Response(1L, "talkUrl",
                             "title",
@@ -253,6 +264,7 @@ public class RequestControllerRestDocsTest {
                             "author",
                             "publisher",
                             "displayName",
+                            requestComments,
                             createdAt,
                             modifiedAt);
 
@@ -292,6 +304,7 @@ public class RequestControllerRestDocsTest {
                                             fieldWithPath("data.author").type(JsonFieldType.STRING).description("저자"),
                                             fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
                                             fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                            fieldWithPath("data.requestComments").type(JsonFieldType.ARRAY).description("요청 댓글"),
                                             fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                             fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자")
                                     )
@@ -305,6 +318,7 @@ public class RequestControllerRestDocsTest {
         public void getMyRequestsTest() throws Exception {
             LocalDateTime createdAt = LocalDateTime.now();
             LocalDateTime modifiedAt = LocalDateTime.now();
+            List<RequestComment> requestComments = new ArrayList<>();
             RequestDto.Response response1 =
                     new RequestDto.Response(1L, "talkUrl1",
                             "title1",
@@ -313,6 +327,7 @@ public class RequestControllerRestDocsTest {
                             "author1",
                             "publisher1",
                             "displayName1",
+                            requestComments,
                             createdAt,
                             modifiedAt);
             RequestDto.Response response2 =
@@ -323,6 +338,7 @@ public class RequestControllerRestDocsTest {
                             "author2",
                             "publisher2",
                             "displayName2",
+                            requestComments,
                             createdAt,
                             modifiedAt);
 
@@ -339,7 +355,7 @@ public class RequestControllerRestDocsTest {
 
             ResultActions actions =
                     mockMvc.perform(
-                            get(BASE_URL + "/myrequests")
+                            get(BASE_URL + "/mine")
                                     .accept(MediaType.APPLICATION_JSON)
                                     .with(csrf())
                                     .contentType(MediaType.APPLICATION_JSON)
@@ -369,6 +385,7 @@ public class RequestControllerRestDocsTest {
                                             fieldWithPath("data.[].author").type(JsonFieldType.STRING).description("저자"),
                                             fieldWithPath("data.[].publisher").type(JsonFieldType.STRING).description("출판사"),
                                             fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                            fieldWithPath("data.[].requestComments").type(JsonFieldType.ARRAY).description("요청 댓글"),
                                             fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                             fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자")
                                     )
@@ -382,6 +399,7 @@ public class RequestControllerRestDocsTest {
         public void getRequestsTest() throws Exception {
             LocalDateTime createdAt = LocalDateTime.now();
             LocalDateTime modifiedAt = LocalDateTime.now();
+            List<RequestComment> requestComments = new ArrayList<>();
             RequestDto.Response response1 =
                     new RequestDto.Response(1L, "talkUrl1",
                             "title1",
@@ -390,6 +408,7 @@ public class RequestControllerRestDocsTest {
                             "author1",
                             "publisher1",
                             "displayName1",
+                            requestComments,
                             createdAt,
                             modifiedAt);
             RequestDto.Response response2 =
@@ -400,6 +419,7 @@ public class RequestControllerRestDocsTest {
                             "author2",
                             "publisher2",
                             "displayName2",
+                            requestComments,
                             createdAt,
                             modifiedAt);
 
@@ -455,6 +475,7 @@ public class RequestControllerRestDocsTest {
                                     fieldWithPath("data.[].author").type(JsonFieldType.STRING).description("저자"),
                                     fieldWithPath("data.[].publisher").type(JsonFieldType.STRING).description("출판사"),
                                     fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                    fieldWithPath("data.[].requestComments").type(JsonFieldType.ARRAY).description("요청 댓글"),
                                     fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                     fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
                                     fieldWithPath("pageInfo").type(JsonFieldType.OBJECT).description("페이지 정보"),
@@ -479,6 +500,7 @@ public class RequestControllerRestDocsTest {
         public void searchRequests() throws Exception {
             LocalDateTime createdAt = LocalDateTime.now();
             LocalDateTime modifiedAt = LocalDateTime.now();
+            List<RequestComment> requestComments = new ArrayList<>();
             RequestDto.Response response1 =
                     new RequestDto.Response(1L, "talkUrl1",
                             "title1",
@@ -487,6 +509,7 @@ public class RequestControllerRestDocsTest {
                             "author1",
                             "publisher1",
                             "displayName1",
+                            requestComments,
                             createdAt,
                             modifiedAt);
             RequestDto.Response response2 =
@@ -497,6 +520,7 @@ public class RequestControllerRestDocsTest {
                             "author2",
                             "publisher2",
                             "displayName2",
+                            requestComments,
                             createdAt,
                             modifiedAt);
 
@@ -552,6 +576,7 @@ public class RequestControllerRestDocsTest {
                                             fieldWithPath("data.[].author").type(JsonFieldType.STRING).description("저자"),
                                             fieldWithPath("data.[].publisher").type(JsonFieldType.STRING).description("출판사"),
                                             fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                            fieldWithPath("data.[].requestComments").type(JsonFieldType.ARRAY).description("요청 댓글"),
                                             fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                             fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
                                             fieldWithPath("pageInfo").type(JsonFieldType.OBJECT).description("페이지 정보"),

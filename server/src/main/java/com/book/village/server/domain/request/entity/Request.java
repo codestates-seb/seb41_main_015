@@ -1,10 +1,13 @@
 package com.book.village.server.domain.request.entity;
 
 import com.book.village.server.domain.member.entity.Member;
+import com.book.village.server.domain.request_comment.entity.RequestComment;
 import com.book.village.server.global.audit.Auditable;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -39,6 +42,10 @@ public class Request extends Auditable {
     private String displayName;
 
     @ManyToOne
+    @JoinColumn(name = "MEMEBER_ID")
     private Member member;
+
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "request", orphanRemoval = true)
+    private List<RequestComment> requestComments =new ArrayList<>();
 
 }

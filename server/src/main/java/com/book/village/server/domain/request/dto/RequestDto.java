@@ -1,10 +1,12 @@
 package com.book.village.server.domain.request.dto;
 
+import com.book.village.server.domain.request_comment.entity.RequestComment;
 import lombok.*;
 
 import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class RequestDto {
 
@@ -61,6 +63,8 @@ public class RequestDto {
         private String publisher;
 
         private String displayName;
+
+        private List<RequestComment> requestComments;
 
         private LocalDateTime createdAt;
 

@@ -36,6 +36,7 @@ public interface RequestMapper {
                 .author(request.getAuthor())
                 .publisher(request.getPublisher())
                 .displayName(request.getMember().getDisplayName())
+                .requestComments(request.getRequestComments())
                 .createdAt(request.getCreatedAt())
                 .modifiedAt(request.getModifiedAt())
                 .build();

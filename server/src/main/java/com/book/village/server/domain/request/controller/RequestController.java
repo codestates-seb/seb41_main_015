@@ -59,7 +59,7 @@ public class RequestController {
 
     }
 
-    @GetMapping("/myrequests")
+    @GetMapping("/mine")
     public ResponseEntity getMyRequests(Principal principal) {
         List<Request> myRequests = requestService.findMyRequests(principal.getName());
         return new ResponseEntity(new ListResponse<>(requestMapper.requestsToRequestResponseDtos(myRequests)),
