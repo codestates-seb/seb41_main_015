@@ -112,6 +112,7 @@ const SRegister = styled.button`
 const ListHigh = ({
   title,
   page,
+  keyword,
   handleKeyword,
   handleSearch,
   handleOption,
@@ -138,6 +139,7 @@ const ListHigh = ({
         </select>
         <input
           className="search"
+          value={keyword}
           onChange={handleKeyword}
           onKeyDown={handleSearch}
         />
