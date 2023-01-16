@@ -41,7 +41,7 @@ public class CommunityCommentService {
         return repository.save(findcComment);
     }
 
-    public CommunityComment findCommunityCommentComment(long cCommentId){
+    public CommunityComment findCommunityComment(long cCommentId){
         return findVerifiedCommunityComment(cCommentId);
     }
 

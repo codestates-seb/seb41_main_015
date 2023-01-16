@@ -49,7 +49,7 @@ public class CommunityCommentController {
 
     @GetMapping("/{communityComment-id}")
     public ResponseEntity getCommunityComment(@PathVariable("communityComment-id") long cCommentId){
-        CommunityComment cComment = service.findCommunityCommentComment(cCommentId);
+        CommunityComment cComment = service.findCommunityComment(cCommentId);
         return ResponseEntity.ok(new SingleResponse<>(mapper.communityCommentToCommunityCommentResponseDto(cComment)));
     }
 
