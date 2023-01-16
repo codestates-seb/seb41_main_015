@@ -35,9 +35,9 @@ const SInputList = styled.div`
   }
 `;
 
-const SHr = styled.hr`
-  margin-bottom: 50px;
-`;
+// const SHr = styled.hr`
+//   margin-bottom: 50px;
+// `;
 
 const SWithdraw = styled.div`
   font-family: 'Inter';
@@ -88,8 +88,13 @@ const SEditBtn = styled.div`
   margin-top: 20px;
 `;
 
-const STitle = styled.h1`
-  margin-left: 5%;
+const STitle = styled.div`
+  h2 {
+    color: #2c2c2c;
+    padding: 18px;
+    margin: 20px 10%;
+    border-bottom: 1px solid #acacac;
+  }
 `;
 
 const SDefaultProfile = styled.div`
@@ -232,8 +237,9 @@ const MyPageEdit = () => {
 
   return (
     <div>
-      <STitle>회원정보 수정</STitle>
-      <SHr />
+      <STitle>
+        <h2>회원정보 수정</h2>
+      </STitle>
       <SWrapEdit>
         <SDefaultProfile>
           <img
