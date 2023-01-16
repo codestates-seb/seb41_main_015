@@ -126,15 +126,7 @@ const ShareForm = (props) => {
     navigate(-1);
   };
 
-  const [inputs, setInputs] = useState({
-    bookname: '',
-    author: '',
-    publisher: '',
-    link: '',
-    title: '',
-    content: '',
-  });
-
+  const { inputs, setInputs } = props;
   const { bookname, author, publisher, link, title, content } = inputs;
 
   const handleChangeString = (e, type) => {
@@ -158,7 +150,7 @@ const ShareForm = (props) => {
 
   return (
     <StyledShareForm>
-      <h2>{props.title}</h2>
+      <h2>{props.page === 'shareAdd' ? '나눔하기' : '수정하기'}</h2>
       <SInputContainer>
         <SInputLeft>
           {bookImg && <img alt="bookImg" src={bookImg} className="bookImg" />}
@@ -234,7 +226,7 @@ const ShareForm = (props) => {
           취소
         </button>
         <button className="submitBtn" onClick={props.editBtn}>
-          {props.edit}
+          {props.page === 'shareAdd' ? '등록' : '수정'}
         </button>
       </SButtonBox>
     </StyledShareForm>
