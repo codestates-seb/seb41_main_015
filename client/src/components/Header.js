@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import logo from '../image/logo.svg';
 import { Link } from 'react-router-dom';
 import mypage from '../image/mypage.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../redux/slice/userSlice';
+import axios from 'axios';
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -13,7 +16,9 @@ const StyledHeader = styled.header`
   align-items: center;
   box-shadow: 0px 4px 4px 0px #b9b9b940;
   background-color: #ffffff;
-  /* position: fixed; */
+  position: sticky;
+  top: 0;
+  z-index: 2;
 `;
 
 const SHeaderLogo = styled.a`
@@ -38,21 +43,24 @@ const SNavContainer = styled.ol`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  text-align: center;
   padding: 0;
   position: fixed;
   left: 20%;
   .olItem {
-    padding: 5px 33px;
+    margin: 5px 33px;
     font-size: 18px;
     font-weight: 600;
+    :focus {
+      border-bottom: 3px solid #bb2649;
+    }
   }
 
   @media screen and (max-width: 930px) {
     position: fixed;
     left: 11%;
-
     .olItem {
-      padding: 5px 10px;
+      margin: 5px 10px;
       font-size: 15px;
       font-weight: 600;
       display: flex;
@@ -61,37 +69,34 @@ const SNavContainer = styled.ol`
 `;
 
 // 로그인
-// const SLoginBtn = styled.button`
-//   width: 90px;
-//   height: 33px;
-//   font-size: 16px;
-//   font-weight: 600;
-//   color: #bb2649;
-//   border: 1px solid #bb2649;
-//   border-radius: 20px;
-//   position: fixed;
-//   right: 3%;
-//   :hover {
-//     color: #ffffff;
-//     background-color: #bb2649;
-//   }
-// `;
+const SLoginBtn = styled.button`
+  width: 90px;
+  height: 33px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #bb2649;
+  border: 1px solid #bb2649;
+  border-radius: 20px;
+  position: fixed;
+  right: 3%;
+  :hover {
+    color: #ffffff;
+    background-color: #bb2649;
+  }
+`;
 
 // 로그아웃
 const SLogout = styled.div`
   display: flex;
   align-items: center;
-  align-items: center;
   position: fixed;
   right: 3%;
-  @media screen and (max-width: 550px) {
-    .mypage {
-      display: none;
-    }
-  }
   .mypage {
     display: flex;
     margin-right: 15px;
+    @media screen and (max-width: 550px) {
+      display: none;
+    }
   }
 `;
 
@@ -112,13 +117,34 @@ const SLogoutBtn = styled.button`
 `;
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const accessToken = useSelector((state) => state.user.accessToken);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const user = useSelector((state) => state.user);
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const handleLogout = () => {
+    // axios
+    //   .post('https://serverbookvillage.kro.kr/v1/members/auth/logout', {
+    //     headers: {
+    //       // 'Content-Type': 'application/json;charset=UTF-8',
+    //       // Accept: 'application / json',
+    //       Authorization: `Bearer ${user.accessToken}`,
+    //     },
+    //   })
+    //   .then(() => {})
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
+    dispatch(logout());
+  };
+
   return (
     <StyledHeader>
       <SHeaderLogo href="/">
@@ -139,19 +165,22 @@ const Header = () => {
           커뮤니티
         </Link>
       </SNavContainer>
-      {/* 로그인 */}
-      {/* <SLoginBtn onClick={handleOpenModal}>로그인</SLoginBtn>
-      <LoginModal
-        isModalOpen={isModalOpen}
-        handleCloseModal={handleCloseModal}
-      /> */}
-      {/* 로그아웃 */}
-      <SLogout>
-        <Link to="/mypage">
-          <img src={mypage} alt="mypage" className="mypage" />
-        </Link>
-        <SLogoutBtn>로그아웃</SLogoutBtn>
-      </SLogout>
+      {!accessToken ? (
+        <>
+          <SLoginBtn onClick={handleOpenModal}>로그인</SLoginBtn>
+          <LoginModal
+            isModalOpen={isModalOpen}
+            handleCloseModal={handleCloseModal}
+          />
+        </>
+      ) : (
+        <SLogout>
+          <Link to="/mypage">
+            <img src={mypage} alt="mypage" className="mypage" />
+          </Link>
+          <SLogoutBtn onClick={handleLogout}>로그아웃</SLogoutBtn>
+        </SLogout>
+      )}
     </StyledHeader>
   );
 };
