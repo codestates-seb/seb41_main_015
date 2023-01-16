@@ -59,7 +59,7 @@ public class RequestController {
 
     }
 
-    @GetMapping("/myrequests")
+    @GetMapping("/mine")
     public ResponseEntity getMyRequests(Principal principal) {
         List<Request> myRequests = requestService.findMyRequests(principal.getName());
         return new ResponseEntity(new ListResponse<>(requestMapper.requestsToRequestResponseDtos(myRequests)),
@@ -76,9 +76,9 @@ public class RequestController {
 
     @GetMapping("/search")
     public ResponseEntity searchRequest(@RequestParam String keyword,
-                                        @RequestParam String kind,
+                                        @RequestParam String field,
                                         @PageableDefault Pageable pageable) {
-        Page<Request> requests = requestService.searchRequests(keyword, kind, pageable);
+        Page<Request> requests = requestService.searchRequests(keyword, field, pageable);
         return new ResponseEntity(
                 new PageResponseDto<>(requestMapper.requestsToRequestResponseDtos(requests.getContent()),
                         new PageInfo(requests.getPageable(), requests.getTotalElements())), HttpStatus.OK);

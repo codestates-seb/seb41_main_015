@@ -66,8 +66,8 @@ public class RequestService {
         return findRequest;
     }
 
-    public Page<Request> searchRequests(String keyword, String kind, Pageable pageable) {
-        switch (kind) {
+    public Page<Request> searchRequests(String keyword, String field, Pageable pageable) {
+        switch (field) {
             case "displayName":
                 return requestRepository.findAllByDisplayName(keyword, pageable);
             case "title":
