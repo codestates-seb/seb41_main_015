@@ -28,7 +28,7 @@ public class Member extends Auditable {
     private String name;
 
     @Column(unique = true, length = 20)
-    @Size(min = 4, max = 20)
+    @Size(min = 2, max = 20)
     private String displayName;
 
     @ColumnDefault("''")
