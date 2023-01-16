@@ -113,7 +113,7 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                 .newInstance()
                 .scheme("http")
                 .host("bookvillage.kro.kr")
-                .path("/main")
+                .path("/oauth")
                 .queryParams(queryParams)
                 .build()
                 .toUri();
