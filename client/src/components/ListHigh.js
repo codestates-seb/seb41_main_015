@@ -109,18 +109,20 @@ const SRegister = styled.button`
   }
 `;
 
-const ListHigh = ({ page }) => {
+const ListHigh = ({
+  title,
+  page,
+  handleKeyword,
+  handleSearch,
+  handleOption,
+}) => {
   const navigate = useNavigate();
   const route = page === 'share' ? '/shareAdd' : '/reqAdd';
 
   return (
     <SShareTop>
       <div className="ml-5">
-        <p className="fs-23 mb-5">
-          {page === 'share'
-            ? '현재 빌리지에 올라온 목록입니다!'
-            : '빌리지 사람들이 찾고 있는 책이에요!'}
-        </p>
+        <p className="fs-23 mb-5">{title}</p>
         <p className="fs-16">
           {page === 'share'
             ? '찾고 있는 책이 있다면 연락해보세요!'
@@ -128,12 +130,17 @@ const ListHigh = ({ page }) => {
         </p>
       </div>
       <div className="searchBox">
-        <select id="searchFilter">
+        <select id="searchFilter" onChange={handleOption}>
           <option value="">--선택--</option>
+          {/* 서버에서 타입 이름 정해지면 그걸로 value 바꾸기 */}
           <option value="bookTitle">책 제목</option>
           <option value="content">내용</option>
         </select>
-        <input className="search" />
+        <input
+          className="search"
+          onChange={handleKeyword}
+          onKeyDown={handleSearch}
+        />
         <Search className="search-icon" />
         <SRegister onClick={() => navigate(route)}>책 등록하기</SRegister>
       </div>
