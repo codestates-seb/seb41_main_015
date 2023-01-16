@@ -204,35 +204,32 @@ const MyPageEdit = () => {
 
   //회원탈퇴(주석 풀 것!)
   const handleClickQuit = () => {
-    instanceAxios.patch('/v1/members/quit').then(() => {
-      handleLogout();
-      navigate('/');
-      console.log('회원탈퇴!');
-      Swal.fire({
-        title: '회원탈퇴를 진행하시겠습니까?',
-        text: '회원탈퇴 후 재로그인이 어렵습니다 신중하게 생각해주세요.',
-        icon: 'warning',
-
-        showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-        confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-        cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-        confirmButtonText: '승인', // confirm 버튼 텍스트 지정
-        cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-
-        reverseButtons: true, // 버튼 순서 거꾸로
-      }).then((result) => {
-        // 만약 Promise리턴을 받으면,
-        if (result.isConfirmed) {
-          // 만약 모달창에서 confirm 버튼을 눌렀다면
-
-          Swal.fire(
-            '정상적으로 회원탈퇴가 처리되었습니다.',
-            '이용해주셔서 감사합니다',
-            'success'
-          );
-        }
-      });
-    });
+    // instanceAxios.patch('/v1/members/quit').then(() => {
+    //   handleLogout();
+    //   navigate('/');
+    //   console.log('회원탈퇴!');
+    //   Swal.fire({
+    //     title: '회원탈퇴를 진행하시겠습니까?',
+    //     text: '회원탈퇴 후 재로그인이 어렵습니다 신중하게 생각해주세요.',
+    //     icon: 'warning',
+    //     showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+    //     confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+    //     cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+    //     confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+    //     cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+    //     reverseButtons: true, // 버튼 순서 거꾸로
+    //   }).then((result) => {
+    //     // 만약 Promise리턴을 받으면,
+    //     if (result.isConfirmed) {
+    //       // 만약 모달창에서 confirm 버튼을 눌렀다면
+    //       Swal.fire(
+    //         '정상적으로 회원탈퇴가 처리되었습니다.',
+    //         '이용해주셔서 감사합니다',
+    //         'success'
+    //       );
+    //     }
+    //   });
+    // });
   };
 
   return (
