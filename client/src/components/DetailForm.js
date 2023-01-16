@@ -165,7 +165,7 @@ const DetailForm = ({ data, page }) => {
                     <span className="editButton">수정</span>
                   </Link>
                   <span className="betweenButtons">|</span>
-                  <span clasSName="deleteButton">삭제</span>
+                  <span className="deleteButton">삭제</span>
                 </div>
               </div>
               <div className="authorInfo">
