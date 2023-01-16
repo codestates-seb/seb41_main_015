@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -26,7 +27,8 @@ public class Member extends Auditable {
     @Column(length = 30)
     private String name;
 
-    @Column(length = 30)
+    @Column(unique = true, length = 20)
+    @Size(min = 4, max = 20)
     private String displayName;
 
     @ColumnDefault("''")

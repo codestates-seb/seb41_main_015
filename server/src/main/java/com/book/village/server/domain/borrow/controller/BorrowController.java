@@ -7,11 +7,13 @@ import com.book.village.server.domain.borrow.service.BorrowService;
 import com.book.village.server.global.response.SingleResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
 @RestController
+@Validated
 @RequestMapping("/v1/borrow")
 public class BorrowController {
     private final BorrowMapper borrowMapper;
@@ -26,7 +28,7 @@ public class BorrowController {
     // Borrow 생성
     @PostMapping
     public ResponseEntity postBorrow(Principal principal,
-                                       @RequestBody BorrowDto.Post borrowPostDto) {
+                                     @RequestBody BorrowDto.Post borrowPostDto) {
         Borrow borrow = borrowMapper.borrowDtoPostToBorrow(borrowPostDto);
         Borrow createdBorrow = borrowService.createBorrow(borrow, principal.getName());
 
@@ -34,10 +36,10 @@ public class BorrowController {
     }
 
     // Borrow 수정
-    @PatchMapping("/{borrowId}")
+    @PatchMapping("/{borrow-id}")
     public ResponseEntity patchBorrow(Principal principal,
                                       @RequestBody BorrowDto.Patch borrowPatch,
-                                      @PathVariable Long borrowId) {
+                                      @PathVariable("borrow-id") long borrowId) {
         borrowPatch.setBorrowId(borrowId);
         Borrow borrow = borrowMapper.borrowDtoPatchToBorrow(borrowPatch);    // 엔티티로 매핑
 
@@ -45,7 +47,5 @@ public class BorrowController {
 
         return new ResponseEntity<>(borrowMapper.borrowToBorrowDtoResponse(updatedBorrow), HttpStatus.OK);
     }
-
-
 
 }

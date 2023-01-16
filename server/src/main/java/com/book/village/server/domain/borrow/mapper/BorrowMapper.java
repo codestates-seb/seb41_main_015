@@ -38,6 +38,8 @@ public interface BorrowMapper {
                 .publisher(borrow.getPublisher())
                 .displayName(borrow.getDisplayName())
                 .talkUrl(borrow.getTalkUrl())
+                .createdAt(borrow.getCreatedAt())
+                .modifiedAt(borrow.getModifiedAt())
                 .build();
     }
 
