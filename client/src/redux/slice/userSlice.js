@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const sessionAccessToken = sessionStorage.getItem('accessToken');
-const sessionloginStatus = sessionStorage.getItem('loginStatus');
 
 const initialState = {
-  loginStatus: !sessionloginStatus,
   accessToken: sessionAccessToken,
   refreshToken: null,
   membership: null,
@@ -19,17 +17,14 @@ const userSlice = createSlice({
       let refreshToken = payload.refreshToken;
       let membership = payload.membership;
       sessionStorage.setItem('accessToken', accessToken);
-      sessionStorage.setItem('loginStatus', true);
       sessionStorage.setItem('membership', membership);
       state.accessToken = accessToken;
       state.refreshToken = refreshToken;
-      state.loginStatus = true;
       state.membership = membership;
     },
     logout: (state) => {
       console.log('세션 스토리지 삭제!');
       sessionStorage.clear();
-      state.loginStatus = !sessionloginStatus;
       state.accessToken = null;
       state.refreshToken = null;
       state.membership = null;

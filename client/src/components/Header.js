@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import mypage from '../image/mypage.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/slice/userSlice';
+import axios from 'axios';
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -119,6 +120,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((state) => state.user.accessToken);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const user = useSelector((state) => state.user);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -128,6 +130,18 @@ const Header = () => {
   };
 
   const handleLogout = () => {
+    // axios
+    //   .post('https://serverbookvillage.kro.kr/v1/members/auth/logout', {
+    //     headers: {
+    //       // 'Content-Type': 'application/json;charset=UTF-8',
+    //       // Accept: 'application / json',
+    //       Authorization: `Bearer ${user.accessToken}`,
+    //     },
+    //   })
+    //   .then(() => {})
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
     dispatch(logout());
   };
 
