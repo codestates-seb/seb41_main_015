@@ -8,12 +8,19 @@ const SShareTop = styled.div`
   margin-bottom: 50px;
   margin-top: 30px;
   justify-content: space-between;
+  @media screen and (max-width: 930px) {
+    flex-direction: column;
+    align-items: center;
+  }
   p {
     color: #212124;
   }
   .fs-23 {
     font-weight: 700;
     font-size: 22px;
+    @media screen and (max-width: 930px) {
+      text-align: center;
+    }
     @media screen and (max-width: 768px) {
       font-size: 18px;
     }
@@ -21,14 +28,18 @@ const SShareTop = styled.div`
   .fs-16 {
     font-weight: 400;
     font-size: 16px;
+    @media screen and (max-width: 930px) {
+      text-align: center;
+    }
     @media screen and (max-width: 768px) {
       font-size: 14px;
     }
   }
   .ml-5 {
     margin-left: 89px;
-    @media screen and (max-width: 768px) {
-      margin-left: 6%;
+    @media screen and (max-width: 930px) {
+      /* margin-left: 6%; */
+      margin-left: 0px;
     }
   }
   .mb-5 {
@@ -39,13 +50,14 @@ const SShareTop = styled.div`
     height: 41px;
     box-sizing: border-box;
     margin-top: 22px;
+    padding-left: 7px;
     font-size: 20px;
     background: #ffffff;
     border: 1px solid #aaaaaa;
     border-radius: 6px;
     @media screen and (max-width: 1023px) {
       width: 200px;
-      margin-left: 20%;
+      /* margin-left: 20%; */
     }
   }
   .search-icon {
@@ -53,6 +65,23 @@ const SShareTop = styled.div`
   }
   .searchBox {
     @media screen and (max-width: 1023px) {
+      margin-right: 20px;
+    }
+  }
+  select {
+    margin-right: 10px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    padding: 7px;
+    font-size: 1rem;
+    border: 1px solid #aaaaaa;
+    border-radius: 6px;
+    color: #666666;
+    text-align: center;
+    @media screen and (max-width: 768px) {
+      font-size: 0.8rem;
     }
   }
 `;
@@ -75,7 +104,8 @@ const SRegister = styled.button`
     width: 80px;
     height: 41px;
     font-size: 15px;
-    transform: translate(360%, -100%);
+    margin-right: 0;
+    /* transform: translate(360%, -100%); */
   }
 `;
 
@@ -98,6 +128,11 @@ const ListHigh = ({ page }) => {
         </p>
       </div>
       <div className="searchBox">
+        <select id="searchFilter">
+          <option value="">--선택--</option>
+          <option value="bookTitle">책 제목</option>
+          <option value="content">내용</option>
+        </select>
         <input className="search" />
         <Search className="search-icon" />
         <SRegister onClick={() => navigate(route)}>책 등록하기</SRegister>

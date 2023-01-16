@@ -1,4 +1,5 @@
 import DetailForm from '../components/DetailForm';
+import Comment from '../components/Comment';
 
 const ReqDetail = () => {
   const dummyData = {
@@ -14,6 +15,7 @@ const ReqDetail = () => {
   return (
     <>
       <DetailForm data={dummyData} page="request" />
+      <Comment />
     </>
   );
 };

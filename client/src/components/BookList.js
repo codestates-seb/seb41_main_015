@@ -10,11 +10,11 @@ const SBookContainer = styled.li`
   padding: 0 18px;
   margin: 1rem;
 
-  @media all and (min-width: 480px) and (max-width: 1023px) {
+  @media screen and (max-width: 1023px) {
     display: flex;
     flex-direction: column;
     width: auto;
-    padding: 0;
+    /* padding: 0; */
   }
   .coverBox {
     margin-right: 1rem;
