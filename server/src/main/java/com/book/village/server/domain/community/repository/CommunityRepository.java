@@ -12,11 +12,9 @@ public interface CommunityRepository extends JpaRepository<Community, Long> {
     Page<Community> findAllByMember_Email(String email, Pageable pageable);
     Page<Community> findAll(Pageable pageable);
 
-    Page<Community> findAllByTitleContaining(String keyword, Pageable pageable);
+    Page<Community> findAllByTitleContainingAndType(String keyword, String type, Pageable pageable);
 
-    Page<Community> findAllByContentContaining(String keyword, Pageable pageable);
+    Page<Community> findAllByContentContainingAndType(String keyword,String type, Pageable pageable);
 
-    Page<Community> findAllByDisplayName(String keyword, Pageable pageable);
-
-    Page<Community> findAllByType(String keyword, Pageable pageable);
+    Page<Community> findAllByDisplayNameAndType(String keyword, String type, Pageable pageable);
 }

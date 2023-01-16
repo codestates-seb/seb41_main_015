@@ -472,7 +472,7 @@ include::{snippets}/get-community-comment/response-fields.adoc[]
 .response-body
 include::{snippets}/get-community-comment/response-body.adoc[]
 
-=== 모든 나의 커뮤니티 댓글 조회
+=== 나의 모든 커뮤니티 댓글 조회
 .curl-request
 include::{snippets}/get-community-comments-mine/curl-request.adoc[]
 

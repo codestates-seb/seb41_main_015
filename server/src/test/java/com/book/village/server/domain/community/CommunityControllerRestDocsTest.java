@@ -626,7 +626,7 @@ public class CommunityControllerRestDocsTest {
                 new Member(),
                 null));
 
-        given(communityService.searchCommunity(Mockito.anyString(),Mockito.anyString(),Mockito.any(Pageable.class))).willReturn(new PageImpl<>(
+        given(communityService.searchCommunity(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(), Mockito.any(Pageable.class))).willReturn(new PageImpl<>(
                 list,
                 PageRequest.of(0,5,
                         Sort.by("createdAt").descending()),2));
@@ -635,7 +635,7 @@ public class CommunityControllerRestDocsTest {
 
         ResultActions actions =
                 mockMvc.perform(
-                        get(url+"/search?field=type&keyword=study")
+                        get(url+"/search?field=title&keyword=this&type=study")
                                 .param("page", "0")
                                 .param("size", "5")
                                 .param("sort", "createdAt,desc")
@@ -650,7 +650,8 @@ public class CommunityControllerRestDocsTest {
                         getResponsePreProcessor(),
                         requestParameters(
                                 parameterWithName("keyword").description("검색어"),
-                                parameterWithName("field").description("검색 대상[title, content, type, displayName]"),
+                                parameterWithName("field").description("검색 대상[title, content, displayName]"),
+                                parameterWithName("type").description("커뮤니티 카테고리[notice, free, study, recommend]"),
                                 parameterWithName("page").description("페이지 번호"),
                                 parameterWithName("size").description("페이지 사이즈"),
                                 parameterWithName("sort").description("정렬 기준[createdAt,desc]"),

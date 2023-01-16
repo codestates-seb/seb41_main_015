@@ -75,8 +75,8 @@ public class CommunityController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity searchCommunity(@RequestParam String keyword , @RequestParam String field, @PageableDefault Pageable pageable){
-        Page<Community> communities = communityService.searchCommunity(keyword, field, pageable);
+    public ResponseEntity searchCommunity(@RequestParam String keyword , @RequestParam String field, @RequestParam String type, @PageableDefault Pageable pageable){
+        Page<Community> communities = communityService.searchCommunity(keyword, field, type, pageable);
         return new ResponseEntity<>(new PageResponseDto<>(mapper.communitiesToCommunityResponseDtos(communities.getContent()),
                 new PageInfo(communities.getPageable(), communities.getTotalElements())), HttpStatus.OK);
     }

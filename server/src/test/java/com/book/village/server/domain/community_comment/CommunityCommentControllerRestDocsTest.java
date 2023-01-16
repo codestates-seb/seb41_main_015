@@ -209,7 +209,7 @@ public class CommunityCommentControllerRestDocsTest {
                 createdAt
         );
 
-        given(commentService.findCommunityCommentComment(Mockito.anyLong())).willReturn(new CommunityComment());
+        given(commentService.findCommunityComment(Mockito.anyLong())).willReturn(new CommunityComment());
         given(mapper.communityCommentToCommunityCommentResponseDto(Mockito.any(CommunityComment.class))).willReturn(response);
 
         ResultActions actions =
@@ -241,7 +241,7 @@ public class CommunityCommentControllerRestDocsTest {
     }
 
     @Test
-    @DisplayName("모든 나의 커뮤니티 댓글 조회")
+    @DisplayName("나의 모든 커뮤니티 댓글 조회")
     @WithMockUser
     public void getMyCommunityComments() throws Exception{
         LocalDateTime createdAt1=LocalDateTime.now();

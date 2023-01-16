@@ -72,16 +72,14 @@ public class CommunityService {
         return community;
     }
 
-    public Page<Community> searchCommunity(String keyword, String field, Pageable pageable){
+    public Page<Community> searchCommunity(String keyword, String field, String type, Pageable pageable){
         switch(field){
             case "title":
-                return repository.findAllByTitleContaining(keyword , pageable);
+                return repository.findAllByTitleContainingAndType(keyword, type, pageable);
             case "content":
-                return repository.findAllByContentContaining(keyword , pageable);
-            case "type":
-                return repository.findAllByType(keyword , pageable);
+                return repository.findAllByContentContainingAndType(keyword, type, pageable);
             case "displayName":
-                return repository.findAllByDisplayName(keyword , pageable);
+                return repository.findAllByDisplayNameAndType(keyword, type, pageable);
             default:
                 return new PageImpl<>(Collections.emptyList());
         }
