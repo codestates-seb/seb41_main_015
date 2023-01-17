@@ -11,8 +11,9 @@ const StyledFooter = styled.footer`
   flex-flow: row wrap;
   bottom: 0;
   justify-content: center;
+  margin-top: 5%;
 
-  @media screen and (max-width: 1213px) {
+  @media screen and (max-width: 1245px) {
     height: 300px;
     justify-content: flex-start;
   }
@@ -20,7 +21,7 @@ const StyledFooter = styled.footer`
     height: 350px;
   }
   @media screen and (max-width: 569px) {
-    height: 500px;
+    height: 580px;
   }
 `;
 
@@ -39,8 +40,8 @@ const SFooterLogo = styled.div`
     align-items: center;
   }
   .logo {
-    width: 30px;
-    height: 33px;
+    width: 160px;
+    height: 100px;
   }
 `;
 
@@ -83,6 +84,7 @@ const SDescription = styled.div`
   .copyright {
     color: #7a7a7a;
     font-size: 12px;
+    display: flex;
     justify-content: flex-end;
   }
 `;
