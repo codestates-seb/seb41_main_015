@@ -19,6 +19,8 @@ public enum ExceptionCode {
 
     REQUEST_NOT_FOUND(404,"Request not found"),
     REQUEST_WRITER_NOT_MATCH(409, "Request writer not match"),
+    REQUEST_COMMENT_NOT_FOUND(404, "request comment not found"),
+    REQUEST_COMMENT_USER_DIFFERENT(409, "request comment writer is not matched"),
 
     BORROW_NOT_FOUND(404, "BORROW_NOT_FOUND"), // 나눔글 존재 하지 않음.
     BORROW_USER_DIFFERENT(403, "BORROW_USER_DIFFERENT"),   // 나눔글 작성자가 아닌 사람이 수정하려고 할 때

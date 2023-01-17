@@ -1,7 +1,6 @@
 package com.book.village.server.domain.request_comment;
 
 import com.book.village.server.domain.member.entity.Member;
-import com.book.village.server.domain.request.controller.RequestController;
 import com.book.village.server.domain.request.entity.Request;
 import com.book.village.server.domain.request_comment.controller.RequestCommentController;
 import com.book.village.server.domain.request_comment.dto.RequestCommentDto;
