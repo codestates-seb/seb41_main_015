@@ -11,9 +11,9 @@ public interface BorrowRepository extends JpaRepository<Borrow, Long> {
     Page<Borrow> findAllByMember_Email(String email, Pageable pageable);
     Page<Borrow> findAll(Pageable pageable);
 
-    Page<Borrow> findAllByTitleContaining(String keyword, Pageable pageable);
+    Page<Borrow> findAllByWriteTitleContaining(String keyword, Pageable pageable);
 
-    Page<Borrow> findAllByContentContaining(String keyword, Pageable pageable);
+    Page<Borrow> findAllByWriteContentContaining(String keyword, Pageable pageable);
 
     Page<Borrow> findAllByDisplayName(String keyword, Pageable pageable);
 

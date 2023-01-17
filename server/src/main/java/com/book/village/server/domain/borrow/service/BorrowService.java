@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -90,10 +89,10 @@ public class BorrowService {
 
     public Page<Borrow> searchBorrow(String keyword, String field, Pageable pageable) {
         switch(field) {
-            case "title" :
-                return borrowRepository.findAllByTitleContaining(keyword, pageable);
-            case "content" :
-                return borrowRepository.findAllByContentContaining(keyword, pageable);
+            case "writeTitle" :
+                return borrowRepository.findAllByWriteTitleContaining(keyword, pageable);
+            case "writeContent" :
+                return borrowRepository.findAllByWriteContentContaining(keyword, pageable);
             case "displayName" :
                 return borrowRepository.findAllByDisplayName(keyword, pageable);
             default :

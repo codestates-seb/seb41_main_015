@@ -16,14 +16,14 @@ public class BorrowDto {
     @Builder
     public static class Post {
         @NotBlank
-        private String title;       // 나눔 제목
+        private String writeTitle;       // 나눔 제목
         @NotBlank
         @Lob
-        private String content;     // 나눔 본문
+        private String writeContent;     // 나눔 본문
         @NotBlank
-        private String bookTitle;   // 나눔 책 제목
+        private String title;   // 나눔 책 제목
         @NotBlank
-        private String author;      // 나눔 책 작가
+        private String authors;      // 나눔 책 작가
         @NotBlank
         private String publisher;   // 나눔 책 출판사
 
@@ -41,14 +41,14 @@ public class BorrowDto {
         @Setter
         private Long borrowId;  // 나눔 게시판 식별자
 
-        private String title;   // 나눔글 제목
+        private String writeTitle;   // 나눔글 제목
 
         @Lob
-        private String content; // 나눔글 본문
+        private String writeContent; // 나눔글 본문
 
-        private String bookTitle;   // 나눔 책 제목
+        private String title;   // 나눔 책 제목
 
-        private String author;      // 나눔 책 저자
+        private String authors;      // 나눔 책 저자
 
         private String publisher;   // 나눔 책 출판사
 
@@ -64,12 +64,12 @@ public class BorrowDto {
     public static class Response {
         private Long borrowId;  //  식별자
 
-        private String title;   //  나눔글 제목
+        private String writeTitle;   //  나눔글 제목
 
         @Lob
-        private String content; //  나눔글 본문
-        private String bookTitle;   // 나눔 책 제목
-        private String author;      // 나눔 책 저자
+        private String writeContent; //  나눔글 본문
+        private String title;   // 나눔 책 제목
+        private String authors;      // 나눔 책 저자
         private String publisher;   // 나눔 책 출판사
         private String displayName; // 회원 닉네임
         private String talkUrl;     // 톡링크

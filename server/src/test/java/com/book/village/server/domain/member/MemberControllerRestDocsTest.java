@@ -24,8 +24,8 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.book.village.server.util.ApiDocumentUtils.getRequestPreProcessor;
-import static com.book.village.server.util.ApiDocumentUtils.getResponsePreProcessor;
+import static com.book.village.server.domain.util.ApiDocumentUtils.getRequestPreProcessor;
+import static com.book.village.server.domain.util.ApiDocumentUtils.getResponsePreProcessor;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
