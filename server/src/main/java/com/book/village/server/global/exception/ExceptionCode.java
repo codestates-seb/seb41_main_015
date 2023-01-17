@@ -29,7 +29,14 @@ public enum ExceptionCode {
     COMMUNITY_USER_DIFFERENT(409, "community writer is not matched"),
 
     COMMUNITY_COMMENT_NOT_FOUND(404, "community comment not found"),
-    COMMUNITY_COMMENT_USER_DIFFERENT(409, "community comment writer is not matched");
+    COMMUNITY_COMMENT_USER_DIFFERENT(409, "community comment writer is not matched"),
+
+    BOOK_EXISTS(409,"Book exists"),
+    BOOK_NOT_FOUND(404, "Book is not found"),
+
+    RATE_USER_DIFFERENT(409, "rate writer is not matched"),
+    RATE_NOT_FOUND(404, "rate not found"),
+    RATE_DUPLICATE(409, "rate duplicate");
 
     @Getter
     private final int code;
