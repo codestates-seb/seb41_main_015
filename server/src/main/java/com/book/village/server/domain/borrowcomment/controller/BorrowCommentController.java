@@ -62,7 +62,7 @@ public class BorrowCommentController {
     public ResponseEntity getMyBorrowComments(Principal principal) {
         List<BorrowComment> borrowComments =
                 borrowCommentService.findMyBorrowComments(principal.getName());
-        return new ResponseEntity(new SingleResponse<>(borrowCommentMapper.borrowContentsToBorrowCommentResponseDtos(borrowComments)),
+        return new ResponseEntity(new SingleResponse<>(borrowCommentMapper.borrowCommentsToBorrowCommentResponseDtos(borrowComments)),
                 HttpStatus.OK);
     }
 

@@ -11,5 +11,5 @@ public interface BorrowCommentMapper {
     BorrowComment borrowCommentPostDtoToBorrowComment(BorrowCommentDto.Post borrowCommentPostDto);
     BorrowComment borrowCommentPatchDtoToBorrowComment(BorrowCommentDto.Patch borrowCommentPatchDto);
     BorrowCommentDto.Response borrowCommentToBorrowCommentResponseDto(BorrowComment borrowComment);
-    List<BorrowCommentDto.Response> borrowContentsToBorrowCommentResponseDtos(List<BorrowComment> borrowComments);
+    List<BorrowCommentDto.Response> borrowCommentsToBorrowCommentResponseDtos(List<BorrowComment> borrowComments);
 }

@@ -83,8 +83,8 @@ public class BorrowController {
     }
 
     @DeleteMapping("/{borrow-id}")
-    public ResponseEntity deleteCommunities(@PathVariable("borrow-id") Long borrowId, Principal principal) {
-        borrowService.deleteBorrow(borrowId,principal.getName());
+    public ResponseEntity deleteBorrow(@PathVariable("borrow-id") Long borrowId, Principal principal) {
+        borrowService.deleteBorrow(borrowId, principal.getName());
         return ResponseEntity.noContent().build();
     }
 
