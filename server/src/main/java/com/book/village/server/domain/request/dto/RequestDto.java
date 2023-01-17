@@ -1,17 +1,21 @@
 package com.book.village.server.domain.request.dto;
 
+import com.book.village.server.domain.community_comment.dto.CommunityCommentDto;
+import com.book.village.server.domain.request_comment.dto.RequestCommentDto;
+import com.book.village.server.domain.request_comment.entity.RequestComment;
 import lombok.*;
 
 import javax.persistence.Lob;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class RequestDto {
 
     @AllArgsConstructor
+    @NoArgsConstructor
     @Getter
     @Setter
-    @Builder
     public static class Post {
 
         private String talkUrl;
@@ -36,9 +40,9 @@ public class RequestDto {
     }
 
     @AllArgsConstructor
+    @NoArgsConstructor
     @Getter
     @Setter
-    @Builder
     public static class Response {
         private long requestId;
 
@@ -62,6 +66,8 @@ public class RequestDto {
 
         private String displayName;
 
+        private List<RequestCommentDto.Response> requestComments;
+
         private LocalDateTime createdAt;
 
         private LocalDateTime modifiedAt;
@@ -69,9 +75,9 @@ public class RequestDto {
     }
 
     @AllArgsConstructor
+    @NoArgsConstructor
     @Getter
     @Setter
-    @Builder
     public static class Patch {
 
         private long requestId;
