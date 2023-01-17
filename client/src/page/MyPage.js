@@ -8,8 +8,6 @@ const STable = styled.table`
 margin-left:auto;
 margin-right:auto;
 
-
-
 `;
 
 const SOverflow = styled.div`
@@ -22,21 +20,19 @@ overflow: scroll;
 ::-webkit-scrollbar{width: 4px;}
 ::-webkit-scrollbar-thumb{background-color: #bb2649; border-radius: 10px;}
 height:300px;
+padding: 10px;
 `;
 
 const SBoxB = styled.div`
 overflow:scroll;
 ::-webkit-scrollbar{width: 4px;}
 ::-webkit-scrollbar-thumb{background-color: #bb2649; border-radius: 10px;}
-height:120px
+height:300px;
+padding: 10px;
+
 `;
 
-const SBoxC = styled.div`
-overflow:scroll;
-::-webkit-scrollbar{width: 4px;}
-::-webkit-scrollbar-thumb{background-color: #bb2649; border-radius: 10px;}
-height:120px
-`;
+
 
 const SProfile = styled.td`
 font-size: 14px;
@@ -122,11 +118,13 @@ const STextStrong = styled.strong`
 `;
 
 
+
 const MyPage = () => {
   const books = dummy.books;
   const comments = dummy.comment;
   const community = dummy.community;
   const navigate = useNavigate();
+  const Nickname = "Groot"; 
   // const [books,setBooks] = useState();
   // const [comments,setComments] = useState();
   // const [community,setcommunity] = useState();
@@ -164,7 +162,7 @@ const MyPage = () => {
       <STable>
         <tbody>
           <tr>
-            <td><STitle>마이 페이지</STitle> </td>
+            <td><STitle >마이 페이지</STitle> </td>
             <SInformationtd><SInformation onClick={() => navigate('/mypageEdit')}>정보수정</SInformation></SInformationtd>
           </tr>
           <tr>
@@ -185,7 +183,7 @@ const MyPage = () => {
                   <br></br>
                   닉네임
                   <br></br>
-                  Groot
+                  {Nickname}
                 </SProfile>
               </tr>
             </td>
@@ -194,7 +192,7 @@ const MyPage = () => {
           </tr>
           <tr>
             <td>
-              <STitle2>나눔 중</STitle2>
+              <STitle2>{Nickname}의 나눔 세상</STitle2>
               <SBoxA>
                 {
                   books.map((book) => (
@@ -228,7 +226,7 @@ const MyPage = () => {
               </SBoxA>
             </td>
             <td>
-              <STitle2>커뮤니티 활동</STitle2>
+              <STitle2>우리{Nickname}의 커뮤 활동 </STitle2>
               <SBoxB>
                 {
                   community.map((communities) => (
@@ -241,17 +239,7 @@ const MyPage = () => {
                   ))
                 }
               </SBoxB>
-              <STitle2>댓글</STitle2>
-              <SBoxC>
-                {
-                  comments.map((comment) => (
-                    <>
-                      <tr><SComment>{comment.id} : {comment.comment}</SComment></tr>
-                      <br></br>
-                    </>
-                  ))
-                }
-              </SBoxC>
+             
             </td>
           </tr>
         </tbody>
