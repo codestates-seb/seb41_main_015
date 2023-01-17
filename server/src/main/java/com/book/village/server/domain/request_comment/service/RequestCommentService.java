@@ -40,7 +40,7 @@ public class RequestCommentService {
 
     public RequestComment updateRequestComment(RequestComment requestComment, String userEmail) {
         RequestComment findRequestComment = findVerifiedRequestComment(requestComment.getRequestCommentId());
-        if (requestComment.getMember().getEmail().equals(userEmail)) {
+        if (findRequestComment.getMember().getEmail().equals(userEmail)) {
             beanUtils.copyNonNullProperties(requestComment, findRequestComment);
             return requestCommentRepository.save(findRequestComment);
         }
@@ -60,6 +60,7 @@ public class RequestCommentService {
         RequestComment requestComment = findVerifiedRequestComment(requestCommentId);
         if (requestComment.getMember().getEmail().equals(userEmail)) {
             requestCommentRepository.delete(requestComment);
+            return ;
         }
         throw new CustomLogicException(ExceptionCode.REQUEST_WRITER_NOT_MATCH);
     }

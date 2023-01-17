@@ -31,8 +31,8 @@ public class RequestCommentController {
     public ResponseEntity postRequestComment(@PathVariable("request-id") long requestId,
                                              Principal principal,
                                              @Valid @RequestBody RequestCommentDto.Post requestCommentPostDto) {
-        RequestComment requestComment = mapper.requestCommentPostDtoToRequestComment(requestCommentPostDto);
-        requestCommentService.createRequestComment(requestComment, principal.getName(), requestId);
+        RequestComment requestComment = requestCommentService.createRequestComment(
+                mapper.requestCommentPostDtoToRequestComment(requestCommentPostDto), principal.getName(), requestId);
         return new ResponseEntity(
                 new SingleResponse<>(mapper.requestCommentToRequestCommentResponseDto(requestComment)),
                 HttpStatus.CREATED);

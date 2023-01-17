@@ -5,6 +5,7 @@ import com.book.village.server.domain.request.dto.RequestDto;
 import com.book.village.server.domain.request.entity.Request;
 import com.book.village.server.domain.request.mapper.RequestMapper;
 import com.book.village.server.domain.request.service.RequestService;
+import com.book.village.server.domain.request_comment.dto.RequestCommentDto;
 import com.book.village.server.domain.request_comment.entity.RequestComment;
 import com.book.village.server.global.utils.GenerateMockToken;
 import com.google.gson.Gson;
@@ -71,7 +72,11 @@ public class RequestControllerRestDocsTest {
         LocalDateTime modifiedAt = LocalDateTime.now();
         RequestDto.Post post = new RequestDto.Post("talkUrl", "title", "content", "bookTitle", "author", "publisher");
         String content = gson.toJson(post);
-        List<RequestComment> requestComments = new ArrayList<>();
+        List<RequestCommentDto.Response> requestCommentResponse =
+                List.of(new RequestCommentDto.Response(
+                                1L, "content1", "displayName1",createdAt, createdAt),
+                        new RequestCommentDto.Response(2L, "content2", "displayName2",createdAt, createdAt)
+                );
 
         RequestDto.Response responseDto =
                 new RequestDto.Response(1L,
@@ -82,7 +87,7 @@ public class RequestControllerRestDocsTest {
                         "author",
                         "publisher",
                         "displayName",
-                        requestComments,
+                        requestCommentResponse,
                         createdAt,
                         modifiedAt);
 
@@ -141,9 +146,14 @@ public class RequestControllerRestDocsTest {
                                         fieldWithPath("data.author").type(JsonFieldType.STRING).description("저자"),
                                         fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
-                                        fieldWithPath("data.requestComments").type(JsonFieldType.ARRAY).description("요청 댓글"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
-                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자")
+                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
+                                        fieldWithPath("data.requestComments").type(JsonFieldType.ARRAY).description("댓글 정보"),
+                                        fieldWithPath("data.requestComments.[].requestCommentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
+                                        fieldWithPath("data.requestComments.[].content").type(JsonFieldType.STRING).description("댓글 내용"),
+                                        fieldWithPath("data.requestComments.[].displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                        fieldWithPath("data.requestComments.[].createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
+                                        fieldWithPath("data.requestComments.[].modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
                         )
                 ));
@@ -168,17 +178,22 @@ public class RequestControllerRestDocsTest {
                 "publisher");
         String content = gson.toJson(patch);
 
-        List<RequestComment> requestComments = new ArrayList<>();
+        List<RequestCommentDto.Response> requestCommentResponse =
+                List.of(new RequestCommentDto.Response(
+                                1L, "content1", "displayName1",createdAt, createdAt),
+                        new RequestCommentDto.Response(2L, "content2", "displayName2",createdAt, createdAt)
+                );
 
         RequestDto.Response response =
-                new RequestDto.Response(1L, "talkUrl",
+                new RequestDto.Response(1L,
+                        "talkUrl",
                         "title",
                         "content",
                         "bookTitle",
                         "author",
                         "publisher",
                         "displayName",
-                        requestComments,
+                        requestCommentResponse,
                         createdAt,
                         modifiedAt);
 
@@ -239,9 +254,14 @@ public class RequestControllerRestDocsTest {
                                         fieldWithPath("data.author").type(JsonFieldType.STRING).description("저자"),
                                         fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
-                                        fieldWithPath("data.requestComments").type(JsonFieldType.ARRAY).description("요청 댓글"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
-                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자")
+                                        fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
+                                        fieldWithPath("data.requestComments").type(JsonFieldType.ARRAY).description("댓글 정보"),
+                                        fieldWithPath("data.requestComments.[].requestCommentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
+                                        fieldWithPath("data.requestComments.[].content").type(JsonFieldType.STRING).description("댓글 내용"),
+                                        fieldWithPath("data.requestComments.[].displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                        fieldWithPath("data.requestComments.[].createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
+                                        fieldWithPath("data.requestComments.[].modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
                         )
                 ));
@@ -255,17 +275,23 @@ public class RequestControllerRestDocsTest {
             long requestId = 1L;
             LocalDateTime createdAt = LocalDateTime.now();
             LocalDateTime modifiedAt = LocalDateTime.now();
-            List<RequestComment> requestComments = new ArrayList<>();
+
+            List<RequestCommentDto.Response> requestCommentResponse =
+                    List.of(new RequestCommentDto.Response(
+                                    1L, "content1", "displayName1",createdAt, createdAt),
+                            new RequestCommentDto.Response(2L, "content2", "displayName2",createdAt, createdAt)
+                    );
 
             RequestDto.Response response =
-                    new RequestDto.Response(1L, "talkUrl",
+                    new RequestDto.Response(1L,
+                            "talkUrl",
                             "title",
                             "content",
                             "bookTitle",
                             "author",
                             "publisher",
                             "displayName",
-                            requestComments,
+                            requestCommentResponse,
                             createdAt,
                             modifiedAt);
 
@@ -287,7 +313,6 @@ public class RequestControllerRestDocsTest {
                     .andExpect(jsonPath("$.data.bookTitle").value(response.getBookTitle()))
                     .andExpect(jsonPath("$.data.author").value(response.getAuthor()))
                     .andExpect(jsonPath("$.data.publisher").value(response.getPublisher()))
-                    .andExpect(jsonPath("$.data.publisher").value(response.getPublisher()))
                     .andDo(document("get-request" ,
                                     getRequestPreProcessor(),
                                     getResponsePreProcessor(),
@@ -305,16 +330,21 @@ public class RequestControllerRestDocsTest {
                                             fieldWithPath("data.author").type(JsonFieldType.STRING).description("저자"),
                                             fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
                                             fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
-                                            fieldWithPath("data.requestComments").type(JsonFieldType.ARRAY).description("요청 댓글"),
                                             fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
-                                            fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자")
+                                            fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
+                                            fieldWithPath("data.requestComments").type(JsonFieldType.ARRAY).description("댓글 정보"),
+                                            fieldWithPath("data.requestComments.[].requestCommentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
+                                            fieldWithPath("data.requestComments.[].content").type(JsonFieldType.STRING).description("댓글 내용"),
+                                            fieldWithPath("data.requestComments.[].displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                            fieldWithPath("data.requestComments.[].createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
+                                            fieldWithPath("data.requestComments.[].modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                     )
                             )
                     ));
         }
 
         @Test
-        @DisplayName("내 요청 조회")
+        @DisplayName("내 요청 전체 조회")
         @WithMockUser
         public void getMyRequestsTest() throws Exception {
             LocalDateTime createdAt = LocalDateTime.now();
@@ -328,7 +358,7 @@ public class RequestControllerRestDocsTest {
                             "author1",
                             "publisher1",
                             "displayName1",
-                            requestComments,
+                            null,
                             createdAt,
                             modifiedAt);
             RequestDto.Response response2 =
@@ -339,7 +369,7 @@ public class RequestControllerRestDocsTest {
                             "author2",
                             "publisher2",
                             "displayName2",
-                            requestComments,
+                            null,
                             createdAt,
                             modifiedAt);
 
@@ -351,12 +381,18 @@ public class RequestControllerRestDocsTest {
             requestList.add(new Request());
             requestList.add(new Request());
 
-            given(requestService.findMyRequests(Mockito.anyString(),Mockito.any(Pageable.class))).willReturn(requestList);
+            given(requestService.findMyRequests(Mockito.anyString(),Mockito.any(Pageable.class))).willReturn(new PageImpl<>(
+                    requestList,
+                    PageRequest.of(0,10,
+                            Sort.by("createdAt").descending()),2));
             given(requestMapper.requestsToRequestResponseDtos(Mockito.anyList())).willReturn(responseList);
 
             ResultActions actions =
                     mockMvc.perform(
                             get(BASE_URL + "/mine")
+                                    .param("page", "0")
+                                    .param("size", "10")
+                                    .param("sort", "questionId,desc")
                                     .accept(MediaType.APPLICATION_JSON)
                                     .with(csrf())
                                     .contentType(MediaType.APPLICATION_JSON)
@@ -373,6 +409,9 @@ public class RequestControllerRestDocsTest {
                                     headerWithName("Authorization").description("Bearer Token")
                             ),
                             requestParameters(
+                                    parameterWithName("page").description("페이지 번호"),
+                                    parameterWithName("size").description("페이지 사이즈"),
+                                    parameterWithName("sort").description("정렬 기준[createdAt,desc]"),
                                     parameterWithName("_csrf").description("csrf")
                             ),
                             responseFields(
@@ -386,9 +425,17 @@ public class RequestControllerRestDocsTest {
                                             fieldWithPath("data.[].author").type(JsonFieldType.STRING).description("저자"),
                                             fieldWithPath("data.[].publisher").type(JsonFieldType.STRING).description("출판사"),
                                             fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
-                                            fieldWithPath("data.[].requestComments").type(JsonFieldType.ARRAY).description("요청 댓글"),
                                             fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
-                                            fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자")
+                                            fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
+                                            fieldWithPath("data.[].requestComments").type(JsonFieldType.NULL).description("댓글 정보"),
+                                            fieldWithPath("pageInfo").type(JsonFieldType.OBJECT).description("페이지 정보"),
+                                            fieldWithPath("pageInfo.currentPage").type(JsonFieldType.NUMBER).description("페이지 번호"),
+                                            fieldWithPath("pageInfo.totalPage").type(JsonFieldType.NUMBER).description("총 페이지 수"),
+                                            fieldWithPath("pageInfo.totalElements").type(JsonFieldType.NUMBER).description("총 데이터 수"),
+                                            fieldWithPath("pageInfo.pageSize").type(JsonFieldType.NUMBER).description("페이지 사이즈"),
+                                            fieldWithPath("pageInfo.first").type(JsonFieldType.BOOLEAN).description("첫 페이지 여부"),
+                                            fieldWithPath("pageInfo.last").type(JsonFieldType.BOOLEAN).description("마지막 페이지 여부"),
+                                            fieldWithPath("pageInfo.currentElements").type(JsonFieldType.NUMBER).description("현재 페이지 데이터 수")
                                     )
                             )));
         }
@@ -409,7 +456,7 @@ public class RequestControllerRestDocsTest {
                             "author1",
                             "publisher1",
                             "displayName1",
-                            requestComments,
+                            null,
                             createdAt,
                             modifiedAt);
             RequestDto.Response response2 =
@@ -420,7 +467,7 @@ public class RequestControllerRestDocsTest {
                             "author2",
                             "publisher2",
                             "displayName2",
-                            requestComments,
+                            null,
                             createdAt,
                             modifiedAt);
 
@@ -432,11 +479,11 @@ public class RequestControllerRestDocsTest {
             requestList.add(new Request());
             requestList.add(new Request());
 
-            given(requestService.findRequests(Mockito.any()))
+            given(requestService.findRequests(Mockito.any(Pageable.class)))
                     .willReturn(
                             new PageImpl<>(requestList,
-                                    PageRequest.of(2,
-                                            1,
+                                    PageRequest.of(0,
+                                            10,
                                             Sort.by("createdAt").descending()
                                     ), 2)
                     );
@@ -447,8 +494,8 @@ public class RequestControllerRestDocsTest {
                     mockMvc.perform(get(BASE_URL,
                             getRequestPreProcessor(),
                             getResponsePreProcessor())
-                            .param("page", "2")
-                            .param("size", "1")
+                            .param("page", "0")
+                            .param("size", "10")
                             .param("sort", "createdAt,desc") // <-- no space after comma!!!
                             .accept(MediaType.APPLICATION_JSON)
                             .contentType(MediaType.APPLICATION_JSON)
@@ -476,9 +523,9 @@ public class RequestControllerRestDocsTest {
                                     fieldWithPath("data.[].author").type(JsonFieldType.STRING).description("저자"),
                                     fieldWithPath("data.[].publisher").type(JsonFieldType.STRING).description("출판사"),
                                     fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
-                                    fieldWithPath("data.[].requestComments").type(JsonFieldType.ARRAY).description("요청 댓글"),
                                     fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                     fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
+                                    fieldWithPath("data.[].requestComments").type(JsonFieldType.NULL).description("댓글 정보"),
                                     fieldWithPath("pageInfo").type(JsonFieldType.OBJECT).description("페이지 정보"),
                                     fieldWithPath("pageInfo.currentPage").type(JsonFieldType.NUMBER).description("페이지 번호"),
                                     fieldWithPath("pageInfo.totalPage").type(JsonFieldType.NUMBER).description("총 페이지 수"),
@@ -510,7 +557,7 @@ public class RequestControllerRestDocsTest {
                             "author1",
                             "publisher1",
                             "displayName1",
-                            requestComments,
+                            null,
                             createdAt,
                             modifiedAt);
             RequestDto.Response response2 =
@@ -521,7 +568,7 @@ public class RequestControllerRestDocsTest {
                             "author2",
                             "publisher2",
                             "displayName2",
-                            requestComments,
+                            null,
                             createdAt,
                             modifiedAt);
 
@@ -533,7 +580,7 @@ public class RequestControllerRestDocsTest {
             requestList.add(new Request());
             requestList.add(new Request());
 
-            given(requestService.searchRequests(Mockito.anyString(), Mockito.anyString(), Mockito.any()))
+            given(requestService.searchRequests(Mockito.anyString(), Mockito.anyString(), Mockito.any(Pageable.class)))
                     .willReturn(
                             new PageImpl<>(requestList,
                                     PageRequest.of(0, 10,
@@ -544,11 +591,12 @@ public class RequestControllerRestDocsTest {
             given(requestMapper.requestsToRequestResponseDtos(Mockito.anyList())).willReturn(responseList);
 
             ResultActions actions =
-                    mockMvc.perform(get(BASE_URL + "/search?keyword=con&kind=content")
+                    mockMvc.perform(get(BASE_URL + "/search?keyword=con&field=content")
                             .param("page", "2")
                             .param("size", "1")
                             .param("sort", "createdAt,desc") // <-- no space after comma!!!
                             .accept(MediaType.APPLICATION_JSON)
+                            .with(csrf())
                             .contentType(MediaType.APPLICATION_JSON)
                     );
 
@@ -560,10 +608,11 @@ public class RequestControllerRestDocsTest {
                             getResponsePreProcessor(),
                             requestParameters(
                                     parameterWithName("keyword").description("검색어"),
-                                    parameterWithName("kind").description("검색 종류 / displayName, title, content, bookTitle, author, publisher/ null 이면 빈리스트"),
+                                    parameterWithName("field").description("검색 종류 / displayName, title, content, bookTitle, author, publisher/ null 이면 빈리스트"),
                                     parameterWithName("page").description("페이지 번호"),
                                     parameterWithName("size").description("페이지 사이즈"),
-                                    parameterWithName("sort").description("작성 시간 최신순으로 정렬")
+                                    parameterWithName("sort").description("작성 시간 최신순으로 정렬"),
+                                    parameterWithName("_csrf").description("csrf")
                             ),
                             // response body
                             responseFields(
@@ -577,9 +626,9 @@ public class RequestControllerRestDocsTest {
                                             fieldWithPath("data.[].author").type(JsonFieldType.STRING).description("저자"),
                                             fieldWithPath("data.[].publisher").type(JsonFieldType.STRING).description("출판사"),
                                             fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
-                                            fieldWithPath("data.[].requestComments").type(JsonFieldType.ARRAY).description("요청 댓글"),
                                             fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                             fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
+                                            fieldWithPath("data.[].requestComments").type(JsonFieldType.NULL).description("댓글 정보"),
                                             fieldWithPath("pageInfo").type(JsonFieldType.OBJECT).description("페이지 정보"),
                                             fieldWithPath("pageInfo.currentPage").type(JsonFieldType.NUMBER).description("페이지 번호"),
                                             fieldWithPath("pageInfo.totalPage").type(JsonFieldType.NUMBER).description("총 페이지 수"),

@@ -1,4 +1,6 @@
 package com.book.village.server.domain.request.controller;
+import com.book.village.server.domain.community.dto.CommunityDto;
+import com.book.village.server.domain.community.entity.Community;
 import com.book.village.server.domain.request.dto.RequestDto;
 import com.book.village.server.domain.request.entity.Request;
 import com.book.village.server.domain.request.mapper.RequestMapper;
@@ -56,13 +58,14 @@ public class RequestController {
         Request request = requestService.findRequest(requestId);
         return new ResponseEntity(new SingleResponse<>(requestMapper.requestToRequestResponseDto(request)),
                 HttpStatus.OK);
-
     }
 
     @GetMapping("/mine")
     public ResponseEntity getMyRequests(@PageableDefault Pageable pageable, Principal principal) {
-        List<Request> myRequests = requestService.findMyRequests(principal.getName(),pageable);
-        return new ResponseEntity(new ListResponse<>(requestMapper.requestsToRequestResponseDtos(myRequests)),
+        Page<Request> myRequests = requestService.findMyRequests(principal.getName(),pageable);
+        return new ResponseEntity(
+                new PageResponseDto<>(requestMapper.requestsToRequestResponseDtos(myRequests.getContent()),
+                new PageInfo(myRequests.getPageable(), myRequests.getTotalElements())),
                 HttpStatus.OK);
     }
 
@@ -76,9 +79,9 @@ public class RequestController {
 
     @GetMapping("/search")
     public ResponseEntity searchRequest(@RequestParam String keyword,
-                                        @RequestParam String kind,
+                                        @RequestParam String field,
                                         @PageableDefault Pageable pageable) {
-        Page<Request> requests = requestService.searchRequests(keyword, kind, pageable);
+        Page<Request> requests = requestService.searchRequests(keyword, field, pageable);
         return new ResponseEntity(
                 new PageResponseDto<>(requestMapper.requestsToRequestResponseDtos(requests.getContent()),
                         new PageInfo(requests.getPageable(), requests.getTotalElements())), HttpStatus.OK);
@@ -90,5 +93,4 @@ public class RequestController {
         requestService.deleteRequest(requestId, principal.getName());
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
-
 }

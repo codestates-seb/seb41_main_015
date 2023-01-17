@@ -1,48 +1,58 @@
 package com.book.village.server.domain.request.mapper;
 
+import com.book.village.server.domain.community.dto.CommunityDto;
+import com.book.village.server.domain.community.entity.Community;
 import com.book.village.server.domain.request.dto.RequestDto;
 import com.book.village.server.domain.request.entity.Request;
+import com.book.village.server.domain.request_comment.mapper.RequestCommentMapper;
+import com.book.village.server.domain.request_comment.mapper.RequestCommentMapperImpl;
 import org.mapstruct.Mapper;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface RequestMapper {
-
-    default Request requestPostDtoToRequest(RequestDto.Post requestPostDto) {
-        if (requestPostDto == null) {
-            return null;
-        }
-        Request request = Request.builder()
-                .talkUrl(requestPostDto.getTalkUrl())
-                .title(requestPostDto.getTitle())
-                .content(requestPostDto.getContent())
-                .bookTitle(requestPostDto.getBookTitle())
-                .author(requestPostDto.getAuthor())
-                .publisher(requestPostDto.getPublisher())
-                .build();
-
-        return request;
-    }
+    RequestCommentMapper recoMapper = new RequestCommentMapperImpl();
+    Request requestPostDtoToRequest(RequestDto.Post requestPostDto);
+    Request requestPatchDtoToRequest(RequestDto.Patch requestPatchDto);
 
 
     default RequestDto.Response requestToRequestResponseDto(Request request) {
-        return RequestDto.Response.builder()
-                .requestId(request.getRequestId())
-                .talkUrl(request.getTalkUrl())
-                .title(request.getTitle())
-                .content(request.getContent())
-                .bookTitle(request.getBookTitle())
-                .author(request.getAuthor())
-                .publisher(request.getPublisher())
-                .displayName(request.getMember().getDisplayName())
-                .requestComments(request.getRequestComments())
-                .createdAt(request.getCreatedAt())
-                .modifiedAt(request.getModifiedAt())
-                .build();
+        if (request == null) {
+            return null;
+        }
+        RequestDto.Response response = new RequestDto.Response();
+                response.setRequestId(request.getRequestId());
+                response.setTalkUrl(request.getTalkUrl());
+                response.setTitle(request.getTitle());
+                response.setContent(request.getContent());
+                response.setBookTitle(request.getBookTitle());
+                response.setAuthor(request.getAuthor());
+                response.setPublisher(request.getPublisher());
+                response.setDisplayName(request.getMember().getDisplayName());
+                response.setRequestComments(request.getRequestComments().stream()
+                        .map(requestComment -> recoMapper.requestCommentToRequestCommentResponseDto(requestComment))
+                        .collect(Collectors.toList()));
+                response.setCreatedAt(request.getCreatedAt());
+                response.setModifiedAt(request.getModifiedAt());
+        return response;
     }
 
-    Request requestPatchDtoToRequest(RequestDto.Patch requestPatchDto);
 
-    List<RequestDto.Response> requestsToRequestResponseDtos(List<Request> myRequests);
+
+    default List<RequestDto.Response> requestsToRequestResponseDtos(List<Request> requests) {
+        if ( requests == null ) {
+            return null;
+        }
+
+        List<RequestDto.Response> list = new ArrayList<RequestDto.Response>( requests.size() );
+        for ( Request request : requests ) {
+            RequestDto.Response response = requestToRequestResponseDto( request );
+            response.setRequestComments(null);
+            list.add(response);
+        }
+        return list;
+    }
 }

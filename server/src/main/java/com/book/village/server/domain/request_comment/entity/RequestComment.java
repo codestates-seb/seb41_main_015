@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class RequestComment extends Auditable {
@@ -32,8 +31,4 @@ public class RequestComment extends Auditable {
     @ManyToOne
     @JoinColumn(name = "REQUEST_ID")
     private Request request;
-
-    public RequestComment(String content) {
-        this.content = content;
-    }
 }

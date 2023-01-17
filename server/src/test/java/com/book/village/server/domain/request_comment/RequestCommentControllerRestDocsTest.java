@@ -1,4 +1,4 @@
-package com.book.village.server.domain.requestComment;
+package com.book.village.server.domain.request_comment;
 
 import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.domain.request.controller.RequestController;
@@ -80,7 +80,7 @@ public class RequestCommentControllerRestDocsTest {
                 "content1",
                 "displayName1",
                 createdAt,
-                createdAt
+                modifiedAt
         );
         given(mapper.requestCommentPostDtoToRequestComment(Mockito.any(RequestCommentDto.Post.class))).willReturn(new RequestComment());
         given(commentService.createRequestComment(Mockito.any(RequestComment.class), Mockito.anyString(), Mockito.anyLong())).willReturn(new RequestComment());

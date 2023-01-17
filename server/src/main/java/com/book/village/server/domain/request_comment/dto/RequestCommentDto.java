@@ -11,9 +11,7 @@ public class RequestCommentDto {
     @AllArgsConstructor
     @Getter
     @Setter
-    @Builder
     public static class Post {
-        @NotBlank
         @Lob
         private String content;
     }
@@ -21,11 +19,9 @@ public class RequestCommentDto {
     @AllArgsConstructor
     @Getter
     @Setter
-    @Builder
     public static class Response {
-        private long requestId;
+        private Long requestCommentId;
 
-        @NotBlank
         @Lob
         private String content;
 
