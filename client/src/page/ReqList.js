@@ -32,6 +32,7 @@ const ReqList = () => {
       // type이 없고 검색어도 없을 땐 아무것도 하지 않기
       if (!type && !keyword) return;
 
+      // 둘 중 하나라도 입력한 경우에는 경고창 띄우기
       if (type && !keyword) {
         alert('검색어를 입력해주세요.');
         return;
@@ -46,8 +47,6 @@ const ReqList = () => {
       setTitle(`'${keyword}'에 대한 검색 결과입니다.`);
       setKeyword('');
 
-      // 검색 정보를 서버로 보내고
-      // data를 그 정보로 업데이트하면 상태가 변경되므로 알아서 리렌더링 발생
       // axios
       //   .get(url + `v1/borrow/search?field=${type}&keyword=${keyword}`)
       //   .then((res) => setData(res.data))

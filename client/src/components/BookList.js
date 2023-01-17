@@ -94,7 +94,7 @@ const SBookList = styled.ol`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  float: left;
+  /* float: left; */
   width: 100%;
   margin: 0 auto;
   padding-inline-start: 0px;

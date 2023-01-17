@@ -1,15 +1,23 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
 import shareListData from '../data/shareListData.json';
 import ListHigh from '../components/ListHigh';
 import BookList from '../components/BookList';
+import Paging from '../components/Paging';
 
 const ShareList = () => {
   const [title, setTitle] = useState('현재 빌리지에 올라온 목록입니다!');
   const [keyword, setKeyword] = useState('');
   const [type, setType] = useState('');
-  // 초기값은 더미데이터
+
+  // 한 페이지에 들어갈 데이터 (페이지가 바뀔 때마다 get으로 받아옴)
+  const [items, setItems] = useState([]);
+  const [page, setPage] = useState(1);
+  const handlePageChange = (page) => {
+    setPage(page);
+  };
+
+  // 총 데이터
   const [data, setData] = useState(shareListData.books);
 
   // const url = 'https://serverbookvillage.kro.kr/';
@@ -34,6 +42,7 @@ const ShareList = () => {
       // type이 없고 검색어도 없을 땐 아무것도 하지 않기
       if (!type && !keyword) return;
 
+      // 둘 중 하나라도 입력한 경우에는 경고창 띄우기
       if (type && !keyword) {
         alert('검색어를 입력해주세요.');
         return;
@@ -48,9 +57,6 @@ const ShareList = () => {
       setTitle(`'${keyword}'에 대한 검색 결과입니다.`);
       setKeyword('');
 
-      // 검색 정보를 서버로 보내고
-      // input도 비워버리기
-      // data를 그 정보로 업데이트하면 상태가 변경되므로 알아서 리렌더링 발생
       // axios
       //   .get(url + `v1/borrow/search?field=${type}&keyword=${keyword}`)
       //   .then((res) => setData(res.data))
@@ -74,6 +80,12 @@ const ShareList = () => {
         handleOption={handleOption}
       />
       <BookList data={data} page="share" />
+      {/* 데이터의 총 길이가 필요함..! */}
+      <Paging
+        page={page}
+        count={data.length}
+        handlePageChange={handlePageChange}
+      />
     </>
   );
 };
