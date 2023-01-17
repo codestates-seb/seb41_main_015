@@ -44,7 +44,7 @@ public class RequestCommentService {
             beanUtils.copyNonNullProperties(requestComment, findRequestComment);
             return requestCommentRepository.save(findRequestComment);
         }
-        throw new CustomLogicException(ExceptionCode.REQUEST_WRITER_NOT_MATCH);
+        throw new CustomLogicException(ExceptionCode.REQUEST_COMMENT_USER_DIFFERENT);
     }
 
     public RequestComment findRequestComment(long requestCommentId) {
@@ -62,14 +62,14 @@ public class RequestCommentService {
             requestCommentRepository.delete(requestComment);
             return ;
         }
-        throw new CustomLogicException(ExceptionCode.REQUEST_WRITER_NOT_MATCH);
+        throw new CustomLogicException(ExceptionCode.REQUEST_COMMENT_USER_DIFFERENT);
     }
 
     private RequestComment findVerifiedRequestComment(long requestCommentId) {
         Optional<RequestComment> optionalrequestComment = requestCommentRepository.findById(requestCommentId);
         RequestComment requestComment =
                 optionalrequestComment.orElseThrow(()->
-                        new CustomLogicException(ExceptionCode.REQUEST_NOT_FOUND));
+                        new CustomLogicException(ExceptionCode.REQUEST_COMMENT_NOT_FOUND));
         return requestComment;
     }
 }

@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class RequestCommentDto {
 
     @AllArgsConstructor
+    @NoArgsConstructor
     @Getter
     @Setter
     public static class Post {
@@ -17,6 +18,7 @@ public class RequestCommentDto {
     }
 
     @AllArgsConstructor
+    @NoArgsConstructor
     @Getter
     @Setter
     public static class Response {

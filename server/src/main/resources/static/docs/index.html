@@ -462,32 +462,46 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_요청_등록">3.1. 요청 등록</a></li>
 <li><a href="#_요청_수정">3.2. 요청 수정</a></li>
+<li><a href="#_요청_조회">3.3. 요청 조회</a></li>
+<li><a href="#_모든_요청_조회">3.4. 모든 요청 조회</a></li>
+<li><a href="#_나의_요청_조회">3.5. 나의 요청 조회</a></li>
+<li><a href="#_요청_검색">3.6. 요청 검색</a></li>
+<li><a href="#_요청_삭제">3.7. 요청 삭제</a></li>
 </ul>
 </li>
-<li><a href="#_borrowcontroller">4. BorrowController</a>
+<li><a href="#_requestcommentcontroller">4. RequestCommentController</a>
 <ul class="sectlevel2">
-<li><a href="#_나눔글_등록">4.1. 나눔글 등록</a></li>
-<li><a href="#_나눔_수정">4.2. 나눔 수정</a></li>
+<li><a href="#_요청_댓글_등록">4.1. 요청 댓글 등록</a></li>
+<li><a href="#_요청_댓글_수정">4.2. 요청 댓글 수정</a></li>
+<li><a href="#_요청_댓글_조회">4.3. 요청 댓글 조회</a></li>
+<li><a href="#_나의_모든_요청_댓글_조회">4.4. 나의 모든 요청 댓글 조회</a></li>
+<li><a href="#_요청_댓글_삭제">4.5. 요청 댓글 삭제</a></li>
 </ul>
 </li>
-<li><a href="#_communitycontroller">5. CommunityController</a>
+<li><a href="#_borrowcontroller">5. BorrowController</a>
 <ul class="sectlevel2">
-<li><a href="#_커뮤니티_등록">5.1. 커뮤니티 등록</a></li>
-<li><a href="#_커뮤니티_수정">5.2. 커뮤니티 수정</a></li>
-<li><a href="#_커뮤니티_조회">5.3. 커뮤니티 조회</a></li>
-<li><a href="#_모든_커뮤니티_조회">5.4. 모든 커뮤니티 조회</a></li>
-<li><a href="#_나의_모든_커뮤니티_조회">5.5. 나의 모든 커뮤니티 조회</a></li>
-<li><a href="#_커뮤니티_삭제">5.6. 커뮤니티 삭제</a></li>
-<li><a href="#_커뮤니티_검색">5.7. 커뮤니티 검색</a></li>
+<li><a href="#_나눔글_등록">5.1. 나눔글 등록</a></li>
+<li><a href="#_나눔_수정">5.2. 나눔 수정</a></li>
 </ul>
 </li>
-<li><a href="#_communitycommentcontroller">6. CommunityCommentController</a>
+<li><a href="#_communitycontroller">6. CommunityController</a>
 <ul class="sectlevel2">
-<li><a href="#_커뮤니티_댓글_등록">6.1. 커뮤니티 댓글 등록</a></li>
-<li><a href="#_커뮤니티_댓글_수정">6.2. 커뮤니티 댓글 수정</a></li>
-<li><a href="#_커뮤니티_댓글_조회">6.3. 커뮤니티 댓글 조회</a></li>
-<li><a href="#_나의_모든_커뮤니티_댓글_조회">6.4. 나의 모든 커뮤니티 댓글 조회</a></li>
-<li><a href="#_커뮤니티_댓글_삭제">6.5. 커뮤니티 댓글 삭제</a></li>
+<li><a href="#_커뮤니티_등록">6.1. 커뮤니티 등록</a></li>
+<li><a href="#_커뮤니티_수정">6.2. 커뮤니티 수정</a></li>
+<li><a href="#_커뮤니티_조회">6.3. 커뮤니티 조회</a></li>
+<li><a href="#_모든_커뮤니티_조회">6.4. 모든 커뮤니티 조회</a></li>
+<li><a href="#_나의_모든_커뮤니티_조회">6.5. 나의 모든 커뮤니티 조회</a></li>
+<li><a href="#_커뮤니티_삭제">6.6. 커뮤니티 삭제</a></li>
+<li><a href="#_커뮤니티_검색">6.7. 커뮤니티 검색</a></li>
+</ul>
+</li>
+<li><a href="#_communitycommentcontroller">7. CommunityCommentController</a>
+<ul class="sectlevel2">
+<li><a href="#_커뮤니티_댓글_등록">7.1. 커뮤니티 댓글 등록</a></li>
+<li><a href="#_커뮤니티_댓글_수정">7.2. 커뮤니티 댓글 수정</a></li>
+<li><a href="#_커뮤니티_댓글_조회">7.3. 커뮤니티 댓글 조회</a></li>
+<li><a href="#_나의_모든_커뮤니티_댓글_조회">7.4. 나의 모든 커뮤니티 댓글 조회</a></li>
+<li><a href="#_커뮤니티_댓글_삭제">7.5. 커뮤니티 댓글 삭제</a></li>
 </ul>
 </li>
 </ul>
@@ -521,7 +535,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/members?_csrf=cd809a79-151b-4037-987a-c36f09b5ac36' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/members?_csrf=a4b914bf-4dfb-4729-b233-f614ba25581a' -i -X PATCH \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -537,7 +551,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/members?_csrf=cd809a79-151b-4037-987a-c36f09b5ac36 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/members?_csrf=a4b914bf-4dfb-4729-b233-f614ba25581a HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -635,7 +649,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 336
+Content-Length: 334
 
 {
   "data" : {
@@ -646,8 +660,8 @@ Content-Length: 336
     "address" : "address1",
     "phoneNumber" : "010-1234-5678",
     "memberStatus" : "활동중",
-    "createdAt" : "2023-01-16T12:00:28.6802245",
-    "modifiedAt" : "2023-01-16T12:00:28.6802245"
+    "createdAt" : "2023-01-17T19:20:43.417322",
+    "modifiedAt" : "2023-01-17T19:20:43.417322"
   }
 }</code></pre>
 </div>
@@ -731,8 +745,8 @@ Content-Length: 336
     "address" : "address1",
     "phoneNumber" : "010-1234-5678",
     "memberStatus" : "활동중",
-    "createdAt" : "2023-01-16T12:00:28.6802245",
-    "modifiedAt" : "2023-01-16T12:00:28.6802245"
+    "createdAt" : "2023-01-17T19:20:43.417322",
+    "modifiedAt" : "2023-01-17T19:20:43.417322"
   }
 }</code></pre>
 </div>
@@ -743,7 +757,7 @@ Content-Length: 336
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/members?_csrf=99a8759c-51a5-4de7-b6df-5439706e7949' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/members?_csrf=9668b215-1c46-4e64-abf2-ebfbb4b0d306' -i -X GET \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
@@ -752,7 +766,7 @@ Content-Length: 336
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/members?_csrf=99a8759c-51a5-4de7-b6df-5439706e7949 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/members?_csrf=9668b215-1c46-4e64-abf2-ebfbb4b0d306 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -803,8 +817,8 @@ Content-Length: 336
     "address" : "address1",
     "phoneNumber" : "010-1234-5678",
     "memberStatus" : "활동중",
-    "createdAt" : "2023-01-16T12:00:28.7932218",
-    "modifiedAt" : "2023-01-16T12:00:28.7932218"
+    "createdAt" : "2023-01-17T19:20:43.5233298",
+    "modifiedAt" : "2023-01-17T19:20:43.5233298"
   }
 }</code></pre>
 </div>
@@ -888,8 +902,8 @@ Content-Length: 336
     "address" : "address1",
     "phoneNumber" : "010-1234-5678",
     "memberStatus" : "활동중",
-    "createdAt" : "2023-01-16T12:00:28.7932218",
-    "modifiedAt" : "2023-01-16T12:00:28.7932218"
+    "createdAt" : "2023-01-17T19:20:43.5233298",
+    "modifiedAt" : "2023-01-17T19:20:43.5233298"
   }
 }</code></pre>
 </div>
@@ -904,7 +918,7 @@ Content-Length: 336
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
-    -d '_csrf=8047c546-a71f-4bdf-bf51-34d3d9db8864'</code></pre>
+    -d '_csrf=3efd78ed-6239-4eae-81b8-ba3bb36f9033'</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -916,7 +930,7 @@ Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
 Host: localhost:8080
 
-_csrf=8047c546-a71f-4bdf-bf51-34d3d9db8864</code></pre>
+_csrf=3efd78ed-6239-4eae-81b8-ba3bb36f9033</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1097,7 +1111,7 @@ Content-Length: 34
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcmlvbmNzeUBnbWFpbC5jb20iLCJpYXQiOjE2NzM0NDE1MzMsImV4cCI6MTY3MzQ2NjczM30.xxnf6XFYFvQfyCRTr0jFBK5sr7Ol2yDfQcTjQ4K7hiw' \
-    -d '_csrf=9943d1df-883b-4c43-9400-375c6a3c95e3'</code></pre>
+    -d '_csrf=71df91f8-05c5-4707-867b-3307ae6185e6'</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1109,7 +1123,7 @@ Accept: application/json
 Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcmlvbmNzeUBnbWFpbC5jb20iLCJpYXQiOjE2NzM0NDE1MzMsImV4cCI6MTY3MzQ2NjczM30.xxnf6XFYFvQfyCRTr0jFBK5sr7Ol2yDfQcTjQ4K7hiw
 Host: localhost:8080
 
-_csrf=9943d1df-883b-4c43-9400-375c6a3c95e3</code></pre>
+_csrf=71df91f8-05c5-4707-867b-3307ae6185e6</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1182,7 +1196,7 @@ Content-Length: 35
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests?_csrf=155217cc-3a73-4035-a7a4-3b72fd96f60e' -i -X POST \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests?_csrf=5e08efd5-85d6-4ebd-b3ab-016f65d17e1f' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -1199,7 +1213,7 @@ Content-Length: 35
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/requests?_csrf=155217cc-3a73-4035-a7a4-3b72fd96f60e HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/requests?_csrf=5e08efd5-85d6-4ebd-b3ab-016f65d17e1f HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -1328,7 +1342,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 351
+Content-Length: 810
 
 {
   "data" : {
@@ -1340,8 +1354,21 @@ Content-Length: 351
     "author" : "author",
     "publisher" : "publisher",
     "displayName" : "displayName",
-    "createdAt" : "2023-01-16T12:00:34.6001951",
-    "modifiedAt" : "2023-01-16T12:00:34.6001951"
+    "requestComments" : [ {
+      "requestCommentId" : 1,
+      "content" : "content1",
+      "displayName" : "displayName1",
+      "createdAt" : "2023-01-17T19:20:47.3692235",
+      "modifiedAt" : "2023-01-17T19:20:47.3692235"
+    }, {
+      "requestCommentId" : 2,
+      "content" : "content2",
+      "displayName" : "displayName2",
+      "createdAt" : "2023-01-17T19:20:47.3692235",
+      "modifiedAt" : "2023-01-17T19:20:47.3692235"
+    } ],
+    "createdAt" : "2023-01-17T19:20:47.3692235",
+    "modifiedAt" : "2023-01-17T19:20:47.3692235"
   }
 }</code></pre>
 </div>
@@ -1416,6 +1443,36 @@ Content-Length: 351
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">요청 수정 일자</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].requestCommentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 수정 일자</p></td>
+</tr>
 </tbody>
 </table>
 <div class="listingblock">
@@ -1431,8 +1488,21 @@ Content-Length: 351
     "author" : "author",
     "publisher" : "publisher",
     "displayName" : "displayName",
-    "createdAt" : "2023-01-16T12:00:34.6001951",
-    "modifiedAt" : "2023-01-16T12:00:34.6001951"
+    "requestComments" : [ {
+      "requestCommentId" : 1,
+      "content" : "content1",
+      "displayName" : "displayName1",
+      "createdAt" : "2023-01-17T19:20:47.3692235",
+      "modifiedAt" : "2023-01-17T19:20:47.3692235"
+    }, {
+      "requestCommentId" : 2,
+      "content" : "content2",
+      "displayName" : "displayName2",
+      "createdAt" : "2023-01-17T19:20:47.3692235",
+      "modifiedAt" : "2023-01-17T19:20:47.3692235"
+    } ],
+    "createdAt" : "2023-01-17T19:20:47.3692235",
+    "modifiedAt" : "2023-01-17T19:20:47.3692235"
   }
 }</code></pre>
 </div>
@@ -1443,7 +1513,7 @@ Content-Length: 351
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/1?_csrf=1da41dc4-735f-4afe-abb1-d28fa15d2599' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/1?_csrf=f4a08910-132b-4fbd-89a1-363cfb081547' -i -X PATCH \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -1461,7 +1531,7 @@ Content-Length: 351
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/requests/1?_csrf=1da41dc4-735f-4afe-abb1-d28fa15d2599 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/requests/1?_csrf=f4a08910-132b-4fbd-89a1-363cfb081547 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -1616,7 +1686,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 351
+Content-Length: 804
 
 {
   "data" : {
@@ -1628,8 +1698,21 @@ Content-Length: 351
     "author" : "author",
     "publisher" : "publisher",
     "displayName" : "displayName",
-    "createdAt" : "2023-01-16T12:00:34.4701993",
-    "modifiedAt" : "2023-01-16T12:00:34.4701993"
+    "requestComments" : [ {
+      "requestCommentId" : 1,
+      "content" : "content1",
+      "displayName" : "displayName1",
+      "createdAt" : "2023-01-17T19:20:47.126189",
+      "modifiedAt" : "2023-01-17T19:20:47.126189"
+    }, {
+      "requestCommentId" : 2,
+      "content" : "content2",
+      "displayName" : "displayName2",
+      "createdAt" : "2023-01-17T19:20:47.126189",
+      "modifiedAt" : "2023-01-17T19:20:47.126189"
+    } ],
+    "createdAt" : "2023-01-17T19:20:47.126189",
+    "modifiedAt" : "2023-01-17T19:20:47.126189"
   }
 }</code></pre>
 </div>
@@ -1704,6 +1787,36 @@ Content-Length: 351
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">요청 수정 일자</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].requestCommentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 수정 일자</p></td>
+</tr>
 </tbody>
 </table>
 <div class="listingblock">
@@ -1719,62 +1832,526 @@ Content-Length: 351
     "author" : "author",
     "publisher" : "publisher",
     "displayName" : "displayName",
-    "createdAt" : "2023-01-16T12:00:34.4701993",
-    "modifiedAt" : "2023-01-16T12:00:34.4701993"
+    "requestComments" : [ {
+      "requestCommentId" : 1,
+      "content" : "content1",
+      "displayName" : "displayName1",
+      "createdAt" : "2023-01-17T19:20:47.126189",
+      "modifiedAt" : "2023-01-17T19:20:47.126189"
+    }, {
+      "requestCommentId" : 2,
+      "content" : "content2",
+      "displayName" : "displayName2",
+      "createdAt" : "2023-01-17T19:20:47.126189",
+      "modifiedAt" : "2023-01-17T19:20:47.126189"
+    } ],
+    "createdAt" : "2023-01-17T19:20:47.126189",
+    "modifiedAt" : "2023-01-17T19:20:47.126189"
   }
 }</code></pre>
 </div>
 </div>
-<hr>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_borrowcontroller">4. BorrowController</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_나눔글_등록">4.1. 나눔글 등록</h3>
+<h3 id="_요청_조회">3.3. 요청 조회</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/borrow?_csrf=a4a296df-46f4-4ba7-a599-b7edee02cef6' -i -X POST \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/1' -i -X GET \
     -H 'Content-Type: application/json;charset=UTF-8' \
-    -H 'Accept: application/json' \
-    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
-    -d '{
-  "title" : "title",
-  "content" : "content",
-  "bookTitle" : "bookTitle",
-  "author" : "author",
-  "publisher" : "publisher",
-  "displayName" : "displayName",
-  "talkUrl" : "talkUrl"
-}'</code></pre>
+    -H 'Accept: application/json'</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/borrow?_csrf=a4a296df-46f4-4ba7-a599-b7edee02cef6 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/requests/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
-Content-Length: 195
-Host: localhost:8080
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 21. /v1/requests/{request-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>request-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 810
 
 {
-  "title" : "title",
-  "content" : "content",
-  "bookTitle" : "bookTitle",
-  "author" : "author",
-  "publisher" : "publisher",
-  "displayName" : "displayName",
-  "talkUrl" : "talkUrl"
+  "data" : {
+    "requestId" : 1,
+    "talkUrl" : "talkUrl",
+    "title" : "title",
+    "content" : "content",
+    "bookTitle" : "bookTitle",
+    "author" : "author",
+    "publisher" : "publisher",
+    "displayName" : "displayName",
+    "requestComments" : [ {
+      "requestCommentId" : 1,
+      "content" : "content1",
+      "displayName" : "displayName1",
+      "createdAt" : "2023-01-17T19:20:47.1911903",
+      "modifiedAt" : "2023-01-17T19:20:47.1911903"
+    }, {
+      "requestCommentId" : 2,
+      "content" : "content2",
+      "displayName" : "displayName2",
+      "createdAt" : "2023-01-17T19:20:47.1911903",
+      "modifiedAt" : "2023-01-17T19:20:47.1911903"
+    } ],
+    "createdAt" : "2023-01-17T19:20:47.1911903",
+    "modifiedAt" : "2023-01-17T19:20:47.1911903"
+  }
 }</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 21. request-headers</caption>
+<caption class="title">Table 22. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">결과 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.talkUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">오픈톡 링크</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 본문</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.bookTitle</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">책 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.author</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">저자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.publisher</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">출판사</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 닉네임</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 수정 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].requestCommentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestComments.[].modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 수정 일자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "data" : {
+    "requestId" : 1,
+    "talkUrl" : "talkUrl",
+    "title" : "title",
+    "content" : "content",
+    "bookTitle" : "bookTitle",
+    "author" : "author",
+    "publisher" : "publisher",
+    "displayName" : "displayName",
+    "requestComments" : [ {
+      "requestCommentId" : 1,
+      "content" : "content1",
+      "displayName" : "displayName1",
+      "createdAt" : "2023-01-17T19:20:47.1911903",
+      "modifiedAt" : "2023-01-17T19:20:47.1911903"
+    }, {
+      "requestCommentId" : 2,
+      "content" : "content2",
+      "displayName" : "displayName2",
+      "createdAt" : "2023-01-17T19:20:47.1911903",
+      "modifiedAt" : "2023-01-17T19:20:47.1911903"
+    } ],
+    "createdAt" : "2023-01-17T19:20:47.1911903",
+    "modifiedAt" : "2023-01-17T19:20:47.1911903"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_모든_요청_조회">3.4. 모든 요청 조회</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests?page=0&amp;size=10&amp;sort=createdAt%2Cdesc' -i -X GET \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/requests?page=0&amp;size=10&amp;sort=createdAt%2Cdesc HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 23. request-parameters</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 사이즈</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sort</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">정렬 기준[createdAt,desc]</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 953
+
+{
+  "data" : [ {
+    "requestId" : 1,
+    "talkUrl" : "talkUrl1",
+    "title" : "title1",
+    "content" : "content1",
+    "bookTitle" : "bookTitle1",
+    "author" : "author1",
+    "publisher" : "publisher1",
+    "displayName" : "displayName1",
+    "requestComments" : null,
+    "createdAt" : "2023-01-17T19:20:47.0631938",
+    "modifiedAt" : "2023-01-17T19:20:47.0631938"
+  }, {
+    "requestId" : 2,
+    "talkUrl" : "talkUrl2",
+    "title" : "title2",
+    "content" : "content2",
+    "bookTitle" : "bookTitle2",
+    "author" : "author2",
+    "publisher" : "publisher2",
+    "displayName" : "displayName2",
+    "requestComments" : null,
+    "createdAt" : "2023-01-17T19:20:47.0631938",
+    "modifiedAt" : "2023-01-17T19:20:47.0631938"
+  } ],
+  "pageInfo" : {
+    "currentPage" : 0,
+    "totalPage" : 1,
+    "totalElements" : 2,
+    "pageSize" : 10,
+    "currentElements" : 2,
+    "first" : true,
+    "last" : true
+  }
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 24. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">결과 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].requestId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].talkUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">오픈톡 링크</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 본문</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].bookTitle</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">책 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].author</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">저자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].publisher</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">출판사</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 닉네임</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 수정 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].requestComments</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.currentPage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.totalPage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">총 페이지 수</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.totalElements</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">총 데이터 수</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.pageSize</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 사이즈</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.first</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">첫 페이지 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.last</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">마지막 페이지 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.currentElements</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">현재 페이지 데이터 수</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "data" : [ {
+    "requestId" : 1,
+    "talkUrl" : "talkUrl1",
+    "title" : "title1",
+    "content" : "content1",
+    "bookTitle" : "bookTitle1",
+    "author" : "author1",
+    "publisher" : "publisher1",
+    "displayName" : "displayName1",
+    "requestComments" : null,
+    "createdAt" : "2023-01-17T19:20:47.0631938",
+    "modifiedAt" : "2023-01-17T19:20:47.0631938"
+  }, {
+    "requestId" : 2,
+    "talkUrl" : "talkUrl2",
+    "title" : "title2",
+    "content" : "content2",
+    "bookTitle" : "bookTitle2",
+    "author" : "author2",
+    "publisher" : "publisher2",
+    "displayName" : "displayName2",
+    "requestComments" : null,
+    "createdAt" : "2023-01-17T19:20:47.0631938",
+    "modifiedAt" : "2023-01-17T19:20:47.0631938"
+  } ],
+  "pageInfo" : {
+    "currentPage" : 0,
+    "totalPage" : 1,
+    "totalElements" : 2,
+    "pageSize" : 10,
+    "currentElements" : 2,
+    "first" : true,
+    "last" : true
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_나의_요청_조회">3.5. 나의 요청 조회</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/mine?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=88741303-23ab-4ebf-aaca-1270f675732a' -i -X GET \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/requests/mine?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=88741303-23ab-4ebf-aaca-1270f675732a HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 25. request-headers</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1793,7 +2370,1387 @@ Host: localhost:8080
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 22. request-parameters</caption>
+<caption class="title">Table 26. request-parameters</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 사이즈</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sort</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">정렬 기준[createdAt,desc]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_csrf</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">csrf</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 949
+
+{
+  "data" : [ {
+    "requestId" : 1,
+    "talkUrl" : "talkUrl1",
+    "title" : "title1",
+    "content" : "content1",
+    "bookTitle" : "bookTitle1",
+    "author" : "author1",
+    "publisher" : "publisher1",
+    "displayName" : "displayName1",
+    "requestComments" : null,
+    "createdAt" : "2023-01-17T19:20:47.235187",
+    "modifiedAt" : "2023-01-17T19:20:47.235187"
+  }, {
+    "requestId" : 2,
+    "talkUrl" : "talkUrl2",
+    "title" : "title2",
+    "content" : "content2",
+    "bookTitle" : "bookTitle2",
+    "author" : "author2",
+    "publisher" : "publisher2",
+    "displayName" : "displayName2",
+    "requestComments" : null,
+    "createdAt" : "2023-01-17T19:20:47.235187",
+    "modifiedAt" : "2023-01-17T19:20:47.235187"
+  } ],
+  "pageInfo" : {
+    "currentPage" : 0,
+    "totalPage" : 1,
+    "totalElements" : 2,
+    "pageSize" : 10,
+    "currentElements" : 2,
+    "first" : true,
+    "last" : true
+  }
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 27. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">결과 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].requestId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].talkUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">오픈톡 링크</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 본문</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].bookTitle</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">책 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].author</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">저자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].publisher</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">출판사</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 닉네임</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 수정 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].requestComments</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.currentPage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.totalPage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">총 페이지 수</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.totalElements</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">총 데이터 수</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.pageSize</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 사이즈</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.first</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">첫 페이지 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.last</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">마지막 페이지 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.currentElements</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">현재 페이지 데이터 수</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "data" : [ {
+    "requestId" : 1,
+    "talkUrl" : "talkUrl1",
+    "title" : "title1",
+    "content" : "content1",
+    "bookTitle" : "bookTitle1",
+    "author" : "author1",
+    "publisher" : "publisher1",
+    "displayName" : "displayName1",
+    "requestComments" : null,
+    "createdAt" : "2023-01-17T19:20:47.235187",
+    "modifiedAt" : "2023-01-17T19:20:47.235187"
+  }, {
+    "requestId" : 2,
+    "talkUrl" : "talkUrl2",
+    "title" : "title2",
+    "content" : "content2",
+    "bookTitle" : "bookTitle2",
+    "author" : "author2",
+    "publisher" : "publisher2",
+    "displayName" : "displayName2",
+    "requestComments" : null,
+    "createdAt" : "2023-01-17T19:20:47.235187",
+    "modifiedAt" : "2023-01-17T19:20:47.235187"
+  } ],
+  "pageInfo" : {
+    "currentPage" : 0,
+    "totalPage" : 1,
+    "totalElements" : 2,
+    "pageSize" : 10,
+    "currentElements" : 2,
+    "first" : true,
+    "last" : true
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_요청_검색">3.6. 요청 검색</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/search?keyword=con&amp;field=content&amp;page=2&amp;size=1&amp;sort=createdAt%2Cdesc&amp;_csrf=bec6d6a7-ed6f-488d-90eb-10dca0becfe5' -i -X GET \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/requests/search?keyword=con&amp;field=content&amp;page=2&amp;size=1&amp;sort=createdAt%2Cdesc&amp;_csrf=bec6d6a7-ed6f-488d-90eb-10dca0becfe5 HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 28. request-parameters</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>keyword</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">검색어</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>field</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">검색 대상[displayName, title, content, bookTitle, author, publisher]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 사이즈</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sort</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">정렬 기준[createdAt,desc]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_csrf</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">csrf</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 953
+
+{
+  "data" : [ {
+    "requestId" : 1,
+    "talkUrl" : "talkUrl1",
+    "title" : "title1",
+    "content" : "content1",
+    "bookTitle" : "bookTitle1",
+    "author" : "author1",
+    "publisher" : "publisher1",
+    "displayName" : "displayName1",
+    "requestComments" : null,
+    "createdAt" : "2023-01-17T19:20:47.3261848",
+    "modifiedAt" : "2023-01-17T19:20:47.3261848"
+  }, {
+    "requestId" : 2,
+    "talkUrl" : "talkUrl2",
+    "title" : "title2",
+    "content" : "content2",
+    "bookTitle" : "bookTitle2",
+    "author" : "author2",
+    "publisher" : "publisher2",
+    "displayName" : "displayName2",
+    "requestComments" : null,
+    "createdAt" : "2023-01-17T19:20:47.3261848",
+    "modifiedAt" : "2023-01-17T19:20:47.3261848"
+  } ],
+  "pageInfo" : {
+    "currentPage" : 0,
+    "totalPage" : 1,
+    "totalElements" : 2,
+    "pageSize" : 10,
+    "currentElements" : 2,
+    "first" : true,
+    "last" : true
+  }
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 29. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">결과 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].requestId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].talkUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">오픈톡 링크</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 본문</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].bookTitle</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">책 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].author</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">저자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].publisher</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">출판사</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 닉네임</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 수정 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].requestComments</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.currentPage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.totalPage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">총 페이지 수</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.totalElements</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">총 데이터 수</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.pageSize</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 사이즈</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.first</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">첫 페이지 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.last</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">마지막 페이지 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.currentElements</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">현재 페이지 데이터 수</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "data" : [ {
+    "requestId" : 1,
+    "talkUrl" : "talkUrl1",
+    "title" : "title1",
+    "content" : "content1",
+    "bookTitle" : "bookTitle1",
+    "author" : "author1",
+    "publisher" : "publisher1",
+    "displayName" : "displayName1",
+    "requestComments" : null,
+    "createdAt" : "2023-01-17T19:20:47.3261848",
+    "modifiedAt" : "2023-01-17T19:20:47.3261848"
+  }, {
+    "requestId" : 2,
+    "talkUrl" : "talkUrl2",
+    "title" : "title2",
+    "content" : "content2",
+    "bookTitle" : "bookTitle2",
+    "author" : "author2",
+    "publisher" : "publisher2",
+    "displayName" : "displayName2",
+    "requestComments" : null,
+    "createdAt" : "2023-01-17T19:20:47.3261848",
+    "modifiedAt" : "2023-01-17T19:20:47.3261848"
+  } ],
+  "pageInfo" : {
+    "currentPage" : 0,
+    "totalPage" : 1,
+    "totalElements" : 2,
+    "pageSize" : 10,
+    "currentElements" : 2,
+    "first" : true,
+    "last" : true
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_요청_삭제">3.7. 요청 삭제</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/1?_csrf=89802826-c8e8-4a2c-a39f-57c38b6d9dc7' -i -X DELETE \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /v1/requests/1?_csrf=89802826-c8e8-4a2c-a39f-57c38b6d9dc7 HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 30. request-headers</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer Token</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 31. /v1/requests/{request-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>request-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY</code></pre>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_requestcommentcontroller">4. RequestCommentController</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_요청_댓글_등록">4.1. 요청 댓글 등록</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/comments/1?_csrf=265f3a40-f74e-490c-942c-03231d94d548' -i -X POST \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
+    -d '{
+  "content" : "content1"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/requests/comments/1?_csrf=265f3a40-f74e-490c-942c-03231d94d548 HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
+Content-Length: 30
+Host: localhost:8080
+
+{
+  "content" : "content1"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 32. request-headers</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer Token</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 33. /v1/requests/comments/{request-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>request-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 34. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "content" : "content1"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 218
+
+{
+  "data" : {
+    "requestCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-17T19:20:49.1471233",
+    "modifiedAt" : "2023-01-17T19:20:49.1471233"
+  }
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 35. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">결과 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestCommentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 댓글 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 수정 일자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "data" : {
+    "requestCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-17T19:20:49.1471233",
+    "modifiedAt" : "2023-01-17T19:20:49.1471233"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_요청_댓글_수정">4.2. 요청 댓글 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/comments/1?_csrf=7c8a7a6b-8574-4cef-98c0-3df7ef6ce15b' -i -X PATCH \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
+    -d '{
+  "requestCommentId" : 1,
+  "content" : "content1"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/requests/comments/1?_csrf=7c8a7a6b-8574-4cef-98c0-3df7ef6ce15b HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
+Content-Length: 57
+Host: localhost:8080
+
+{
+  "requestCommentId" : 1,
+  "content" : "content1"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 36. request-headers</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer Token</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 37. /v1/requests/comments/{requestComment-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>requestComment-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 댓글 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 38. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "requestCommentId" : 1,
+  "content" : "content1"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 216
+
+{
+  "data" : {
+    "requestCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-17T19:20:49.238125",
+    "modifiedAt" : "2023-01-17T19:20:49.238125"
+  }
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 39. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">결과 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestCommentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 댓글 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 수정 일자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "data" : {
+    "requestCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-17T19:20:49.238125",
+    "modifiedAt" : "2023-01-17T19:20:49.238125"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_요청_댓글_조회">4.3. 요청 댓글 조회</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/comments/1?_csrf=0520eabb-e572-4cad-b46d-72d1ee0cb648' -i -X GET \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/requests/comments/1?_csrf=0520eabb-e572-4cad-b46d-72d1ee0cb648 HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 40. /v1/requests/comments/{requestComment-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>requestComment-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 댓글 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 216
+
+{
+  "data" : {
+    "requestCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-17T19:20:49.197116",
+    "modifiedAt" : "2023-01-17T19:20:49.197116"
+  }
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 41. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">결과 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.requestCommentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 댓글 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 수정 일자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "data" : {
+    "requestCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-17T19:20:49.197116",
+    "modifiedAt" : "2023-01-17T19:20:49.197116"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_나의_모든_요청_댓글_조회">4.4. 나의 모든 요청 댓글 조회</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/comments/mine?_csrf=53f2b36e-3a05-4f14-a6a4-34d2778ddded' -i -X GET \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/requests/comments/mine?_csrf=53f2b36e-3a05-4f14-a6a4-34d2778ddded HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 42. request-headers</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer Token</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 425
+
+{
+  "data" : [ {
+    "requestCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-17T19:20:49.1011305",
+    "modifiedAt" : "2023-01-17T19:20:49.1011305"
+  }, {
+    "requestCommentId" : 2,
+    "content" : "content2",
+    "displayName" : "displayName2",
+    "createdAt" : "2023-01-16T19:20:49.1011305",
+    "modifiedAt" : "2023-01-16T19:20:49.1011305"
+  } ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 43. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">결과 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].requestCommentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 댓글 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].displayName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 생성 일자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.[].modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 수정 일자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "data" : [ {
+    "requestCommentId" : 1,
+    "content" : "content1",
+    "displayName" : "displayName1",
+    "createdAt" : "2023-01-17T19:20:49.1011305",
+    "modifiedAt" : "2023-01-17T19:20:49.1011305"
+  }, {
+    "requestCommentId" : 2,
+    "content" : "content2",
+    "displayName" : "displayName2",
+    "createdAt" : "2023-01-16T19:20:49.1011305",
+    "modifiedAt" : "2023-01-16T19:20:49.1011305"
+  } ]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_요청_댓글_삭제">4.5. 요청 댓글 삭제</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/requests/comments/1?_csrf=ac738a1f-1063-485c-bbb7-1aa278c0a4b7' -i -X DELETE \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /v1/requests/comments/1?_csrf=ac738a1f-1063-485c-bbb7-1aa278c0a4b7 HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 44. request-headers</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer Token</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 45. /v1/requests/comments/{requestComment-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>requestComment-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">요청 댓글 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY</code></pre>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_borrowcontroller">5. BorrowController</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_나눔글_등록">5.1. 나눔글 등록</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/borrow?_csrf=1c91c96e-76b8-4684-9281-ac01f21c4d4d' -i -X POST \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
+    -d '{
+  "title" : "title",
+  "content" : "content",
+  "bookTitle" : "bookTitle",
+  "author" : "author",
+  "publisher" : "publisher",
+  "displayName" : "displayName",
+  "talkUrl" : "talkUrl"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/borrow?_csrf=1c91c96e-76b8-4684-9281-ac01f21c4d4d HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
+Content-Length: 195
+Host: localhost:8080
+
+{
+  "title" : "title",
+  "content" : "content",
+  "bookTitle" : "bookTitle",
+  "author" : "author",
+  "publisher" : "publisher",
+  "displayName" : "displayName",
+  "talkUrl" : "talkUrl"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 46. request-headers</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer Token</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 47. request-parameters</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1812,7 +3769,7 @@ Host: localhost:8080
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 23. request-fields</caption>
+<caption class="title">Table 48. request-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -1891,7 +3848,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 348
+Content-Length: 350
 
 {
   "data" : {
@@ -1903,14 +3860,14 @@ Content-Length: 348
     "publisher" : "publisher",
     "displayName" : "displayName",
     "talkUrl" : "talkUrl",
-    "createdAt" : "2023-01-16T12:00:20.220276",
-    "modifiedAt" : "2023-01-16T12:00:20.220276"
+    "createdAt" : "2023-01-17T19:20:33.6116666",
+    "modifiedAt" : "2023-01-17T19:20:33.6116666"
   }
 }</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 24. response-fields</caption>
+<caption class="title">Table 49. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -1994,19 +3951,19 @@ Content-Length: 348
     "publisher" : "publisher",
     "displayName" : "displayName",
     "talkUrl" : "talkUrl",
-    "createdAt" : "2023-01-16T12:00:20.220276",
-    "modifiedAt" : "2023-01-16T12:00:20.220276"
+    "createdAt" : "2023-01-17T19:20:33.6116666",
+    "modifiedAt" : "2023-01-17T19:20:33.6116666"
   }
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_나눔_수정">4.2. 나눔 수정</h3>
+<h3 id="_나눔_수정">5.2. 나눔 수정</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/borrow/1?_csrf=8a0e38dd-609d-4396-902a-41d705447ae1' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/borrow/1?_csrf=3f328101-a6aa-40d1-97d9-e2c6cdf14461' -i -X PATCH \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -2024,7 +3981,7 @@ Content-Length: 348
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/borrow/1?_csrf=8a0e38dd-609d-4396-902a-41d705447ae1 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/borrow/1?_csrf=3f328101-a6aa-40d1-97d9-e2c6cdf14461 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -2043,7 +4000,7 @@ Host: localhost:8080
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 25. request-headers</caption>
+<caption class="title">Table 50. request-headers</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2062,7 +4019,7 @@ Host: localhost:8080
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 26. request-fields</caption>
+<caption class="title">Table 51. request-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -2109,7 +4066,7 @@ Host: localhost:8080
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 27. request-parameters</caption>
+<caption class="title">Table 52. request-parameters</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2128,7 +4085,7 @@ Host: localhost:8080
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 28. /v1/borrow/{borrow-id}</caption>
+<caption class="title">Table 53. /v1/borrow/{borrow-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2186,14 +4143,14 @@ Content-Length: 350
     "publisher" : "publisher",
     "displayName" : "displayName",
     "talkUrl" : "talkUrl",
-    "createdAt" : "2023-01-16T12:00:20.9172708",
-    "modifiedAt" : "2023-01-16T12:00:20.9172708"
+    "createdAt" : "2023-01-17T19:20:34.2406529",
+    "modifiedAt" : "2023-01-17T19:20:34.2406529"
   }
 }</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 29. response-fields</caption>
+<caption class="title">Table 54. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -2277,8 +4234,8 @@ Content-Length: 350
     "publisher" : "publisher",
     "displayName" : "displayName",
     "talkUrl" : "talkUrl",
-    "createdAt" : "2023-01-16T12:00:20.9172708",
-    "modifiedAt" : "2023-01-16T12:00:20.9172708"
+    "createdAt" : "2023-01-17T19:20:34.2406529",
+    "modifiedAt" : "2023-01-17T19:20:34.2406529"
   }
 }</code></pre>
 </div>
@@ -2288,14 +4245,14 @@ Content-Length: 350
 </div>
 </div>
 <div class="sect1">
-<h2 id="_communitycontroller">5. CommunityController</h2>
+<h2 id="_communitycontroller">6. CommunityController</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_커뮤니티_등록">5.1. 커뮤니티 등록</h3>
+<h3 id="_커뮤니티_등록">6.1. 커뮤니티 등록</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities?_csrf=5384e38b-903b-4a60-88c7-10fa9620df89' -i -X POST \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities?_csrf=cfe4b7db-9a9c-4b34-9e5f-342691865350' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -2310,7 +4267,7 @@ Content-Length: 350
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/communities?_csrf=5384e38b-903b-4a60-88c7-10fa9620df89 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/communities?_csrf=cfe4b7db-9a9c-4b34-9e5f-342691865350 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -2326,7 +4283,7 @@ Host: localhost:8080
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 30. request-headers</caption>
+<caption class="title">Table 55. request-headers</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2345,7 +4302,7 @@ Host: localhost:8080
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 31. request-fields</caption>
+<caption class="title">Table 56. request-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -2414,23 +4371,23 @@ Content-Length: 725
       "communityCommentId" : 1,
       "content" : "content1",
       "displayName" : "displayName1",
-      "createdAt" : "2023-01-16T12:00:23.7422572",
-      "modifiedAt" : "2023-01-16T12:00:23.7422572"
+      "createdAt" : "2023-01-17T19:20:37.6675247",
+      "modifiedAt" : "2023-01-17T19:20:37.6675247"
     }, {
       "communityCommentId" : 2,
       "content" : "content2",
       "displayName" : "displayName2",
-      "createdAt" : "2023-01-16T12:00:23.7422572",
-      "modifiedAt" : "2023-01-16T12:00:23.7422572"
+      "createdAt" : "2023-01-17T19:20:37.6675247",
+      "modifiedAt" : "2023-01-17T19:20:37.6675247"
     } ],
-    "createdAt" : "2023-01-16T12:00:23.7422572",
-    "modifiedAt" : "2023-01-16T12:00:23.7422572"
+    "createdAt" : "2023-01-17T19:20:37.6675247",
+    "modifiedAt" : "2023-01-17T19:20:37.6675247"
   }
 }</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 32. response-fields</caption>
+<caption class="title">Table 57. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -2530,28 +4487,28 @@ Content-Length: 725
       "communityCommentId" : 1,
       "content" : "content1",
       "displayName" : "displayName1",
-      "createdAt" : "2023-01-16T12:00:23.7422572",
-      "modifiedAt" : "2023-01-16T12:00:23.7422572"
+      "createdAt" : "2023-01-17T19:20:37.6675247",
+      "modifiedAt" : "2023-01-17T19:20:37.6675247"
     }, {
       "communityCommentId" : 2,
       "content" : "content2",
       "displayName" : "displayName2",
-      "createdAt" : "2023-01-16T12:00:23.7422572",
-      "modifiedAt" : "2023-01-16T12:00:23.7422572"
+      "createdAt" : "2023-01-17T19:20:37.6675247",
+      "modifiedAt" : "2023-01-17T19:20:37.6675247"
     } ],
-    "createdAt" : "2023-01-16T12:00:23.7422572",
-    "modifiedAt" : "2023-01-16T12:00:23.7422572"
+    "createdAt" : "2023-01-17T19:20:37.6675247",
+    "modifiedAt" : "2023-01-17T19:20:37.6675247"
   }
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_커뮤니티_수정">5.2. 커뮤니티 수정</h3>
+<h3 id="_커뮤니티_수정">6.2. 커뮤니티 수정</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/1?_csrf=b803bfdf-e524-44f6-bc81-347739a57482' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/1?_csrf=ebee9348-fe18-4fdd-b569-012ea7bbf0c8' -i -X PATCH \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -2567,7 +4524,7 @@ Content-Length: 725
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/communities/1?_csrf=b803bfdf-e524-44f6-bc81-347739a57482 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/communities/1?_csrf=ebee9348-fe18-4fdd-b569-012ea7bbf0c8 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -2584,7 +4541,7 @@ Host: localhost:8080
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 33. request-headers</caption>
+<caption class="title">Table 58. request-headers</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2603,7 +4560,7 @@ Host: localhost:8080
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 34. /v1/communities/{community-id}</caption>
+<caption class="title">Table 59. /v1/communities/{community-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2622,7 +4579,7 @@ Host: localhost:8080
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 35. request-fields</caption>
+<caption class="title">Table 60. request-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -2697,23 +4654,23 @@ Content-Length: 725
       "communityCommentId" : 1,
       "content" : "content1",
       "displayName" : "displayName1",
-      "createdAt" : "2023-01-16T12:00:23.9522649",
-      "modifiedAt" : "2023-01-16T12:00:23.9522649"
+      "createdAt" : "2023-01-17T19:20:38.2875057",
+      "modifiedAt" : "2023-01-17T19:20:38.2875057"
     }, {
       "communityCommentId" : 2,
       "content" : "content2",
       "displayName" : "displayName2",
-      "createdAt" : "2023-01-16T12:00:23.9522649",
-      "modifiedAt" : "2023-01-16T12:00:23.9522649"
+      "createdAt" : "2023-01-17T19:20:38.2875057",
+      "modifiedAt" : "2023-01-17T19:20:38.2875057"
     } ],
-    "createdAt" : "2023-01-16T12:00:23.9522649",
-    "modifiedAt" : "2023-01-16T12:00:23.9522649"
+    "createdAt" : "2023-01-17T19:20:38.2875057",
+    "modifiedAt" : "2023-01-17T19:20:38.2875057"
   }
 }</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 36. response-fields</caption>
+<caption class="title">Table 61. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -2813,28 +4770,28 @@ Content-Length: 725
       "communityCommentId" : 1,
       "content" : "content1",
       "displayName" : "displayName1",
-      "createdAt" : "2023-01-16T12:00:23.9522649",
-      "modifiedAt" : "2023-01-16T12:00:23.9522649"
+      "createdAt" : "2023-01-17T19:20:38.2875057",
+      "modifiedAt" : "2023-01-17T19:20:38.2875057"
     }, {
       "communityCommentId" : 2,
       "content" : "content2",
       "displayName" : "displayName2",
-      "createdAt" : "2023-01-16T12:00:23.9522649",
-      "modifiedAt" : "2023-01-16T12:00:23.9522649"
+      "createdAt" : "2023-01-17T19:20:38.2875057",
+      "modifiedAt" : "2023-01-17T19:20:38.2875057"
     } ],
-    "createdAt" : "2023-01-16T12:00:23.9522649",
-    "modifiedAt" : "2023-01-16T12:00:23.9522649"
+    "createdAt" : "2023-01-17T19:20:38.2875057",
+    "modifiedAt" : "2023-01-17T19:20:38.2875057"
   }
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_커뮤니티_조회">5.3. 커뮤니티 조회</h3>
+<h3 id="_커뮤니티_조회">6.3. 커뮤니티 조회</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/1?_csrf=192b19fe-a600-4df3-acea-fdbf490ba009' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/1?_csrf=51744a22-e873-45a0-9ee1-39b9c6a23db8' -i -X GET \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json'</code></pre>
 </div>
@@ -2842,14 +4799,14 @@ Content-Length: 725
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/1?_csrf=192b19fe-a600-4df3-acea-fdbf490ba009 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/1?_csrf=51744a22-e873-45a0-9ee1-39b9c6a23db8 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 37. /v1/communities/{community-id}</caption>
+<caption class="title">Table 62. /v1/communities/{community-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2894,23 +4851,23 @@ Content-Length: 725
       "communityCommentId" : 1,
       "content" : "content1",
       "displayName" : "displayName1",
-      "createdAt" : "2023-01-16T12:00:23.3752518",
-      "modifiedAt" : "2023-01-16T12:00:23.3752518"
+      "createdAt" : "2023-01-17T19:20:36.9685472",
+      "modifiedAt" : "2023-01-17T19:20:36.9685472"
     }, {
       "communityCommentId" : 2,
       "content" : "content2",
       "displayName" : "displayName2",
-      "createdAt" : "2023-01-16T12:00:23.3752518",
-      "modifiedAt" : "2023-01-16T12:00:23.3752518"
+      "createdAt" : "2023-01-17T19:20:36.9685472",
+      "modifiedAt" : "2023-01-17T19:20:36.9685472"
     } ],
-    "createdAt" : "2023-01-16T12:00:23.3752518",
-    "modifiedAt" : "2023-01-16T12:00:23.3752518"
+    "createdAt" : "2023-01-17T19:20:36.9685472",
+    "modifiedAt" : "2023-01-17T19:20:36.9685472"
   }
 }</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 38. response-fields</caption>
+<caption class="title">Table 63. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -3010,28 +4967,28 @@ Content-Length: 725
       "communityCommentId" : 1,
       "content" : "content1",
       "displayName" : "displayName1",
-      "createdAt" : "2023-01-16T12:00:23.3752518",
-      "modifiedAt" : "2023-01-16T12:00:23.3752518"
+      "createdAt" : "2023-01-17T19:20:36.9685472",
+      "modifiedAt" : "2023-01-17T19:20:36.9685472"
     }, {
       "communityCommentId" : 2,
       "content" : "content2",
       "displayName" : "displayName2",
-      "createdAt" : "2023-01-16T12:00:23.3752518",
-      "modifiedAt" : "2023-01-16T12:00:23.3752518"
+      "createdAt" : "2023-01-17T19:20:36.9685472",
+      "modifiedAt" : "2023-01-17T19:20:36.9685472"
     } ],
-    "createdAt" : "2023-01-16T12:00:23.3752518",
-    "modifiedAt" : "2023-01-16T12:00:23.3752518"
+    "createdAt" : "2023-01-17T19:20:36.9685472",
+    "modifiedAt" : "2023-01-17T19:20:36.9685472"
   }
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_모든_커뮤니티_조회">5.4. 모든 커뮤니티 조회</h3>
+<h3 id="_모든_커뮤니티_조회">6.4. 모든 커뮤니티 조회</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=4886f32e-8a2d-4412-a6a4-e2436d9d7ee8' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=2f737bfe-5f17-4fad-aa9f-c52e2b0d3b45' -i -X GET \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json'</code></pre>
 </div>
@@ -3039,14 +4996,14 @@ Content-Length: 725
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=4886f32e-8a2d-4412-a6a4-e2436d9d7ee8 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=2f737bfe-5f17-4fad-aa9f-c52e2b0d3b45 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 39. request-parameters</caption>
+<caption class="title">Table 64. request-parameters</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3090,7 +5047,7 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 761
+Content-Length: 757
 
 {
   "data" : [ {
@@ -3100,8 +5057,8 @@ Content-Length: 761
     "content" : "content1",
     "displayName" : "displayName1",
     "communityComments" : null,
-    "createdAt" : "2023-01-16T12:00:23.5022597",
-    "modifiedAt" : "2023-01-16T12:00:23.5022597"
+    "createdAt" : "2023-01-17T19:20:37.436539",
+    "modifiedAt" : "2023-01-17T19:20:37.436539"
   }, {
     "communityId" : 2,
     "type" : "free",
@@ -3109,8 +5066,8 @@ Content-Length: 761
     "content" : "content2",
     "displayName" : "displayName2",
     "communityComments" : null,
-    "createdAt" : "2023-01-15T12:00:23.5022597",
-    "modifiedAt" : "2023-01-15T12:00:23.5022597"
+    "createdAt" : "2023-01-16T19:20:37.436539",
+    "modifiedAt" : "2023-01-16T19:20:37.436539"
   } ],
   "pageInfo" : {
     "currentPage" : 0,
@@ -3125,7 +5082,7 @@ Content-Length: 761
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 40. response-fields</caption>
+<caption class="title">Table 65. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -3237,8 +5194,8 @@ Content-Length: 761
     "content" : "content1",
     "displayName" : "displayName1",
     "communityComments" : null,
-    "createdAt" : "2023-01-16T12:00:23.5022597",
-    "modifiedAt" : "2023-01-16T12:00:23.5022597"
+    "createdAt" : "2023-01-17T19:20:37.436539",
+    "modifiedAt" : "2023-01-17T19:20:37.436539"
   }, {
     "communityId" : 2,
     "type" : "free",
@@ -3246,8 +5203,8 @@ Content-Length: 761
     "content" : "content2",
     "displayName" : "displayName2",
     "communityComments" : null,
-    "createdAt" : "2023-01-15T12:00:23.5022597",
-    "modifiedAt" : "2023-01-15T12:00:23.5022597"
+    "createdAt" : "2023-01-16T19:20:37.436539",
+    "modifiedAt" : "2023-01-16T19:20:37.436539"
   } ],
   "pageInfo" : {
     "currentPage" : 0,
@@ -3263,11 +5220,11 @@ Content-Length: 761
 </div>
 </div>
 <div class="sect2">
-<h3 id="_나의_모든_커뮤니티_조회">5.5. 나의 모든 커뮤니티 조회</h3>
+<h3 id="_나의_모든_커뮤니티_조회">6.5. 나의 모든 커뮤니티 조회</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/mine?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=bf698713-2bf5-4273-b5ac-a52b185157a1' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/mine?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=791c7758-2a45-4b01-bb74-fbc1cd9a4ad4' -i -X GET \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
@@ -3276,7 +5233,7 @@ Content-Length: 761
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/mine?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=bf698713-2bf5-4273-b5ac-a52b185157a1 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/mine?page=0&amp;size=10&amp;sort=questionId%2Cdesc&amp;_csrf=791c7758-2a45-4b01-bb74-fbc1cd9a4ad4 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -3284,7 +5241,7 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 41. request-headers</caption>
+<caption class="title">Table 66. request-headers</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3303,7 +5260,7 @@ Host: localhost:8080</code></pre>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 42. request-parameters</caption>
+<caption class="title">Table 67. request-parameters</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3357,8 +5314,8 @@ Content-Length: 761
     "content" : "content1",
     "displayName" : "displayName1",
     "communityComments" : null,
-    "createdAt" : "2023-01-16T12:00:23.6572493",
-    "modifiedAt" : "2023-01-16T12:00:23.6572493"
+    "createdAt" : "2023-01-17T19:20:37.6065275",
+    "modifiedAt" : "2023-01-17T19:20:37.6065275"
   }, {
     "communityId" : 2,
     "type" : "free",
@@ -3366,8 +5323,8 @@ Content-Length: 761
     "content" : "content2",
     "displayName" : "displayName2",
     "communityComments" : null,
-    "createdAt" : "2023-01-15T12:00:23.6572493",
-    "modifiedAt" : "2023-01-15T12:00:23.6572493"
+    "createdAt" : "2023-01-16T19:20:37.6065275",
+    "modifiedAt" : "2023-01-16T19:20:37.6065275"
   } ],
   "pageInfo" : {
     "currentPage" : 0,
@@ -3382,7 +5339,7 @@ Content-Length: 761
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 43. response-fields</caption>
+<caption class="title">Table 68. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -3494,8 +5451,8 @@ Content-Length: 761
     "content" : "content1",
     "displayName" : "displayName1",
     "communityComments" : null,
-    "createdAt" : "2023-01-16T12:00:23.6572493",
-    "modifiedAt" : "2023-01-16T12:00:23.6572493"
+    "createdAt" : "2023-01-17T19:20:37.6065275",
+    "modifiedAt" : "2023-01-17T19:20:37.6065275"
   }, {
     "communityId" : 2,
     "type" : "free",
@@ -3503,8 +5460,8 @@ Content-Length: 761
     "content" : "content2",
     "displayName" : "displayName2",
     "communityComments" : null,
-    "createdAt" : "2023-01-15T12:00:23.6572493",
-    "modifiedAt" : "2023-01-15T12:00:23.6572493"
+    "createdAt" : "2023-01-16T19:20:37.6065275",
+    "modifiedAt" : "2023-01-16T19:20:37.6065275"
   } ],
   "pageInfo" : {
     "currentPage" : 0,
@@ -3520,11 +5477,11 @@ Content-Length: 761
 </div>
 </div>
 <div class="sect2">
-<h3 id="_커뮤니티_삭제">5.6. 커뮤니티 삭제</h3>
+<h3 id="_커뮤니티_삭제">6.6. 커뮤니티 삭제</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/1?_csrf=aaa4bde0-8fb9-4fc1-b4e8-6639e2e462ce' -i -X DELETE \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/1?_csrf=bda43020-1e9c-449e-afe9-c8f756503237' -i -X DELETE \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
@@ -3533,7 +5490,7 @@ Content-Length: 761
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /v1/communities/1?_csrf=aaa4bde0-8fb9-4fc1-b4e8-6639e2e462ce HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /v1/communities/1?_csrf=bda43020-1e9c-449e-afe9-c8f756503237 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -3541,7 +5498,7 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 44. request-headers</caption>
+<caption class="title">Table 69. request-headers</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3560,7 +5517,7 @@ Host: localhost:8080</code></pre>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 45. /v1/communities/{community-id}</caption>
+<caption class="title">Table 70. /v1/communities/{community-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3595,11 +5552,11 @@ X-Frame-Options: DENY</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_커뮤니티_검색">5.7. 커뮤니티 검색</h3>
+<h3 id="_커뮤니티_검색">6.7. 커뮤니티 검색</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/search?field=title&amp;keyword=this&amp;type=study&amp;page=0&amp;size=5&amp;sort=createdAt%2Cdesc&amp;_csrf=14b79962-ad7e-46ec-aa6b-d63a46885932' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/search?field=title&amp;keyword=this&amp;type=study&amp;page=0&amp;size=5&amp;sort=createdAt%2Cdesc&amp;_csrf=788d0fa4-53df-41f4-9c65-aec1bcd7d77a' -i -X GET \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json'</code></pre>
 </div>
@@ -3607,14 +5564,14 @@ X-Frame-Options: DENY</code></pre>
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/search?field=title&amp;keyword=this&amp;type=study&amp;page=0&amp;size=5&amp;sort=createdAt%2Cdesc&amp;_csrf=14b79962-ad7e-46ec-aa6b-d63a46885932 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/search?field=title&amp;keyword=this&amp;type=study&amp;page=0&amp;size=5&amp;sort=createdAt%2Cdesc&amp;_csrf=788d0fa4-53df-41f4-9c65-aec1bcd7d77a HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 46. request-parameters</caption>
+<caption class="title">Table 71. request-parameters</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3680,8 +5637,8 @@ Content-Length: 760
     "content" : "content1",
     "displayName" : "displayName1",
     "communityComments" : null,
-    "createdAt" : "2023-01-16T12:00:23.8602585",
-    "modifiedAt" : "2023-01-16T12:00:23.8602585"
+    "createdAt" : "2023-01-17T19:20:37.9895122",
+    "modifiedAt" : "2023-01-17T19:20:37.9895122"
   }, {
     "communityId" : 2,
     "type" : "free",
@@ -3689,8 +5646,8 @@ Content-Length: 760
     "content" : "content2",
     "displayName" : "displayName2",
     "communityComments" : null,
-    "createdAt" : "2023-01-15T12:00:23.8602585",
-    "modifiedAt" : "2023-01-15T12:00:23.8602585"
+    "createdAt" : "2023-01-16T19:20:37.9895122",
+    "modifiedAt" : "2023-01-16T19:20:37.9895122"
   } ],
   "pageInfo" : {
     "currentPage" : 0,
@@ -3705,7 +5662,7 @@ Content-Length: 760
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 47. response-fields</caption>
+<caption class="title">Table 72. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -3817,8 +5774,8 @@ Content-Length: 760
     "content" : "content1",
     "displayName" : "displayName1",
     "communityComments" : null,
-    "createdAt" : "2023-01-16T12:00:23.8602585",
-    "modifiedAt" : "2023-01-16T12:00:23.8602585"
+    "createdAt" : "2023-01-17T19:20:37.9895122",
+    "modifiedAt" : "2023-01-17T19:20:37.9895122"
   }, {
     "communityId" : 2,
     "type" : "free",
@@ -3826,8 +5783,8 @@ Content-Length: 760
     "content" : "content2",
     "displayName" : "displayName2",
     "communityComments" : null,
-    "createdAt" : "2023-01-15T12:00:23.8602585",
-    "modifiedAt" : "2023-01-15T12:00:23.8602585"
+    "createdAt" : "2023-01-16T19:20:37.9895122",
+    "modifiedAt" : "2023-01-16T19:20:37.9895122"
   } ],
   "pageInfo" : {
     "currentPage" : 0,
@@ -3846,14 +5803,14 @@ Content-Length: 760
 </div>
 </div>
 <div class="sect1">
-<h2 id="_communitycommentcontroller">6. CommunityCommentController</h2>
+<h2 id="_communitycommentcontroller">7. CommunityCommentController</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_커뮤니티_댓글_등록">6.1. 커뮤니티 댓글 등록</h3>
+<h3 id="_커뮤니티_댓글_등록">7.1. 커뮤니티 댓글 등록</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/1?_csrf=0a5399b8-b036-4cb2-a57d-56a696aeef8f' -i -X POST \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/1?_csrf=ed7981ee-5a4a-43e8-8531-053174f26121' -i -X POST \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -3865,7 +5822,7 @@ Content-Length: 760
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/communities/comments/1?_csrf=0a5399b8-b036-4cb2-a57d-56a696aeef8f HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /v1/communities/comments/1?_csrf=ed7981ee-5a4a-43e8-8531-053174f26121 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -3878,7 +5835,7 @@ Host: localhost:8080
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 48. request-headers</caption>
+<caption class="title">Table 73. request-headers</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3897,7 +5854,7 @@ Host: localhost:8080
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 49. /v1/communities/comments/{community-id}</caption>
+<caption class="title">Table 74. /v1/communities/comments/{community-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3916,7 +5873,7 @@ Host: localhost:8080
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 50. request-fields</caption>
+<caption class="title">Table 75. request-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -3966,14 +5923,14 @@ Content-Length: 220
     "communityCommentId" : 1,
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-16T12:00:26.3802348",
-    "modifiedAt" : "2023-01-16T12:00:26.3802348"
+    "createdAt" : "2023-01-17T19:20:41.1054014",
+    "modifiedAt" : "2023-01-17T19:20:41.1054014"
   }
 }</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 51. response-fields</caption>
+<caption class="title">Table 76. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -4027,19 +5984,19 @@ Content-Length: 220
     "communityCommentId" : 1,
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-16T12:00:26.3802348",
-    "modifiedAt" : "2023-01-16T12:00:26.3802348"
+    "createdAt" : "2023-01-17T19:20:41.1054014",
+    "modifiedAt" : "2023-01-17T19:20:41.1054014"
   }
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_커뮤니티_댓글_수정">6.2. 커뮤니티 댓글 수정</h3>
+<h3 id="_커뮤니티_댓글_수정">7.2. 커뮤니티 댓글 수정</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/1?_csrf=4c6e762a-8d8d-4ad7-a553-b1505632ad63' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/1?_csrf=54bad7e6-acfc-4fec-83b9-b19351050668' -i -X PATCH \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs' \
@@ -4052,7 +6009,7 @@ Content-Length: 220
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/communities/comments/1?_csrf=4c6e762a-8d8d-4ad7-a553-b1505632ad63 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /v1/communities/comments/1?_csrf=54bad7e6-acfc-4fec-83b9-b19351050668 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -4066,7 +6023,7 @@ Host: localhost:8080
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 52. request-headers</caption>
+<caption class="title">Table 77. request-headers</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4085,7 +6042,7 @@ Host: localhost:8080
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 53. /v1/communities/comments/{communityComment-id}</caption>
+<caption class="title">Table 78. /v1/communities/comments/{communityComment-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4104,7 +6061,7 @@ Host: localhost:8080
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 54. request-fields</caption>
+<caption class="title">Table 79. request-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -4155,14 +6112,14 @@ Content-Length: 220
     "communityCommentId" : 1,
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-16T12:00:26.3062417",
-    "modifiedAt" : "2023-01-16T12:00:26.3062417"
+    "createdAt" : "2023-01-17T19:20:41.0384126",
+    "modifiedAt" : "2023-01-17T19:20:41.0384126"
   }
 }</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 55. response-fields</caption>
+<caption class="title">Table 80. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -4216,19 +6173,19 @@ Content-Length: 220
     "communityCommentId" : 1,
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-16T12:00:26.3062417",
-    "modifiedAt" : "2023-01-16T12:00:26.3062417"
+    "createdAt" : "2023-01-17T19:20:41.0384126",
+    "modifiedAt" : "2023-01-17T19:20:41.0384126"
   }
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_커뮤니티_댓글_조회">6.3. 커뮤니티 댓글 조회</h3>
+<h3 id="_커뮤니티_댓글_조회">7.3. 커뮤니티 댓글 조회</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/1?_csrf=10501a55-0020-4548-8541-57a01b17db9f' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/1?_csrf=2107983c-faea-406d-9a66-fafe21125860' -i -X GET \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json'</code></pre>
 </div>
@@ -4236,14 +6193,14 @@ Content-Length: 220
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/comments/1?_csrf=10501a55-0020-4548-8541-57a01b17db9f HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/comments/1?_csrf=2107983c-faea-406d-9a66-fafe21125860 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 56. /v1/communities/comments/{communityComment-id}</caption>
+<caption class="title">Table 81. /v1/communities/comments/{communityComment-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4282,14 +6239,14 @@ Content-Length: 220
     "communityCommentId" : 1,
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-16T12:00:26.4852458",
-    "modifiedAt" : "2023-01-16T12:00:26.4852458"
+    "createdAt" : "2023-01-17T19:20:41.2134086",
+    "modifiedAt" : "2023-01-17T19:20:41.2134086"
   }
 }</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 57. response-fields</caption>
+<caption class="title">Table 82. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -4343,19 +6300,19 @@ Content-Length: 220
     "communityCommentId" : 1,
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-16T12:00:26.4852458",
-    "modifiedAt" : "2023-01-16T12:00:26.4852458"
+    "createdAt" : "2023-01-17T19:20:41.2134086",
+    "modifiedAt" : "2023-01-17T19:20:41.2134086"
   }
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_나의_모든_커뮤니티_댓글_조회">6.4. 나의 모든 커뮤니티 댓글 조회</h3>
+<h3 id="_나의_모든_커뮤니티_댓글_조회">7.4. 나의 모든 커뮤니티 댓글 조회</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/mine?_csrf=abf088ab-b330-4351-8106-88c1041673c9' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/mine?_csrf=d486a398-6dd7-46e5-b169-f031c3c36694' -i -X GET \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
@@ -4364,7 +6321,7 @@ Content-Length: 220
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/comments/mine?_csrf=abf088ab-b330-4351-8106-88c1041673c9 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /v1/communities/comments/mine?_csrf=d486a398-6dd7-46e5-b169-f031c3c36694 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -4372,7 +6329,7 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 58. request-headers</caption>
+<caption class="title">Table 83. request-headers</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4404,27 +6361,27 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY
-Content-Length: 429
+Content-Length: 425
 
 {
   "data" : [ {
     "communityCommentId" : 1,
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-16T12:00:26.5332362",
-    "modifiedAt" : "2023-01-16T12:00:26.5332362"
+    "createdAt" : "2023-01-17T19:20:41.261394",
+    "modifiedAt" : "2023-01-17T19:20:41.261394"
   }, {
     "communityCommentId" : 2,
     "content" : "content2",
     "displayName" : "displayName2",
-    "createdAt" : "2023-01-15T12:00:26.5332362",
-    "modifiedAt" : "2023-01-15T12:00:26.5332362"
+    "createdAt" : "2023-01-16T19:20:41.261394",
+    "modifiedAt" : "2023-01-16T19:20:41.261394"
   } ]
 }</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 59. response-fields</caption>
+<caption class="title">Table 84. response-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -4478,25 +6435,25 @@ Content-Length: 429
     "communityCommentId" : 1,
     "content" : "content1",
     "displayName" : "displayName1",
-    "createdAt" : "2023-01-16T12:00:26.5332362",
-    "modifiedAt" : "2023-01-16T12:00:26.5332362"
+    "createdAt" : "2023-01-17T19:20:41.261394",
+    "modifiedAt" : "2023-01-17T19:20:41.261394"
   }, {
     "communityCommentId" : 2,
     "content" : "content2",
     "displayName" : "displayName2",
-    "createdAt" : "2023-01-15T12:00:26.5332362",
-    "modifiedAt" : "2023-01-15T12:00:26.5332362"
+    "createdAt" : "2023-01-16T19:20:41.261394",
+    "modifiedAt" : "2023-01-16T19:20:41.261394"
   } ]
 }</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_커뮤니티_댓글_삭제">6.5. 커뮤니티 댓글 삭제</h3>
+<h3 id="_커뮤니티_댓글_삭제">7.5. 커뮤니티 댓글 삭제</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/1?_csrf=83ec8e25-f4a2-479e-8468-d27c0ea2a7f8' -i -X DELETE \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/v1/communities/comments/1?_csrf=428fc202-67d3-4495-8356-25de04a7f9d6' -i -X DELETE \
     -H 'Content-Type: application/json;charset=UTF-8' \
     -H 'Accept: application/json' \
     -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs'</code></pre>
@@ -4505,7 +6462,7 @@ Content-Length: 429
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /v1/communities/comments/1?_csrf=83ec8e25-f4a2-479e-8468-d27c0ea2a7f8 HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /v1/communities/comments/1?_csrf=428fc202-67d3-4495-8356-25de04a7f9d6 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNjcxNjg5Nzg4fQ.eFeEyh5F5ilhUfK28DzIxNPscqrlo5d9kNcOZYgbsUs
@@ -4513,7 +6470,7 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 60. request-headers</caption>
+<caption class="title">Table 85. request-headers</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4532,7 +6489,7 @@ Host: localhost:8080</code></pre>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 61. /v1/communities/comments/{communityComment-id}</caption>
+<caption class="title">Table 86. /v1/communities/comments/{communityComment-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4572,7 +6529,7 @@ X-Frame-Options: DENY</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-01-16 11:30:13 +0900
+Last updated 2023-01-17 18:33:50 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">

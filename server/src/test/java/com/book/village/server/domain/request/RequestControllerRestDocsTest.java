@@ -509,7 +509,7 @@ public class RequestControllerRestDocsTest {
                     requestParameters(
                             parameterWithName("page").description("페이지 번호"),
                             parameterWithName("size").description("페이지 사이즈"),
-                            parameterWithName("sort").description("작성 시간 기준으로 정렬")
+                            parameterWithName("sort").description("정렬 기준[createdAt,desc]")
                     ),
                     // response body
                     responseFields(
@@ -608,10 +608,10 @@ public class RequestControllerRestDocsTest {
                             getResponsePreProcessor(),
                             requestParameters(
                                     parameterWithName("keyword").description("검색어"),
-                                    parameterWithName("field").description("검색 종류 / displayName, title, content, bookTitle, author, publisher/ null 이면 빈리스트"),
+                                    parameterWithName("field").description("검색 대상[displayName, title, content, bookTitle, author, publisher]"),
                                     parameterWithName("page").description("페이지 번호"),
                                     parameterWithName("size").description("페이지 사이즈"),
-                                    parameterWithName("sort").description("작성 시간 최신순으로 정렬"),
+                                    parameterWithName("sort").description("정렬 기준[createdAt,desc]"),
                                     parameterWithName("_csrf").description("csrf")
                             ),
                             // response body
