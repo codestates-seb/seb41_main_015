@@ -206,6 +206,7 @@ const MyPageEdit = () => {
   const handleClickQuit = () => {
     // instanceAxios.patch('/v1/members/quit').then(() => {
     //   handleLogout();
+    // sessionStorage.clear();
     //   navigate('/');
     //   console.log('회원탈퇴!');
     //   Swal.fire({

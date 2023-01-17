@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const sessionAccessToken = sessionStorage.getItem('accessToken');
+const sessionRefreshToken = sessionStorage.getItem('refreshToken');
 
 const initialState = {
   accessToken: sessionAccessToken,
-  refreshToken: null,
+  refreshToken: sessionRefreshToken,
   membership: null,
 };
 
@@ -18,6 +19,7 @@ const userSlice = createSlice({
       let membership = payload.membership;
       sessionStorage.setItem('accessToken', accessToken);
       sessionStorage.setItem('membership', membership);
+      sessionStorage.setItem('refreshToken', refreshToken);
       state.accessToken = accessToken;
       state.refreshToken = refreshToken;
       state.membership = membership;

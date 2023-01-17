@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import mypage from '../image/mypage.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/slice/userSlice';
-import axios from 'axios';
+import instanceAxios from '../reissue/instanceAxios';
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -26,14 +26,10 @@ const SHeaderLogo = styled.a`
   align-items: center;
   position: fixed;
   left: 3%;
-  .logoFont {
-    margin: 0 10px;
-    font-size: 24px;
-    font-weight: 500;
-  }
   @media screen and (max-width: 930px) {
-    .logoFont {
+    .logo {
       font-size: 15px;
+      width: 150px;
     }
   }
 `;
@@ -120,7 +116,6 @@ const Header = () => {
   const dispatch = useDispatch();
   const accessToken = useSelector((state) => state.user.accessToken);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const user = useSelector((state) => state.user);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -130,18 +125,14 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    // axios
-    //   .post('https://serverbookvillage.kro.kr/v1/members/auth/logout', {
-    //     headers: {
-    //       // 'Content-Type': 'application/json;charset=UTF-8',
-    //       // Accept: 'application / json',
-    //       Authorization: `Bearer ${user.accessToken}`,
-    //     },
-    //   })
-    //   .then(() => {})
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
+    instanceAxios
+      .post('/v1/members/auth/logout')
+      .then(() => {
+        console.log('로그아웃 됨!');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
     dispatch(logout());
   };
 
@@ -149,7 +140,6 @@ const Header = () => {
     <StyledHeader>
       <SHeaderLogo href="/">
         <img src={logo} alt="logo" className="logo" />
-        <div className="logoFont">book village</div>
       </SHeaderLogo>
       <SNavContainer>
         <Link to="/shareList" className="olItem">
