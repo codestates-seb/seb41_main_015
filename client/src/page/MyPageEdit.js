@@ -1,8 +1,11 @@
 import styled from 'styled-components';
-import axios from 'axios';
+// import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/slice/userSlice';
+import Swal from 'sweetalert2';
+import instanceAxios from '../reissue/InstanceAxios';
 
 const SWrapEdit = styled.div`
   display: flex;
@@ -32,9 +35,9 @@ const SInputList = styled.div`
   }
 `;
 
-const SHr = styled.hr`
-  margin-bottom: 50px;
-`;
+// const SHr = styled.hr`
+//   margin-bottom: 50px;
+// `;
 
 const SWithdraw = styled.div`
   font-family: 'Inter';
@@ -85,8 +88,13 @@ const SEditBtn = styled.div`
   margin-top: 20px;
 `;
 
-const STitle = styled.h1`
-  margin-left: 5%;
+const STitle = styled.div`
+  h2 {
+    color: #2c2c2c;
+    padding: 18px;
+    margin: 20px 10%;
+    border-bottom: 1px solid #acacac;
+  }
 `;
 
 const SDefaultProfile = styled.div`
@@ -106,8 +114,8 @@ const MyPageEdit = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [profile, setProfile] = useState('');
 
-  //경로 이동
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //input 입력값 상태 저장
   const handleChangeName = (e) => {
@@ -130,23 +138,40 @@ const MyPageEdit = () => {
   };
 
   //base url
-  const url = 'https://serverbookvillage.kro.kr';
+  // const url = 'https://serverbookvillage.kro.kr';
 
-  //전역상태값 가져오기
-  const user = useSelector((state) => state.user);
+  //저장 버튼 클릭 시, 서버로 patch 요청
+  const handleClickSave = () => {
+    instanceAxios
+      .patch('/v1/members', {
+        name,
+        displayName,
+        address,
+        phoneNumber,
+      })
+      .then(() => {
+        navigate('/mypage');
+        Swal.fire(
+          '프로필 수정 완료.',
+          '프로필 수정이 정상적으로 이루어졌습니다.',
+          'success'
+        );
+      })
+      .catch((err) => {
+        Swal.fire(
+          '프로필 수정 실패',
+          '수정이 정상적으로 등록되지 않았습니다.',
+          'warning'
+        );
+        console.error(err);
+      });
+  };
 
   // 서버 연결 후 주석 풀기!
   useEffect(() => {
     const editData = async () => {
       try {
-        const res = await axios.get(url + '/v1/members', {
-          // 토큰 부분
-          headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            Accept: 'application/json',
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-        });
+        const res = await instanceAxios.get('/v1/members');
         // console.log(res.data.data);
         setName(res.data.data.name);
         setEmail(res.data.data.email);
@@ -155,59 +180,64 @@ const MyPageEdit = () => {
         setPhoneNumber(res.data.data.phoneNumber);
       } catch (error) {
         console.error(error);
-        alert('정보를 불러오는데 실패했습니다');
+        Swal.fire(
+          '죄송합니다',
+          '회원님의 정보를 가져오는데 실패했습니다.',
+          'warning'
+        );
       }
     };
     editData();
   }, []);
 
-  //저장 버튼 클릭 시, 서버로 patch 요청
-  const handleClickSave = () => {
-    axios
-      .patch(
-        `${url}/v1/members`,
-        {
-          name,
-          displayName,
-          address,
-          phoneNumber,
-        },
-        // 토큰 부분
-        {
-          headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            Accept: 'application/json',
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-        }
-      )
+  //회원탈퇴 시 로그아웃
+  const handleLogout = () => {
+    instanceAxios
+      .post('/v1/members/auth/logout')
       .then(() => {
-        alert('프로필 수정이 완료되었습니다!');
+        dispatch(logout());
       })
       .catch((err) => {
-        alert('수정이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요!');
         console.error(err);
       });
   };
 
   //회원탈퇴(주석 풀 것!)
   const handleClickQuit = () => {
-    alert(`${name}님, 회원탈퇴가 정상적으로 이루어졌습니다`);
-    // axios
-    //   .patch(url + '/v1/members/quit', {
-    //     headers: {
-    //       Authorization: `Bearer ${user.accessToken}`,
-    //     },
-    //   })
-    //   .then(() => {
-    //     alert(`${name}님, 회원탈퇴가 정상적으로 이루어졌습니다`);
+    // instanceAxios.patch('/v1/members/quit').then(() => {
+    //   handleLogout();
+    // sessionStorage.clear();
+    //   navigate('/');
+    //   console.log('회원탈퇴!');
+    //   Swal.fire({
+    //     title: '회원탈퇴를 진행하시겠습니까?',
+    //     text: '회원탈퇴 후 재로그인이 어렵습니다 신중하게 생각해주세요.',
+    //     icon: 'warning',
+    //     showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+    //     confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+    //     cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+    //     confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+    //     cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+    //     reverseButtons: true, // 버튼 순서 거꾸로
+    //   }).then((result) => {
+    //     // 만약 Promise리턴을 받으면,
+    //     if (result.isConfirmed) {
+    //       // 만약 모달창에서 confirm 버튼을 눌렀다면
+    //       Swal.fire(
+    //         '정상적으로 회원탈퇴가 처리되었습니다.',
+    //         '이용해주셔서 감사합니다',
+    //         'success'
+    //       );
+    //     }
     //   });
+    // });
   };
 
   return (
     <div>
-      <STitle>회원정보 수정</STitle>
-      <SHr />
+      <STitle>
+        <h2>회원정보 수정</h2>
+      </STitle>
       <SWrapEdit>
         <SDefaultProfile>
           <img

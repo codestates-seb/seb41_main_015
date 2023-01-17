@@ -8,12 +8,19 @@ const SShareTop = styled.div`
   margin-bottom: 50px;
   margin-top: 30px;
   justify-content: space-between;
+  @media screen and (max-width: 930px) {
+    flex-direction: column;
+    align-items: center;
+  }
   p {
     color: #212124;
   }
   .fs-23 {
     font-weight: 700;
     font-size: 22px;
+    @media screen and (max-width: 930px) {
+      text-align: center;
+    }
     @media screen and (max-width: 768px) {
       font-size: 18px;
     }
@@ -21,14 +28,18 @@ const SShareTop = styled.div`
   .fs-16 {
     font-weight: 400;
     font-size: 16px;
+    @media screen and (max-width: 930px) {
+      text-align: center;
+    }
     @media screen and (max-width: 768px) {
       font-size: 14px;
     }
   }
   .ml-5 {
     margin-left: 89px;
-    @media screen and (max-width: 768px) {
-      margin-left: 6%;
+    @media screen and (max-width: 930px) {
+      /* margin-left: 6%; */
+      margin-left: 0px;
     }
   }
   .mb-5 {
@@ -39,13 +50,14 @@ const SShareTop = styled.div`
     height: 41px;
     box-sizing: border-box;
     margin-top: 22px;
+    padding-left: 7px;
     font-size: 20px;
     background: #ffffff;
     border: 1px solid #aaaaaa;
     border-radius: 6px;
     @media screen and (max-width: 1023px) {
       width: 200px;
-      margin-left: 20%;
+      /* margin-left: 20%; */
     }
   }
   .search-icon {
@@ -53,6 +65,23 @@ const SShareTop = styled.div`
   }
   .searchBox {
     @media screen and (max-width: 1023px) {
+      margin-right: 20px;
+    }
+  }
+  select {
+    margin-right: 10px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    padding: 7px;
+    font-size: 1rem;
+    border: 1px solid #aaaaaa;
+    border-radius: 6px;
+    color: #666666;
+    text-align: center;
+    @media screen and (max-width: 768px) {
+      font-size: 0.8rem;
     }
   }
 `;
@@ -75,22 +104,26 @@ const SRegister = styled.button`
     width: 80px;
     height: 41px;
     font-size: 15px;
-    transform: translate(360%, -100%);
+    margin-right: 0;
+    /* transform: translate(360%, -100%); */
   }
 `;
 
-const ListHigh = ({ page }) => {
+const ListHigh = ({
+  title,
+  page,
+  keyword,
+  handleKeyword,
+  handleSearch,
+  handleOption,
+}) => {
   const navigate = useNavigate();
   const route = page === 'share' ? '/shareAdd' : '/reqAdd';
 
   return (
     <SShareTop>
       <div className="ml-5">
-        <p className="fs-23 mb-5">
-          {page === 'share'
-            ? '현재 빌리지에 올라온 목록입니다!'
-            : '빌리지 사람들이 찾고 있는 책이에요!'}
-        </p>
+        <p className="fs-23 mb-5">{title}</p>
         <p className="fs-16">
           {page === 'share'
             ? '찾고 있는 책이 있다면 연락해보세요!'
@@ -98,7 +131,18 @@ const ListHigh = ({ page }) => {
         </p>
       </div>
       <div className="searchBox">
-        <input className="search" />
+        <select id="searchFilter" onChange={handleOption}>
+          <option value="">--선택--</option>
+          {/* 서버에서 타입 이름 정해지면 그걸로 value 바꾸기 */}
+          <option value="bookTitle">책 제목</option>
+          <option value="content">내용</option>
+        </select>
+        <input
+          className="search"
+          value={keyword}
+          onChange={handleKeyword}
+          onKeyDown={handleSearch}
+        />
         <Search className="search-icon" />
         <SRegister onClick={() => navigate(route)}>책 등록하기</SRegister>
       </div>

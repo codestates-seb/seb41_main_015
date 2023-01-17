@@ -25,4 +25,43 @@ instanceAxios.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+//###3. 응답 인터셉터 추가하기
+instanceAxios.interceptors.response.use(
+  (response) => {
+    //응답데이터 가공
+    return response;
+  },
+  async (error) => {
+    //오류응답 처리
+    const { response: errorResponse } = error; //구조분해할당
+    // 인증 에러 발생시
+    if (errorResponse.status === 401) {
+      const originalRequest = errorResponse.config; //response.config
+      const sessionRefreshToken = sessionStorage.getItem('refreshToken');
+      const { data } = await axios.post(
+        'https://serverbookvillage.kro.kr/auth/token',
+        {},
+        {
+          headers: {
+            Authorization: { sessionRefreshToken },
+          },
+        }
+      );
+      const {
+        Authorization: newCreatedAccessToken,
+        // refreshToken: newRefreshToken,
+      } = data;
+
+      sessionStorage.setItem('accessToken', newCreatedAccessToken);
+
+      originalRequest.headers[
+        'Authorization'
+      ] = `Bearer ${newCreatedAccessToken}`;
+      return axios(originalRequest);
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default instanceAxios;
