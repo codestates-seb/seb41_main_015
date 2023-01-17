@@ -378,8 +378,8 @@ public class CommunityControllerRestDocsTest {
                 mockMvc.perform(
                         get(url)
                                 .param("page", "0")
-                                .param("size", "10")
-                                .param("sort", "questionId,desc")
+                                .param("size", "5")
+                                .param("sort", "createdAt,desc")
                                 .accept(MediaType.APPLICATION_JSON)
                                 .with(csrf())
                                 .contentType(MediaType.APPLICATION_JSON)
@@ -532,26 +532,6 @@ public class CommunityControllerRestDocsTest {
     @WithMockUser
     public void deleteCommunityTest() throws Exception {
         long communityId=1L;
-
-        LocalDateTime createdAt=LocalDateTime.now();
-        LocalDateTime modifiedAt=createdAt;
-
-        List<CommunityCommentDto.Response> cCommentResponse=List.of(new CommunityCommentDto.Response(
-                        1L, "content1", "displayName1",createdAt, createdAt),
-                new CommunityCommentDto.Response(2L, "content2", "displayName2",createdAt, createdAt)
-        );
-
-
-        CommunityDto.Response response = new CommunityDto.Response(
-                communityId,
-                "free",
-                "title1",
-                "content1",
-                "displayName1",
-                cCommentResponse,
-                createdAt,
-                modifiedAt
-        );
 
         doNothing().when(communityService).deleteCommunity(Mockito.anyLong(), Mockito.anyString());
 
