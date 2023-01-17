@@ -42,11 +42,6 @@ const SFooterLogo = styled.div`
     width: 30px;
     height: 33px;
   }
-  .logoFont {
-    margin: 0 10px;
-    font-size: 18px;
-    font-weight: 500;
-  }
 `;
 
 const SGitContainer = styled.div`
@@ -98,7 +93,6 @@ const Footer = () => {
       <SFooterLogo>
         <a href="/">
           <img src={logo} alt="logo" className="logo" />
-          <div className="logoFont">book village</div>
         </a>
       </SFooterLogo>
       <SGitContainer>
