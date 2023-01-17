@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BookAddModal from './BookAddModal';
 
 const StyledShareForm = styled.div`
   h2 {
@@ -148,6 +149,15 @@ const ShareForm = (props) => {
     );
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <StyledShareForm>
       <h2>{props.page === 'shareAdd' ? '나눔하기' : '수정하기'}</h2>
@@ -176,6 +186,12 @@ const ShareForm = (props) => {
               // value={bookname}
               onChange={(e) => handleChangeString(e, bookname)}
               placeholder="책 제목을 입력해주세요."
+              onClick={handleOpenModal}
+            />
+            {/* 검색 모달  */}{' '}
+            <BookAddModal
+              isModalOpen={isModalOpen}
+              handleCloseModal={handleCloseModal}
             />
           </div>
           <div>
