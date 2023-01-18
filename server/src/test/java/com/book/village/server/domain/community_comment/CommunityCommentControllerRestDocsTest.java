@@ -131,13 +131,13 @@ public class CommunityCommentControllerRestDocsTest {
     @WithMockUser
     public void patchCommunityComment() throws Exception{
         long cCommentId= 1L;
-        CommunityCommentDto.Patch post = new CommunityCommentDto.Patch(
+        CommunityCommentDto.Patch patch = new CommunityCommentDto.Patch(
                 cCommentId,
                 "content1"
         );
         LocalDateTime createdAt=LocalDateTime.now();
         LocalDateTime modifiedAt=createdAt;
-        String content = gson.toJson(post);
+        String content = gson.toJson(patch);
 
         CommunityCommentDto.Response response= new CommunityCommentDto.Response(
                 cCommentId,
@@ -161,7 +161,7 @@ public class CommunityCommentControllerRestDocsTest {
                 );
         actions
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.content").value(post.getContent()))
+                .andExpect(jsonPath("$.data.content").value(patch.getContent()))
                 .andDo(document("patch-community-comment",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),

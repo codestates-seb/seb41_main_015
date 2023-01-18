@@ -7,6 +7,8 @@ import com.book.village.server.auth.utils.CustomAuthorityUtils;
 import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.domain.member.repository.MemberRepository;
 import com.book.village.server.domain.member.service.MemberService;
+import com.book.village.server.global.exception.CustomLogicException;
+import com.book.village.server.global.exception.ExceptionCode;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -50,7 +52,13 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
             redirect(request,response,email, authorities, true);
             return;
         }
+        verifyActiveMember(email);
         redirect(request,response,email, authorities, false);
+    }
+    private void verifyActiveMember(String email){
+        if(memberService.findMember(email).getMemberStatus()== Member.MemberStatus.MEMBER_QUIT){
+            throw new CustomLogicException(ExceptionCode.MEMBER_STATUS_QUIT);
+        }
     }
     private String delegateAccessToken(String username, List<String> authorities) {
         Map<String, Object> claims = new HashMap<>();
