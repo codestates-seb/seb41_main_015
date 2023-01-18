@@ -324,7 +324,7 @@ class BorrowCommentControllerRestDocsTest {
     }
 
     @Test
-    @DisplayName("커뮤니티 댓글 삭제")
+    @DisplayName("나눔 댓글 삭제")
     @WithMockUser
     void deleteBorrowCommentTest() throws Exception {
         Long borrowCommentId = 1L;
