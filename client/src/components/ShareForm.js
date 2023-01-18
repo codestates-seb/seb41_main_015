@@ -217,24 +217,24 @@ const ShareForm = (props) => {
           <div>
             <input
               name="talkUrl"
-              value={talkUrl}
-              onChange={(e) => handleChangeString(e, talkUrl)}
+              // value={talkUrl}
+              onChange={(e) => handleChangeString(e, 'talkUrl')}
               placeholder="오픈채팅 대화방 링크를 입력해주세요."
             />
           </div>
           <div>
             <input
               name="writeTitle"
-              value={writeTitle}
-              onChange={(e) => handleChangeString(e, writeTitle)}
+              // value={writeTitle}
+              onChange={(e) => handleChangeString(e, 'writeTitle')}
               placeholder="게시글 제목을 입력해주세요."
             />
           </div>
           <div>
             <textarea
               name="writeContent"
-              value={writeContent}
-              onChange={(e) => handleChangeString(e, writeContent)}
+              // value={writeContent}
+              onChange={(e) => handleChangeString(e, 'writeContent')}
               className="inputContent"
               placeholder="게시글 내용을 입력해주세요. (ex. 책 상태, 구매 시기 등)"
             />
