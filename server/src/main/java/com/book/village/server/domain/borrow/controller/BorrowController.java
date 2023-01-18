@@ -51,7 +51,7 @@ public class BorrowController {
 
         Borrow updatedBorrow = borrowService.updateBorrow(borrow, principal.getName());
 
-        return new ResponseEntity<>(borrowMapper.borrowToBorrowDtoResponse(updatedBorrow), HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponse<>(borrowMapper.borrowToBorrowDtoResponse(updatedBorrow)), HttpStatus.OK);
     }
 
 //     Borrow 조회

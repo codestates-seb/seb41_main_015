@@ -92,7 +92,13 @@ public class BorrowService {
                 return borrowRepository.findAllByContentContaining(keyword, pageable);
             case "displayName" :
                 return borrowRepository.findAllByDisplayName(keyword, pageable);
-            default :
+            case "bookTitle":
+                return borrowRepository.findAllByBookTitleContaining(keyword, pageable);
+            case "author":
+                return borrowRepository.findAllByAuthor(keyword, pageable);
+            case "publisher":
+                return borrowRepository.findAllByPublisher(keyword, pageable);
+            default:
                 return new PageImpl<>(Collections.emptyList());
         }
     }

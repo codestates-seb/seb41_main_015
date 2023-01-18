@@ -1,6 +1,5 @@
 package com.book.village.server.domain.borrow.controller;
 
-import com.book.village.server.domain.borrow.controller.BorrowController;
 import com.book.village.server.domain.borrow.dto.BorrowDto;
 import com.book.village.server.domain.borrow.entity.Borrow;
 import com.book.village.server.domain.borrow.mapper.BorrowMapper;
@@ -81,7 +80,6 @@ class BorrowControllerRestDocsTest {
                         "bookTitle",
                         "author",
                         "publisher",
-                        "displayName",
                         "talkUrl");
 
         String content = gson.toJson(post);
@@ -131,7 +129,6 @@ class BorrowControllerRestDocsTest {
                 .andExpect(jsonPath("$.data.bookTitle").value(post.getBookTitle()))
                 .andExpect(jsonPath("$.data.author").value(post.getAuthor()))
                 .andExpect(jsonPath("$.data.publisher").value(post.getPublisher()))
-                .andExpect(jsonPath("$.data.displayName").value(post.getDisplayName()))
                 .andExpect(jsonPath("$.data.talkUrl").value(post.getTalkUrl()))
                 .andDo(document("post-borrow",
                         getRequestPreProcessor(),
@@ -149,7 +146,6 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("bookTitle").type(JsonFieldType.STRING).description(" 제목"),
                                         fieldWithPath("author").type(JsonFieldType.STRING).description("나눌 책 저자"),
                                         fieldWithPath("publisher").type(JsonFieldType.STRING).description("나눌 책 출판사"),
-                                        fieldWithPath("displayName").type(JsonFieldType.STRING).description("나눔 게시글 작성자 닉네임"),
                                         fieldWithPath("talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크")
                                 )
                         ),
@@ -205,18 +201,19 @@ class BorrowControllerRestDocsTest {
                          2L, "content2", "displayName2", createdAt, modifiedAt)
                 );
 
-        BorrowDto.Response responseDto = BorrowDto.Response.builder().borrowId(1L)
-                .title("title")
-                .content("content")
-                .bookTitle("bookTitle")
-                .author("author")
-                .publisher("publisher")
-                .displayName("displayName")
-                .talkUrl("talkUrl")
-                .borrowComments(borrowCommentResponse)
-                .createdAt(createdAt)
-                .modifiedAt(modifiedAt)
-                .build();
+        BorrowDto.Response responseDto = new BorrowDto.Response(
+                borrowId,
+                "title",
+                "content",
+                "bookTitle",
+                "author",
+                "publisher",
+                "displayName",
+                "talkUrl",
+                borrowCommentResponse,
+                createdAt,
+                modifiedAt
+        );
 
 
         given(borrowMapper.borrowDtoPatchToBorrow(Mockito.any(BorrowDto.Patch.class))).willReturn(new Borrow());
@@ -255,12 +252,9 @@ class BorrowControllerRestDocsTest {
                         pathParameters(
                                 parameterWithName("borrow-id").description("나눔 식별자")
                         ),
-                        requestParameters(
-                                parameterWithName("_csrf").description("csrf")
-                        ),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("borrowId").type(JsonFieldType.NUMBER).description("나눔 식별자").ignored(),
+                                        fieldWithPath("borrowId").type(JsonFieldType.STRING).description("나눔 식별자").ignored(),
                                         fieldWithPath("title").type(JsonFieldType.STRING).description("나눔게시글 제목").optional(),
                                         fieldWithPath("content").type(JsonFieldType.STRING).description("나눔게시글 본문").optional(),
                                         fieldWithPath("bookTitle").type(JsonFieldType.STRING).description(" 제목").optional(),
@@ -290,7 +284,6 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.borrowComments.[].modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
                         )
-
                 ));
     }
 
@@ -730,7 +723,7 @@ class BorrowControllerRestDocsTest {
                 "bookTitle2",
                 "author2",
                 "publisher2",
-                "diisplayName2",
+                "displayName2",
                 "talkUrl2",
                 null,
                 createdAt,
@@ -791,7 +784,7 @@ class BorrowControllerRestDocsTest {
                         getResponsePreProcessor(),
                         requestParameters(
                                 parameterWithName("keyword").description("검색어"),
-                                parameterWithName("field").description("검색 대상[title, content, displayName]"),
+                                parameterWithName("field").description("검색 대상[title, content, displayName, bookTitle, author, publisher]"),
                                 parameterWithName("page").description("페이지 번호"),
                                 parameterWithName("size").description("페이지 사이즈"),
                                 parameterWithName("sort").description("정렬 기준[createdAt,desc]"),
