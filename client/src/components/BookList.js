@@ -110,7 +110,7 @@ const BookList = ({ data, route }) => {
   return (
     <SBookList>
       {data.map((article) => {
-        // 기본 이미지
+        // 책 표지 기본 이미지
         const imgSrc = article.imgUrl
           ? article.imgUrl
           : 'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg';

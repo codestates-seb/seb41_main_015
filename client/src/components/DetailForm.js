@@ -148,12 +148,16 @@ const SContact = styled.div`
 `;
 
 const DetailForm = ({ data, page }) => {
+  // 책 표지 기본이미지
+  const imgUrl = data.imgUrl
+    ? data.imgUrl
+    : 'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg';
   return (
     <SDetailLayout>
       <div className="container">
         <SDetailWrap>
           <div>
-            <img alt="책 표지" src={data.imgUrl} />
+            <img alt="책 표지" src={imgUrl} />
           </div>
           <SRightSide>
             <STopWrap>
@@ -173,17 +177,17 @@ const DetailForm = ({ data, page }) => {
                   alt="profileImage"
                   src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
                 />
-                <div>닉네임</div>
-                <div className="createdAt">작성 날짜 회색으로</div>
+                <div>{data.displayName}</div>
+                <div className="createdAt">{data.createdAt}</div>
               </div>
             </STopWrap>
             <SBookInfo>
               <h2>{data.bookTitle}</h2>
               <div>
-                저자: <span>{data.bookAuthor}</span>
+                저자: <span>{data.author}</span>
               </div>
               <div>
-                출판사: <span>{data.bookPublisher}</span>
+                출판사: <span>{data.publisher}</span>
               </div>
               <SContact>
                 <div>
@@ -193,7 +197,7 @@ const DetailForm = ({ data, page }) => {
                 </div>
                 <button
                   onClick={() => {
-                    window.open('http://www.naver.com');
+                    window.open(data.talkUrl);
                   }}
                 >
                   <KakaoFill width="16" height="16" />

@@ -83,7 +83,6 @@ const CommonList = (props) => {
 
     if (!isSearchMode) {
       const pageData = await getDatabyPage(page);
-      console.log(pageData);
       setItems(pageData.data);
       console.log('검색 중이 아닙니다.');
     } else {
