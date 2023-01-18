@@ -1,4 +1,4 @@
-package com.book.village.server.domain.borrow;
+package com.book.village.server.domain.borrow.controller;
 
 import com.book.village.server.domain.borrow.controller.BorrowController;
 import com.book.village.server.domain.borrow.dto.BorrowDto;
