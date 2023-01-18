@@ -3,14 +3,15 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const SBookContainer = styled.li`
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   border: 1.5px solid #dddada;
   width: 40%;
   height: 100%;
   padding: 0 18px;
-  margin: 1rem;
+  margin: 0.8rem;
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: 1080px) {
     display: flex;
     flex-direction: column;
     width: auto;
@@ -22,8 +23,8 @@ const SBookContainer = styled.li`
     float: left;
   }
   .bookCover {
-    height: 180px;
-    width: 140px;
+    height: 11rem;
+    width: 8.7rem;
     &:hover {
       cursor: pointer;
     }
@@ -37,12 +38,12 @@ const SBookContainer = styled.li`
     font-size: 18px;
     font-weight: 700;
     color: #212124;
-    @media screen and (max-width: 1023px) {
+    @media screen and (max-width: 1080px) {
       font-size: 16px;
     }
   }
   .mfs-16 {
-    @media screen and (max-width: 1023px) {
+    @media screen and (max-width: 1080px) {
       font-size: 15px;
     }
   }
@@ -80,8 +81,8 @@ const SBookContainer = styled.li`
       color: #bb2649;
       cursor: pointer;
     }
-    @media all and (min-width: 480px) and (max-width: 1023px) {
-      margin-left: 3%;
+    @media all and (min-width: 480px) and (max-width: 1080px) {
+      margin-left: 0px;
     }
   }
   .f-row {
@@ -93,11 +94,16 @@ const SBookList = styled.ol`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  /* justify-content: center; */
   justify-content: center;
+  /* text-align: center;
+  align-items: center; */
   /* float: left; */
-  width: 100%;
-  margin: 0 auto;
-  padding-inline-start: 0px;
+  /* width: 100%; */
+  padding: 10px;
+  margin: 20px 10%;
+  /* margin: 0 auto; */
+  /* padding-inline-start: 0px; */
 `;
 
 const BookList = ({ data, page }) => {

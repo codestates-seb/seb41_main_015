@@ -2,7 +2,7 @@ import styled from 'styled-components';
 // import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/slice/userSlice';
 import Swal from 'sweetalert2';
 import instanceAxios from '../reissue/InstanceAxios';
@@ -12,32 +12,53 @@ const SWrapEdit = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+const SFlexRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+
+  @media screen and (max-width: 1080px) {
+    padding-left: 10px;
+  }
+`;
+const SLabelList = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 50px;
+  label {
+    margin-bottom: 1rem;
+    padding-top: 10px;
+    height: 36px;
+    width: 60px;
+  }
+`;
+
 const SInputList = styled.div`
-  margin: 0 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0px;
+  padding-right: 10%;
+  @media screen and (max-width: 1080px) {
+    padding-left: 10px;
+    justify-content: left;
+  }
+  input {
+    margin-bottom: 1rem;
+  }
   input:disabled {
     background: #f2f2f2;
-  }
-  p {
-    margin-bottom: 31px;
   }
   .inputSize {
     width: 472px;
     height: 36px;
-  }
-  .mr-30 {
-    margin-right: 30px;
-  }
-  .mr-18 {
-    margin-right: 18px;
-  }
-  .mr-6 {
-    margin-right: 6px;
+    @media screen and (max-width: 1080px) {
+      width: 20rem;
+    }
   }
 `;
-
-// const SHr = styled.hr`
-//   margin-bottom: 50px;
-// `;
 
 const SWithdraw = styled.div`
   font-family: 'Inter';
@@ -55,7 +76,7 @@ const SWithdraw = styled.div`
 const SCancelBtn = styled.button`
   height: 43px;
   width: 141px;
-  left: 576px;
+  /* left: 576px; */
   top: 860px;
   border-radius: 5px;
   border: 1px solid #bb2649;
@@ -64,6 +85,11 @@ const SCancelBtn = styled.button`
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
+  @media screen and (max-width: 1080px) {
+    height: 40px;
+    width: 100px;
+    margin-left: 50px;
+  }
 `;
 
 const SSaveBtn = styled.button`
@@ -80,12 +106,19 @@ const SSaveBtn = styled.button`
   font-weight: 700;
   font-size: 16px;
   margin-left: 40px;
+  @media screen and (max-width: 1080px) {
+    height: 40px;
+    width: 100px;
+    margin-left: 20px;
+  }
 `;
 
 const SEditBtn = styled.div`
   text-align: center;
-  margin-bottom: 30%;
   margin-top: 20px;
+  /* @media screen and (max-width: 1080px) {
+    margin-left: 20px;
+  } */
 `;
 
 const STitle = styled.div`
@@ -98,10 +131,21 @@ const STitle = styled.div`
 `;
 
 const SDefaultProfile = styled.div`
+  margin: 2rem 0;
+  @media screen and (max-width: 1080px) {
+    display: flex;
+    margin: 2rem 0;
+    justify-content: center;
+  }
   img {
     height: 100px;
     width: 100px;
     /* border-radius: 50%; */
+    @media screen and (max-width: 1080px) {
+      height: 80px;
+      width: 80px;
+      margin-left: 110%;
+    }
   }
 `;
 
@@ -116,6 +160,7 @@ const MyPageEdit = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const accessToken = useSelector((state) => state.user.accessToken);
 
   //input 입력값 상태 저장
   const handleChangeName = (e) => {
@@ -202,35 +247,35 @@ const MyPageEdit = () => {
       });
   };
 
-  //회원탈퇴(주석 풀 것!)
+  //회원탈퇴(이벤트 연결할 것!)
   const handleClickQuit = () => {
-    // instanceAxios.patch('/v1/members/quit').then(() => {
-    //   handleLogout();
-    // sessionStorage.clear();
-    //   navigate('/');
-    //   console.log('회원탈퇴!');
-    //   Swal.fire({
-    //     title: '회원탈퇴를 진행하시겠습니까?',
-    //     text: '회원탈퇴 후 재로그인이 어렵습니다 신중하게 생각해주세요.',
-    //     icon: 'warning',
-    //     showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-    //     confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-    //     cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-    //     confirmButtonText: '승인', // confirm 버튼 텍스트 지정
-    //     cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-    //     reverseButtons: true, // 버튼 순서 거꾸로
-    //   }).then((result) => {
-    //     // 만약 Promise리턴을 받으면,
-    //     if (result.isConfirmed) {
-    //       // 만약 모달창에서 confirm 버튼을 눌렀다면
-    //       Swal.fire(
-    //         '정상적으로 회원탈퇴가 처리되었습니다.',
-    //         '이용해주셔서 감사합니다',
-    //         'success'
-    //       );
-    //     }
-    //   });
-    // });
+    instanceAxios.patch('/v1/members/quit').then(() => {
+      // handleLogout();
+      sessionStorage.clear();
+      navigate('/');
+      console.log('회원탈퇴!');
+      Swal.fire({
+        title: '회원탈퇴를 진행하시겠습니까?',
+        text: '회원탈퇴 후 재로그인이 어렵습니다 신중하게 생각해주세요.',
+        icon: 'warning',
+        showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+        confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+        cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+        confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+        cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+        reverseButtons: true, // 버튼 순서 거꾸로
+      }).then((result) => {
+        // 만약 Promise리턴을 받으면,
+        if (result.isConfirmed) {
+          // 만약 모달창에서 confirm 버튼을 눌렀다면
+          Swal.fire(
+            '정상적으로 회원탈퇴가 처리되었습니다.',
+            '이용해주셔서 감사합니다',
+            'success'
+          );
+        }
+      });
+    });
   };
 
   return (
@@ -245,11 +290,29 @@ const MyPageEdit = () => {
             alt="profile"
           />
         </SDefaultProfile>
-        <SInputList>
-          <p>
-            <label htmlFor="name" className="mr-30">
+        <SFlexRow>
+          <SLabelList>
+            <label htmlFor="name" className="mr-30 inputSize">
               이름
             </label>
+            <label htmlFor="nickName" className="mr-18 inputSize">
+              닉네임
+            </label>
+
+            <label htmlFor="email" className="mr-18 inputSize">
+              이메일
+            </label>
+            <label htmlFor="address" className="mr-30 inputSize">
+              주소
+            </label>
+            <label htmlFor="phonNumber" className="mr-6 inputSize">
+              전화번호
+            </label>
+            <label htmlFor="profile" className="mr-18 inputSize">
+              프로필
+            </label>
+          </SLabelList>
+          <SInputList>
             <input
               id="name"
               type="text"
@@ -258,11 +321,6 @@ const MyPageEdit = () => {
               value={name || ''}
               onChange={handleChangeName}
             ></input>
-          </p>
-          <p>
-            <label htmlFor="nickName" className="mr-18">
-              닉네임
-            </label>
             <input
               id="nickName"
               type="text"
@@ -271,11 +329,7 @@ const MyPageEdit = () => {
               value={displayName || ''}
               onChange={handleChangeDisplayName}
             ></input>
-          </p>
-          <p>
-            <label htmlFor="email" className="mr-18">
-              이메일
-            </label>
+
             <input
               id="email"
               type="text"
@@ -285,11 +339,7 @@ const MyPageEdit = () => {
               value={email || ''}
               onChange={handleChangeEmail}
             ></input>
-          </p>
-          <p>
-            <label htmlFor="address" className="mr-30">
-              주소
-            </label>
+
             <input
               id="address"
               type="text"
@@ -298,11 +348,7 @@ const MyPageEdit = () => {
               value={address || ''}
               onChange={handleChangeAddress}
             ></input>
-          </p>
-          <p>
-            <label htmlFor="phonNumber" className="mr-6">
-              전화번호
-            </label>
+
             <input
               id="phonNumber"
               type="text"
@@ -311,22 +357,19 @@ const MyPageEdit = () => {
               value={phoneNumber || ''}
               onChange={handleChangePhoneNumber}
             ></input>
-          </p>
-          <p>
-            <label htmlFor="profile" className="mr-18">
-              프로필
-            </label>
+
             <input
               id="profile"
-              type="file"
+              type="text"
               className="inputSize"
               placeholder="프로필을 url형태로 입력하십시오"
               value={profile || ''}
               onChange={handleChangeProfile}
             ></input>
-          </p>
-          <SWithdraw onClick={handleClickQuit}>회원탈퇴</SWithdraw>
-        </SInputList>
+
+            <SWithdraw>회원탈퇴</SWithdraw>
+          </SInputList>
+        </SFlexRow>
       </SWrapEdit>
       <SEditBtn>
         <SCancelBtn onClick={() => navigate('/mypage')}>취소</SCancelBtn>

@@ -32,7 +32,7 @@ const Paging = ({ page, count, handlePageChange }) => {
     <SContainer>
       <Pagination
         activePage={page}
-        itemsCountPerPage={6}
+        itemsCountPerPage={12}
         totalItemsCount={count}
         pageRangeDisplayed={5}
         prevPageText={'<'}

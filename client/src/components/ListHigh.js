@@ -5,10 +5,14 @@ import { useNavigate } from 'react-router-dom';
 const SShareTop = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 50px;
-  margin-top: 30px;
+  /* margin-bottom: 50px;
+  margin-top: 30px; */
+  color: #2c2c2c;
+  padding: 18px;
+  margin: 20px 10%;
+  border-bottom: 1px solid #acacac;
   justify-content: space-between;
-  @media screen and (max-width: 930px) {
+  @media screen and (max-width: 1180px) {
     flex-direction: column;
     align-items: center;
   }
@@ -18,7 +22,7 @@ const SShareTop = styled.div`
   .fs-23 {
     font-weight: 700;
     font-size: 22px;
-    @media screen and (max-width: 930px) {
+    @media screen and (max-width: 1180px) {
       text-align: center;
     }
     @media screen and (max-width: 768px) {
@@ -36,7 +40,7 @@ const SShareTop = styled.div`
     }
   }
   .ml-5 {
-    margin-left: 89px;
+    margin-left: 0px;
     @media screen and (max-width: 930px) {
       /* margin-left: 6%; */
       margin-left: 0px;
@@ -64,8 +68,11 @@ const SShareTop = styled.div`
     transform: translate(-35px, 5px);
   }
   .searchBox {
+    display: flex;
+    flex-direction: row;
+    margin-right: 0px;
     @media screen and (max-width: 1023px) {
-      margin-right: 20px;
+      margin-right: 0px;
     }
   }
   select {
@@ -84,28 +91,27 @@ const SShareTop = styled.div`
       font-size: 0.8rem;
     }
   }
-`;
-
-const SRegister = styled.button`
-  width: 106px;
-  height: 41px;
-  margin-right: 89px;
-  border-radius: 6px;
-  border: 1.5px solid #bb2649;
-  color: #bb2649;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 24px;
-  align-items: center;
-  text-align: center;
-  @media screen and (max-width: 1023px) {
-    width: 80px;
-    height: 41px;
-    font-size: 15px;
-    margin-right: 0;
-    /* transform: translate(360%, -100%); */
+  .register {
+    width: 100px;
+    height: 40px;
+    margin-right: 0px;
+    margin-top: 22px;
+    border-radius: 6px;
+    border: 1.5px solid #bb2649;
+    color: #bb2649;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    /* line-height: 24px; */
+    /* align-items: center;
+  text-align: center; */
+    @media screen and (max-width: 1023px) {
+      width: 80px;
+      height: 41px;
+      font-size: 15px;
+      margin-right: 0;
+    }
   }
 `;
 
@@ -131,20 +137,26 @@ const ListHigh = ({
         </p>
       </div>
       <div className="searchBox">
-        <select id="searchFilter" onChange={handleOption}>
-          <option value="">--선택--</option>
-          {/* 서버에서 타입 이름 정해지면 그걸로 value 바꾸기 */}
-          <option value="bookTitle">책 제목</option>
-          <option value="content">내용</option>
-        </select>
-        <input
-          className="search"
-          value={keyword}
-          onChange={handleKeyword}
-          onKeyDown={handleSearch}
-        />
-        <Search className="search-icon" />
-        <SRegister onClick={() => navigate(route)}>책 등록하기</SRegister>
+        <div>
+          <select id="searchFilter" onChange={handleOption}>
+            <option value="">--선택--</option>
+            {/* 서버에서 타입 이름 정해지면 그걸로 value 바꾸기 */}
+            <option value="bookTitle">책 제목</option>
+            <option value="content">내용</option>
+          </select>
+          <input
+            className="search"
+            value={keyword}
+            onChange={handleKeyword}
+            onKeyDown={handleSearch}
+          />
+          <Search className="search-icon" />
+        </div>
+        <div>
+          <button className="register" onClick={() => navigate(route)}>
+            책 등록하기
+          </button>
+        </div>
       </div>
     </SShareTop>
   );
