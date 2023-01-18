@@ -130,8 +130,8 @@ const BookAddModal = ({
 
     onBookInfoChange({
       ...inputs,
-      title: title,
-      authors: authors[0],
+      bookTitle: title,
+      author: authors[0],
       publisher: publisher,
     });
 
