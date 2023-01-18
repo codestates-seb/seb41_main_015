@@ -236,16 +236,16 @@ const MyPageEdit = () => {
   }, []);
 
   //회원탈퇴 시 로그아웃
-  const handleLogout = () => {
-    instanceAxios
-      .post('/v1/members/auth/logout')
-      .then(() => {
-        dispatch(logout());
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
+  // const handleLogout = () => {
+  //   instanceAxios
+  //     .post('/v1/members/auth/logout')
+  //     .then(() => {
+  //       dispatch(logout());
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // };
 
   //회원탈퇴(이벤트 연결할 것!)
   const handleClickQuit = () => {
