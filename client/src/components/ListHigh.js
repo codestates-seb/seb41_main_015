@@ -116,22 +116,24 @@ const SShareTop = styled.div`
 `;
 
 const ListHigh = ({
+  // headTitle,
   title,
-  page,
+  route,
   keyword,
+  // isSearchMode,
   handleKeyword,
   handleSearch,
   handleOption,
 }) => {
   const navigate = useNavigate();
-  const route = page === 'share' ? '/shareAdd' : '/reqAdd';
+  const path = route === 'share' ? '/shareAdd' : '/reqAdd';
 
   return (
     <SShareTop>
       <div className="ml-5">
         <p className="fs-23 mb-5">{title}</p>
         <p className="fs-16">
-          {page === 'share'
+          {route === 'share'
             ? '찾고 있는 책이 있다면 연락해보세요!'
             : '내가 갖고 있는 책이라면 연락해보세요!'}
         </p>
@@ -153,7 +155,7 @@ const ListHigh = ({
           <Search className="search-icon" />
         </div>
         <div>
-          <button className="register" onClick={() => navigate(route)}>
+          <button className="register" onClick={() => navigate(path)}>
             책 등록하기
           </button>
         </div>

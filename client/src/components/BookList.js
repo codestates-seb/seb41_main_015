@@ -106,15 +106,15 @@ const SBookList = styled.ol`
   /* padding-inline-start: 0px; */
 `;
 
-const BookList = ({ data, page }) => {
+const BookList = ({ data, route }) => {
   const navigate = useNavigate();
-  const route = page === 'share' ? '/shareDetail' : '/reqDetail';
+  const path = route === 'share' ? '/shareDetail' : '/reqDetail';
 
   return (
     <SBookList>
       {data.map((book) => (
         <SBookContainer key={book.id}>
-          <Link to={`${route}/${book.id}`}>
+          <Link to={`${path}/${book.id}`}>
             <div className="shareTitle">{book.title}</div>
           </Link>
           <div className="f-row">
@@ -123,7 +123,7 @@ const BookList = ({ data, page }) => {
                 className="bookCover"
                 src={book.image}
                 alt="bookCover"
-                onClick={() => navigate(`${route}/${book.id}`)}
+                onClick={() => navigate(`${path}/${book.id}`)}
               />
             </div>
             <div className="informationBox">
