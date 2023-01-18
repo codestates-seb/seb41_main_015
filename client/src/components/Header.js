@@ -2,7 +2,7 @@ import { useState } from 'react';
 import LoginModal from './LoginModal';
 import styled from 'styled-components';
 import logo from '../image/logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import mypage from '../image/mypage.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/slice/userSlice';
@@ -47,9 +47,10 @@ const SNavContainer = styled.ol`
     margin: 5px 33px;
     font-size: 18px;
     font-weight: 600;
-    :focus {
-      border-bottom: 3px solid #bb2649;
-    }
+  }
+  .focused {
+    /* color: #bb2649; */
+    border-bottom: 3px solid #bb2649;
   }
 
   @media screen and (max-width: 930px) {
@@ -114,6 +115,7 @@ const SLogoutBtn = styled.button`
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const accessToken = useSelector((state) => state.user.accessToken);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -128,12 +130,26 @@ const Header = () => {
     instanceAxios
       .post('/v1/members/auth/logout')
       .then(() => {
+        dispatch(logout());
+        navigate();
+        window.location.reload();
         console.log('로그아웃 됨!');
       })
       .catch((err) => {
         console.error(err);
       });
-    dispatch(logout());
+  };
+
+  // 헤더 바깥부분 클릭해도 유지되는 로직
+  const [currentTab, setCurrentTab] = useState(0);
+  const menus = [
+    { index: 0, name: '나눔', route: '/shareList' },
+    { index: 1, name: '요청', route: '/reqList' },
+    { index: 2, name: '평점', route: '/' },
+    { index: 3, name: '커뮤니티', route: '/' },
+  ];
+  const handleMenuSelect = (index) => {
+    setCurrentTab(index);
   };
 
   return (
@@ -142,18 +158,19 @@ const Header = () => {
         <img src={logo} alt="logo" className="logo" />
       </SHeaderLogo>
       <SNavContainer>
-        <Link to="/shareList" className="olItem">
-          나눔
-        </Link>
-        <Link to="/reqList" className="olItem">
-          요청
-        </Link>
-        <Link to="/" className="olItem">
-          평점
-        </Link>
-        <Link to="/" className="olItem">
-          커뮤니티
-        </Link>
+        {menus.map((el) => {
+          const isFocused =
+            currentTab === el.index ? 'olItem focused' : 'olItem';
+          return (
+            <Link
+              to={el.route}
+              onClick={() => handleMenuSelect(el.index)}
+              className={isFocused}
+            >
+              {el.name}
+            </Link>
+          );
+        })}
       </SNavContainer>
       {!accessToken ? (
         <>
