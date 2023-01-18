@@ -164,6 +164,7 @@ const Header = () => {
           return (
             <Link
               to={el.route}
+              key={el.index}
               onClick={() => handleMenuSelect(el.index)}
               className={isFocused}
             >
