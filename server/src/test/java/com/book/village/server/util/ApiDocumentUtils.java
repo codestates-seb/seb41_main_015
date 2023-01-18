@@ -1,4 +1,4 @@
-package com.book.village.server.domain.util;
+package com.book.village.server.util;
 
 import org.springframework.restdocs.operation.preprocess.OperationRequestPreprocessor;
 import org.springframework.restdocs.operation.preprocess.OperationResponsePreprocessor;

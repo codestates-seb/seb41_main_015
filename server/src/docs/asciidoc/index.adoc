@@ -294,10 +294,10 @@ include::{snippets}/get-borrows-mine/curl-request.adoc[]
 include::{snippets}/get-borrows-mine/http-request.adoc[]
 
 .request-headers
-include::{snippets}/get-borrows-mine/request-headers.adoc[]
+include::{snippets}/patch-borrow-mine/request-headers.adoc[]
 
 .request-parameters
-include::{snippets}/get-borrows-mine/request-parameters.adoc[]
+include::{snippets}/patch-borrow-mine/request-parameters.adoc[]
 
 .http-response
 include::{snippets}/get-borrows-mine/http-response.adoc[]

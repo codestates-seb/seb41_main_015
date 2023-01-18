@@ -26,8 +26,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.book.village.server.domain.util.ApiDocumentUtils.getRequestPreProcessor;
-import static com.book.village.server.domain.util.ApiDocumentUtils.getResponsePreProcessor;
+import static com.book.village.server.util.ApiDocumentUtils.getRequestPreProcessor;
+import static com.book.village.server.util.ApiDocumentUtils.getResponsePreProcessor;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
@@ -324,7 +324,7 @@ class BorrowCommentControllerRestDocsTest {
     }
 
     @Test
-    @DisplayName("나눔 댓글 삭제")
+    @DisplayName("커뮤니티 댓글 삭제")
     @WithMockUser
     void deleteBorrowCommentTest() throws Exception {
         Long borrowCommentId = 1L;

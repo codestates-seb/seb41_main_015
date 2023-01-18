@@ -22,16 +22,16 @@ public class Borrow extends Auditable {
     private Long borrowId;
 
     @Column(length = 100, nullable = false)
-    private String borrowTitle;
+    private String title;
 
     @Lob
     private String content;
 
     @Column(length = 100, nullable = false)
-    private String title;
+    private String bookTitle;
 
     @Column(length = 50, nullable = false)
-    private String authors;
+    private String author;
 
     @Column(length = 50, nullable = false)
     private String publisher;

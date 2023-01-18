@@ -16,10 +16,10 @@ public interface BorrowMapper {
         } else {
             Borrow borrow = Borrow.builder()
                     .talkUrl(borrowDtoPost.getTalkUrl())
-                    .borrowTitle(borrowDtoPost.getBorrowTitle())
-                    .content(borrowDtoPost.getContent())
                     .title(borrowDtoPost.getTitle())
-                    .authors(borrowDtoPost.getAuthors())
+                    .content(borrowDtoPost.getContent())
+                    .bookTitle(borrowDtoPost.getTitle())
+                    .author(borrowDtoPost.getAuthor())
                     .publisher(borrowDtoPost.getPublisher())
                     .displayName(borrowDtoPost.getDisplayName())
                     .build();
@@ -34,10 +34,10 @@ public interface BorrowMapper {
     default BorrowDto.Response borrowToBorrowDtoResponse(Borrow borrow) {
         return BorrowDto.Response.builder()
                 .borrowId(borrow.getBorrowId())
-                .borrowTitle(borrow.getBorrowTitle())
-                .content(borrow.getContent())
                 .title(borrow.getTitle())
-                .authors(borrow.getAuthors())
+                .content(borrow.getContent())
+                .bookTitle(borrow.getTitle())
+                .author(borrow.getAuthor())
                 .publisher(borrow.getPublisher())
                 .displayName(borrow.getDisplayName())
                 .talkUrl(borrow.getTalkUrl())
