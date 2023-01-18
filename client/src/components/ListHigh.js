@@ -140,7 +140,8 @@ const ListHigh = ({
         <div>
           <select id="searchFilter" onChange={handleOption}>
             <option value="">--선택--</option>
-            <option value="title">책 제목</option>
+            <option value="bookTitle">책 제목</option>
+            <option value="author">저자</option>
             <option value="content">내용</option>
           </select>
           <input

@@ -17,7 +17,7 @@ const ShareDetail = () => {
         setData(res.data.data);
       })
       .catch((err) => {
-        Swal.fire('데이터를 불러오는데 실패했습니다.');
+        Swal.fire('데이터 로딩 실패', '데이터 로딩에 실패했습니다.', 'warning');
         console.error(err);
       });
   }, []);

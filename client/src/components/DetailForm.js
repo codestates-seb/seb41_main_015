@@ -42,7 +42,7 @@ const SRightSide = styled.div`
     margin: 5px;
   }
 
-  .editButton {
+  .controlButton {
     &:hover {
       color: #bb2649;
       cursor: pointer;
@@ -148,6 +148,14 @@ const SContact = styled.div`
 `;
 
 const DetailForm = ({ data, page }) => {
+  // 자기가 쓴 글이 아니면 수정, 삭제 버튼이 안 보여야 함
+
+  // 삭제 버튼 핸들러
+  const handleDelete = () => {
+    // 서버에 삭제 요청 보내기 (instanceAxios 쓰기)
+    console.log('삭제합니다!');
+  };
+
   // 책 표지 기본이미지
   const imgUrl = data.imgUrl
     ? data.imgUrl
@@ -166,10 +174,12 @@ const DetailForm = ({ data, page }) => {
                 {/* 수정, 삭제 버튼은 자기가 쓴 글에서만 보이도록 */}
                 <div className="controlButtons">
                   <Link to={page === 'request' ? '/reqEdit' : '/shareEdit'}>
-                    <span className="editButton">수정</span>
+                    <span className="controlButton">수정</span>
                   </Link>
                   <span className="betweenButtons">|</span>
-                  <span className="deleteButton">삭제</span>
+                  <span className="controlButton" onClick={handleDelete}>
+                    삭제
+                  </span>
                 </div>
               </div>
               <div className="authorInfo">

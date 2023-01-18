@@ -45,7 +45,7 @@ const CommonList = (props) => {
         setItems([]);
         setCount(0);
         console.log(err);
-        Swal.fire('데이터를 불러오는데 실패했습니다');
+        Swal.fire('데이터 로딩 실패', '데이터 로딩에 실패했습니다.', 'warning');
       });
   }, [pathname]);
 
@@ -101,7 +101,6 @@ const CommonList = (props) => {
   // 드롭다운 이벤트
   const handleOption = (e) => {
     setType(e.target.value);
-    // console.log(e.target.value);
   };
 
   const handleSearch = (e) => {
@@ -141,7 +140,7 @@ const CommonList = (props) => {
             '데이터 로딩에 실패했습니다.',
             'warning'
           );
-          console.log(err);
+          console.error(err);
         });
 
       setKeyword('');
