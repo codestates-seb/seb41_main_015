@@ -96,8 +96,8 @@ const SRenderBox = styled.div`
 
 const SSearchList = styled.div``;
 
-const BookAddModal = ({ isModalOpen, handleCloseModal }, props) => {
-  const [book, setBook] = useState([]);
+const BookAddModal = ({ isModalOpen, handleCloseModal, onBookInfoChange }) => {
+  const [bookList, setBookList] = useState([]);
   const [text, setText] = useState('');
   const [query, setQuery] = useState('');
 
@@ -120,8 +120,9 @@ const BookAddModal = ({ isModalOpen, handleCloseModal }, props) => {
     setText(e.target.value);
   };
 
-  const handleChoose = (e) => {
-    console.log('선택');
+  const handleChoose = (chooseBook) => {
+    onBookInfoChange(chooseBook);
+    handleCloseModal();
   };
 
   const bookSearchHttpHandler = async (query, reset) => {
@@ -134,9 +135,9 @@ const BookAddModal = ({ isModalOpen, handleCloseModal }, props) => {
 
     const { data } = await BookSearch(params);
     if (reset) {
-      setBook(data.documents);
+      setBookList(data.documents);
     } else {
-      setBook(book.concat(data.documents));
+      setBookList(bookList.concat(data.documents));
     }
   };
 
@@ -167,8 +168,8 @@ const BookAddModal = ({ isModalOpen, handleCloseModal }, props) => {
                   </button>
                 </div>
                 <SSearchList>
-                  {book.map((book, index) => (
-                    <SRenderBox key={index} onClick={handleChoose}>
+                  {bookList.map((book, idx) => (
+                    <SRenderBox key={idx} onClick={() => handleChoose(book)}>
                       <div className="bookname">{book.title}</div>
                       <span className="authors">{book.authors}</span>|
                       <span className="publisher">{book.publisher}</span>

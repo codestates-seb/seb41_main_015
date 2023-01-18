@@ -1,60 +1,57 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import ShareForm from '../components/ShareForm';
+import instanceAxios from '../reissue/InstanceAxios';
 
 const StyledShareAdd = styled.div`
   width: 100%;
 `;
 
 const ShareAdd = () => {
-  const navigate = useNavigate();
-  const url = 'https://serverbookvillage.kro.kr';
-  const accessToken = sessionStorage.getItem('accessToken');
+  // const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({
-    bookname: '',
-    author: '',
-    publisher: '',
-    link: '',
     title: '',
-    content: '',
+    authors: '',
+    publisher: '',
+    talkUrl: '',
+    writeTitle: '',
+    writeContent: '',
   });
 
-  const { bookname, author, publisher, link, title, content } = inputs;
+  const { title, authors, publisher, talkUrl, writeTitle, writeContent } =
+    inputs;
 
   const handleClickSubmit = () => {
-    axios
-      .post(
-        `${url}/v1/borrow`,
-        {
-          bookname,
-          author,
-          publisher,
-          link,
-          title,
-          content,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            Accept: 'application/json',
-            Authorization: `Bearer  ${accessToken}`,
-          },
-        }
-      )
+    console.log(inputs);
+    instanceAxios
+      .post('/v1/borrow', {
+        title,
+        authors,
+        publisher,
+        talkUrl,
+        writeTitle,
+        writeContent,
+      })
       .then((res) => {
-        if (accessToken === null) {
-          Swal.fire(
-            '권한이 없습니다.',
-            '로그인 상태에서만 글 작성이 가능합니다.',
-            'warning'
-          );
-        } else {
-          navigate('/shareDetail');
-        }
+        console.log(res);
+        Swal.fire(
+          '나눔 글 등록 완료.',
+          '나눔 글이 정상적으로 작성되었습니다.',
+          'success'
+        );
+        // if (accessToken === null) {
+        //   Swal.fire(
+        //     '권한이 없습니다.',
+        //     '로그인 상태에서만 글 작성이 가능합니다.',
+        //     'warning'
+        //   );
+        // } else {
+        //   navigate('/shareDetail');
+        // }
       })
       .catch((err) => {
         Swal.fire(
@@ -64,13 +61,18 @@ const ShareAdd = () => {
         );
       });
   };
+
+  const handleBookInfoChange = (bookInfo) => {
+    setInputs(bookInfo);
+  };
+
   return (
     <StyledShareAdd>
       <ShareForm
         page="shareAdd"
         editBtn={handleClickSubmit}
         inputs={inputs}
-        setInputs={setInputs}
+        onBookInfoChange={handleBookInfoChange}
       />
     </StyledShareAdd>
   );

@@ -12,6 +12,7 @@ const SInputContainer = styled.div`
     height: 40px;
     border: 1px solid #aaaaaa;
     border-radius: 5px;
+    padding-left: 10px;
   }
   .SunmbitComment {
     margin-left: 30px;
