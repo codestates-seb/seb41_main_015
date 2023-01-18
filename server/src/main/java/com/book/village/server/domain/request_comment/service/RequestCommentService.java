@@ -34,7 +34,7 @@ public class RequestCommentService {
     public RequestComment createRequestComment(RequestComment requestComment, String userEmail, long requestId) {
         requestComment.setMember(memberService.findMember(userEmail));
         requestComment.setRequest(requestService.findRequest(requestId));
-        requestComment.setDisplayName(memberService.findMember(requestId).getDisplayName());
+        requestComment.setDisplayName(memberService.findMember(userEmail).getDisplayName());
         return requestCommentRepository.save(requestComment);
     }
 
