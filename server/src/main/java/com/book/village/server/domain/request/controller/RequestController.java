@@ -60,6 +60,7 @@ public class RequestController {
                 HttpStatus.OK);
     }
 
+
     @GetMapping("/mine")
     public ResponseEntity getMyRequests(@PageableDefault Pageable pageable, Principal principal) {
         Page<Request> myRequests = requestService.findMyRequests(principal.getName(),pageable);
