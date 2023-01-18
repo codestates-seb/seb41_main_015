@@ -24,6 +24,8 @@ public enum ExceptionCode {
 
     BORROW_NOT_FOUND(404, "BORROW_NOT_FOUND"), // 나눔글 존재 하지 않음.
     BORROW_USER_DIFFERENT(403, "BORROW_USER_DIFFERENT"),   // 나눔글 작성자가 아닌 사람이 수정하려고 할 때
+    BORROW_COMMENT_NOT_FOUND(404,"BORROW_COMMENT_NOT_FOUND"),   // 나눔 댓글 존재 하지 않음.
+    BORROW_COMMENT_USER_DIFFERENT(409,"BORROW_COMMENT_USER_DIFFERENT"),   // 나눔 댓글 존재 하지 않음.
 
     COMMUNITY_NOT_FOUND(404, "community not found"),
     COMMUNITY_USER_DIFFERENT(409, "community writer is not matched"),
