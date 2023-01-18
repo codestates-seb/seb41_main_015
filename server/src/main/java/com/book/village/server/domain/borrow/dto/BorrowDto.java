@@ -27,9 +27,6 @@ public class BorrowDto {
         @NotBlank
         private String publisher;   // 나눔 책 출판사
 
-        @NotBlank
-        private String displayName; // 닉네임
-
         private String talkUrl;     // 오픈 챗 링크
     }
 

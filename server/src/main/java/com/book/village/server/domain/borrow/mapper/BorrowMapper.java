@@ -18,10 +18,9 @@ public interface BorrowMapper {
                     .talkUrl(borrowDtoPost.getTalkUrl())
                     .title(borrowDtoPost.getTitle())
                     .content(borrowDtoPost.getContent())
-                    .bookTitle(borrowDtoPost.getTitle())
+                    .bookTitle(borrowDtoPost.getBookTitle())
                     .author(borrowDtoPost.getAuthor())
                     .publisher(borrowDtoPost.getPublisher())
-                    .displayName(borrowDtoPost.getDisplayName())
                     .build();
 
             return borrow;
@@ -36,7 +35,7 @@ public interface BorrowMapper {
                 .borrowId(borrow.getBorrowId())
                 .title(borrow.getTitle())
                 .content(borrow.getContent())
-                .bookTitle(borrow.getTitle())
+                .bookTitle(borrow.getBookTitle())
                 .author(borrow.getAuthor())
                 .publisher(borrow.getPublisher())
                 .displayName(borrow.getDisplayName())
