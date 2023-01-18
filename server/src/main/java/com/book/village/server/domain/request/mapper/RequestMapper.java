@@ -1,5 +1,7 @@
 package com.book.village.server.domain.request.mapper;
 
+import com.book.village.server.domain.community.dto.CommunityDto;
+import com.book.village.server.domain.community.entity.Community;
 import com.book.village.server.domain.request.dto.RequestDto;
 import com.book.village.server.domain.request.entity.Request;
 import com.book.village.server.domain.request_comment.mapper.RequestCommentMapper;
