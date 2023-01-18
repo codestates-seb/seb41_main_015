@@ -1,38 +1,89 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 import shareListData from '../data/shareListData.json';
 import ListHigh from '../components/ListHigh';
 import BookList from '../components/BookList';
 import Paging from '../components/Paging';
 
 const ShareList = () => {
+  const url = 'https://serverbookvillage.kro.kr/';
+
   const [title, setTitle] = useState('현재 빌리지에 올라온 목록입니다!');
   const [keyword, setKeyword] = useState('');
   const [type, setType] = useState('');
+  const [isSearchMode, setIsSearchMode] = useState(false);
 
   // 한 페이지에 들어갈 데이터 (페이지가 바뀔 때마다 get으로 받아옴)
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
-  const handlePageChange = (page) => {
-    setPage(page);
+
+  const getDatabyPage = async (page) => {
+    // try {
+    //   const res = await axios.get(url + `v1/borrow?page=${page - 1}&size=12`);
+    //   const data = res.data; // 디버깅 필요
+    //   return data;
+    // } catch (err) {
+    //   console.error(err);
+    // }
   };
 
-  // 총 데이터
-  const [data, setData] = useState(shareListData.books);
+  const getSearchDatabyPage = async (keyword, type, page) => {
+    // try {
+    //   const res = await axios.get(
+    //     url +
+    //       `v1/borrow/search?field=${type}&keyword=${keyword}&page=${
+    //         page - 1
+    //       }&size=12`
+    //   );
+    //   const data = res.data; // 디버깅 필요
+    //   return data;
+    // } catch (err) {
+    //   console.error(err);
+    // }
+  };
 
-  // const url = 'https://serverbookvillage.kro.kr/';
+  const handlePageChange = async (page) => {
+    console.log(page);
+    setPage(page);
 
-  // useEffect(() => {
-  //   // get 요청으로 요청 목록 데이터 받아오기
-  //   axios
-  //     .get(url + 'v1/borrow')
-  //     .then((res) => setData(res.data))
-  //     .catch((err) => alert('데이터를 불러오는데 실패했습니다.'));
-  // }, []);
+    // 검색 중인지 어떻게 구별?
+    // search pagination 함수를 따로 만들어서 검색 중일 때에는 그게 실행되도록
+    if (!isSearchMode) {
+      // const pageData = await getDatabyPage(page);
+      // setItems(pageData);
+      console.log('검색 중이 아닙니다.');
+    } else {
+      // const pageData = await getSearchDatabyPage(keyword, type, page);
+      // setItems(pageData);
+      console.log('검색 중입니다.');
+    }
+  };
+
+  // 총 데이터 개수
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    // 첫 페이지 데이터 불러오기
+    // axios
+    //   .get(url + `v1/borrow?page=0&size=12`)
+    //   .then((res) => {
+    //     setItems(res.data);
+    //     setCount(res.pageInfo.totalElements);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     Swal.fire('데이터를 불러오는데 실패했습니다');
+    //   });
+  }, []);
 
   const handleKeyword = (e) => {
-    // 앞뒤 공백 지우기
     setKeyword(e.target.value.replace(/^\s+|\s+$/gm, ''));
+  };
+
+  // 드롭다운 이벤트
+  const handleOption = (e) => {
+    setType(e.target.value);
   };
 
   const handleSearch = (e) => {
@@ -47,26 +98,36 @@ const ShareList = () => {
         alert('검색어를 입력해주세요.');
         return;
       }
-
       if (!type && keyword) {
         alert('검색어 종류를 선택해주세요.');
         return;
       }
 
-      console.log('엔터 입력!', `키워드: ${keyword}, 검색어 종류: ${type}`);
       setTitle(`'${keyword}'에 대한 검색 결과입니다.`);
-      setKeyword('');
+      // setIsSearchMode(true);
 
       // axios
-      //   .get(url + `v1/borrow/search?field=${type}&keyword=${keyword}`)
-      //   .then((res) => setData(res.data))
-      //   .catch((err) => alert('데이터를 불러오는데 실패했습니다.'))
-    }
-  };
+      //   .get(
+      //     url +
+      //       `v1/borrow/search?field=${type}&keyword=${keyword}&page=0`
+      //   )
+      //   .then((res) => {
+      //     setIsSearchMode(true);
+      //     setItems(res.data);
+      //     setCount(res.pageInfo.totalElements);
+      //     setPage(1)
+      //   })
+      //   .catch((err) => {
+      //     Swal.fire(
+      //       '데이터 로딩 실패',
+      //       '데이터 로딩에 실패했습니다.',
+      //       'warning'
+      //     );
+      //     console.log(err);
+      //   });
 
-  // 드롭다운 이벤트
-  const handleOption = (e) => {
-    setType(e.target.value);
+      setKeyword('');
+    }
   };
 
   return (
@@ -79,11 +140,10 @@ const ShareList = () => {
         handleSearch={handleSearch}
         handleOption={handleOption}
       />
-      <BookList data={data} page="share" />
-      {/* 데이터의 총 길이가 필요함..! */}
+      <BookList data={shareListData.books} page="share" />
       <Paging
         page={page}
-        count={data.length}
+        count={shareListData.books.length}
         handlePageChange={handlePageChange}
       />
     </>
