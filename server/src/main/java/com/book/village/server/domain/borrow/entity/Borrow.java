@@ -1,10 +1,13 @@
 package com.book.village.server.domain.borrow.entity;
 
+import com.book.village.server.domain.borrowcomment.entity.BorrowComment;
 import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.global.audit.Auditable;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -43,5 +46,8 @@ public class Borrow extends Auditable {
     @JoinColumn(name = "MEMBER_ID")
     @Setter
     private Member member;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "borrow", orphanRemoval = true)
+    private List<BorrowComment> borrowComments = new ArrayList<>();
 
 }
