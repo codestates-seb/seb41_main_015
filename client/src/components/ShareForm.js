@@ -85,6 +85,7 @@ const SInputRight = styled.div`
     margin-bottom: 20px;
     border: 1px solid #aaaaaa;
     border-radius: 4px;
+    padding-left: 10px;
   }
   .inputContent {
     width: 95%;
@@ -92,6 +93,7 @@ const SInputRight = styled.div`
     border: 1px solid #aaaaaa;
     border-radius: 4px;
     margin-bottom: 30px;
+    padding: 10px;
   }
 `;
 
@@ -127,11 +129,12 @@ const ShareForm = (props) => {
     navigate(-1);
   };
 
-  const { inputs, setInputs } = props;
-  const { bookname, author, publisher, link, title, content } = inputs;
+  const { inputs, onBookInfoChange } = props;
+  const { title, authors, publisher, talkUrl, writeTitle, writeContent } =
+    inputs;
 
   const handleChangeString = (e, type) => {
-    setInputs({ ...inputs, [`${type}`]: e.target.value });
+    onBookInfoChange({ ...inputs, [`${type}`]: e.target.value });
     console.log(e.target.value);
   };
 
@@ -182,55 +185,56 @@ const ShareForm = (props) => {
         <SInputRight>
           <div>
             <input
-              name="bookname"
-              // value={bookname}
-              onChange={(e) => handleChangeString(e, bookname)}
+              name="title"
+              value={title || ''}
+              onChange={(e) => handleChangeString(e, title)}
               placeholder="책 제목을 입력해주세요."
               onClick={handleOpenModal}
             />
-            {/* 검색 모달  */}{' '}
+            {/* 검색 모달  */}
             <BookAddModal
               isModalOpen={isModalOpen}
+              onBookInfoChange={onBookInfoChange}
               handleCloseModal={handleCloseModal}
             />
           </div>
           <div>
             <input
-              name="author"
-              // value={author}
-              onChange={(e) => handleChangeString(e, author)}
+              name="authors"
+              value={authors || ''}
+              onChange={(e) => handleChangeString(e, authors)}
               placeholder="저자를 입력해주세요."
             />
           </div>
           <div>
             <input
               name="publisher"
-              // value={publisher}
+              value={publisher || ''}
               onChange={(e) => handleChangeString(e, publisher)}
               placeholder="출판사를 입력해주세요."
             />
           </div>
           <div>
             <input
-              name="link"
-              // value={link}
-              onChange={(e) => handleChangeString(e, link)}
+              name="talkUrl"
+              value={talkUrl}
+              onChange={(e) => handleChangeString(e, talkUrl)}
               placeholder="오픈채팅 대화방 링크를 입력해주세요."
             />
           </div>
           <div>
             <input
-              name="title"
-              // value={title}
-              onChange={(e) => handleChangeString(e, title)}
+              name="writeTitle"
+              value={writeTitle}
+              onChange={(e) => handleChangeString(e, writeTitle)}
               placeholder="게시글 제목을 입력해주세요."
             />
           </div>
           <div>
             <textarea
-              name="content"
-              // value={content}
-              onChange={(e) => handleChangeString(e, content)}
+              name="writeContent"
+              value={writeContent}
+              onChange={(e) => handleChangeString(e, writeContent)}
               className="inputContent"
               placeholder="게시글 내용을 입력해주세요. (ex. 책 상태, 구매 시기 등)"
             />
