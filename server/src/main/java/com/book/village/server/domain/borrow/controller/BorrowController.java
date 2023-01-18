@@ -54,7 +54,6 @@ public class BorrowController {
         return new ResponseEntity<>(new SingleResponse<>(borrowMapper.borrowToBorrowDtoResponse(updatedBorrow)), HttpStatus.OK);
     }
 
-
 //     Borrow 조회
 //      그냥 조회는 인증 굳이 필요없음.
     @GetMapping("/{borrow-id}")

@@ -433,9 +433,6 @@ include::{snippets}/patch-borrow/request-headers.adoc[]
 .request-fields
 include::{snippets}/patch-borrow/request-fields.adoc[]
 
-.request-parameters
-include::{snippets}/patch-borrow/request-parameters.adoc[]
-
 .path-parameters
 include::{snippets}/patch-borrow/path-parameters.adoc[]
 

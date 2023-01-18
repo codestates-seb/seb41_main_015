@@ -36,7 +36,7 @@ public class Borrow extends Auditable {
     @Column(length = 50, nullable = false)
     private String publisher;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String displayName;
 
     @Column(length = 100)
