@@ -31,7 +31,7 @@ const SLabelList = styled.div`
     margin-bottom: 1rem;
     padding-top: 10px;
     height: 36px;
-    width: 60px;
+    width: 70px;
   }
 `;
 
@@ -250,10 +250,6 @@ const MyPageEdit = () => {
   //회원탈퇴(이벤트 연결할 것!)
   const handleClickQuit = () => {
     instanceAxios.patch('/v1/members/quit').then(() => {
-      // handleLogout();
-      sessionStorage.clear();
-      navigate('/');
-      console.log('회원탈퇴!');
       Swal.fire({
         title: '회원탈퇴를 진행하시겠습니까?',
         text: '회원탈퇴 후 재로그인이 어렵습니다 신중하게 생각해주세요.',
@@ -265,9 +261,12 @@ const MyPageEdit = () => {
         cancelButtonText: '취소', // cancel 버튼 텍스트 지정
         reverseButtons: true, // 버튼 순서 거꾸로
       }).then((result) => {
-        // 만약 Promise리턴을 받으면,
         if (result.isConfirmed) {
           // 만약 모달창에서 confirm 버튼을 눌렀다면
+          sessionStorage.clear();
+          navigate('/');
+          window.location.reload();
+          console.log('회원탈퇴!');
           Swal.fire(
             '정상적으로 회원탈퇴가 처리되었습니다.',
             '이용해주셔서 감사합니다',
