@@ -112,32 +112,42 @@ const BookList = ({ data, route }) => {
 
   return (
     <SBookList>
-      {data.map((book) => (
-        <SBookContainer key={book.id}>
-          <Link to={`${path}/${book.id}`}>
-            <div className="shareTitle">{book.title}</div>
-          </Link>
-          <div className="f-row">
-            <div className="coverBox">
-              <img
-                className="bookCover"
-                src={book.image}
-                alt="bookCover"
-                onClick={() => navigate(`${path}/${book.id}`)}
-              />
-            </div>
-            <div className="informationBox">
-              <p className="fs-18 mb-15">{book.bookTitle}</p>
-              <div className="item-flex">
-                <p className="mfs-16">{book.writer} 저자 /</p>
-                <p className="mfs-16">{book.publisher}</p>
+      {data.map((article) => {
+        // 기본 이미지
+        const imgSrc = article.imgUrl
+          ? article.imgUrl
+          : 'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg';
+
+        // 아이디
+        const id = route === 'share' ? article.borrowId : article.requestId;
+
+        return (
+          <SBookContainer key={id}>
+            <Link to={`${path}/${id}`}>
+              <div className="shareTitle">{article.title}</div>
+            </Link>
+            <div className="f-row">
+              <div className="coverBox">
+                <img
+                  className="bookCover"
+                  src={imgSrc}
+                  alt="bookCover"
+                  onClick={() => navigate(`${path}/${id}`)}
+                />
               </div>
-              <p className="fs-12 createdAt-r">{book.createdAt}</p>
+              <div className="informationBox">
+                <p className="fs-18 mb-15">{article.bookTitle}</p>
+                <div className="item-flex">
+                  <p className="mfs-16">{article.author} 저자 /</p>
+                  <p className="mfs-16">{article.publisher}</p>
+                </div>
+                <p className="fs-12 createdAt-r">{article.createdAt}</p>
+              </div>
             </div>
-          </div>
-          <p className="word-break mt-20 mfs-16">{book.contents}</p>
-        </SBookContainer>
-      ))}
+            <p className="word-break mt-20 mfs-16">{article.content}</p>
+          </SBookContainer>
+        );
+      })}
     </SBookList>
   );
 };

@@ -116,11 +116,9 @@ const SShareTop = styled.div`
 `;
 
 const ListHigh = ({
-  // headTitle,
   title,
   route,
   keyword,
-  // isSearchMode,
   handleKeyword,
   handleSearch,
   handleOption,
@@ -142,8 +140,7 @@ const ListHigh = ({
         <div>
           <select id="searchFilter" onChange={handleOption}>
             <option value="">--선택--</option>
-            {/* 서버에서 타입 이름 정해지면 그걸로 value 바꾸기 */}
-            <option value="bookTitle">책 제목</option>
+            <option value="title">책 제목</option>
             <option value="content">내용</option>
           </select>
           <input

@@ -10,6 +10,7 @@ import Paging from '../components/Paging';
 const CommonList = (props) => {
   const { headTitle, endpoint, route } = props;
   const { pathname } = useLocation();
+  const id = pathname === '/shareList' ? 'borrowId' : 'requestId';
 
   const url = 'https://serverbookvillage.kro.kr/';
 
@@ -22,14 +23,43 @@ const CommonList = (props) => {
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
 
+  // 총 데이터 개수
+  const [count, setCount] = useState(0);
+  const PER_PAGE = 4;
+
+  useEffect(() => {
+    // 상태 초기화
+    setTitle(headTitle);
+    setPage(1);
+    setIsSearchMode(false);
+    setItems([]);
+
+    // 첫 페이지 데이터 불러오기
+    axios
+      .get(url + `v1/${endpoint}?page=0&size=${PER_PAGE}&sort=${id}%2Cdesc`)
+      .then((res) => {
+        setItems(res.data.data);
+        setCount(res.data.pageInfo.totalElements);
+      })
+      .catch((err) => {
+        setItems([]);
+        setCount(0);
+        console.log(err);
+        Swal.fire('데이터를 불러오는데 실패했습니다');
+      });
+  }, [pathname]);
+
   const getDatabyPage = async (page) => {
-    // try {
-    //   const res = await axios.get(url + `v1/${endpoint}?page=${page - 1}&size=12`);
-    //   const data = res.data; // 디버깅 필요
-    //   return data;
-    // } catch (err) {
-    //   console.error(err);
-    // }
+    try {
+      const res = await axios.get(
+        url +
+          `v1/${endpoint}?page=${page - 1}&size=${PER_PAGE}&sort=${id}%2Cdesc`
+      );
+      const data = res.data; // 디버깅 필요
+      return data;
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const getSearchDatabyPage = async (keyword, type, page) => {
@@ -51,38 +81,19 @@ const CommonList = (props) => {
     console.log(page);
     setPage(page);
 
-    // 검색 중인지 어떻게 구별?
-    // search pagination 함수를 따로 만들어서 검색 중일 때에는 그게 실행되도록
     if (!isSearchMode) {
-      // const pageData = await getDatabyPage(page);
-      // setItems(pageData);
+      const pageData = await getDatabyPage(page);
+      console.log(pageData);
+      // setItems(pageData.data);
       console.log('검색 중이 아닙니다.');
     } else {
       // const pageData = await getSearchDatabyPage(keyword, type, page);
       // setItems(pageData);
       console.log('검색 중입니다.');
     }
+
+    window.scrollTo(0, 0);
   };
-
-  // 총 데이터 개수
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    console.log(pathname);
-    setTitle(headTitle);
-
-    // 첫 페이지 데이터 불러오기
-    // axios
-    //   .get(url + `v1/${endpoint}?page=0&size=12`)
-    //   .then((res) => {
-    //     setItems(res.data);
-    //     setCount(res.pageInfo.totalElements);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     Swal.fire('데이터를 불러오는데 실패했습니다');
-    //   });
-  }, [pathname]);
 
   const handleKeyword = (e) => {
     setKeyword(e.target.value.replace(/^\s+|\s+$/gm, ''));
@@ -91,6 +102,7 @@ const CommonList = (props) => {
   // 드롭다운 이벤트
   const handleOption = (e) => {
     setType(e.target.value);
+    // console.log(e.target.value);
   };
 
   const handleSearch = (e) => {
@@ -110,29 +122,28 @@ const CommonList = (props) => {
         return;
       }
 
-      console.log(keyword);
-      // setIsSearchMode(true);
       setTitle(`'${keyword}'에 대한 검색 결과입니다.`);
 
-      // axios
-      //   .get(
-      //     url +
-      //       `v1/${endpoint}/search?field=${type}&keyword=${keyword}&page=0`
-      //   )
-      //   .then((res) => {
-      //     setIsSearchMode(true);
-      //     setItems(res.data);
-      //     setCount(res.pageInfo.totalElements);
-      //     setPage(1)
-      //   })
-      //   .catch((err) => {
-      //     Swal.fire(
-      //       '데이터 로딩 실패',
-      //       '데이터 로딩에 실패했습니다.',
-      //       'warning'
-      //     );
-      //     console.log(err);
-      //   });
+      axios
+        .get(
+          url +
+            `v1/${endpoint}/search?field=${type}&keyword=${keyword}&page=0&size=${PER_PAGE}&sort=createdAt%2Cdesc`
+        )
+        .then((res) => {
+          // console.log(res.data);
+          setIsSearchMode(true);
+          setItems(res.data.data);
+          setCount(res.data.pageInfo.totalElements);
+          setPage(1);
+        })
+        .catch((err) => {
+          Swal.fire(
+            '데이터 로딩 실패',
+            '데이터 로딩에 실패했습니다.',
+            'warning'
+          );
+          console.log(err);
+        });
 
       setKeyword('');
     }
@@ -141,19 +152,18 @@ const CommonList = (props) => {
   return (
     <>
       <ListHigh
-        // headTitle={headTitle}
         title={title}
         route={route}
         keyword={keyword}
-        // isSearchMode={isSearchMode}
         handleKeyword={handleKeyword}
         handleSearch={handleSearch}
         handleOption={handleOption}
       />
-      <BookList data={shareListData.books} route={route} />
+      <BookList data={items} route={route} />
       <Paging
         page={page}
-        count={shareListData.books.length}
+        count={count}
+        perPage={PER_PAGE}
         handlePageChange={handlePageChange}
       />
     </>

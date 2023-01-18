@@ -29,7 +29,7 @@ const App = () => {
             element={
               <CommonList
                 headTitle="현재 빌리지에 올라온 목록입니다!"
-                endpoint="borrow"
+                endpoint="borrows"
                 route="share"
               />
             }

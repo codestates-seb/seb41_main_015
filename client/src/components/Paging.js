@@ -27,12 +27,12 @@ const SContainer = styled.div`
   }
 `;
 
-const Paging = ({ page, count, handlePageChange }) => {
+const Paging = ({ page, count, perPage, handlePageChange }) => {
   return (
     <SContainer>
       <Pagination
         activePage={page}
-        itemsCountPerPage={12}
+        itemsCountPerPage={perPage}
         totalItemsCount={count}
         pageRangeDisplayed={5}
         prevPageText={'<'}
