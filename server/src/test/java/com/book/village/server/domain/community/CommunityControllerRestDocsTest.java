@@ -472,7 +472,7 @@ public class CommunityControllerRestDocsTest {
 
         given(communityService.findMyCommunities(Mockito.anyString(), Mockito.any(Pageable.class))).willReturn(new PageImpl<>(
                 list,
-                PageRequest.of(0,10,
+                PageRequest.of(0,5,
                         Sort.by("createdAt").descending()),2));
         given(mapper.communitiesToCommunityResponseDtos(Mockito.anyList())).willReturn(responseList);
 
@@ -481,7 +481,7 @@ public class CommunityControllerRestDocsTest {
                 mockMvc.perform(
                         get(url+"/mine")
                                 .param("page", "0")
-                                .param("size", "10")
+                                .param("size", "5")
                                 .param("sort", "questionId,desc")
                                 .accept(MediaType.APPLICATION_JSON)
                                 .with(csrf())

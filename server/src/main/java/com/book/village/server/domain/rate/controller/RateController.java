@@ -59,7 +59,7 @@ public class RateController {
     public ResponseEntity getMyRates(@PageableDefault Pageable pageable, Principal principal){
         Page<Rate> rates = rateService.findMyRates(principal.getName(), pageable);
         return new ResponseEntity<>(
-                new PageResponseDto<>(mapper.RatesToRateResponseDtos(rates.getContent()),
+                new PageResponseDto<>(mapper.ratesToRateResponseDtos(rates.getContent()),
                         new PageInfo(rates.getPageable(), rates.getTotalElements())),
                         HttpStatus.OK);
     }

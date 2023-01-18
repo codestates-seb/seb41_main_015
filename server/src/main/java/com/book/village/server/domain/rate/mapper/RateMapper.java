@@ -11,5 +11,5 @@ public interface RateMapper {
     Rate ratePostDtoToRate(RateDto.Post ratePostDto);
     Rate ratePatchDtoToRate(RateDto.Patch ratePatchDto);
     RateDto.Response rateToRateResponseDto(Rate rate);
-    List<RateDto.Response> RatesToRateResponseDtos(List<Rate> rates);
+    List<RateDto.Response> ratesToRateResponseDtos(List<Rate> rates);
 }
