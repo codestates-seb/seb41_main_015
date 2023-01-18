@@ -89,10 +89,10 @@ public class BorrowService {
 
     public Page<Borrow> searchBorrow(String keyword, String field, Pageable pageable) {
         switch(field) {
-            case "writeTitle" :
-                return borrowRepository.findAllByWriteTitleContaining(keyword, pageable);
-            case "writeContent" :
-                return borrowRepository.findAllByWriteContentContaining(keyword, pageable);
+            case "borrowTitle" :
+                return borrowRepository.findAllByBorrowTitleContaining(keyword, pageable);
+            case "content" :
+                return borrowRepository.findAllByContentContaining(keyword, pageable);
             case "displayName" :
                 return borrowRepository.findAllByDisplayName(keyword, pageable);
             default :

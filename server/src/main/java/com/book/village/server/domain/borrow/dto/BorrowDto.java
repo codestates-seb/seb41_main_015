@@ -16,10 +16,10 @@ public class BorrowDto {
     @Builder
     public static class Post {
         @NotBlank
-        private String writeTitle;       // 나눔 제목
+        private String borrowTitle;       // 나눔 제목
         @NotBlank
         @Lob
-        private String writeContent;     // 나눔 본문
+        private String content;     // 나눔 본문
         @NotBlank
         private String title;   // 나눔 책 제목
         @NotBlank
@@ -41,10 +41,10 @@ public class BorrowDto {
         @Setter
         private Long borrowId;  // 나눔 게시판 식별자
 
-        private String writeTitle;   // 나눔글 제목
+        private String borrowTitle;   // 나눔글 제목
 
         @Lob
-        private String writeContent; // 나눔글 본문
+        private String content; // 나눔글 본문
 
         private String title;   // 나눔 책 제목
 
@@ -64,10 +64,10 @@ public class BorrowDto {
     public static class Response {
         private Long borrowId;  //  식별자
 
-        private String writeTitle;   //  나눔글 제목
+        private String borrowTitle;   //  나눔글 제목
 
         @Lob
-        private String writeContent; //  나눔글 본문
+        private String content; //  나눔글 본문
         private String title;   // 나눔 책 제목
         private String authors;      // 나눔 책 저자
         private String publisher;   // 나눔 책 출판사

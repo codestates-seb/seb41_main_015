@@ -16,8 +16,8 @@ public interface BorrowMapper {
         } else {
             Borrow borrow = Borrow.builder()
                     .talkUrl(borrowDtoPost.getTalkUrl())
-                    .writeTitle(borrowDtoPost.getTitle())
-                    .writeContent(borrowDtoPost.getWriteContent())
+                    .borrowTitle(borrowDtoPost.getBorrowTitle())
+                    .content(borrowDtoPost.getContent())
                     .title(borrowDtoPost.getTitle())
                     .authors(borrowDtoPost.getAuthors())
                     .publisher(borrowDtoPost.getPublisher())
@@ -34,8 +34,8 @@ public interface BorrowMapper {
     default BorrowDto.Response borrowToBorrowDtoResponse(Borrow borrow) {
         return BorrowDto.Response.builder()
                 .borrowId(borrow.getBorrowId())
-                .title(borrow.getTitle())
-                .writeContent(borrow.getWriteContent())
+                .borrowTitle(borrow.getBorrowTitle())
+                .content(borrow.getContent())
                 .title(borrow.getTitle())
                 .authors(borrow.getAuthors())
                 .publisher(borrow.getPublisher())

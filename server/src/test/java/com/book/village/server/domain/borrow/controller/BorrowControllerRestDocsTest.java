@@ -1,4 +1,4 @@
-package com.book.village.server.domain.borrow;
+package com.book.village.server.domain.borrow.controller;
 
 import com.book.village.server.domain.borrow.controller.BorrowController;
 import com.book.village.server.domain.borrow.dto.BorrowDto;
@@ -76,8 +76,8 @@ class BorrowControllerRestDocsTest {
         LocalDateTime createdAt = time;
         LocalDateTime modifiedAt = LocalDateTime.now();
         BorrowDto.Post post =
-                new BorrowDto.Post("writeTitle",
-                        "writeContent",
+                new BorrowDto.Post("borrowTitle",
+                        "content",
                         "title",
                         "authors",
                         "publisher",
@@ -94,8 +94,8 @@ class BorrowControllerRestDocsTest {
         );
 
         BorrowDto.Response responseDto = BorrowDto.Response.builder().borrowId(1L)
-                .writeTitle("writeTitle")
-                .writeContent("writeContent")
+                .borrowTitle("borrowTitle")
+                .content("content")
                 .title("title")
                 .authors("authors")
                 .publisher("publisher")
@@ -126,8 +126,8 @@ class BorrowControllerRestDocsTest {
         // then
         actions
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.data.writeTitle").value(post.getWriteTitle()))
-                .andExpect(jsonPath("$.data.writeContent").value(post.getWriteContent()))
+                .andExpect(jsonPath("$.data.borrowTitle").value(post.getBorrowTitle()))
+                .andExpect(jsonPath("$.data.content").value(post.getContent()))
                 .andExpect(jsonPath("$.data.title").value(post.getTitle()))
                 .andExpect(jsonPath("$.data.authors").value(post.getAuthors()))
                 .andExpect(jsonPath("$.data.publisher").value(post.getPublisher()))
@@ -144,8 +144,8 @@ class BorrowControllerRestDocsTest {
                         ),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("writeTitle").type(JsonFieldType.STRING).description("나눔게시글 제목"),
-                                        fieldWithPath("writeContent").type(JsonFieldType.STRING).description("나눔게시글 본문"),
+                                        fieldWithPath("borrowTitle").type(JsonFieldType.STRING).description("나눔게시글 제목"),
+                                        fieldWithPath("content").type(JsonFieldType.STRING).description("나눔게시글 본문"),
                                         fieldWithPath("title").type(JsonFieldType.STRING).description("나눔 책 제목"),
                                         fieldWithPath("authors").type(JsonFieldType.STRING).description("나눌 책 저자"),
                                         fieldWithPath("publisher").type(JsonFieldType.STRING).description("나눌 책 출판사"),
@@ -157,8 +157,8 @@ class BorrowControllerRestDocsTest {
                                 List.of(
                                         fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
                                         fieldWithPath("data.borrowId").type(JsonFieldType.NUMBER).description("나눔 게시글 식별자"),
-                                        fieldWithPath("data.writeTitle").type(JsonFieldType.STRING).description("나눔 게시글 제목"),
-                                        fieldWithPath("data.writeContent").type(JsonFieldType.STRING).description("게시글 본문"),
+                                        fieldWithPath("data.borrowTitle").type(JsonFieldType.STRING).description("나눔 게시글 제목"),
+                                        fieldWithPath("data.content").type(JsonFieldType.STRING).description("게시글 본문"),
                                         fieldWithPath("data.title").type(JsonFieldType.STRING).description("나눌 책 제목"),
                                         fieldWithPath("data.authors").type(JsonFieldType.STRING).description("나눌 책 저자"),
                                         fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("나눌 책 출판사"),
@@ -190,8 +190,8 @@ class BorrowControllerRestDocsTest {
 
         BorrowDto.Patch patch =
                 new BorrowDto.Patch(borrowId,
-                        "writeTitle",
-                        "writeContent",
+                        "borrowTitle",
+                        "content",
                         "title",
                         "authors",
                         "publisher",
@@ -206,8 +206,8 @@ class BorrowControllerRestDocsTest {
                 );
 
         BorrowDto.Response responseDto = BorrowDto.Response.builder().borrowId(1L)
-                .writeTitle("writeTitle")
-                .writeContent("writeContent")
+                .borrowTitle("borrowTitle")
+                .content("content")
                 .title("title")
                 .authors("authors")
                 .publisher("publisher")
@@ -240,8 +240,8 @@ class BorrowControllerRestDocsTest {
         actions
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data.borrowId").value(patch.getBorrowId()))
-                .andExpect(jsonPath("$.data.writeTitle").value(patch.getWriteTitle()))
-                .andExpect(jsonPath("$.data.writeContent").value(patch.getWriteContent()))
+                .andExpect(jsonPath("$.data.borrowTitle").value(patch.getBorrowTitle()))
+                .andExpect(jsonPath("$.data.content").value(patch.getContent()))
                 .andExpect(jsonPath("$.data.title").value(patch.getTitle()))
                 .andExpect(jsonPath("$.data.authors").value(patch.getAuthors()))
                 .andExpect(jsonPath("$.data.publisher").value(patch.getPublisher()))
@@ -261,8 +261,8 @@ class BorrowControllerRestDocsTest {
                         requestFields(
                                 List.of(
                                         fieldWithPath("borrowId").type(JsonFieldType.NUMBER).description("나눔 식별자").ignored(),
-                                        fieldWithPath("writeTitle").type(JsonFieldType.STRING).description("나눔게시글 제목").optional(),
-                                        fieldWithPath("writeContent").type(JsonFieldType.STRING).description("나눔게시글 본문").optional(),
+                                        fieldWithPath("borrowTitle").type(JsonFieldType.STRING).description("나눔게시글 제목").optional(),
+                                        fieldWithPath("content").type(JsonFieldType.STRING).description("나눔게시글 본문").optional(),
                                         fieldWithPath("title").type(JsonFieldType.STRING).description("나눔 책 제목").optional(),
                                         fieldWithPath("authors").type(JsonFieldType.STRING).description("나눌 책 저자").optional(),
                                         fieldWithPath("publisher").type(JsonFieldType.STRING).description("나눌 책 출판사").optional(),
@@ -273,8 +273,8 @@ class BorrowControllerRestDocsTest {
                                 List.of(
                                         fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
                                         fieldWithPath("data.borrowId").type(JsonFieldType.NUMBER).description("나눔 게시글 식별자"),
-                                        fieldWithPath("data.writeTitle").type(JsonFieldType.STRING).description("나눔게시글 제목"),
-                                        fieldWithPath("data.writeContent").type(JsonFieldType.STRING).description("게시글 본문"),
+                                        fieldWithPath("data.borrowTitle").type(JsonFieldType.STRING).description("나눔게시글 제목"),
+                                        fieldWithPath("data.content").type(JsonFieldType.STRING).description("게시글 본문"),
                                         fieldWithPath("data.title").type(JsonFieldType.STRING).description("나눌 책 제목"),
                                         fieldWithPath("data.authors").type(JsonFieldType.STRING).description("나눌 책 저자"),
                                         fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("나눌 책 출판사"),
@@ -340,8 +340,8 @@ class BorrowControllerRestDocsTest {
 
 
         BorrowDto.Response responseDto = BorrowDto.Response.builder().borrowId(1L)
-                .writeTitle("writeTitle")
-                .writeContent("writeContent")
+                .borrowTitle("borrowTitle")
+                .content("content")
                 .title("title")
                 .authors("authors")
                 .publisher("publisher")
@@ -369,8 +369,8 @@ class BorrowControllerRestDocsTest {
         actions
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data.borrowId").value(responseDto.getBorrowId()))
-                .andExpect(jsonPath("$.data.writeTitle").value(responseDto.getWriteTitle()))
-                .andExpect(jsonPath("$.data.writeContent").value(responseDto.getWriteContent()))
+                .andExpect(jsonPath("$.data.borrowTitle").value(responseDto.getBorrowTitle()))
+                .andExpect(jsonPath("$.data.content").value(responseDto.getContent()))
                 .andExpect(jsonPath("$.data.title").value(responseDto.getTitle()))
                 .andExpect(jsonPath("$.data.authors").value(responseDto.getAuthors()))
                 .andExpect(jsonPath("$.data.publisher").value(responseDto.getPublisher()))
@@ -388,8 +388,8 @@ class BorrowControllerRestDocsTest {
                                 List.of(
                                         fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
                                         fieldWithPath("data.borrowId").type(JsonFieldType.NUMBER).description("나눔 게시글 식별자"),
-                                        fieldWithPath("data.writeTitle").type(JsonFieldType.STRING).description("나눔게시글 제목"),
-                                        fieldWithPath("data.writeContent").type(JsonFieldType.STRING).description("게시글 본문"),
+                                        fieldWithPath("data.borrowTitle").type(JsonFieldType.STRING).description("나눔게시글 제목"),
+                                        fieldWithPath("data.content").type(JsonFieldType.STRING).description("게시글 본문"),
                                         fieldWithPath("data.title").type(JsonFieldType.STRING).description("나눌 책 제목"),
                                         fieldWithPath("data.authors").type(JsonFieldType.STRING).description("나눌 책 저자"),
                                         fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("나눌 책 출판사"),
@@ -421,8 +421,8 @@ class BorrowControllerRestDocsTest {
 
         BorrowDto.Response borrowResponse1 = BorrowDto.Response.builder()
                 .borrowId(1L)
-                .writeTitle("writeTitle1")
-                .writeContent("writeContent1")
+                .borrowTitle("borrowTitle1")
+                .content("content1")
                 .title("title1")
                 .authors("authors1")
                 .publisher("publisher1")
@@ -435,8 +435,8 @@ class BorrowControllerRestDocsTest {
 
         BorrowDto.Response borrowResponse2 = BorrowDto.Response.builder()
                 .borrowId(2L)
-                .writeTitle("writeTitle2")
-                .writeContent("writeContent2")
+                .borrowTitle("borrowTitle2")
+                .content("content2")
                 .title("title2")
                 .authors("authors2")
                 .publisher("publisher2")
@@ -452,8 +452,8 @@ class BorrowControllerRestDocsTest {
 
         List<Borrow> borrows = new ArrayList<>();
         borrows.add(new Borrow(1L,
-                "writeTitle1",
-                "writeContent1",
+                "borrowTitle1",
+                "content1",
                 "title1",
                 "authors1",
                 "publisher1",
@@ -463,8 +463,8 @@ class BorrowControllerRestDocsTest {
                 null));
 
         borrows.add(new Borrow(2L,
-                "writeTitle2",
-                "writeContent2",
+                "borrowTitle2",
+                "content2",
                 "title2",
                 "authors2",
                 "publisher2",
@@ -507,8 +507,8 @@ class BorrowControllerRestDocsTest {
                                 List.of(
                                         fieldWithPath("data").type(JsonFieldType.ARRAY).description("결과 데이터"),
                                         fieldWithPath("data.[].borrowId").type(JsonFieldType.NUMBER).description("나눔 게시글 식별자"),
-                                        fieldWithPath("data.[].writeTitle").type(JsonFieldType.STRING).description("나눔게시글 제목"),
-                                        fieldWithPath("data.[].writeContent").type(JsonFieldType.STRING).description("게시글 본문"),
+                                        fieldWithPath("data.[].borrowTitle").type(JsonFieldType.STRING).description("나눔게시글 제목"),
+                                        fieldWithPath("data.[].content").type(JsonFieldType.STRING).description("게시글 본문"),
                                         fieldWithPath("data.[].title").type(JsonFieldType.STRING).description("나눌 책 제목"),
                                         fieldWithPath("data.[].authors").type(JsonFieldType.STRING).description("나눌 책 저자"),
                                         fieldWithPath("data.[].publisher").type(JsonFieldType.STRING).description("나눌 책 출판사"),
@@ -542,8 +542,8 @@ class BorrowControllerRestDocsTest {
 
         BorrowDto.Response response1 = new BorrowDto.Response(
                 1L,
-                "writeTitle1",
-                "writeContent1",
+                "borrowTitle1",
+                "content1",
                 "title1",
                 "authors1",
                 "publisher1",
@@ -555,8 +555,8 @@ class BorrowControllerRestDocsTest {
         );
         BorrowDto.Response response2 = new BorrowDto.Response(
                 2L,
-                "writeTitle2",
-                "writeContent2",
+                "borrowTitle2",
+                "content2",
                 "title2",
                 "authors2",
                 "publisher2",
@@ -572,8 +572,8 @@ class BorrowControllerRestDocsTest {
 
         List<Borrow> borrows = new ArrayList<>();
         borrows.add(new Borrow(1L,
-                "writeTitle1",
-                "writeContent1",
+                "borrowTitle1",
+                "content1",
                 "title1",
                 "authors1",
                 "publisher1",
@@ -584,8 +584,8 @@ class BorrowControllerRestDocsTest {
                 ));
 
         borrows.add(new Borrow(2L,
-                "writeTitle2",
-                "writeContent2",
+                "borrowTitle2",
+                "content2",
                 "title2",
                 "authors2",
                 "publisher2",
@@ -630,8 +630,8 @@ class BorrowControllerRestDocsTest {
                                 List.of(
                                         fieldWithPath("data").type(JsonFieldType.ARRAY).description("결과 데이터"),
                                         fieldWithPath("data.[].borrowId").type(JsonFieldType.NUMBER).description("나눔 게시글 식별자"),
-                                        fieldWithPath("data.[].writeTitle").type(JsonFieldType.STRING).description("나눔게시글 제목"),
-                                        fieldWithPath("data.[].writeContent").type(JsonFieldType.STRING).description("게시글 본문"),
+                                        fieldWithPath("data.[].borrowTitle").type(JsonFieldType.STRING).description("나눔게시글 제목"),
+                                        fieldWithPath("data.[].content").type(JsonFieldType.STRING).description("게시글 본문"),
                                         fieldWithPath("data.[].title").type(JsonFieldType.STRING).description("나눌 책 제목"),
                                         fieldWithPath("data.[].authors").type(JsonFieldType.STRING).description("나눌 책 저자"),
                                         fieldWithPath("data.[].publisher").type(JsonFieldType.STRING).description("나눌 책 출판사"),
@@ -712,8 +712,8 @@ class BorrowControllerRestDocsTest {
 
         BorrowDto.Response response1 = new BorrowDto.Response(
                 1L,
-                "writeTitle1",
-                "writeContent1",
+                "borrowTitle1",
+                "content1",
                 "title1",
                 "authors1",
                 "publisher1",
@@ -725,12 +725,12 @@ class BorrowControllerRestDocsTest {
         );
         BorrowDto.Response response2 = new BorrowDto.Response(
                 2L,
-                "writeTitle2",
-                "writeContent2",
+                "borrowTitle2",
+                "content2",
                 "title2",
                 "authors2",
                 "publisher2",
-                "diisplayName2",
+                "displayName2",
                 "talkUrl2",
                 null,
                 createdAt,
@@ -744,8 +744,8 @@ class BorrowControllerRestDocsTest {
         List<Borrow> borrows = new ArrayList<>();
         borrows.add(new Borrow(
                 1L,
-                "writeTitle1",
-                "writeContent1",
+                "borrowTitle1",
+                "content1",
                 "title1",
                 "authors1",
                 "publisher1",
@@ -756,8 +756,8 @@ class BorrowControllerRestDocsTest {
         );
         borrows.add(new Borrow(
                 2L,
-                "writeTitle2",
-                "writeContent2",
+                "borrowTitle2",
+                "content2",
                 "title2",
                 "authors2",
                 "publisher2",
@@ -801,8 +801,8 @@ class BorrowControllerRestDocsTest {
                                 List.of(
                                         fieldWithPath("data").type(JsonFieldType.ARRAY).description("결과 데이터"),
                                         fieldWithPath("data.[].borrowId").type(JsonFieldType.NUMBER).description("나눔 식별자"),
-                                        fieldWithPath("data.[].writeTitle").type(JsonFieldType.STRING).description("나눔게시글 제목"),
-                                        fieldWithPath("data.[].writeContent").type(JsonFieldType.STRING).description("게시글 본문"),
+                                        fieldWithPath("data.[].borrowTitle").type(JsonFieldType.STRING).description("나눔게시글 제목"),
+                                        fieldWithPath("data.[].content").type(JsonFieldType.STRING).description("게시글 본문"),
                                         fieldWithPath("data.[].title").type(JsonFieldType.STRING).description("나눌 책 제목"),
                                         fieldWithPath("data.[].authors").type(JsonFieldType.STRING).description("나눌 책 저자"),
                                         fieldWithPath("data.[].publisher").type(JsonFieldType.STRING).description("나눌 책 출판사"),
