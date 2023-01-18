@@ -1,8 +1,8 @@
 package com.book.village.server.domain.book.dto;
 
+
 import com.book.village.server.domain.rate.dto.RateDto;
 import lombok.*;
-
 import java.time.LocalDateTime;
 import java.util.List;
 

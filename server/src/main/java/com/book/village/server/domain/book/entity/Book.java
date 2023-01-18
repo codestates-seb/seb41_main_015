@@ -44,5 +44,4 @@ public class Book extends Auditable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "book",orphanRemoval = true)
     private List<Rate> rates= new ArrayList<>();
-
 }
