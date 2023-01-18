@@ -11,6 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 public class PageResponseDto<T> {
     List<T> data;
-    //PageInfo pageInfo;
     PageInfo pageInfo;
+//    PageInfo pageInfo;
 }
