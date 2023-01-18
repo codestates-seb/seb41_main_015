@@ -6,15 +6,15 @@ const SBookContainer = styled.li`
   flex-grow: 1;
   flex-direction: column;
   border: 1.5px solid #dddada;
-  width: 40%;
+  width: 100%;
   height: 100%;
   padding: 0 18px;
-  margin: 0.8rem;
+  /* margin: 0.8rem; */
 
   @media screen and (max-width: 1080px) {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    width: auto;
+    width: auto; */
     /* padding: 0; */
   }
   .coverBox {
@@ -91,19 +91,16 @@ const SBookContainer = styled.li`
 `;
 
 const SBookList = styled.ol`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  /* justify-content: center; */
-  justify-content: center;
-  /* text-align: center;
-  align-items: center; */
-  /* float: left; */
-  /* width: 100%; */
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 1fr);
+  /* grid-template-rows: repeat(6, 1fr); */
+  grid-template-columns: repeat(2, minmax(446px, 1fr));
+  gap: 30px;
   padding: 10px;
   margin: 20px 10%;
-  /* margin: 0 auto; */
-  /* padding-inline-start: 0px; */
+  @media screen and (max-width: 1080px) {
+    grid-template-columns: repeat(1, minmax(446px, 1fr));
+  }
 `;
 
 const BookList = ({ data, route }) => {
