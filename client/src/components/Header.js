@@ -26,11 +26,13 @@ const SHeaderLogo = styled.a`
   align-items: center;
   position: fixed;
   left: 3%;
+  .logo {
+    fill: #bb2649;
+  }
   @media screen and (max-width: 1030px) {
     .logo {
       font-size: 15px;
       width: 150px;
-      fill: #bb2649;
     }
   }
 `;
