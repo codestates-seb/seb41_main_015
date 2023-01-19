@@ -1,6 +1,5 @@
-// import axios from 'axios';
 import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import ShareForm from '../components/ShareForm';
@@ -11,7 +10,7 @@ const StyledShareAdd = styled.div`
 `;
 
 const ShareAdd = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({
     bookTitle: '',
@@ -25,7 +24,6 @@ const ShareAdd = () => {
   const { bookTitle, author, publisher, talkUrl, title, content } = inputs;
 
   const handleClickSubmit = () => {
-    console.log(inputs);
     instanceAxios
       .post('/v1/borrows', {
         bookTitle,
@@ -36,21 +34,12 @@ const ShareAdd = () => {
         content,
       })
       .then((res) => {
-        console.log(res);
         Swal.fire(
           '나눔 글 등록 완료.',
           '나눔 글이 정상적으로 작성되었습니다.',
           'success'
         );
-        // if (accessToken === null) {
-        //   Swal.fire(
-        //     '권한이 없습니다.',
-        //     '로그인 상태에서만 글 작성이 가능합니다.',
-        //     'warning'
-        //   );
-        // } else {
-        //   navigate('/shareDetail');
-        // }
+        navigate('/shareList');
       })
       .catch((err) => {
         Swal.fire(
