@@ -183,6 +183,7 @@ const DetailForm = ({ data, page, id }) => {
   const imgUrl = data.imgUrl
     ? data.imgUrl
     : 'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg';
+  const id = page === 'share' ? data.borrowId : data.requestId;
   return (
     <SDetailLayout>
       <div className="container">
@@ -196,7 +197,11 @@ const DetailForm = ({ data, page, id }) => {
                 <h1>{data.title}</h1>
                 {/* 수정, 삭제 버튼은 자기가 쓴 글에서만 보이도록 */}
                 <div className="controlButtons">
-                  <Link to={page === 'request' ? '/reqEdit' : '/shareEdit'}>
+                  <Link
+                    to={
+                      page === 'request' ? `/reqEdit/${id}` : `/shareEdit/${id}`
+                    }
+                  >
                     <span className="controlButton">수정</span>
                   </Link>
                   <span className="betweenButtons">|</span>
