@@ -117,21 +117,21 @@ const SShareTop = styled.div`
 
 const ListHigh = ({
   title,
-  page,
+  route,
   keyword,
   handleKeyword,
   handleSearch,
   handleOption,
 }) => {
   const navigate = useNavigate();
-  const route = page === 'share' ? '/shareAdd' : '/reqAdd';
+  const path = route === 'share' ? '/shareAdd' : '/reqAdd';
 
   return (
     <SShareTop>
       <div className="ml-5">
         <p className="fs-23 mb-5">{title}</p>
         <p className="fs-16">
-          {page === 'share'
+          {route === 'share'
             ? '찾고 있는 책이 있다면 연락해보세요!'
             : '내가 갖고 있는 책이라면 연락해보세요!'}
         </p>
@@ -140,8 +140,8 @@ const ListHigh = ({
         <div>
           <select id="searchFilter" onChange={handleOption}>
             <option value="">--선택--</option>
-            {/* 서버에서 타입 이름 정해지면 그걸로 value 바꾸기 */}
             <option value="bookTitle">책 제목</option>
+            <option value="author">저자</option>
             <option value="content">내용</option>
           </select>
           <input
@@ -153,7 +153,7 @@ const ListHigh = ({
           <Search className="search-icon" />
         </div>
         <div>
-          <button className="register" onClick={() => navigate(route)}>
+          <button className="register" onClick={() => navigate(path)}>
             책 등록하기
           </button>
         </div>

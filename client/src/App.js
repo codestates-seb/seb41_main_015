@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './page/Home';
 import CommonLayout from './page/CommonLayout';
+import CommonList from './page/CommonList';
 import Header from './components/Header';
 import ShareList from './page/ShareList';
 import ShareAdd from './page/ShareAdd';
@@ -23,11 +24,29 @@ const App = () => {
         {/* 푸터가 들어가는 부분 */}
         <Route path="/" element={<CommonLayout />}>
           <Route index element={<Home />} />
-          <Route path="/shareList" element={<ShareList />} />
+          <Route
+            path="/shareList"
+            element={
+              <CommonList
+                headTitle="현재 빌리지에 올라온 목록입니다!"
+                endpoint="borrows"
+                route="share"
+              />
+            }
+          />
           <Route path="/shareAdd" element={<ShareAdd />} />
           <Route path="/shareEdit" element={<ShareEdit />} />
           <Route path="/shareDetail/:id" element={<ShareDetail />} />
-          <Route path="/reqList" element={<ReqList />} />
+          <Route
+            path="/reqList"
+            element={
+              <CommonList
+                headTitle="빌리지 사람들이 찾고 있는 책이에요!"
+                endpoint="requests"
+                route="request"
+              />
+            }
+          />
           <Route path="/reqAdd" element={<ReqAdd />} />
           <Route path="/reqEdit" element={<ReqEdit />} />
           <Route path="/reqDetail/:id" element={<ReqDetail />} />

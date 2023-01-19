@@ -42,7 +42,7 @@ const SRightSide = styled.div`
     margin: 5px;
   }
 
-  .editButton {
+  .controlButton {
     &:hover {
       color: #bb2649;
       cursor: pointer;
@@ -148,12 +148,24 @@ const SContact = styled.div`
 `;
 
 const DetailForm = ({ data, page }) => {
+  // 자기가 쓴 글이 아니면 수정, 삭제 버튼이 안 보여야 함
+
+  // 삭제 버튼 핸들러
+  const handleDelete = () => {
+    // 서버에 삭제 요청 보내기 (instanceAxios 쓰기)
+    console.log('삭제합니다!');
+  };
+
+  // 책 표지 기본이미지
+  const imgUrl = data.imgUrl
+    ? data.imgUrl
+    : 'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg';
   return (
     <SDetailLayout>
       <div className="container">
         <SDetailWrap>
           <div>
-            <img alt="책 표지" src={data.imgUrl} />
+            <img alt="책 표지" src={imgUrl} />
           </div>
           <SRightSide>
             <STopWrap>
@@ -162,10 +174,12 @@ const DetailForm = ({ data, page }) => {
                 {/* 수정, 삭제 버튼은 자기가 쓴 글에서만 보이도록 */}
                 <div className="controlButtons">
                   <Link to={page === 'request' ? '/reqEdit' : '/shareEdit'}>
-                    <span className="editButton">수정</span>
+                    <span className="controlButton">수정</span>
                   </Link>
                   <span className="betweenButtons">|</span>
-                  <span className="deleteButton">삭제</span>
+                  <span className="controlButton" onClick={handleDelete}>
+                    삭제
+                  </span>
                 </div>
               </div>
               <div className="authorInfo">
@@ -173,17 +187,17 @@ const DetailForm = ({ data, page }) => {
                   alt="profileImage"
                   src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
                 />
-                <div>닉네임</div>
-                <div className="createdAt">작성 날짜 회색으로</div>
+                <div>{data.displayName}</div>
+                <div className="createdAt">{data.createdAt}</div>
               </div>
             </STopWrap>
             <SBookInfo>
               <h2>{data.bookTitle}</h2>
               <div>
-                저자: <span>{data.bookAuthor}</span>
+                저자: <span>{data.author}</span>
               </div>
               <div>
-                출판사: <span>{data.bookPublisher}</span>
+                출판사: <span>{data.publisher}</span>
               </div>
               <SContact>
                 <div>
@@ -193,7 +207,7 @@ const DetailForm = ({ data, page }) => {
                 </div>
                 <button
                   onClick={() => {
-                    window.open('http://www.naver.com');
+                    window.open(data.talkUrl);
                   }}
                 >
                   <KakaoFill width="16" height="16" />
