@@ -308,6 +308,7 @@ const MyPageEdit = () => {
               type="text"
               className="inputSize"
               placeholder="닉네임을 입력하십시오"
+              disabled
               value={displayName || ''}
               onChange={handleChangeDisplayName}
             ></input>
