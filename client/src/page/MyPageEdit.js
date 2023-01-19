@@ -1,9 +1,6 @@
 import styled from 'styled-components';
-// import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../redux/slice/userSlice';
 import Swal from 'sweetalert2';
 import instanceAxios from '../reissue/InstanceAxios';
 
@@ -116,9 +113,6 @@ const SSaveBtn = styled.button`
 const SEditBtn = styled.div`
   text-align: center;
   margin-top: 20px;
-  /* @media screen and (max-width: 1080px) {
-    margin-left: 20px;
-  } */
 `;
 
 const STitle = styled.div`
@@ -159,8 +153,6 @@ const MyPageEdit = () => {
   const [profile, setProfile] = useState('');
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const accessToken = useSelector((state) => state.user.accessToken);
 
   //input 입력값 상태 저장
   const handleChangeName = (e) => {
@@ -181,9 +173,6 @@ const MyPageEdit = () => {
   const handleChangeProfile = (e) => {
     setProfile(e.target.value);
   };
-
-  //base url
-  // const url = 'https://serverbookvillage.kro.kr';
 
   //저장 버튼 클릭 시, 서버로 patch 요청
   const handleClickSave = () => {
@@ -225,6 +214,7 @@ const MyPageEdit = () => {
         setPhoneNumber(res.data.data.phoneNumber);
       } catch (error) {
         console.error(error);
+        navigate('/');
         Swal.fire(
           '죄송합니다',
           '회원님의 정보를 가져오는데 실패했습니다.',
@@ -234,18 +224,6 @@ const MyPageEdit = () => {
     };
     editData();
   }, []);
-
-  //회원탈퇴 시 로그아웃
-  // const handleLogout = () => {
-  //   instanceAxios
-  //     .post('/v1/members/auth/logout')
-  //     .then(() => {
-  //       dispatch(logout());
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // };
 
   //회원탈퇴(이벤트 연결할 것!)
   const handleClickQuit = () => {
@@ -325,6 +303,7 @@ const MyPageEdit = () => {
               type="text"
               className="inputSize"
               placeholder="닉네임을 입력하십시오"
+              disabled
               value={displayName || ''}
               onChange={handleChangeDisplayName}
             ></input>
