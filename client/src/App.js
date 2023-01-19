@@ -33,7 +33,7 @@ const App = () => {
             }
           />
           <Route path="/shareAdd" element={<ShareAdd />} />
-          <Route path="/shareEdit" element={<ShareEdit />} />
+          <Route path="/shareEdit/:id" element={<ShareEdit />} />
           <Route path="/shareDetail/:id" element={<ShareDetail />} />
           <Route
             path="/reqList"
@@ -46,7 +46,7 @@ const App = () => {
             }
           />
           <Route path="/reqAdd" element={<ReqAdd />} />
-          <Route path="/reqEdit" element={<ReqEdit />} />
+          <Route path="/reqEdit/:id" element={<ReqEdit />} />
           <Route path="/reqDetail/:id" element={<ReqDetail />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/mypageEdit" element={<MyPageEdit />} />
