@@ -25,7 +25,7 @@ const ReqDetail = () => {
 
   return (
     <>
-      <DetailForm data={data} page="request" />
+      <DetailForm data={data} page="request" id={id} />
       <Comment />
     </>
   );
