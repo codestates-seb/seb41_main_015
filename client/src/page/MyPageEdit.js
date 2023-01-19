@@ -1,9 +1,6 @@
 import styled from 'styled-components';
-// import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../redux/slice/userSlice';
 import Swal from 'sweetalert2';
 import instanceAxios from '../reissue/InstanceAxios';
 
@@ -156,8 +153,6 @@ const MyPageEdit = () => {
   const [profile, setProfile] = useState('');
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const accessToken = useSelector((state) => state.user.accessToken);
 
   //input 입력값 상태 저장
   const handleChangeName = (e) => {
