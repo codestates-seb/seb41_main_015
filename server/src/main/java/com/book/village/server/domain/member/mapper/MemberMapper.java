@@ -16,6 +16,7 @@ public interface MemberMapper {
             response.email(member.getEmail());
             response.name(member.getName());
             response.displayName(member.getDisplayName());
+            response.imgUrl(member.getImgUrl());
             response.phoneNumber(member.getPhoneNumber());
             response.address(member.getAddress());
             response.memberStatus(member.getMemberStatus().getStatus());

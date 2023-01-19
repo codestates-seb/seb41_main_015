@@ -74,15 +74,16 @@ public class BookRestDocsTest {
                 "isbn1",
                 "bookTitle1",
                 "author1",
-                "publsher1"
+                "publisher1",
+                "thumbnail"
         );
         LocalDateTime createdAt=LocalDateTime.now();
         LocalDateTime modifiedAt=createdAt;
         String content = gson.toJson(patch);
 
         List<RateDto.Response> rateResponse = List.of(
-                new RateDto.Response(1L, 3L, "displayName1", "title1", "content1", createdAt, createdAt),
-                new RateDto.Response(2L, 3L, "displayName2", "title2", "content2", createdAt, createdAt)
+                new RateDto.Response(1L, 3L, "displayName1","img1", "title1", "content1", createdAt, createdAt),
+                new RateDto.Response(2L, 3L, "displayName2","img2", "title2", "content2", createdAt, createdAt)
         );
         BookDto.Response response=new BookDto.Response(
                 bookId,
@@ -90,6 +91,7 @@ public class BookRestDocsTest {
                 "bookTitle1",
                 "author1",
                 "publsher1",
+                "thumbnail1",
                 0.0,
                 rateResponse,
                 createdAt,
@@ -131,7 +133,8 @@ public class BookRestDocsTest {
                                         fieldWithPath("isbn").type(JsonFieldType.STRING).description("isbn").optional(),
                                         fieldWithPath("bookTitle").type(JsonFieldType.STRING).description("도서 제목").optional(),
                                         fieldWithPath("author").type(JsonFieldType.STRING).description("저자").optional(),
-                                        fieldWithPath("publisher").type(JsonFieldType.STRING).description("출판사").optional()
+                                        fieldWithPath("publisher").type(JsonFieldType.STRING).description("출판사").optional(),
+                                        fieldWithPath("thumbnail").type(JsonFieldType.STRING).description("도서 이미지").optional()
                                 )
                         ),
                         // response body
@@ -143,6 +146,7 @@ public class BookRestDocsTest {
                                         fieldWithPath("data.bookTitle").type(JsonFieldType.STRING).description("도서 제목"),
                                         fieldWithPath("data.author").type(JsonFieldType.STRING).description("저자"),
                                         fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
+                                        fieldWithPath("data.thumbnail").type(JsonFieldType.STRING).description("도서 이미지"),
                                         fieldWithPath("data.avgRate").type(JsonFieldType.NUMBER).description("평점 평균"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("도서 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("도서 수정 일자"),
@@ -150,6 +154,7 @@ public class BookRestDocsTest {
                                         fieldWithPath("data.rates.[].rateId").type(JsonFieldType.NUMBER).description("평점 식별자"),
                                         fieldWithPath("data.rates.[].rating").type(JsonFieldType.NUMBER).description("평점"),
                                         fieldWithPath("data.rates.[].displayName").type(JsonFieldType.STRING).description("평점 작성자"),
+                                        fieldWithPath("data.rates.[].imgUrl").type(JsonFieldType.STRING).description("평점 작성자 이미지"),
                                         fieldWithPath("data.rates.[].title").type(JsonFieldType.STRING).description("평점 제목"),
                                         fieldWithPath("data.rates.[].content").type(JsonFieldType.STRING).description("평점 내용"),
                                         fieldWithPath("data.rates.[].createdAt").type(JsonFieldType.STRING).description("평점 생성 일자"),

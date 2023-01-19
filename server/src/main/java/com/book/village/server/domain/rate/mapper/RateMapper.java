@@ -10,6 +10,21 @@ import java.util.List;
 public interface RateMapper {
     Rate ratePostDtoToRate(RateDto.Post ratePostDto);
     Rate ratePatchDtoToRate(RateDto.Patch ratePatchDto);
-    RateDto.Response rateToRateResponseDto(Rate rate);
+    default RateDto.Response rateToRateResponseDto(Rate rate){
+        if (rate == null) {
+            return null;
+        } else {
+            RateDto.Response response = new RateDto.Response();
+            response.setRateId(rate.getRateId());
+            response.setRating(rate.getRating());
+            response.setDisplayName(rate.getDisplayName());
+            response.setImgUrl(rate.getMember().getImgUrl());
+            response.setTitle(rate.getTitle());
+            response.setContent(rate.getContent());
+            response.setCreatedAt(rate.getCreatedAt());
+            response.setModifiedAt(rate.getModifiedAt());
+            return response;
+        }
+    }
     List<RateDto.Response> ratesToRateResponseDtos(List<Rate> rates);
 }

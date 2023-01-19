@@ -18,6 +18,7 @@ public class BookDto {
         private String bookTitle;
         private String author;
         private String publisher;
+        private String thumbnail;
     }
 
     @AllArgsConstructor
@@ -31,6 +32,7 @@ public class BookDto {
         private String bookTitle;
         private String author;
         private String publisher;
+        private String thumbnail;
         private Double avgRate;
         private List<RateDto.Response> rates;
         private LocalDateTime createdAt;

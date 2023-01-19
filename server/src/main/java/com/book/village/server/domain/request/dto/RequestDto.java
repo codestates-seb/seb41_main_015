@@ -66,6 +66,8 @@ public class RequestDto {
 
         private String displayName;
 
+        private String imgUrl;
+
         private List<RequestCommentDto.Response> requestComments;
 
         private LocalDateTime createdAt;

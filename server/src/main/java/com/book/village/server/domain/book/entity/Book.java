@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -32,6 +33,10 @@ public class Book extends Auditable {
 
     @Column
     private String publisher;
+
+    @Column(length=200)
+    @ColumnDefault("'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg'")
+    private String thumbnail;
 
     @Column
     private Long totalRate=0L;

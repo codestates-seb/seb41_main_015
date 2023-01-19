@@ -10,6 +10,19 @@ import java.util.List;
 public interface CommunityCommentMapper {
     CommunityComment communityCommentPostDtoToCommunityComment(CommunityCommentDto.Post communityCommentPostDto);
     CommunityComment communityCommentPatchDtoToCommunityComment(CommunityCommentDto.Patch communityCommentPatchDto);
-    CommunityCommentDto.Response communityCommentToCommunityCommentResponseDto(CommunityComment cComment);
+    default CommunityCommentDto.Response communityCommentToCommunityCommentResponseDto(CommunityComment cComment){
+        if (cComment == null) {
+            return null;
+        } else {
+            CommunityCommentDto.Response response = new CommunityCommentDto.Response();
+            response.setCommunityCommentId(cComment.getCommunityCommentId());
+            response.setContent(cComment.getContent());
+            response.setDisplayName(cComment.getDisplayName());
+            response.setImgUrl(cComment.getMember().getImgUrl());
+            response.setCreatedAt(cComment.getCreatedAt());
+            response.setModifiedAt(cComment.getModifiedAt());
+            return response;
+        }
+    }
     List<CommunityCommentDto.Response> communityCommentsToCommunityCommentResponseDtos(List<CommunityComment> communityComments);
 }

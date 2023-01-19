@@ -41,6 +41,7 @@ public class BorrowCommentDto {
         @Lob
         private String content;
         private String displayName;
+        private String imgUrl;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
     }

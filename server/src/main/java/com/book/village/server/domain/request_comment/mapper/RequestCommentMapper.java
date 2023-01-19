@@ -13,7 +13,20 @@ public interface RequestCommentMapper {
 
     RequestComment requestCommentPatchDtoToRequestComment(RequestCommentDto.Patch requestCommentPatchDto);
 
-    RequestCommentDto.Response requestCommentToRequestCommentResponseDto(RequestComment requestComment);
+    default RequestCommentDto.Response requestCommentToRequestCommentResponseDto(RequestComment requestComment){
+        if (requestComment == null) {
+            return null;
+        } else {
+            RequestCommentDto.Response response = new RequestCommentDto.Response();
+            response.setRequestCommentId(requestComment.getRequestCommentId());
+            response.setContent(requestComment.getContent());
+            response.setDisplayName(requestComment.getDisplayName());
+            response.setImgUrl(requestComment.getMember().getImgUrl());
+            response.setCreatedAt(requestComment.getCreatedAt());
+            response.setModifiedAt(requestComment.getModifiedAt());
+            return response;
+        }
+    }
 
     List<RequestCommentDto.Response> requestCommentsToRequestCommentResponseDtos(List<RequestComment> requestCommentList);
 }
