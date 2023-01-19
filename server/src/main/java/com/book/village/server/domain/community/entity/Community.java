@@ -37,7 +37,7 @@ public class Community extends Auditable {
     private String displayName;
 
     @ManyToOne
-    @JoinColumn(name = "MEMEBER_ID")
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "community", orphanRemoval = true)
