@@ -96,7 +96,12 @@ const SRenderBox = styled.div`
 
 const SSearchList = styled.div``;
 
-const BookAddModal = ({ isModalOpen, handleCloseModal, onBookInfoChange }) => {
+const BookAddModal = ({
+  isModalOpen,
+  handleCloseModal,
+  onBookInfoChange,
+  inputs,
+}) => {
   const [bookList, setBookList] = useState([]);
   const [text, setText] = useState('');
   const [query, setQuery] = useState('');
@@ -121,7 +126,15 @@ const BookAddModal = ({ isModalOpen, handleCloseModal, onBookInfoChange }) => {
   };
 
   const handleChoose = (chooseBook) => {
-    onBookInfoChange(chooseBook);
+    const { title, authors, publisher } = chooseBook;
+
+    onBookInfoChange({
+      ...inputs,
+      bookTitle: title,
+      author: authors[0],
+      publisher: publisher,
+    });
+
     handleCloseModal();
   };
 

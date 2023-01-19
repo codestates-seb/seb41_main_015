@@ -14,27 +14,26 @@ const ShareAdd = () => {
   // const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({
-    title: '',
-    authors: '',
+    bookTitle: '',
+    author: '',
     publisher: '',
     talkUrl: '',
-    writeTitle: '',
-    writeContent: '',
+    title: '',
+    content: '',
   });
 
-  const { title, authors, publisher, talkUrl, writeTitle, writeContent } =
-    inputs;
+  const { bookTitle, author, publisher, talkUrl, title, content } = inputs;
 
   const handleClickSubmit = () => {
     console.log(inputs);
     instanceAxios
-      .post('/v1/borrow', {
-        title,
-        authors,
+      .post('/v1/borrows', {
+        bookTitle,
+        author,
         publisher,
         talkUrl,
-        writeTitle,
-        writeContent,
+        title,
+        content,
       })
       .then((res) => {
         console.log(res);

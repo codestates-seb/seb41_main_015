@@ -130,8 +130,7 @@ const ShareForm = (props) => {
   };
 
   const { inputs, onBookInfoChange } = props;
-  const { title, authors, publisher, talkUrl, writeTitle, writeContent } =
-    inputs;
+  const { bookTitle, author, publisher, talkUrl, title, content } = inputs;
 
   const handleChangeString = (e, type) => {
     onBookInfoChange({ ...inputs, [`${type}`]: e.target.value });
@@ -185,9 +184,9 @@ const ShareForm = (props) => {
         <SInputRight>
           <div>
             <input
-              name="title"
-              value={title || ''}
-              onChange={(e) => handleChangeString(e, title)}
+              name="bookTitle"
+              value={bookTitle || ''}
+              onChange={(e) => handleChangeString(e, bookTitle)}
               placeholder="책 제목을 입력해주세요."
               onClick={handleOpenModal}
             />
@@ -200,9 +199,9 @@ const ShareForm = (props) => {
           </div>
           <div>
             <input
-              name="authors"
-              value={authors || ''}
-              onChange={(e) => handleChangeString(e, authors)}
+              name="author"
+              value={author || ''}
+              onChange={(e) => handleChangeString(e, author)}
               placeholder="저자를 입력해주세요."
             />
           </div>
@@ -217,24 +216,24 @@ const ShareForm = (props) => {
           <div>
             <input
               name="talkUrl"
-              value={talkUrl}
-              onChange={(e) => handleChangeString(e, talkUrl)}
+              // value={talkUrl}
+              onChange={(e) => handleChangeString(e, 'talkUrl')}
               placeholder="오픈채팅 대화방 링크를 입력해주세요."
             />
           </div>
           <div>
             <input
-              name="writeTitle"
-              value={writeTitle}
-              onChange={(e) => handleChangeString(e, writeTitle)}
+              name="title"
+              // value={title}
+              onChange={(e) => handleChangeString(e, 'title')}
               placeholder="게시글 제목을 입력해주세요."
             />
           </div>
           <div>
             <textarea
-              name="writeContent"
-              value={writeContent}
-              onChange={(e) => handleChangeString(e, writeContent)}
+              name="content"
+              // value={content}
+              onChange={(e) => handleChangeString(e, 'content')}
               className="inputContent"
               placeholder="게시글 내용을 입력해주세요. (ex. 책 상태, 구매 시기 등)"
             />
