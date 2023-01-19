@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useNavigate, Link } from 'react-router-dom';
+import { elapsed } from '../util/dateparse';
 
 const SBookContainer = styled.li`
   display: flex;
@@ -77,12 +78,14 @@ const SBookContainer = styled.li`
     font-weight: 700;
     text-align: start;
     color: #212124;
+    @media all and (min-width: 480px) and (max-width: 1080px) {
+      margin-left: 0px;
+    }
+  }
+  #title {
     &:hover {
       color: #bb2649;
       cursor: pointer;
-    }
-    @media all and (min-width: 480px) and (max-width: 1080px) {
-      margin-left: 0px;
     }
   }
   .f-row {
@@ -109,7 +112,7 @@ const BookList = ({ data, route }) => {
 
   return (
     <SBookList>
-      {data.map((article) => {
+      {data.map((article, index) => {
         // 책 표지 기본 이미지
         const imgSrc = article.imgUrl
           ? article.imgUrl
@@ -119,10 +122,12 @@ const BookList = ({ data, route }) => {
         const id = route === 'share' ? article.borrowId : article.requestId;
 
         return (
-          <SBookContainer key={id}>
-            <Link to={`${path}/${id}`}>
-              <div className="shareTitle">{article.title}</div>
-            </Link>
+          <SBookContainer key={index}>
+            <div className="shareTitle">
+              <Link to={`${path}/${id}`}>
+                <span id="title">{article.title}</span>
+              </Link>
+            </div>
             <div className="f-row">
               <div className="coverBox">
                 <img
@@ -138,7 +143,9 @@ const BookList = ({ data, route }) => {
                   <p className="mfs-16">{article.author} 저자 /</p>
                   <p className="mfs-16">{article.publisher}</p>
                 </div>
-                <p className="fs-12 createdAt-r">{article.createdAt}</p>
+                <p className="fs-12 createdAt-r">
+                  {elapsed(article.createdAt)}
+                </p>
               </div>
             </div>
             <p className="word-break mt-20 mfs-16">{article.content}</p>

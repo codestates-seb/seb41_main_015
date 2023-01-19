@@ -24,7 +24,7 @@ const ShareDetail = () => {
 
   return (
     <>
-      <DetailForm data={data} page="share" />
+      <DetailForm data={data} page="share" id={id} />
     </>
   );
 };

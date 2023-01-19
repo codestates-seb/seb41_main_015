@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import shareListData from '../data/shareListData.json';
 import ListHigh from '../components/ListHigh';
 import BookList from '../components/BookList';
 import Paging from '../components/Paging';
@@ -10,7 +9,7 @@ import Paging from '../components/Paging';
 const CommonList = (props) => {
   const { headTitle, endpoint, route } = props;
   const { pathname } = useLocation();
-  const id = pathname === '/shareList' ? 'borrowId' : 'requestId';
+  // const id = pathname === '/shareList' ? 'borrowId' : 'requestId';
 
   const url = 'https://serverbookvillage.kro.kr/';
 
@@ -36,7 +35,7 @@ const CommonList = (props) => {
 
     // 첫 페이지 데이터 불러오기
     axios
-      .get(url + `v1/${endpoint}?page=0&size=${PER_PAGE}&sort=${id}%2Cdesc`)
+      .get(url + `v1/${endpoint}?page=0&size=${PER_PAGE}&sort=createdAt%2Cdesc`)
       .then((res) => {
         setItems(res.data.data);
         setCount(res.data.pageInfo.totalElements);
@@ -53,9 +52,11 @@ const CommonList = (props) => {
     try {
       const res = await axios.get(
         url +
-          `v1/${endpoint}?page=${page - 1}&size=${PER_PAGE}&sort=${id}%2Cdesc`
+          `v1/${endpoint}?page=${
+            page - 1
+          }&size=${PER_PAGE}&sort=createdAt%2Cdesc`
       );
-      const data = res.data; // 디버깅 필요
+      const data = res.data;
       return data;
     } catch (err) {
       console.error(err);
@@ -63,39 +64,40 @@ const CommonList = (props) => {
   };
 
   const getSearchDatabyPage = async (keyword, type, page) => {
-    // try {
-    //   const res = await axios.get(
-    //     url +
-    //       `v1/${endpoint}/search?field=${type}&keyword=${keyword}&page=${
-    //         page - 1
-    //       }&size=12`
-    //   );
-    //   const data = res.data; // 디버깅 필요
-    //   return data;
-    // } catch (err) {
-    //   console.error(err);
-    // }
+    try {
+      const res = await axios.get(
+        url +
+          `v1/${endpoint}/search?field=${type}&keyword=${keyword}&page=${
+            page - 1
+          }&size=${PER_PAGE}&sort=createdAt%2Cdesc`
+      );
+      const data = res.data;
+      return data;
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handlePageChange = async (page) => {
-    console.log(page);
     setPage(page);
 
     if (!isSearchMode) {
       const pageData = await getDatabyPage(page);
       setItems(pageData.data);
-      console.log('검색 중이 아닙니다.');
+      // console.log('검색 중이 아닙니다.');
     } else {
-      // const pageData = await getSearchDatabyPage(keyword, type, page);
-      // setItems(pageData);
-      console.log('검색 중입니다.');
+      // console.log(keyword);
+      const pageData = await getSearchDatabyPage(keyword, type, page);
+      setItems(pageData.data);
+      // console.log('검색 중입니다.');
     }
 
     window.scrollTo(0, 0);
   };
 
   const handleKeyword = (e) => {
-    setKeyword(e.target.value.replace(/^\s+|\s+$/gm, ''));
+    // setKeyword(e.target.value.replace(/^\s+|\s+$/gm, ''));
+    setKeyword(e.target.value);
   };
 
   // 드롭다운 이벤트
@@ -107,6 +109,14 @@ const CommonList = (props) => {
     if (e.nativeEvent.isComposing === true) return;
 
     if (e.key === 'Enter') {
+      console.log(keyword);
+      // 검색어가 공백으로만 이루어진 경우
+      if (keyword.replace(/^\s+|\s+$/gm, '').length === 0) {
+        alert('검색어를 입력해주세요.');
+        setKeyword('');
+        return;
+      }
+
       // type이 없고 검색어도 없을 땐 아무것도 하지 않기
       if (!type && !keyword) return;
 
@@ -143,7 +153,7 @@ const CommonList = (props) => {
           console.error(err);
         });
 
-      setKeyword('');
+      // setKeyword('');
     }
   };
 

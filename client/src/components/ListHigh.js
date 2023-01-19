@@ -143,6 +143,7 @@ const ListHigh = ({
             <option value="bookTitle">책 제목</option>
             <option value="author">저자</option>
             <option value="content">내용</option>
+            <option value="displayName">작성자</option>
           </select>
           <input
             className="search"

@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import instanceAxios from '../reissue/InstanceAxios';
 import { ReactComponent as KakaoFill } from '../image/kakaofill.svg';
+import Swal from 'sweetalert2';
 
 const SDetailLayout = styled.main`
   padding: 24px;
@@ -147,13 +149,34 @@ const SContact = styled.div`
   }
 `;
 
-const DetailForm = ({ data, page }) => {
+const DetailForm = ({ data, page, id }) => {
+  const navigate = useNavigate();
   // 자기가 쓴 글이 아니면 수정, 삭제 버튼이 안 보여야 함
 
   // 삭제 버튼 핸들러
   const handleDelete = () => {
     // 서버에 삭제 요청 보내기 (instanceAxios 쓰기)
-    console.log('삭제합니다!');
+    Swal.fire({
+      title: '정말로 삭제하시겠습니까?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#bb2649',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+    }).then((res) => {
+      if (res.isConfirmed) {
+        instanceAxios
+          .delete(`v1/borrows/${id}`)
+          .then((res) => {
+            Swal.fire('글이 삭제되었습니다.');
+            navigate(-1);
+          })
+          .catch((err) => {
+            Swal.fire('삭제에 실패했습니다');
+            console.error(err);
+          });
+      }
+    });
   };
 
   // 책 표지 기본이미지
