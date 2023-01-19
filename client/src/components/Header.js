@@ -26,7 +26,7 @@ const SHeaderLogo = styled.a`
   align-items: center;
   position: fixed;
   left: 3%;
-  @media screen and (max-width: 930px) {
+  @media screen and (max-width: 1030px) {
     .logo {
       font-size: 15px;
       width: 150px;
@@ -38,7 +38,6 @@ const SNavContainer = styled.ol`
   width: 444px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
   text-align: center;
   padding: 0;
   position: fixed;
@@ -49,13 +48,11 @@ const SNavContainer = styled.ol`
     font-weight: 600;
   }
   .focused {
-    /* color: #bb2649; */
     border-bottom: 3px solid #bb2649;
   }
 
-  @media screen and (max-width: 930px) {
-    position: fixed;
-    left: 11%;
+  @media screen and (max-width: 1030px) {
+    left: 32%;
     .olItem {
       margin: 5px 10px;
       font-size: 15px;
@@ -87,7 +84,7 @@ const SLogout = styled.div`
   display: flex;
   align-items: center;
   position: fixed;
-  right: 3%;
+  right: 2%;
   .mypage {
     display: flex;
     margin-right: 15px;
