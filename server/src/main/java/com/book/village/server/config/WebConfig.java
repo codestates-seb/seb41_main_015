@@ -15,6 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
                 registry.addMapping("/**")
                         .allowCredentials(true)
                         .allowedOriginPatterns("https://bookvillage.kro.kr")
+                        .allowedOriginPatterns("*")
                         .allowedHeaders("*")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS" , "PATCH")
                         .exposedHeaders("Authorization", "RefreshToken");
