@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import Swal from 'sweetalert2';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import instanceAxios from '../reissue/InstanceAxios';
 import { setExisting } from '../redux/slice/userSlice';
 
 const SModalBackground = styled.div`
@@ -55,8 +57,18 @@ const SModalWrap = styled.div`
 
     h3 {
       font-size: 1.2rem;
-      margin-bottom: 25px;
+      margin-bottom: 8px;
       text-align: center;
+    }
+
+    .caution {
+      font-size: 0.8rem;
+      margin-bottom: 15px;
+    }
+
+    #impossible {
+      font-weight: 700;
+      color: #bb2649;
     }
   }
 
@@ -102,18 +114,60 @@ const NicknameModal = ({ isModalOpen, handleCloseModal }) => {
   const [nickname, setNickname] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleInfoPost = () => {
-    // 유효성 검사 추가하기
-    if (nickname.length === 0) {
-      setErrorMessage('닉네임은 필수입니다.');
-      return;
+  const validationCheck = (value) => {
+    if (value.match(/^[a-zA-Zㄱ-힣0-9]*$/)) {
+      if (value.length === 0) {
+        setErrorMessage('닉네임은 필수입니다.');
+        return false;
+      }
+      if (value.length === 1) {
+        setErrorMessage('닉네임은 2글자 이상이어야 합니다.');
+        return false;
+      }
+      if (value.length > 20) {
+        setErrorMessage('닉네임은 20글자를 넘을 수 없습니다.');
+        return false;
+      }
+      return true;
+    } else {
+      setErrorMessage('특수문자, 띄어쓰기는 포함할 수 없습니다.');
+      return false;
     }
-    // 여기에 서버에 정보 전송 로직만 넣어주면 됨
-    dispatch(setExisting());
-    handleCloseModal();
   };
 
-  const handleErrorMessage = () => {
+  const handleInfoPost = () => {
+    // 유효성 검사를 충족할 때에만 데이터 보내기
+    if (validationCheck(nickname)) {
+      // console.log(nickname);
+      // console.log('서버에 데이터 전송');
+      instanceAxios
+        .patch('v1/members', {
+          displayName: nickname,
+        })
+        .then(() => {
+          handleCloseModal();
+          dispatch(setExisting());
+          Swal.fire(
+            '닉네임 설정이 완료되었습니다',
+            '북빌리지에 오신 것을 환영합니다!',
+            'success'
+          );
+        })
+        .catch((err) => {
+          // 중복 닉네임이라 오류 뜰 경우 다루기
+          Swal.fire(
+            '닉네임 등록 실패',
+            '닉네임 설정에 실패했습니다',
+            'warning'
+          );
+          console.error(err);
+        });
+      return;
+    }
+    return;
+  };
+
+  const resetErrorMessage = () => {
     setErrorMessage('');
   };
 
@@ -124,21 +178,22 @@ const NicknameModal = ({ isModalOpen, handleCloseModal }) => {
       {isModalOpen ? (
         <SModalBackground>
           <SNicknameModal onClick={(e) => e.stopPropagation()}>
-            {/* <div className="close" onClick={handleCloseModal}>
-              &times;
-            </div> */}
             <SModalWrap>
               <div className="modalContent">
                 <div>
                   <h3>닉네임을 설정해주세요.</h3>
+                  <div className="caution">
+                    닉네임은 변경이 <span id="impossible">불가능</span>하니
+                    신중하게 설정해주세요!
+                  </div>
                   <input
                     type="text"
-                    placeholder="닉네임 생성 규칙"
+                    placeholder="2~20자 이내 한글, 영어, 숫자만 가능"
                     value={nickname}
                     onChange={(e) => {
                       setNickname(e.target.value);
                     }}
-                    onFocus={handleErrorMessage}
+                    onFocus={resetErrorMessage}
                     className={redBorder}
                   />
                   <div className="errorMessage">

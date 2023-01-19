@@ -1,20 +1,31 @@
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import DetailForm from '../components/DetailForm';
+import Swal from 'sweetalert2';
 import Comment from '../components/Comment';
 
 const ReqDetail = () => {
-  const dummyData = {
-    title: '나눔해주실 분 찾아요',
-    bookTitle: '모던 자바스크립트 Deep Dive',
-    bookAuthor: '이웅모',
-    bookPublisher: '위키북스',
-    imgUrl:
-      'https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791158392239.jpg',
-    content: '안 보시는 분 나눔 부탁드립니다 ㅠㅠ!',
-  };
+  const { id } = useParams();
+  const [data, setData] = useState({});
+  const url = 'https://serverbookvillage.kro.kr/';
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    axios
+      .get(url + `v1/requests/${id}`)
+      .then((res) => {
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        Swal.fire('데이터 로딩 실패', '데이터 로딩에 실패했습니다.', 'warning');
+        console.error(err);
+      });
+  }, []);
 
   return (
     <>
-      <DetailForm data={dummyData} page="request" />
+      <DetailForm data={data} page="request" id={id} />
       <Comment />
     </>
   );
