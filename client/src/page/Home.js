@@ -25,19 +25,6 @@ const Home = () => {
     setIsModalOpen(false);
   };
 
-  // const checklogin = () => {
-  //   if (sessionStorage.getItem('accessToken')) {
-  //     console.log('토큰 있음');
-  //     return;
-  //   }
-  //   console.log('토큰 없음');
-  //   return;
-  // };
-
-  // useEffect(() => {
-  //   checklogin();
-  // });
-
   return (
     <>
       {/* <button onClick={handleOpenModal}>모달 열기</button> */}
