@@ -14,7 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowCredentials(true)
-                        .allowedOriginPatterns("*")
+                        .allowedOriginPatterns("https://bookvillage.kro.kr")
                         .allowedHeaders("*")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS" , "PATCH")
                         .exposedHeaders("Authorization", "RefreshToken");
