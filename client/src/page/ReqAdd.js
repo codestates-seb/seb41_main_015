@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 const ReqAdd = () => {
   const navigate = useNavigate();
+  const defaultImg =
+    'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg';
 
   const [inputs, setInputs] = useState({
     bookTitle: '',
@@ -14,9 +16,11 @@ const ReqAdd = () => {
     talkUrl: '',
     title: '',
     content: '',
+    thumbnail: defaultImg,
   });
 
-  const { bookTitle, author, publisher, talkUrl, title, content } = inputs;
+  const { bookTitle, author, publisher, talkUrl, title, content, thumbnail } =
+    inputs;
 
   const handleClickSubmit = () => {
     console.log(inputs);
@@ -28,6 +32,7 @@ const ReqAdd = () => {
         talkUrl,
         title,
         content,
+        thumbnail,
       })
       .then((res) => {
         console.log(res);
