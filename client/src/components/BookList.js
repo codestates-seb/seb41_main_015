@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useNavigate, Link } from 'react-router-dom';
+import { elapsed } from '../util/dateparse';
 
 const SBookContainer = styled.li`
   display: flex;
@@ -109,7 +110,7 @@ const BookList = ({ data, route }) => {
 
   return (
     <SBookList>
-      {data.map((article) => {
+      {data.map((article, index) => {
         // 책 표지 기본 이미지
         const imgSrc = article.imgUrl
           ? article.imgUrl
@@ -119,7 +120,7 @@ const BookList = ({ data, route }) => {
         const id = route === 'share' ? article.borrowId : article.requestId;
 
         return (
-          <SBookContainer key={id}>
+          <SBookContainer key={index}>
             <Link to={`${path}/${id}`}>
               <div className="shareTitle">{article.title}</div>
             </Link>
@@ -138,7 +139,9 @@ const BookList = ({ data, route }) => {
                   <p className="mfs-16">{article.author} 저자 /</p>
                   <p className="mfs-16">{article.publisher}</p>
                 </div>
-                <p className="fs-12 createdAt-r">{article.createdAt}</p>
+                <p className="fs-12 createdAt-r">
+                  {elapsed(article.createdAt)}
+                </p>
               </div>
             </div>
             <p className="word-break mt-20 mfs-16">{article.content}</p>
