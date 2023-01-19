@@ -478,7 +478,7 @@ class BorrowControllerRestDocsTest {
                         get(BASE_URL)
                                 .param("page", "0")
                                 .param("size", "10")
-                                .param("sort", "borrowId,desc")
+                                .param("sort", "createdAt,desc")
                                 .accept(MediaType.APPLICATION_JSON)
                                 .with(csrf())
                                 .contentType(MediaType.APPLICATION_JSON)
@@ -493,7 +493,7 @@ class BorrowControllerRestDocsTest {
                         requestParameters(
                                 parameterWithName("page").description("페이지 번호"),
                                 parameterWithName("size").description("페이지 사이즈"),
-                                parameterWithName("sort").description("정렬 기준[createdAt,desc"),
+                                parameterWithName("sort").description("정렬 기준[createdAt,desc]"),
                                 parameterWithName("_csrf").description("csrf")
                         ),
                         responseFields(
@@ -598,7 +598,7 @@ class BorrowControllerRestDocsTest {
                         get(BASE_URL +"/mine")
                                 .param("page","0")
                                 .param("size","10")
-                                .param("sort","borrowId,desc")
+                                .param("sort","createdAt,desc")
                                 .accept(MediaType.APPLICATION_JSON)
                                 .with(csrf())
                                 .contentType(MediaType.APPLICATION_JSON)
