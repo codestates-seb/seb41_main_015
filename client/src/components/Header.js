@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import LoginModal from './LoginModal';
 import styled from 'styled-components';
-import logo from '../image/logo.svg';
+import { ReactComponent as Logo } from '../image/logo.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import mypage from '../image/mypage.svg';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,6 +30,7 @@ const SHeaderLogo = styled.a`
     .logo {
       font-size: 15px;
       width: 150px;
+      fill: #bb2649;
     }
   }
 `;
@@ -152,7 +153,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <SHeaderLogo href="/">
-        <img src={logo} alt="logo" className="logo" />
+        <Logo className="logo" />
       </SHeaderLogo>
       <SNavContainer>
         {menus.map((el) => {
