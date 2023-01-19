@@ -31,6 +31,15 @@ const SInputLeft = styled.div`
   margin-top: 30px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  .bookImg {
+    width: 230px;
+    margin-bottom: 30px;
+
+    @media screen and (max-width: 930px) {
+      width: 160px;
+    }
+  }
 `;
 
 const SImgBtn = styled.div`
@@ -39,12 +48,12 @@ const SImgBtn = styled.div`
   justify-content: center;
   margin-bottom: 20px;
   .bookImg {
-    /* border: 1px solid #000000; */
     width: 230px;
     height: 297.156px;
     margin-bottom: 30px;
     @media screen and (max-width: 930px) {
-      width: 200px;
+      width: 160px;
+      height: 206.712px;
     }
   }
 `;
@@ -58,15 +67,21 @@ const SInputRight = styled.div`
     width: 95%;
     height: 40px;
     margin-bottom: 20px;
-    border: 1px solid #aaaaaa;
-    border-radius: 4px;
+    border: none;
+    border-radius: 2px;
+    background-color: #f4f4f4;
     padding-left: 10px;
+    :focus {
+      outline: none;
+      border-bottom: 2px solid #4f4f4f;
+      /* background-color: #e8f0ff; */
+    }
   }
   .inputContent {
     width: 95%;
-    height: 150px;
-    border: 1px solid #aaaaaa;
-    border-radius: 4px;
+    height: 220px;
+    border: none;
+    /* border-bottom: 1px solid #aaaaaa; */
     margin-bottom: 30px;
     padding: 10px;
   }
@@ -187,7 +202,7 @@ const ReqForm = (props) => {
             />
           </div>
           <div>
-            <textarea
+            <input
               name="content"
               value={content || ''}
               onChange={(e) => handleChangeString(e, 'content')}
