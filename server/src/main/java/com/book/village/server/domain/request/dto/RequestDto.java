@@ -44,7 +44,7 @@ public class RequestDto {
     @Getter
     @Setter
     public static class Response {
-        private long requestId;
+        private Long requestId;
 
         private String talkUrl;
 
@@ -80,7 +80,7 @@ public class RequestDto {
     @Setter
     public static class Patch {
 
-        private long requestId;
+        private Long requestId;
 
         private String talkUrl;
 
