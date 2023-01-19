@@ -116,9 +116,6 @@ const SSaveBtn = styled.button`
 const SEditBtn = styled.div`
   text-align: center;
   margin-top: 20px;
-  /* @media screen and (max-width: 1080px) {
-    margin-left: 20px;
-  } */
 `;
 
 const STitle = styled.div`
@@ -182,9 +179,6 @@ const MyPageEdit = () => {
     setProfile(e.target.value);
   };
 
-  //base url
-  // const url = 'https://serverbookvillage.kro.kr';
-
   //저장 버튼 클릭 시, 서버로 patch 요청
   const handleClickSave = () => {
     instanceAxios
@@ -225,6 +219,7 @@ const MyPageEdit = () => {
         setPhoneNumber(res.data.data.phoneNumber);
       } catch (error) {
         console.error(error);
+        navigate('/');
         Swal.fire(
           '죄송합니다',
           '회원님의 정보를 가져오는데 실패했습니다.',
@@ -234,18 +229,6 @@ const MyPageEdit = () => {
     };
     editData();
   }, []);
-
-  //회원탈퇴 시 로그아웃
-  // const handleLogout = () => {
-  //   instanceAxios
-  //     .post('/v1/members/auth/logout')
-  //     .then(() => {
-  //       dispatch(logout());
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // };
 
   //회원탈퇴(이벤트 연결할 것!)
   const handleClickQuit = () => {
