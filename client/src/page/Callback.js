@@ -13,7 +13,7 @@ const Callback = () => {
   const refreshToken = url.searchParams.get('refresh_token');
   const membership = url.searchParams.get('membership');
 
-  const sessionAccessToken = sessionStorage.getItem('access_token');
+  const sessionAccessToken = sessionStorage.getItem('accessToken');
 
   useEffect(() => {
     // dispatch 써서 로그인 상태 변경
