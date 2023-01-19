@@ -78,12 +78,14 @@ const SBookContainer = styled.li`
     font-weight: 700;
     text-align: start;
     color: #212124;
+    @media all and (min-width: 480px) and (max-width: 1080px) {
+      margin-left: 0px;
+    }
+  }
+  #title {
     &:hover {
       color: #bb2649;
       cursor: pointer;
-    }
-    @media all and (min-width: 480px) and (max-width: 1080px) {
-      margin-left: 0px;
     }
   }
   .f-row {
@@ -121,9 +123,11 @@ const BookList = ({ data, route }) => {
 
         return (
           <SBookContainer key={index}>
-            <Link to={`${path}/${id}`}>
-              <div className="shareTitle">{article.title}</div>
-            </Link>
+            <div className="shareTitle">
+              <Link to={`${path}/${id}`}>
+                <span id="title">{article.title}</span>
+              </Link>
+            </div>
             <div className="f-row">
               <div className="coverBox">
                 <img
