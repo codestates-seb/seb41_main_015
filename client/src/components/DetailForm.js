@@ -152,7 +152,10 @@ const SContact = styled.div`
 
 const DetailForm = ({ data, page, id }) => {
   const navigate = useNavigate();
+
   // 자기가 쓴 글이 아니면 수정, 삭제 버튼이 안 보여야 함
+  const currentUser = sessionStorage.getItem('displayName');
+  const isSameUser = data.displayName === currentUser ? true : false;
 
   // 삭제 버튼 핸들러
   const handleDelete = () => {
@@ -196,20 +199,23 @@ const DetailForm = ({ data, page, id }) => {
             <STopWrap>
               <div className="titleAndButton">
                 <h1>{data.title}</h1>
-                {/* 수정, 삭제 버튼은 자기가 쓴 글에서만 보이도록 */}
-                <div className="controlButtons">
-                  <Link
-                    to={
-                      page === 'request' ? `/reqEdit/${id}` : `/shareEdit/${id}`
-                    }
-                  >
-                    <span className="controlButton">수정</span>
-                  </Link>
-                  <span className="betweenButtons">|</span>
-                  <span className="controlButton" onClick={handleDelete}>
-                    삭제
-                  </span>
-                </div>
+                {isSameUser ? (
+                  <div className="controlButtons">
+                    <Link
+                      to={
+                        page === 'request'
+                          ? `/reqEdit/${id}`
+                          : `/shareEdit/${id}`
+                      }
+                    >
+                      <span className="controlButton">수정</span>
+                    </Link>
+                    <span className="betweenButtons">|</span>
+                    <span className="controlButton" onClick={handleDelete}>
+                      삭제
+                    </span>
+                  </div>
+                ) : null}
               </div>
               <div className="authorInfo">
                 <img
