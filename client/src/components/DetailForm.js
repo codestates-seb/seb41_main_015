@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import instanceAxios from '../reissue/InstanceAxios';
+import { prettyDate } from '../util/dateparse';
 import { ReactComponent as KakaoFill } from '../image/kakaofill.svg';
 import Swal from 'sweetalert2';
 
@@ -216,7 +217,7 @@ const DetailForm = ({ data, page, id }) => {
                   src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
                 />
                 <div>{data.displayName}</div>
-                <div className="createdAt">{data.createdAt}</div>
+                <div className="createdAt">{prettyDate(data.createdAt)}</div>
               </div>
             </STopWrap>
             <SBookInfo>
