@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import BookSearch from '../page/Api';
+import BookSearch from '../util/Api';
 
 const SModalBackground = styled.div`
   position: fixed;
@@ -69,6 +69,10 @@ const SModalBox = styled.div`
     border: 1px solid #bb2649;
     border-radius: 3px;
     color: #bb2649;
+    :hover {
+      color: #ffffff;
+      background-color: #bb2649;
+    }
   }
 `;
 
@@ -78,8 +82,13 @@ const SRenderBox = styled.div`
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 5px;
-  color: #1c1c1c;
-
+  color: #303030;
+  :hover {
+    background-color: #f0f5ff;
+  }
+  .bookImg {
+    display: none;
+  }
   .bookname {
     font-size: 16.5px;
     font-weight: 600;
@@ -93,8 +102,6 @@ const SRenderBox = styled.div`
     margin-left: 7px;
   }
 `;
-
-const SSearchList = styled.div``;
 
 const BookAddModal = ({
   isModalOpen,
@@ -126,13 +133,14 @@ const BookAddModal = ({
   };
 
   const handleChoose = (chooseBook) => {
-    const { title, authors, publisher } = chooseBook;
+    const { title, authors, publisher, thumbnail } = chooseBook;
 
     onBookInfoChange({
       ...inputs,
       bookTitle: title,
       author: authors[0],
       publisher: publisher,
+      thumbnail: thumbnail,
     });
 
     handleCloseModal();
@@ -180,15 +188,20 @@ const BookAddModal = ({
                     검색
                   </button>
                 </div>
-                <SSearchList>
+                <>
                   {bookList.map((book, idx) => (
                     <SRenderBox key={idx} onClick={() => handleChoose(book)}>
                       <div className="bookname">{book.title}</div>
                       <span className="authors">{book.authors}</span>|
                       <span className="publisher">{book.publisher}</span>
+                      <img
+                        alt="bookImg"
+                        className="bookImg"
+                        src={book.thumbnail}
+                      />
                     </SRenderBox>
                   ))}
-                </SSearchList>
+                </>
               </SModalBox>
             </div>
           </SAddModal>
