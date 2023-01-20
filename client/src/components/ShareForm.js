@@ -89,17 +89,16 @@ const SInputRight = styled.div`
     border-radius: 2px;
     background-color: #f4f4f4;
     padding-left: 10px;
+
     :focus {
       outline: none;
       border-bottom: 2px solid #4f4f4f;
-      /* background-color: #e8f0ff; */
     }
   }
   .inputContent {
     width: 95%;
     height: 220px;
     border: none;
-    /* border-bottom: 1px solid #aaaaaa; */
     margin-bottom: 30px;
     padding: 10px;
   }
@@ -197,6 +196,7 @@ const ShareForm = (props) => {
               onChange={(e) => handleChangeString(e, bookTitle)}
               placeholder="책 제목을 입력해주세요."
               onClick={handleOpenModal}
+              autocomplete="off"
             />
             {/* 검색 모달  */}
             <BookAddModal
@@ -229,6 +229,7 @@ const ShareForm = (props) => {
               value={talkUrl || ''}
               onChange={(e) => handleChangeString(e, 'talkUrl')}
               placeholder="오픈채팅 대화방 링크를 입력해주세요."
+              autocomplete="off"
             />
           </div>
           <div>
@@ -237,6 +238,7 @@ const ShareForm = (props) => {
               value={title || ''}
               onChange={(e) => handleChangeString(e, 'title')}
               placeholder="게시글 제목을 입력해주세요."
+              autocomplete="off"
             />
           </div>
           <div>
@@ -246,6 +248,7 @@ const ShareForm = (props) => {
               onChange={(e) => handleChangeString(e, 'content')}
               className="inputContent"
               placeholder="게시글 내용을 입력해주세요. (ex. 책 상태, 구매 시기 등)"
+              autocomplete="off"
             />
           </div>
         </SInputRight>
