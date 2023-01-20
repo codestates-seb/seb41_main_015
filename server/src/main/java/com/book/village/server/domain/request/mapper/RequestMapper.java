@@ -32,6 +32,7 @@ public interface RequestMapper {
                 response.setAuthor(request.getAuthor());
                 response.setPublisher(request.getPublisher());
                 response.setDisplayName(request.getMember().getDisplayName());
+                response.setViews(request.getViews());
                 response.setRequestComments(request.getRequestComments().stream()
                         .map(requestComment -> recoMapper.requestCommentToRequestCommentResponseDto(requestComment))
                         .collect(Collectors.toList()));

@@ -1,11 +1,8 @@
 package com.book.village.server.domain.request.controller;
-import com.book.village.server.domain.community.dto.CommunityDto;
-import com.book.village.server.domain.community.entity.Community;
 import com.book.village.server.domain.request.dto.RequestDto;
 import com.book.village.server.domain.request.entity.Request;
 import com.book.village.server.domain.request.mapper.RequestMapper;
 import com.book.village.server.domain.request.service.RequestService;
-import com.book.village.server.global.response.ListResponse;
 import com.book.village.server.global.response.PageInfo;
 import com.book.village.server.global.response.PageResponseDto;
 import com.book.village.server.global.response.SingleResponse;
@@ -93,4 +90,12 @@ public class RequestController {
         requestService.deleteRequest(requestId, principal.getName());
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/rank")
+    public ResponseEntity rankRequest(@PageableDefault Pageable pageable) {
+        List<Request>
+    }
+
+
 }
+
