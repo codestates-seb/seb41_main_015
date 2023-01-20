@@ -130,7 +130,7 @@ const NicknameModal = ({ isModalOpen, handleCloseModal }) => {
         })
         .then(() => {
           handleCloseModal();
-          dispatch(setExisting());
+          dispatch(setExisting({ displayName: nickname }));
           Swal.fire(
             '닉네임 설정이 완료되었습니다',
             '북빌리지에 오신 것을 환영합니다!',
