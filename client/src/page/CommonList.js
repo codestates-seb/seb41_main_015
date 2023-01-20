@@ -2,9 +2,17 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import styled from 'styled-components';
 import ListHigh from '../components/ListHigh';
 import BookList from '../components/BookList';
 import Paging from '../components/Paging';
+
+const SListContainer = styled.div`
+  margin: 0px 190px;
+  @media screen and (max-width: 1360px) {
+    margin: 0px 50px;
+  }
+`;
 
 const CommonList = (props) => {
   const { headTitle, endpoint, route } = props;
@@ -109,7 +117,7 @@ const CommonList = (props) => {
     if (e.nativeEvent.isComposing === true) return;
 
     if (e.key === 'Enter') {
-      console.log(keyword);
+      // console.log(keyword);
       // 검색어가 공백으로만 이루어진 경우
       if (keyword.replace(/^\s+|\s+$/gm, '').length === 0) {
         alert('검색어를 입력해주세요.');
@@ -158,7 +166,7 @@ const CommonList = (props) => {
   };
 
   return (
-    <>
+    <SListContainer>
       <ListHigh
         title={title}
         route={route}
@@ -174,7 +182,7 @@ const CommonList = (props) => {
         perPage={PER_PAGE}
         handlePageChange={handlePageChange}
       />
-    </>
+    </SListContainer>
   );
 };
 
