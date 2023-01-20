@@ -40,6 +40,7 @@ const SRightSide = styled.div`
   .controlButtons {
     flex-shrink: 0;
     color: #aaaaaa;
+    margin-right: 8px;
   }
 
   .betweenButtons {
@@ -234,7 +235,7 @@ const DetailForm = ({ data, page, id }) => {
                   <div>{data.displayName}</div>
                   <div className="createdAt">{prettyDate(data.createdAt)}</div>
                 </div>
-                <ToggleSwitch />
+                {isSameUser ? <ToggleSwitch /> : <div>나눔 상태 컴포넌트</div>}
               </SAuthorAndStatus>
             </STopWrap>
             <SBookInfo>
