@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import LoginModal from './LoginModal';
 import styled from 'styled-components';
 import { ReactComponent as Logo } from '../image/logo.svg';

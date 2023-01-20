@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import ToggleSwitch from './ToggleSwitch';
 import instanceAxios from '../reissue/InstanceAxios';
 import { prettyDate } from '../util/dateparse';
 import { ReactComponent as KakaoFill } from '../image/kakaofill.svg';
@@ -76,12 +77,18 @@ const STopWrap = styled.div`
     justify-content: space-between;
     gap: 40px;
   }
+`;
+
+const SAuthorAndStatus = styled.div`
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  margin-bottom: 10px;
 
   .authorInfo {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 10px;
     padding-left: 3px;
 
     img {
@@ -218,14 +225,17 @@ const DetailForm = ({ data, page, id }) => {
                   </div>
                 ) : null}
               </div>
-              <div className="authorInfo">
-                <img
-                  alt="profileImage"
-                  src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
-                />
-                <div>{data.displayName}</div>
-                <div className="createdAt">{prettyDate(data.createdAt)}</div>
-              </div>
+              <SAuthorAndStatus>
+                <div className="authorInfo">
+                  <img
+                    alt="profileImage"
+                    src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
+                  />
+                  <div>{data.displayName}</div>
+                  <div className="createdAt">{prettyDate(data.createdAt)}</div>
+                </div>
+                <ToggleSwitch />
+              </SAuthorAndStatus>
             </STopWrap>
             <SBookInfo>
               <h2>{data.bookTitle}</h2>
