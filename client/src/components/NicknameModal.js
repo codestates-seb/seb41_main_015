@@ -184,7 +184,7 @@ const NicknameModal = ({ isModalOpen, handleCloseModal }) => {
                     {errorMessage ? errorMessage : ''}
                   </div>
                   <div className="buttonContainer">
-                    <button onClick={handleInfoPost}>제출</button>
+                    <button onClick={handleInfoPost}>시작하기</button>
                   </div>
                 </div>
               </div>
