@@ -106,7 +106,7 @@ const SBookList = styled.ol`
   /* grid-template-rows: repeat(6, 1fr); */
   grid-template-columns: repeat(2, minmax(446px, 1fr));
   gap: 30px;
-  padding: 10px;
+  padding: 0px 10px;
   @media screen and (max-width: 1080px) {
     grid-template-columns: repeat(1, minmax(300px, 1fr));
   }
