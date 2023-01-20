@@ -25,27 +25,12 @@ const SNicknameModal = styled.div`
   border-radius: 5px;
   border: 1px solid #aaaaaa;
   background-color: #ffffff;
-
-  /* .close {
-    padding-top: 3px;
-    position: absolute;
-    right: 13px;
-    font-size: 2rem;
-    color: #aaaaaa;
-    cursor: pointer;
-  } */
-
-  /* .bottomText {
-    font-size: 0.8rem;
-  } */
 `;
 
 const SModalWrap = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  /* align-items: center; */
-  /* height: 300px; */
 
   .modalContent {
     display: flex;
@@ -53,7 +38,6 @@ const SModalWrap = styled.div`
     justify-content: space-evenly;
     align-items: center;
     height: 250px;
-    /* padding-top: 2rem; */
 
     h3 {
       font-size: 1.2rem;
@@ -73,7 +57,7 @@ const SModalWrap = styled.div`
   }
 
   input {
-    width: 250px;
+    width: 264px;
     height: 35px;
     font-size: 0.9rem;
     padding-left: 5px;
