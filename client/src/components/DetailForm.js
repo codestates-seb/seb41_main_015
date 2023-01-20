@@ -152,6 +152,7 @@ const SContact = styled.div`
 
 const DetailForm = ({ data, page, id }) => {
   const navigate = useNavigate();
+  const endpoint = page === 'share' ? 'borrows' : 'requests';
 
   // 자기가 쓴 글이 아니면 수정, 삭제 버튼이 안 보여야 함
   const currentUser = sessionStorage.getItem('displayName');
@@ -170,8 +171,8 @@ const DetailForm = ({ data, page, id }) => {
     }).then((res) => {
       if (res.isConfirmed) {
         instanceAxios
-          .delete(`v1/borrows/${id}`)
-          .then((res) => {
+          .delete(`v1/${endpoint}/${id}`)
+          .then(() => {
             Swal.fire('글이 삭제되었습니다.');
             navigate(-1);
           })
