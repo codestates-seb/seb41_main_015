@@ -120,7 +120,7 @@ public class MemberControllerRestDocsTest {
                                 List.of(
                                         fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 식별자").ignored(),
                                         fieldWithPath("name").type(JsonFieldType.STRING).description("이름").optional(),
-                                        fieldWithPath("displayName").type(JsonFieldType.STRING).description("닉네임").optional(),
+                                        fieldWithPath("displayName").type(JsonFieldType.STRING).description("닉네임").ignored(),
                                         fieldWithPath("imgUrl").type(JsonFieldType.STRING).description("이미지 url").optional(),
                                         fieldWithPath("address").type(JsonFieldType.STRING).description("주소").optional(),
                                         fieldWithPath("phoneNumber").type(JsonFieldType.STRING).description("핸드폰 번호").optional()

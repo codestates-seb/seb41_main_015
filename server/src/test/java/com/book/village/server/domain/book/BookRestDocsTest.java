@@ -75,7 +75,10 @@ public class BookRestDocsTest {
                 "bookTitle1",
                 "author1",
                 "publisher1",
-                "thumbnail"
+                "thumbnail",
+                1L,
+                1L,
+                1.0
         );
         LocalDateTime createdAt=LocalDateTime.now();
         LocalDateTime modifiedAt=createdAt;
@@ -134,7 +137,10 @@ public class BookRestDocsTest {
                                         fieldWithPath("bookTitle").type(JsonFieldType.STRING).description("도서 제목").optional(),
                                         fieldWithPath("author").type(JsonFieldType.STRING).description("저자").optional(),
                                         fieldWithPath("publisher").type(JsonFieldType.STRING).description("출판사").optional(),
-                                        fieldWithPath("thumbnail").type(JsonFieldType.STRING).description("도서 이미지").optional()
+                                        fieldWithPath("thumbnail").type(JsonFieldType.STRING).description("도서 이미지").optional(),
+                                        fieldWithPath("totalRate").type(JsonFieldType.NUMBER).description("저자").ignored(),
+                                        fieldWithPath("rateCount").type(JsonFieldType.NUMBER).description("출판사").ignored(),
+                                        fieldWithPath("avgRate").type(JsonFieldType.NUMBER).description("도서 이미지").ignored()
                                 )
                         ),
                         // response body

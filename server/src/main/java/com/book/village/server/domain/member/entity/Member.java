@@ -32,8 +32,7 @@ public class Member extends Auditable {
     private String displayName;
 
     @Column(length=200)
-    @ColumnDefault("'https://img.icons8.com/windows/32/null/user-male-circle.png'")
-    private String imgUrl;
+    private String imgUrl="https://img.icons8.com/windows/32/null/user-male-circle.png";
 
     @ColumnDefault("''")
     private String address;

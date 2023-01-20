@@ -3,6 +3,8 @@ package com.book.village.server.domain.book.dto;
 
 import com.book.village.server.domain.rate.dto.RateDto;
 import lombok.*;
+
+import javax.persistence.Column;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,6 +21,9 @@ public class BookDto {
         private String author;
         private String publisher;
         private String thumbnail;
+        private Long totalRate;
+        private Long rateCount;
+        private Double avgRate;
     }
 
     @AllArgsConstructor
