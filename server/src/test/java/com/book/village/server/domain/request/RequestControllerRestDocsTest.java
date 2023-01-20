@@ -70,12 +70,12 @@ public class RequestControllerRestDocsTest {
     public void createRequestTest() throws Exception {
         LocalDateTime createdAt = LocalDateTime.now();
         LocalDateTime modifiedAt = LocalDateTime.now();
-        RequestDto.Post post = new RequestDto.Post("talkUrl", "title", "content", "bookTitle", "author", "publisher");
+        RequestDto.Post post = new RequestDto.Post("talkUrl", "title", "content", "bookTitle", "author", "publisher","thumbnail");
         String content = gson.toJson(post);
         List<RequestCommentDto.Response> requestCommentResponse =
                 List.of(new RequestCommentDto.Response(
-                                1L, "content1", "displayName1",createdAt, createdAt),
-                        new RequestCommentDto.Response(2L, "content2", "displayName2",createdAt, createdAt)
+                                1L, "content1", "displayName1","imgUrl1",createdAt, modifiedAt),
+                        new RequestCommentDto.Response(2L, "content2", "displayName2","imgUrl2",createdAt, modifiedAt)
                 );
 
         RequestDto.Response responseDto =
@@ -293,8 +293,8 @@ public class RequestControllerRestDocsTest {
 
             List<RequestCommentDto.Response> requestCommentResponse =
                     List.of(new RequestCommentDto.Response(
-                                    1L, "content1", "displayName1",createdAt, createdAt),
-                            new RequestCommentDto.Response(2L, "content2", "displayName2",createdAt, createdAt)
+                                    1L, "content1", "displayName1","imgUrl1",createdAt, createdAt),
+                            new RequestCommentDto.Response(2L, "content2", "displayName2","imgUrl2",createdAt, createdAt)
                     );
 
             RequestDto.Response response =
