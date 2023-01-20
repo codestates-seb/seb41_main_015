@@ -36,7 +36,7 @@ public class RequestDto {
         @NotBlank
         private String publisher;
 
-
+        private String thumbnail;
     }
 
     @AllArgsConstructor
@@ -64,7 +64,11 @@ public class RequestDto {
         @NotBlank
         private String publisher;
 
+        private String thumbnail;
+
         private String displayName;
+
+        private String imgUrl;
 
         private List<RequestCommentDto.Response> requestComments;
 
@@ -94,5 +98,7 @@ public class RequestDto {
         private String author;
 
         private String publisher;
+
+        private String thumbnail;
     }
 }

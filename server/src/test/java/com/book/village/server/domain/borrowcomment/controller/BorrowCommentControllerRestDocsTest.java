@@ -80,6 +80,7 @@ class BorrowCommentControllerRestDocsTest {
                 borrowCommentId,
                 "content1",
                 "displayName1",
+                "imgUrl1",
                 createdAt,
                 modifiedAt
         );
@@ -120,7 +121,8 @@ class BorrowCommentControllerRestDocsTest {
                                         fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
                                         fieldWithPath("data.borrowCommentId").type(JsonFieldType.NUMBER).description("나눔 댓글 식별자"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("댓글 내용"),
-                                        fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("댓글 생성 일자"),
+                                        fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("댓글 작성자 닉네임"),
+                                        fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("댓글 작성자 프로필 이미지"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
@@ -146,6 +148,7 @@ class BorrowCommentControllerRestDocsTest {
                 borrowCommentId,
                 "borrowCommentContent1",
                 "displayName1",
+                "imgUrl1",
                 createdAt,
                 modifiedAt
         );
@@ -187,7 +190,8 @@ class BorrowCommentControllerRestDocsTest {
                                         fieldWithPath("data").type(JsonFieldType.OBJECT).description("결과 데이터"),
                                         fieldWithPath("data.borrowCommentId").type(JsonFieldType.NUMBER).description("나눔 댓글 식별자"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("나눔 댓글 내용"),
-                                        fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("댓글 생성자"),
+                                        fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                        fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("댓글 작서자 프로필 이미지"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
@@ -208,6 +212,7 @@ class BorrowCommentControllerRestDocsTest {
                 cCommentId,
                 "content1",
                 "displayName1",
+                "imgUrl1",
                 createdAt,
                 modifiedAt
         );
@@ -237,6 +242,7 @@ class BorrowCommentControllerRestDocsTest {
                                         fieldWithPath("data.borrowCommentId").type(JsonFieldType.NUMBER).description("나눔 댓글 식별자"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("댓글 내용"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                        fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("댓글 작성자 프로필 이미지"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
@@ -256,6 +262,7 @@ class BorrowCommentControllerRestDocsTest {
                 1L,
                 "content1",
                 "displayName1",
+                "imgUrl1",
                 createdAt,
                 modifiedAt
         );
@@ -264,6 +271,7 @@ class BorrowCommentControllerRestDocsTest {
                 2L,
                 "content2",
                 "displayName2",
+                "imgUrl2",
                 createdAt,
                 modifiedAt
         );
@@ -316,6 +324,7 @@ class BorrowCommentControllerRestDocsTest {
                                         fieldWithPath("data.[].borrowCommentId").type(JsonFieldType.NUMBER).description("나눔 댓글 식별자"),
                                         fieldWithPath("data.[].content").type(JsonFieldType.STRING).description("댓글 내용"),
                                         fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                        fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("댓글 작성자 프로필 이미지"),
                                         fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
                                         fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
@@ -336,6 +345,7 @@ class BorrowCommentControllerRestDocsTest {
                 borrowCommentId,
                 "content1",
                 "displayName1",
+                "imgUrl1",
                 createdAt,
                 modifiedAt
         );

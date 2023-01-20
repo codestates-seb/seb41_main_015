@@ -21,6 +21,7 @@ public interface BorrowMapper {
                     .bookTitle(borrowDtoPost.getBookTitle())
                     .author(borrowDtoPost.getAuthor())
                     .publisher(borrowDtoPost.getPublisher())
+                    .thumbnail(borrowDtoPost.getThumbnail())
                     .build();
 
             return borrow;
@@ -38,7 +39,9 @@ public interface BorrowMapper {
                 .bookTitle(borrow.getBookTitle())
                 .author(borrow.getAuthor())
                 .publisher(borrow.getPublisher())
+                .thumbnail(borrow.getThumbnail())
                 .displayName(borrow.getDisplayName())
+                .imgUrl(borrow.getMember().getImgUrl())
                 .talkUrl(borrow.getTalkUrl())
                 .createdAt(borrow.getCreatedAt())
                 .modifiedAt(borrow.getModifiedAt())
