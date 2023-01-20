@@ -78,6 +78,7 @@ public class CommunityCommentControllerRestDocsTest {
                 cCommentId,
                 "content1",
                 "displayName1",
+                "imgUrl1",
                 createdAt,
                 createdAt
         );
@@ -119,6 +120,7 @@ public class CommunityCommentControllerRestDocsTest {
                                         fieldWithPath("data.communityCommentId").type(JsonFieldType.NUMBER).description("커뮤니티 댓글 식별자"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("댓글 내용"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                        fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("댓글 작성자 프로필 이미지"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
@@ -143,6 +145,7 @@ public class CommunityCommentControllerRestDocsTest {
                 cCommentId,
                 "content1",
                 "displayName1",
+                "imgUrl1",
                 createdAt,
                 createdAt
         );
@@ -185,6 +188,7 @@ public class CommunityCommentControllerRestDocsTest {
                                         fieldWithPath("data.communityCommentId").type(JsonFieldType.NUMBER).description("커뮤니티 댓글 식별자"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("댓글 내용"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                        fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("댓글 작성자 프로필 이미지"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
@@ -205,6 +209,7 @@ public class CommunityCommentControllerRestDocsTest {
                 cCommentId,
                 "content1",
                 "displayName1",
+                "imgUrl1",
                 createdAt,
                 createdAt
         );
@@ -233,6 +238,7 @@ public class CommunityCommentControllerRestDocsTest {
                                         fieldWithPath("data.communityCommentId").type(JsonFieldType.NUMBER).description("커뮤니티 댓글 식별자"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("댓글 내용"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                        fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("댓글 작성자 이미지 프로필"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
@@ -251,6 +257,7 @@ public class CommunityCommentControllerRestDocsTest {
                 1L,
                 "content1",
                 "displayName1",
+                "imgUrl1",
                 createdAt1,
                 createdAt1
         );
@@ -259,6 +266,7 @@ public class CommunityCommentControllerRestDocsTest {
                 2L,
                 "content2",
                 "displayName2",
+                "imgUrl2",
                 createdAt2,
                 createdAt2
         );
@@ -309,6 +317,7 @@ public class CommunityCommentControllerRestDocsTest {
                                         fieldWithPath("data.[].communityCommentId").type(JsonFieldType.NUMBER).description("커뮤니티 댓글 식별자"),
                                         fieldWithPath("data.[].content").type(JsonFieldType.STRING).description("댓글 내용"),
                                         fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                        fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("댓글 작성자 프로필 이미지"),
                                         fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
                                         fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
@@ -329,6 +338,7 @@ public class CommunityCommentControllerRestDocsTest {
                 cCommentId,
                 "content1",
                 "displayName1",
+                "imgUrl1",
                 createdAt,
                 createdAt
         );

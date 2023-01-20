@@ -36,7 +36,7 @@ public class RequestDto {
         @NotBlank
         private String publisher;
 
-
+        private String thumbnail;
     }
 
     @AllArgsConstructor
@@ -63,6 +63,8 @@ public class RequestDto {
 
         @NotBlank
         private String publisher;
+
+        private String thumbnail;
 
         private String displayName;
 
@@ -96,5 +98,7 @@ public class RequestDto {
         private String author;
 
         private String publisher;
+
+        private String thumbnail;
     }
 }
