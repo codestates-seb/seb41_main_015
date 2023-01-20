@@ -92,14 +92,12 @@ const SInputRight = styled.div`
     :focus {
       outline: none;
       border-bottom: 2px solid #4f4f4f;
-      /* background-color: #e8f0ff; */
     }
   }
   .inputContent {
     width: 95%;
     height: 220px;
     border: none;
-    /* border-bottom: 1px solid #aaaaaa; */
     margin-bottom: 30px;
     padding: 10px;
   }
