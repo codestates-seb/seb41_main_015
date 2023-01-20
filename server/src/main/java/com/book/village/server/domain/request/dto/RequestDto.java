@@ -1,7 +1,8 @@
 package com.book.village.server.domain.request.dto;
 
+import com.book.village.server.domain.community_comment.dto.CommunityCommentDto;
 import com.book.village.server.domain.request_comment.dto.RequestCommentDto;
-
+import com.book.village.server.domain.request_comment.entity.RequestComment;
 import lombok.*;
 
 import javax.persistence.Lob;
@@ -35,7 +36,7 @@ public class RequestDto {
         @NotBlank
         private String publisher;
 
-
+        private String thumbnail;
     }
 
     @AllArgsConstructor
@@ -63,9 +64,13 @@ public class RequestDto {
         @NotBlank
         private String publisher;
 
+        private String thumbnail;
+
         private String displayName;
 
         private Long views;
+
+        private String imgUrl;
 
         private List<RequestCommentDto.Response> requestComments;
 
@@ -95,6 +100,8 @@ public class RequestDto {
         private String author;
 
         private String publisher;
+
+        private String thumbnail;
     }
 
     @AllArgsConstructor

@@ -21,6 +21,7 @@ public class MemberDto {
         private String name;
         @Pattern(regexp = "^[a-zA-Z0-9가-힣+_.-]+$") //영문 한글 숫자
         private String displayName;
+        private String imgUrl;
 
         private String address;
         private String phoneNumber;
@@ -35,6 +36,7 @@ public class MemberDto {
         private String email;
         private String name;
         private String displayName;
+        private String imgUrl;
         private String address;
         private String phoneNumber;
         private String memberStatus;

@@ -44,6 +44,7 @@ public class RateDto {
         @Range(min = 1,max = 5)
         private Long rating;
         private String displayName;
+        private String imgUrl;
         private String title;
         @Lob
         private String content;

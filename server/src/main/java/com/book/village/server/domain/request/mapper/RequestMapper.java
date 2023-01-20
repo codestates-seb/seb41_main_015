@@ -31,7 +31,9 @@ public interface RequestMapper {
                 response.setBookTitle(request.getBookTitle());
                 response.setAuthor(request.getAuthor());
                 response.setPublisher(request.getPublisher());
+                response.setThumbnail(request.getThumbnail());
                 response.setDisplayName(request.getMember().getDisplayName());
+                response.setImgUrl(request.getMember().getImgUrl());
                 response.setViews(request.getViews());
                 response.setRequestComments(request.getRequestComments().stream()
                         .map(requestComment -> recoMapper.requestCommentToRequestCommentResponseDto(requestComment))
