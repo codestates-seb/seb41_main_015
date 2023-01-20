@@ -9,7 +9,7 @@ const SShareTop = styled.div`
   margin-top: 30px; */
   color: #2c2c2c;
   padding: 18px;
-  margin: 20px 10%;
+  /* margin: 20px 10%; */
   border-bottom: 1px solid #acacac;
   justify-content: space-between;
   @media screen and (max-width: 1180px) {
@@ -32,7 +32,7 @@ const SShareTop = styled.div`
   .fs-16 {
     font-weight: 400;
     font-size: 16px;
-    @media screen and (max-width: 930px) {
+    @media screen and (max-width: 1030px) {
       text-align: center;
     }
     @media screen and (max-width: 768px) {
@@ -53,7 +53,7 @@ const SShareTop = styled.div`
     width: 288px;
     height: 41px;
     box-sizing: border-box;
-    margin-top: 22px;
+    /* margin-top: 22px; */
     padding-left: 7px;
     font-size: 20px;
     background: #ffffff;
@@ -65,15 +65,24 @@ const SShareTop = styled.div`
     }
   }
   .search-icon {
-    transform: translate(-35px, 5px);
+    transform: translate(-35px, 0px);
   }
-  .searchBox {
+  .searchAndRegister {
     display: flex;
     flex-direction: row;
     margin-right: 0px;
+    align-items: center;
     @media screen and (max-width: 1023px) {
       margin-right: 0px;
     }
+    @media screen and (max-width: 543px) {
+      flex-shrink: 0;
+    }
+  }
+  .searchBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   select {
     margin-right: 10px;
@@ -85,6 +94,7 @@ const SShareTop = styled.div`
     font-size: 1rem;
     border: 1px solid #aaaaaa;
     border-radius: 6px;
+    height: 41px;
     color: #666666;
     text-align: center;
     @media screen and (max-width: 768px) {
@@ -95,7 +105,7 @@ const SShareTop = styled.div`
     width: 100px;
     height: 40px;
     margin-right: 0px;
-    margin-top: 22px;
+    /* margin-top: 22px; */
     border-radius: 6px;
     border: 1.5px solid #bb2649;
     color: #bb2649;
@@ -136,8 +146,8 @@ const ListHigh = ({
             : '내가 갖고 있는 책이라면 연락해보세요!'}
         </p>
       </div>
-      <div className="searchBox">
-        <div>
+      <div className="searchAndRegister">
+        <div className="searchBox">
           <select id="searchFilter" onChange={handleOption}>
             <option value="">--선택--</option>
             <option value="bookTitle">책 제목</option>

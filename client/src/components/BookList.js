@@ -60,6 +60,13 @@ const SBookContainer = styled.li`
   }
   .item-flex {
     display: flex;
+    @media screen and (max-width: 500px) {
+      flex-direction: column;
+      margin-bottom: 25px;
+      p {
+        margin: 2px 0px;
+      }
+    }
   }
   .mb-15 {
     margin-bottom: 15px;
@@ -99,10 +106,12 @@ const SBookList = styled.ol`
   /* grid-template-rows: repeat(6, 1fr); */
   grid-template-columns: repeat(2, minmax(446px, 1fr));
   gap: 30px;
-  padding: 10px;
-  margin: 20px 10%;
+  padding: 0px 10px;
   @media screen and (max-width: 1080px) {
-    grid-template-columns: repeat(1, minmax(446px, 1fr));
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
+  }
+  @media screen and (max-width: 500px) {
+    padding: 0px;
   }
 `;
 

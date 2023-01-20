@@ -2,7 +2,7 @@ import { useState } from 'react';
 import LoginModal from './LoginModal';
 import styled from 'styled-components';
 import { ReactComponent as Logo } from '../image/logo.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import mypage from '../image/mypage.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/slice/userSlice';
@@ -116,6 +116,7 @@ const SLogoutBtn = styled.button`
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const accessToken = useSelector((state) => state.user.accessToken);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -140,17 +141,33 @@ const Header = () => {
       });
   };
 
-  // 헤더 바깥부분 클릭해도 유지되는 로직
-  const [currentTab, setCurrentTab] = useState(0);
-  const menus = [
-    { index: 0, name: '나눔', route: '/shareList' },
-    { index: 1, name: '요청', route: '/reqList' },
-    { index: 2, name: '평점', route: '/' },
-    { index: 3, name: '커뮤니티', route: '/' },
-  ];
-  const handleMenuSelect = (index) => {
-    setCurrentTab(index);
+  // 헤더 바깥부분 클릭해도 유지되는 로직 (수정 후: pathname 이용)
+  // 나눔 관련 경로: shareList, shareAdd, shareDetail, shareEdit
+  // 요청 관련 경로: reqList, reqAdd, reqDetail, reqEdit
+  const currentLocation = (pathname) => {
+    if (pathname.slice(1, 4) === 'req') {
+      return 'request';
+    } else if (pathname.slice(1, 6) === 'share') {
+      return 'share';
+    }
   };
+
+  const shareClassName =
+    currentLocation(pathname) === 'share' ? 'olItem focused' : 'olItem';
+  const requestClassName =
+    currentLocation(pathname) === 'request' ? 'olItem focused' : 'olItem';
+
+  // 헤더 바깥부분 클릭해도 유지되는 로직 (수정 전)
+  // const [currentTab, setCurrentTab] = useState(0);
+  // const menus = [
+  //   { index: 0, name: '나눔', route: '/shareList' },
+  //   { index: 1, name: '요청', route: '/reqList' },
+  //   { index: 2, name: '평점', route: '/' },
+  //   { index: 3, name: '커뮤니티', route: '/' },
+  // ];
+  // const handleMenuSelect = (index) => {
+  //   setCurrentTab(index);
+  // };
 
   return (
     <StyledHeader>
@@ -158,7 +175,19 @@ const Header = () => {
         <Logo className="logo" />
       </SHeaderLogo>
       <SNavContainer>
-        {menus.map((el) => {
+        <Link to="/shareList" className={shareClassName}>
+          나눔
+        </Link>
+        <Link to="/reqList" className={requestClassName}>
+          요청
+        </Link>
+        <Link to="/" className="olItem">
+          평점
+        </Link>
+        <Link to="/" className="olItem">
+          커뮤니티
+        </Link>
+        {/* {menus.map((el) => {
           const isFocused =
             currentTab === el.index ? 'olItem focused' : 'olItem';
           return (
@@ -171,7 +200,7 @@ const Header = () => {
               {el.name}
             </Link>
           );
-        })}
+        })} */}
       </SNavContainer>
       {!accessToken ? (
         <>

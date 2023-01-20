@@ -1,6 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import ToggleSwitch from './ToggleSwitch';
 import instanceAxios from '../reissue/InstanceAxios';
+import { prettyDate } from '../util/dateparse';
 import { ReactComponent as KakaoFill } from '../image/kakaofill.svg';
 import Swal from 'sweetalert2';
 
@@ -75,12 +77,18 @@ const STopWrap = styled.div`
     justify-content: space-between;
     gap: 40px;
   }
+`;
+
+const SAuthorAndStatus = styled.div`
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  margin-bottom: 10px;
 
   .authorInfo {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 10px;
     padding-left: 3px;
 
     img {
@@ -151,7 +159,11 @@ const SContact = styled.div`
 
 const DetailForm = ({ data, page, id }) => {
   const navigate = useNavigate();
+  const endpoint = page === 'share' ? 'borrows' : 'requests';
+
   // 자기가 쓴 글이 아니면 수정, 삭제 버튼이 안 보여야 함
+  const currentUser = sessionStorage.getItem('displayName');
+  const isSameUser = data.displayName === currentUser ? true : false;
 
   // 삭제 버튼 핸들러
   const handleDelete = () => {
@@ -166,8 +178,8 @@ const DetailForm = ({ data, page, id }) => {
     }).then((res) => {
       if (res.isConfirmed) {
         instanceAxios
-          .delete(`v1/borrows/${id}`)
-          .then((res) => {
+          .delete(`v1/${endpoint}/${id}`)
+          .then(() => {
             Swal.fire('글이 삭제되었습니다.');
             navigate(-1);
           })
@@ -183,7 +195,7 @@ const DetailForm = ({ data, page, id }) => {
   const imgUrl = data.imgUrl
     ? data.imgUrl
     : 'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg';
-  const articleId = page === 'share' ? data.borrowId : data.requestId;
+
   return (
     <SDetailLayout>
       <div className="container">
@@ -195,31 +207,35 @@ const DetailForm = ({ data, page, id }) => {
             <STopWrap>
               <div className="titleAndButton">
                 <h1>{data.title}</h1>
-                {/* 수정, 삭제 버튼은 자기가 쓴 글에서만 보이도록 */}
-                <div className="controlButtons">
-                  <Link
-                    to={
-                      page === 'request'
-                        ? `/reqEdit/${articleId}`
-                        : `/shareEdit/${articleId}`
-                    }
-                  >
-                    <span className="controlButton">수정</span>
-                  </Link>
-                  <span className="betweenButtons">|</span>
-                  <span className="controlButton" onClick={handleDelete}>
-                    삭제
-                  </span>
+                {isSameUser ? (
+                  <div className="controlButtons">
+                    <Link
+                      to={
+                        page === 'request'
+                          ? `/reqEdit/${id}`
+                          : `/shareEdit/${id}`
+                      }
+                    >
+                      <span className="controlButton">수정</span>
+                    </Link>
+                    <span className="betweenButtons">|</span>
+                    <span className="controlButton" onClick={handleDelete}>
+                      삭제
+                    </span>
+                  </div>
+                ) : null}
+              </div>
+              <SAuthorAndStatus>
+                <div className="authorInfo">
+                  <img
+                    alt="profileImage"
+                    src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
+                  />
+                  <div>{data.displayName}</div>
+                  <div className="createdAt">{prettyDate(data.createdAt)}</div>
                 </div>
-              </div>
-              <div className="authorInfo">
-                <img
-                  alt="profileImage"
-                  src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
-                />
-                <div>{data.displayName}</div>
-                <div className="createdAt">{data.createdAt}</div>
-              </div>
+                <ToggleSwitch />
+              </SAuthorAndStatus>
             </STopWrap>
             <SBookInfo>
               <h2>{data.bookTitle}</h2>
