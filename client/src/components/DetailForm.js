@@ -183,7 +183,7 @@ const DetailForm = ({ data, page, id }) => {
   const imgUrl = data.imgUrl
     ? data.imgUrl
     : 'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg';
-  const articleId = page === 'share' ? data.borrowId : data.requestId;
+
   return (
     <SDetailLayout>
       <div className="container">
@@ -199,9 +199,7 @@ const DetailForm = ({ data, page, id }) => {
                 <div className="controlButtons">
                   <Link
                     to={
-                      page === 'request'
-                        ? `/reqEdit/${articleId}`
-                        : `/shareEdit/${articleId}`
+                      page === 'request' ? `/reqEdit/${id}` : `/shareEdit/${id}`
                     }
                   >
                     <span className="controlButton">수정</span>
