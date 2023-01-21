@@ -9,6 +9,7 @@ import com.book.village.server.domain.member.repository.MemberRepository;
 import com.book.village.server.domain.member.service.MemberService;
 import com.book.village.server.global.exception.CustomLogicException;
 import com.book.village.server.global.exception.ExceptionCode;
+import com.book.village.server.global.utils.RedirectType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -32,13 +33,15 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
     private final MemberService memberService;
     private final MemberRepository memberRepository;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final RedirectType redirectType;
 
-    public OAuth2MemberSuccessHandler(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, MemberService memberService, MemberRepository memberRepository,RefreshTokenRepository refreshTokenRepository) {
+    public OAuth2MemberSuccessHandler(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, MemberService memberService, MemberRepository memberRepository, RefreshTokenRepository refreshTokenRepository, RedirectType redirectType) {
         this.jwtTokenizer = jwtTokenizer;
         this.authorityUtils = authorityUtils;
         this.memberService = memberService;
         this.memberRepository = memberRepository;
         this.refreshTokenRepository=refreshTokenRepository;
+        this.redirectType = redirectType;
     }
 
     @Override
@@ -108,22 +111,22 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         queryParams.add("refresh_token", refreshToken);
         if(newbie) queryParams.add("membership", "new");
         else queryParams.add("membership","existing");
-
+        if(redirectType.getServerType().equals("local")){
+            return UriComponentsBuilder
+                    .newInstance()
+                    .scheme("http")
+                    .host("localhost")
+                    .path("/receive-token.html")
+                    .queryParams(queryParams)
+                    .build()
+                    .toUri();
         return UriComponentsBuilder
                 .newInstance()
                 .scheme("http")
-                .host("localhost")
-                .path("/receive-token.html")
+                .host("bookvillage.kro.kr")
+                .path("/oauth")
                 .queryParams(queryParams)
                 .build()
                 .toUri();
-//        return UriComponentsBuilder
-//                .newInstance()
-//                .scheme("http")
-//                .host("bookvillage.kro.kr")
-//                .path("/oauth")
-//                .queryParams(queryParams)
-//                .build()
-//                .toUri();
     }
 }
