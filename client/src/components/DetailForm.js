@@ -104,6 +104,10 @@ const SAuthorAndStatus = styled.div`
       font-size: 0.9rem;
     }
   }
+
+  .onlyInShare {
+    display: none;
+  }
 `;
 
 const SBookInfo = styled.div`
@@ -166,6 +170,8 @@ const DetailForm = ({ data, page, id }) => {
   // 자기가 쓴 글이 아니면 수정, 삭제 버튼이 안 보여야 함
   const currentUser = sessionStorage.getItem('displayName');
   const isSameUser = data.displayName === currentUser ? true : false;
+
+  const onlyInShare = page === 'share' ? '' : 'onlyInShare';
 
   // 삭제 버튼 핸들러
   const handleDelete = () => {
@@ -236,7 +242,9 @@ const DetailForm = ({ data, page, id }) => {
                   <div>{data.displayName}</div>
                   <div className="createdAt">{prettyDate(data.createdAt)}</div>
                 </div>
-                {isSameUser ? <ToggleSwitch /> : <ShareStatus />}
+                <div className={onlyInShare}>
+                  {isSameUser ? <ToggleSwitch /> : <ShareStatus />}
+                </div>
               </SAuthorAndStatus>
             </STopWrap>
             <SBookInfo>
