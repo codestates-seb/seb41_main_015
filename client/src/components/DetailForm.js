@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ToggleSwitch from './ToggleSwitch';
+import ShareStatus from './ShareStatus';
 import instanceAxios from '../reissue/InstanceAxios';
 import { prettyDate } from '../util/dateparse';
 import { ReactComponent as KakaoFill } from '../image/kakaofill.svg';
@@ -192,9 +193,9 @@ const DetailForm = ({ data, page, id }) => {
     });
   };
 
-  // 책 표지 기본이미지
-  const imgUrl = data.imgUrl
-    ? data.imgUrl
+  // 기본 이미지
+  const cover = data.thumbnail
+    ? data.thumbnail
     : 'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg';
 
   return (
@@ -202,7 +203,7 @@ const DetailForm = ({ data, page, id }) => {
       <div className="container">
         <SDetailWrap>
           <div>
-            <img alt="책 표지" src={imgUrl} />
+            <img alt="책 표지" src={cover} />
           </div>
           <SRightSide>
             <STopWrap>
@@ -235,7 +236,7 @@ const DetailForm = ({ data, page, id }) => {
                   <div>{data.displayName}</div>
                   <div className="createdAt">{prettyDate(data.createdAt)}</div>
                 </div>
-                {isSameUser ? <ToggleSwitch /> : <div>나눔 상태 컴포넌트</div>}
+                {isSameUser ? <ToggleSwitch /> : <ShareStatus />}
               </SAuthorAndStatus>
             </STopWrap>
             <SBookInfo>
