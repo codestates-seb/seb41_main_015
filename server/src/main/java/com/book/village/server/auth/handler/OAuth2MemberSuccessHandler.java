@@ -109,21 +109,21 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         if(newbie) queryParams.add("membership", "new");
         else queryParams.add("membership","existing");
 
-        return UriComponentsBuilder
-                .newInstance()
-                .scheme("http")
-                .host("localhost")
-                .path("/receive-token.html")
-                .queryParams(queryParams)
-                .build()
-                .toUri();
 //        return UriComponentsBuilder
 //                .newInstance()
 //                .scheme("http")
-//                .host("bookvillage.kro.kr")
-//                .path("/oauth")
+//                .host("localhost")
+//                .path("/receive-token.html")
 //                .queryParams(queryParams)
 //                .build()
 //                .toUri();
+        return UriComponentsBuilder
+                .newInstance()
+                .scheme("http")
+                .host("bookvillage.kro.kr")
+                .path("/oauth")
+                .queryParams(queryParams)
+                .build()
+                .toUri();
     }
 }
