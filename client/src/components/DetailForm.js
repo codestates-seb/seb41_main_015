@@ -5,6 +5,7 @@ import ShareStatus from './ShareStatus';
 import instanceAxios from '../reissue/InstanceAxios';
 import { prettyDate } from '../util/dateparse';
 import { ReactComponent as KakaoFill } from '../image/kakaofill.svg';
+import { ReactComponent as Eye } from '../image/eye.svg';
 import Swal from 'sweetalert2';
 
 const SDetailLayout = styled.main`
@@ -93,15 +94,32 @@ const SAuthorAndStatus = styled.div`
     gap: 10px;
     padding-left: 3px;
 
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
     img {
       margin: 0;
       width: 28px;
       border-radius: 70%;
     }
 
+    .views {
+      color: #aaaaaa;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
     .createdAt {
       color: #aaaaaa;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
+      @media screen and (max-width: 527px) {
+        display: none;
+      }
     }
   }
 
@@ -235,11 +253,16 @@ const DetailForm = ({ data, page, id }) => {
               </div>
               <SAuthorAndStatus>
                 <div className="authorInfo">
-                  <img
-                    alt="profileImage"
-                    src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
-                  />
-                  <div>{data.displayName}</div>
+                  <div className="author">
+                    <img
+                      alt="profileImage"
+                      src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
+                    />
+                    <div>{data.displayName}</div>
+                  </div>
+                  <div className="views">
+                    <Eye width="14px" height="14px" />0
+                  </div>
                   <div className="createdAt">{prettyDate(data.createdAt)}</div>
                 </div>
                 <div className={onlyInShare}>

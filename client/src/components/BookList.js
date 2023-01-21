@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import ShareStatus from './ShareStatus';
+import { ReactComponent as Eye } from '../image/eye.svg';
 import { useNavigate, Link } from 'react-router-dom';
 import { elapsed } from '../util/dateparse';
 
@@ -33,7 +34,7 @@ const SBookContainer = styled.li`
   }
   .informationBox {
     margin-left: 0;
-    margin-right: 1rem;
+    /* margin-right: 1rem; */
     color: #212124;
   }
   .fs-18 {
@@ -73,8 +74,36 @@ const SBookContainer = styled.li`
     margin-bottom: 15px;
   }
   .createdAt-r {
-    text-align: right;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5px;
+    margin: 0px;
+  }
+  #displayName {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+    img {
+      width: 20px;
+      margin-right: 5px;
+      border-radius: 70%;
+    }
+  }
+  #articleInfo {
+    display: flex;
+    gap: 10px;
+    font-size: 0.8rem;
+    color: #aaaaaa;
+  }
+  #views {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.8rem;
+    color: #aaaaaa;
   }
   .mt-20 {
     margin-top: 0px;
@@ -129,10 +158,14 @@ const BookList = ({ data, route }) => {
   return (
     <SBookList>
       {data.map((article, index) => {
-        // 기본 이미지
+        // 책 표지 기본 이미지
         const cover = article.thumbnail
           ? article.thumbnail
           : 'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg';
+        // 프로필 사진 기본 이미지
+        const profile = article.imgUrl
+          ? article.imgUrl
+          : 'https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg';
         // 아이디
         const id = route === 'share' ? article.borrowId : article.requestId;
 
@@ -161,9 +194,18 @@ const BookList = ({ data, route }) => {
                   <p className="mfs-16">{article.author} 저자 /</p>
                   <p className="mfs-16">{article.publisher}</p>
                 </div>
-                <p className="fs-12 createdAt-r">
-                  {elapsed(article.createdAt)}
-                </p>
+                <div className="createdAt-r">
+                  <div id="displayName">
+                    <img src={profile} alt="프로필사진" />
+                    {article.displayName}
+                  </div>
+                  <div id="articleInfo">
+                    <div id="createdAt">{elapsed(article.createdAt)}</div>
+                    <div id="views">
+                      <Eye width="14px" height="14px" />0
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <p className="word-break mt-20 mfs-16">{article.content}</p>
