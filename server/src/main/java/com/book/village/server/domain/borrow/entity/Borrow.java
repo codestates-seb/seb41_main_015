@@ -37,7 +37,7 @@ public class Borrow extends Auditable {
     @Column(length = 50, nullable = false)
     private String publisher;
 
-    @Column(length=200)
+    @Column(length=3000)
     private String thumbnail="https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg";
 
     @Column(length = 50)

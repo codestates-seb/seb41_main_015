@@ -62,6 +62,12 @@ public class MemberService {
     }
 
     public Member updateMember(Member member, Member patchMember) {
+        if(patchMember.getDisplayName()!=null) {
+            memberRepository.findByDisplayName(patchMember.getDisplayName()).ifPresent( m -> {
+                throw new CustomLogicException(ExceptionCode.MEMBER_DUPLICATE);
+                    }
+            );
+        }
         return customBeanUtils.copyNonNullProperties(patchMember, member);
     }
     public void quitMember(String email){
