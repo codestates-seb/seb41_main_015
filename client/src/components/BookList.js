@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import ShareStatus from './ShareStatus';
 import { useNavigate, Link } from 'react-router-dom';
 import { elapsed } from '../util/dateparse';
 
@@ -80,6 +81,8 @@ const SBookContainer = styled.li`
     height: 100%;
   }
   .shareTitle {
+    display: flex;
+    justify-content: space-between;
     margin: 20px 0px;
     font-size: 20px;
     font-weight: 700;
@@ -88,6 +91,9 @@ const SBookContainer = styled.li`
     @media all and (min-width: 480px) and (max-width: 1080px) {
       margin-left: 0px;
     }
+  }
+  .onlyInShare {
+    display: none;
   }
   #title {
     &:hover {
@@ -118,6 +124,7 @@ const SBookList = styled.ol`
 const BookList = ({ data, route }) => {
   const navigate = useNavigate();
   const path = route === 'share' ? '/shareDetail' : '/reqDetail';
+  const onlyInShare = route === 'share' ? '' : 'onlyInShare';
 
   return (
     <SBookList>
@@ -135,6 +142,9 @@ const BookList = ({ data, route }) => {
               <Link to={`${path}/${id}`}>
                 <span id="title">{article.title}</span>
               </Link>
+              <div className={onlyInShare}>
+                <ShareStatus />
+              </div>
             </div>
             <div className="f-row">
               <div className="coverBox">
