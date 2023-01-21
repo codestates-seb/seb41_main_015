@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 import styled from 'styled-components';
 
 const SLabel = styled.label`
@@ -15,7 +16,9 @@ const SLabel = styled.label`
 
   input:checked + .statusSwitch {
     /* 배경색 논의해보기 */
-    background-color: #0da748;
+    /* 테마색 */
+    /* background-color: #bb2649; */
+    background-color: #c8f9b6;
   }
 
   input:checked + .statusSwitch:before {
@@ -32,7 +35,7 @@ const SLabel = styled.label`
     right: 0;
     bottom: 0;
     border-radius: 20px;
-    background-color: #aaaaaa;
+    background-color: #dfdfdf;
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
@@ -57,6 +60,7 @@ const SLabel = styled.label`
     width: 100%;
     height: 100%;
     font-size: 0.8rem;
+    color: #000000;
     transition: all 0.4s ease-in-out;
     cursor: pointer;
   }
@@ -64,12 +68,10 @@ const SLabel = styled.label`
   .texts::after {
     content: attr(data-off);
     position: absolute;
-    color: #ffffff;
+    /* color: #474747; */
     font-weight: 700;
     opacity: 1;
-    transition: all 0.4s ease-in-out;
-    /* 네글자 */
-    font-size: 0.8rem;
+    transition: all 0.4s;
     top: 7px;
     right: 12px;
   }
@@ -77,12 +79,12 @@ const SLabel = styled.label`
   .texts::before {
     content: attr(data-on);
     position: absolute;
+    color: #474747;
     top: 7px;
-    left: 15px;
-    color: #ffffff;
+    left: 13px;
     font-weight: 700;
     opacity: 0;
-    transition: all 0.4s ease-in-out;
+    transition: all 0.4s;
   }
 
   input:checked ~ .texts::after {
@@ -95,7 +97,7 @@ const SLabel = styled.label`
 `;
 
 const ToggleSwitch = () => {
-  // 초기값은 서버에서 받아온 나눔 상태 값
+  // 초기값은 서버에서 받아온 나눔 상태 값 (boolean)
   // props로 내려줘야 할 듯!!
   const [isAvailable, setIsAvailable] = useState(true);
 
@@ -104,9 +106,21 @@ const ToggleSwitch = () => {
   };
 
   const handleStatusChange = () => {
-    console.log('나눔 상태:', !isAvailable);
-    console.log('서버에 정보를 전송합니다...');
-    console.log('---------------------');
+    Swal.fire({
+      title: '나눔 상태를 변경하시겠습니까?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#bb2649',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+    }).then((res) => {
+      if (res.isConfirmed) {
+        handleToggleClick();
+        console.log('나눔 상태:', !isAvailable);
+        console.log('서버에 정보를 전송합니다...');
+        console.log('---------------------');
+      }
+    });
   };
 
   return (
@@ -114,13 +128,10 @@ const ToggleSwitch = () => {
       <input
         type="checkbox"
         checked={isAvailable}
-        onChange={() => {
-          handleToggleClick();
-          handleStatusChange();
-        }}
+        onChange={handleStatusChange}
       />
       <span className="statusSwitch"></span>
-      <span className="texts" data-on="나눔 중" data-off="나눔완료"></span>
+      <span className="texts" data-on="나눔가능" data-off="나눔완료"></span>
     </SLabel>
   );
 };
