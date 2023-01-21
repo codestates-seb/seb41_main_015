@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import CarouselForm from '../components/Carousel';
 import NicknameModal from '../components/NicknameModal';
 
 const Home = () => {
@@ -35,6 +36,8 @@ const Home = () => {
         />
       ) : null}
       <p>홈 화면 부분입니다!</p>
+      {/* 캐러셀 */}
+      <CarouselForm />
     </>
   );
 };
