@@ -11,6 +11,7 @@ import com.book.village.server.auth.service.CustomOAuth2MemberService;
 import com.book.village.server.auth.utils.CustomAuthorityUtils;
 import com.book.village.server.domain.member.repository.MemberRepository;
 import com.book.village.server.domain.member.service.MemberService;
+import com.book.village.server.global.utils.RedirectType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -33,10 +34,11 @@ public class SecurityConfiguration {
     private final CustomOAuth2MemberService customOAuth2MemberService;
     private final RedisTemplate redisTemplate;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final RedirectType redirectType;
 
 
     public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils,
-                                 MemberService memberService, MemberRepository memberRepository, CustomOAuth2MemberService customOAuth2MemberService, RedisTemplate redisTemplate, RefreshTokenRepository refreshTokenRepository) {
+                                 MemberService memberService, MemberRepository memberRepository, CustomOAuth2MemberService customOAuth2MemberService, RedisTemplate redisTemplate, RefreshTokenRepository refreshTokenRepository, RedirectType redirectType) {
         this.jwtTokenizer = jwtTokenizer;
         this.authorityUtils = authorityUtils;
         this.memberService = memberService;
@@ -45,6 +47,7 @@ public class SecurityConfiguration {
         this.redisTemplate = redisTemplate;
 
         this.refreshTokenRepository = refreshTokenRepository;
+        this.redirectType = redirectType;
     }
 
     @Bean
@@ -67,7 +70,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().permitAll())
                 .oauth2Login()
-                .successHandler(new OAuth2MemberSuccessHandler(jwtTokenizer, authorityUtils, memberService, memberRepository, refreshTokenRepository))
+                .successHandler(new OAuth2MemberSuccessHandler(jwtTokenizer, authorityUtils, memberService, memberRepository, refreshTokenRepository, redirectType))
                 .userInfoEndpoint() // OAuth2 로그인 성공 이후 사용자 정보를 가져올 때 설정을 저장
                 .userService(customOAuth2MemberService); // OAuth2 로그인 성공 시, 후작업을 진행할 UserService 인터페이스 구현체 등록
 
