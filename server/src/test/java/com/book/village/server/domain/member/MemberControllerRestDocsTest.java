@@ -65,6 +65,7 @@ public class MemberControllerRestDocsTest {
                 memberId,
                 "name1",
                 "user1",
+                "https://img.icons8.com/windows/32/null/user-male-circle.png",
                 "address1",
                 "010-1234-5678");
 
@@ -77,6 +78,7 @@ public class MemberControllerRestDocsTest {
                 "test1234@gmail.com",
                 "name1",
                 "user1",
+                "https://img.icons8.com/windows/32/null/user-male-circle.png",
                 "address1",
                 "010-1234-5678",
                 Member.MemberStatus.MEMBER_ACTIVE.getStatus(),
@@ -104,6 +106,7 @@ public class MemberControllerRestDocsTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data.name").value(patch.getName()))
                 .andExpect(jsonPath("$.data.displayName").value(patch.getDisplayName()))
+                .andExpect(jsonPath("$.data.imgUrl").value(patch.getImgUrl()))
                 .andExpect(jsonPath("$.data.address").value(patch.getAddress()))
                 .andExpect(jsonPath("$.data.phoneNumber").value(patch.getPhoneNumber()))
                 .andDo(document("patch-member",
@@ -117,7 +120,8 @@ public class MemberControllerRestDocsTest {
                                 List.of(
                                         fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("회원 식별자").ignored(),
                                         fieldWithPath("name").type(JsonFieldType.STRING).description("이름").optional(),
-                                        fieldWithPath("displayName").type(JsonFieldType.STRING).description("닉네임").optional(),
+                                        fieldWithPath("displayName").type(JsonFieldType.STRING).description("닉네임").ignored(),
+                                        fieldWithPath("imgUrl").type(JsonFieldType.STRING).description("이미지 url").optional(),
                                         fieldWithPath("address").type(JsonFieldType.STRING).description("주소").optional(),
                                         fieldWithPath("phoneNumber").type(JsonFieldType.STRING).description("핸드폰 번호").optional()
                                 )
@@ -130,6 +134,7 @@ public class MemberControllerRestDocsTest {
                                         fieldWithPath("data.email").type(JsonFieldType.STRING).description("이메일"),
                                         fieldWithPath("data.name").type(JsonFieldType.STRING).description("이름"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("닉네임"),
+                                        fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("이미지 url"),
                                         fieldWithPath("data.address").type(JsonFieldType.STRING).description("주소"),
                                         fieldWithPath("data.phoneNumber").type(JsonFieldType.STRING).description("핸드폰 번호"),
                                         fieldWithPath("data.memberStatus").type(JsonFieldType.STRING).description("회원 상태"),
@@ -154,6 +159,7 @@ public class MemberControllerRestDocsTest {
                 "test1234@gmail.com",
                 "name1",
                 "user1",
+                "https://img.icons8.com/windows/32/null/user-male-circle.png",
                 "address1",
                 "010-1234-5678",
                 Member.MemberStatus.MEMBER_ACTIVE.getStatus(),
@@ -179,6 +185,7 @@ public class MemberControllerRestDocsTest {
                 .andExpect(jsonPath("$.data.email").value(responseDto.getEmail()))
                 .andExpect(jsonPath("$.data.name").value(responseDto.getName()))
                 .andExpect(jsonPath("$.data.displayName").value(responseDto.getDisplayName()))
+                .andExpect(jsonPath("$.data.imgUrl").value(responseDto.getImgUrl()))
                 .andExpect(jsonPath("$.data.address").value(responseDto.getAddress()))
                 .andExpect(jsonPath("$.data.phoneNumber").value(responseDto.getPhoneNumber()))
                 .andDo(document("get-member",
@@ -194,6 +201,7 @@ public class MemberControllerRestDocsTest {
                                         fieldWithPath("data.email").type(JsonFieldType.STRING).description("이메일"),
                                         fieldWithPath("data.name").type(JsonFieldType.STRING).description("이름"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("닉네임"),
+                                        fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("imgUrl"),
                                         fieldWithPath("data.address").type(JsonFieldType.STRING).description("주소"),
                                         fieldWithPath("data.phoneNumber").type(JsonFieldType.STRING).description("핸드폰 번호"),
                                         fieldWithPath("data.memberStatus").type(JsonFieldType.STRING).description("회원 상태"),
