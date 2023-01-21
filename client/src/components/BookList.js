@@ -88,6 +88,7 @@ const SBookContainer = styled.li`
     margin-bottom: 2px;
     img {
       width: 20px;
+      height: 20px;
       margin-right: 5px;
       border-radius: 70%;
     }

@@ -103,6 +103,7 @@ const SAuthorAndStatus = styled.div`
     img {
       margin: 0;
       width: 28px;
+      height: 28px;
       border-radius: 70%;
     }
 
@@ -222,6 +223,11 @@ const DetailForm = ({ data, page, id }) => {
     ? data.thumbnail
     : 'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg';
 
+  // 프로필 사진 기본 이미지
+  const profile = data.imgUrl
+    ? data.imgUrl
+    : 'https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg';
+
   return (
     <SDetailLayout>
       <div className="container">
@@ -254,10 +260,7 @@ const DetailForm = ({ data, page, id }) => {
               <SAuthorAndStatus>
                 <div className="authorInfo">
                   <div className="author">
-                    <img
-                      alt="profileImage"
-                      src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
-                    />
+                    <img alt="profileImage" src={profile} />
                     <div>{data.displayName}</div>
                   </div>
                   <div className="views">
