@@ -32,6 +32,7 @@ public class CommunityDto {
         @Lob
         private String content;
         private String displayName;
+        private Long view;
     }
 
     @AllArgsConstructor
@@ -46,6 +47,7 @@ public class CommunityDto {
         @Lob
         private String content;
         private String displayName;
+        private Long view;
         private String imgUrl;
         private List<CommunityCommentDto.Response> communityComments;
         private LocalDateTime createdAt;

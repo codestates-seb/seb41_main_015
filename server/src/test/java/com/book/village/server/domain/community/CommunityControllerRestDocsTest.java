@@ -88,6 +88,7 @@ public class CommunityControllerRestDocsTest {
                 "title1",
                 "content1",
                 "displayName1",
+                0L,
                 "imgUrl1",
                 cCommentResponse,
                 createdAt,
@@ -139,6 +140,7 @@ public class CommunityControllerRestDocsTest {
                                         fieldWithPath("data.title").type(JsonFieldType.STRING).description("커뮤니티 제목"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("커뮤니티 내용"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("커뮤니티 작성자"),
+                                        fieldWithPath("data.view").type(JsonFieldType.NUMBER).description("커뮤니티 조회수"),
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("커뮤니티 작성자 프로필 이미지"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("커뮤니티 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("커뮤니티 수정 일자"),
@@ -164,7 +166,8 @@ public class CommunityControllerRestDocsTest {
                 "free",
                 "title1",
                 "content1",
-                "displayName1"
+                "displayName1",
+                1L
         );
 
         LocalDateTime createdAt=LocalDateTime.now();
@@ -182,6 +185,7 @@ public class CommunityControllerRestDocsTest {
                 "title1",
                 "content1",
                 "displayName1",
+                1L,
                 "imgUrl1",
                 cCommentResponse,
                 createdAt,
@@ -226,7 +230,8 @@ public class CommunityControllerRestDocsTest {
                                         fieldWithPath("type").type(JsonFieldType.STRING).description("카테고리[notice, free, study, recommend]").optional(),
                                         fieldWithPath("title").type(JsonFieldType.STRING).description("제목").optional(),
                                         fieldWithPath("content").type(JsonFieldType.STRING).description("내용").optional(),
-                                        fieldWithPath("displayName").type(JsonFieldType.STRING).description("작성자").optional()
+                                        fieldWithPath("displayName").type(JsonFieldType.STRING).description("작성자").optional(),
+                                        fieldWithPath("view").type(JsonFieldType.NUMBER).description("조회수").ignored()
                                 )
                         ),
                         // response body
@@ -238,6 +243,7 @@ public class CommunityControllerRestDocsTest {
                                         fieldWithPath("data.title").type(JsonFieldType.STRING).description("제목"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("내용"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("작성자"),
+                                        fieldWithPath("data.view").type(JsonFieldType.NUMBER).description("조회수"),
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("작성자 프로필 이미지"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("수정 일자"),
@@ -273,13 +279,25 @@ public class CommunityControllerRestDocsTest {
                 "title1",
                 "content1",
                 "displayName1",
+                1L,
                 "imgUrl1",
                 cCommentResponse,
                 createdAt,
                 modifiedAt
         );
+        Community community =new Community(
+                1L,
+                "free",
+                "title1",
+                "content1",
+                "displayName1",
+                1L,
+                new Member("email@gmail.com"),
+                null
+        );
 
-        given(communityService.findCommunity(Mockito.anyLong())).willReturn(new Community());
+        given(communityService.findCommunity(Mockito.anyLong())).willReturn(community);
+        given(communityService.updateCommunity(Mockito.any(Community.class),Mockito.anyString())).willReturn(community);
         given(mapper.communityToCommunityResponseDto(Mockito.any(Community.class))).willReturn(response);
 
 
@@ -312,6 +330,7 @@ public class CommunityControllerRestDocsTest {
                                         fieldWithPath("data.title").type(JsonFieldType.STRING).description("제목"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("내용"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("작성자"),
+                                        fieldWithPath("data.view").type(JsonFieldType.NUMBER).description("조회수"),
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("작성자 프로필 이미지"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("수정 일자"),
@@ -341,6 +360,7 @@ public class CommunityControllerRestDocsTest {
                 "title1",
                 "content1",
                 "displayName1",
+                1L,
                 "imgUrl1",
                 null,
                 createdAt1,
@@ -352,6 +372,7 @@ public class CommunityControllerRestDocsTest {
                 "title2",
                 "content2",
                 "displayName2",
+                1L,
                 "imgUrl2",
                 null,
                 createdAt2,
@@ -368,6 +389,7 @@ public class CommunityControllerRestDocsTest {
                 "title1",
                 "content1",
                 "displayName1",
+                1L,
                 new Member(),
                 null));
         list.add(new Community(
@@ -376,6 +398,7 @@ public class CommunityControllerRestDocsTest {
                 "title2",
                 "content2",
                 "displayName2",
+                1L,
                 new Member(),
                 null));
 
@@ -416,6 +439,7 @@ public class CommunityControllerRestDocsTest {
                                         fieldWithPath("data.[].title").type(JsonFieldType.STRING).description("제목"),
                                         fieldWithPath("data.[].content").type(JsonFieldType.STRING).description("내용"),
                                         fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("작성자"),
+                                        fieldWithPath("data.[].view").type(JsonFieldType.NUMBER).description("조회수"),
                                         fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("작성자 프로필 이미지"),
                                         fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("생성 일자"),
                                         fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("수정 일자"),
@@ -447,6 +471,7 @@ public class CommunityControllerRestDocsTest {
                 "title1",
                 "content1",
                 "displayName1",
+                1L,
                 "imgUrl1",
                 null,
                 createdAt1,
@@ -458,6 +483,7 @@ public class CommunityControllerRestDocsTest {
                 "title2",
                 "content2",
                 "displayName2",
+                1L,
                 "imgUrl2",
                 null,
                 createdAt2,
@@ -474,6 +500,7 @@ public class CommunityControllerRestDocsTest {
                 "title1",
                 "content1",
                 "displayName1",
+                1L,
                 new Member(),
                 null));
         list.add(new Community(
@@ -482,6 +509,7 @@ public class CommunityControllerRestDocsTest {
                 "title2",
                 "content2",
                 "displayName2",
+                1L,
                 new Member(),
                 null));
 
@@ -526,6 +554,7 @@ public class CommunityControllerRestDocsTest {
                                         fieldWithPath("data.[].title").type(JsonFieldType.STRING).description("제목"),
                                         fieldWithPath("data.[].content").type(JsonFieldType.STRING).description("내용"),
                                         fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("작성자"),
+                                        fieldWithPath("data.[].view").type(JsonFieldType.NUMBER).description("조회수"),
                                         fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("작성자 프로필 이미지"),
                                         fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("생성 일자"),
                                         fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("수정 일자"),
@@ -586,6 +615,7 @@ public class CommunityControllerRestDocsTest {
                 "title1",
                 "content1",
                 "displayName1",
+                1L,
                 "imgUrl1",
                 null,
                 createdAt1,
@@ -597,6 +627,7 @@ public class CommunityControllerRestDocsTest {
                 "title2",
                 "content2",
                 "displayName2",
+                1L,
                 "imgUrl2",
                 null,
                 createdAt2,
@@ -613,6 +644,7 @@ public class CommunityControllerRestDocsTest {
                 "title1",
                 "content1",
                 "displayName1",
+                1L,
                 new Member(),
                 null));
         list.add(new Community(
@@ -621,6 +653,7 @@ public class CommunityControllerRestDocsTest {
                 "title2",
                 "content2",
                 "displayName2",
+                1L,
                 new Member(),
                 null));
 
@@ -664,6 +697,7 @@ public class CommunityControllerRestDocsTest {
                                         fieldWithPath("data.[].title").type(JsonFieldType.STRING).description("제목"),
                                         fieldWithPath("data.[].content").type(JsonFieldType.STRING).description("내용"),
                                         fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("작성자"),
+                                        fieldWithPath("data.[].view").type(JsonFieldType.NUMBER).description("조회수"),
                                         fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("작성자 프로필 이미지"),
                                         fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("생성 일자"),
                                         fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("수정 일자"),
