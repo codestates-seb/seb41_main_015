@@ -3,9 +3,11 @@ import Swal from 'sweetalert2';
 import styled from 'styled-components';
 
 const SLabel = styled.label`
+  --width: 90px;
+
   position: relative;
   display: inline-block;
-  width: 90px;
+  width: var(--width);
   height: 33px;
 
   input {
@@ -61,7 +63,8 @@ const SLabel = styled.label`
     height: 100%;
     font-size: 0.8rem;
     color: #000000;
-    transition: all 0.4s ease-in-out;
+    transition: all 0.4s;
+    overflow: hidden;
     cursor: pointer;
   }
 
@@ -81,7 +84,7 @@ const SLabel = styled.label`
     position: absolute;
     color: #474747;
     top: 7px;
-    left: 13px;
+    left: calc(var(--width) * -0.87);
     font-weight: 700;
     opacity: 0;
     transition: all 0.4s;
@@ -89,10 +92,12 @@ const SLabel = styled.label`
 
   input:checked ~ .texts::after {
     opacity: 0;
+    transform: translateX(var(--width));
   }
 
   input:checked ~ .texts::before {
     opacity: 1;
+    transform: translateX(var(--width));
   }
 `;
 
