@@ -131,7 +131,7 @@ public class communityViewRestDocsTest {
         actions
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data").isArray())
-                .andDo(document("get-communities",
+                .andDo(document("statistics-communities-view",
                         getResponsePreProcessor(),
                         requestParameters(
                                 parameterWithName("page").description("페이지 번호"),
