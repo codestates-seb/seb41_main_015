@@ -4,6 +4,7 @@ import com.book.village.server.domain.community_comment.dto.CommunityCommentDto;
 import lombok.*;
 
 import javax.persistence.Lob;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class CommunityDto {
         private String type;
         private String title;
         @Lob
+        @NotBlank
         private String content;
         private String displayName;
     }
@@ -32,6 +34,7 @@ public class CommunityDto {
         @Lob
         private String content;
         private String displayName;
+        private Long view;
     }
 
     @AllArgsConstructor
@@ -46,6 +49,7 @@ public class CommunityDto {
         @Lob
         private String content;
         private String displayName;
+        private Long view;
         private String imgUrl;
         private List<CommunityCommentDto.Response> communityComments;
         private LocalDateTime createdAt;

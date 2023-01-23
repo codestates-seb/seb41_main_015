@@ -72,5 +72,16 @@ jwt:
     secret: ${JWT_SECRET_KEY}
   access-token-expiration-minutes: 30
   refresh-token-expiration-minutes: 720
-server:
-  type: local
+
+cloud:
+  aws:
+    s3:
+      bucket: be-main-15
+    credentials:
+      access-key: ${AWS_ACCESS_KEY_ID}
+      secret-key: ${AWS_SECRET_ACCESS_KEY}
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+type: local

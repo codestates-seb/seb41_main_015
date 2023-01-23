@@ -22,6 +22,4 @@ public interface BorrowRepository extends JpaRepository<Borrow, Long> {
     Page<Borrow> findAllByAuthor(String keyword, Pageable pageable);
     Page<Borrow> findAllByPublisher(String keyword, Pageable pageable);
 
-
-
 }

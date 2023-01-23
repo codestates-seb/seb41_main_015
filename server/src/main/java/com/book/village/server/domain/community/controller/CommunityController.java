@@ -49,6 +49,8 @@ public class CommunityController {
     @GetMapping("/{community-id}")
     public ResponseEntity getCommunity(@PathVariable("community-id") long communityId){
         Community community =communityService.findCommunity(communityId);
+        community.setView(community.getView()+1L);
+        communityService.updateCommunity(community, community.getMember().getEmail());
         return ResponseEntity.ok(new SingleResponse<>(mapper.communityToCommunityResponseDto(community)));
     }
 
