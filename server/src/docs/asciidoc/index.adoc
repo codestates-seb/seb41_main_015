@@ -548,6 +548,34 @@ include::{snippets}/search-borrows/response-fields.adoc[]
 .response-body
 include::{snippets}/search-borrows/response-body.adoc[]
 
+=== 나눔 완료
+.curl-request
+include::{snippets}/borrow-complete/curl-request.adoc[]
+
+.http-request
+include::{snippets}/borrow-complete/http-request.adoc[]
+
+.request-headers
+include::{snippets}/borrow-complete/request-headers.adoc[]
+
+.request-fields
+include::{snippets}/borrow-complete/request-fields.adoc[]
+
+.path-parameters
+include::{snippets}/borrow-complete/path-parameters.adoc[]
+
+.request-body
+include::{snippets}/borrow-complete/request-body.adoc[]
+
+.http-response
+include::{snippets}/borrow-complete/http-response.adoc[]
+
+.response-fields
+include::{snippets}/borrow-complete/response-fields.adoc[]
+
+.response-body
+include::{snippets}/borrow-complete/response-body.adoc[]
+
 == BorrowCommentController
 
 === 나눔 댓글 등록

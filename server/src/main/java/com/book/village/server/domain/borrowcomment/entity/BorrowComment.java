@@ -22,7 +22,7 @@ public class BorrowComment extends Auditable {
     @Lob
     private String content;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String displayName;
 
     @ManyToOne

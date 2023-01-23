@@ -14,6 +14,7 @@ public class BorrowCommentDto {
     @Getter
     @ToString
     public static class Post {
+        @NotBlank
         @Lob
         private String content;
 
@@ -26,6 +27,7 @@ public class BorrowCommentDto {
     @ToString
     public static class Patch {
         private Long borrowCommentId;
+        @NotBlank
         @Lob
         private String content;
     }
