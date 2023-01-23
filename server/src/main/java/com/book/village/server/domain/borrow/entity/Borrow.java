@@ -4,7 +4,6 @@ import com.book.village.server.domain.borrowcomment.entity.BorrowComment;
 import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.global.audit.Auditable;
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,26 +20,32 @@ public class Borrow extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long borrowId;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String title;
 
     @Lob
     private String content;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String bookTitle;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String author;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String publisher;
 
-    @Column(length = 50, nullable = false)
+    @Column(length=3000)
+    private String thumbnail="https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg";
+
+    @Column(length = 50)
     private String displayName;
 
     @Column(length = 100)
     private String talkUrl;
+
+    @Column
+    private Boolean borrowWhthr;
 
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")

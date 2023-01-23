@@ -37,11 +37,14 @@ public class Request extends Auditable {
     @Column(length = 100)
     private String publisher;
 
+    @Column(length=3000)
+    private String thumbnail="https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg";
+
     @Column(length = 100)
     private String displayName;
 
     @ManyToOne
-    @JoinColumn(name = "MEMEBER_ID")
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "request", orphanRemoval = true)

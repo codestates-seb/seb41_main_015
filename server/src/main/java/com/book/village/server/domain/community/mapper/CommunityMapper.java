@@ -27,6 +27,8 @@ public interface CommunityMapper {
         response.setTitle( community.getTitle() );
         response.setContent( community.getContent() );
         response.setDisplayName( community.getDisplayName() );
+        response.setView(community.getView());
+        response.setImgUrl(community.getMember().getImgUrl());
         response.setCommunityComments(community.getCommunityComments().stream()
                 .map(cComment->commentMapper.communityCommentToCommunityCommentResponseDto(cComment))
                 .collect(Collectors.toList()));

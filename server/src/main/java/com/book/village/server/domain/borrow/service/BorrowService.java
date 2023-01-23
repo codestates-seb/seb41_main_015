@@ -34,6 +34,7 @@ public class BorrowService {
     public Borrow createBorrow(Borrow borrow, String userEmail) {
         borrow.setMember(memberService.findMember(userEmail));  // 이메일로 인한 유저멤버 변경
         borrow.setDisplayName(borrow.getMember().getDisplayName()); // 닉네임 유저 닉네임으로 변경.
+        borrow.setBorrowWhthr(true);  // 상태 나눔 가능으로 수정 후, 데이터베이스에 넣음.
         return borrowRepository.save(borrow);
     }
 
@@ -92,7 +93,13 @@ public class BorrowService {
                 return borrowRepository.findAllByContentContaining(keyword, pageable);
             case "displayName" :
                 return borrowRepository.findAllByDisplayName(keyword, pageable);
-            default :
+            case "bookTitle":
+                return borrowRepository.findAllByBookTitleContaining(keyword, pageable);
+            case "author":
+                return borrowRepository.findAllByAuthor(keyword, pageable);
+            case "publisher":
+                return borrowRepository.findAllByPublisher(keyword, pageable);
+            default:
                 return new PageImpl<>(Collections.emptyList());
         }
     }

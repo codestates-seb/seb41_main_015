@@ -433,9 +433,6 @@ include::{snippets}/patch-borrow/request-headers.adoc[]
 .request-fields
 include::{snippets}/patch-borrow/request-fields.adoc[]
 
-.request-parameters
-include::{snippets}/patch-borrow/request-parameters.adoc[]
-
 .path-parameters
 include::{snippets}/patch-borrow/path-parameters.adoc[]
 
@@ -550,6 +547,34 @@ include::{snippets}/search-borrows/response-fields.adoc[]
 
 .response-body
 include::{snippets}/search-borrows/response-body.adoc[]
+
+=== 나눔 완료
+.curl-request
+include::{snippets}/borrow-complete/curl-request.adoc[]
+
+.http-request
+include::{snippets}/borrow-complete/http-request.adoc[]
+
+.request-headers
+include::{snippets}/borrow-complete/request-headers.adoc[]
+
+.request-fields
+include::{snippets}/borrow-complete/request-fields.adoc[]
+
+.path-parameters
+include::{snippets}/borrow-complete/path-parameters.adoc[]
+
+.request-body
+include::{snippets}/borrow-complete/request-body.adoc[]
+
+.http-response
+include::{snippets}/borrow-complete/http-response.adoc[]
+
+.response-fields
+include::{snippets}/borrow-complete/response-fields.adoc[]
+
+.response-body
+include::{snippets}/borrow-complete/response-body.adoc[]
 
 == BorrowCommentController
 
@@ -1152,3 +1177,94 @@ include::{snippets}/delete-rate/path-parameters.adoc[]
 
 .http-response
 include::{snippets}/delete-rate/http-response.adoc[]
+
+***
+== AwsS3Controller
+
+=== 이미지 업로드
+.curl-request
+include::{snippets}/upload-image/curl-request.adoc[]
+
+.http-request
+include::{snippets}/upload-image/http-request.adoc[]
+
+.request-headers
+include::{snippets}/upload-image/request-headers.adoc[]
+
+.request-parameters
+include::{snippets}/upload-image/request-parameters.adoc[]
+
+.request-parts
+include::{snippets}/upload-image/request-parts.adoc[]
+
+.http-response
+include::{snippets}/upload-image/http-response.adoc[]
+
+.response-fields
+include::{snippets}/upload-image/response-fields.adoc[]
+
+.response-body
+include::{snippets}/upload-image/response-body.adoc[]
+
+=== 여러 이미지 업로드
+.curl-request
+include::{snippets}/upload-images/curl-request.adoc[]
+
+.http-request
+include::{snippets}/upload-images/http-request.adoc[]
+
+.request-headers
+include::{snippets}/upload-images/request-headers.adoc[]
+
+.request-parameters
+include::{snippets}/upload-images/request-parameters.adoc[]
+
+.request-parts
+include::{snippets}/upload-images/request-parts.adoc[]
+
+.http-response
+include::{snippets}/upload-images/http-response.adoc[]
+
+.response-fields
+include::{snippets}/upload-images/response-fields.adoc[]
+
+.response-body
+include::{snippets}/upload-images/response-body.adoc[]
+
+=== 이미지 삭제
+.curl-request
+include::{snippets}/delete-image/curl-request.adoc[]
+
+.http-request
+include::{snippets}/delete-image/http-request.adoc[]
+
+.request-headers
+include::{snippets}/delete-image/request-headers.adoc[]
+
+.request-parameters
+include::{snippets}/delete-image/request-parameters.adoc[]
+
+.http-response
+include::{snippets}/delete-image/http-response.adoc[]
+
+***
+== 통계 기능
+
+=== 모든 커뮤니티 조회수 정렬
+.curl-request
+include::{snippets}/statistics-communities-view/curl-request.adoc[]
+
+.http-request
+include::{snippets}/statistics-communities-view/http-request.adoc[]
+
+.request-parameters
+include::{snippets}/statistics-communities-view/request-parameters.adoc[]
+
+.http-response
+include::{snippets}/statistics-communities-view/http-response.adoc[]
+
+.response-fields
+include::{snippets}/statistics-communities-view/response-fields.adoc[]
+
+.response-body
+include::{snippets}/statistics-communities-view/response-body.adoc[]
