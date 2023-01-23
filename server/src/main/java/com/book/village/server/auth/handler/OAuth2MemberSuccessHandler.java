@@ -109,9 +109,9 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
         MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
         queryParams.add("access_token", accessToken);
         queryParams.add("refresh_token", refreshToken);
-        if(newbie) queryParams.add("membership", "new");
-        else queryParams.add("membership","existing");
-        if(redirectType.getServerType().equals("local")){
+        if (newbie) queryParams.add("membership", "new");
+        else queryParams.add("membership", "existing");
+        if (redirectType.getServerType().equals("local")) {
             return UriComponentsBuilder
                     .newInstance()
                     .scheme("http")
@@ -121,13 +121,13 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                     .build()
                     .toUri();
         }
-            return UriComponentsBuilder
-                    .newInstance()
-                    .scheme("http")
-                    .host("bookvillage.kro.kr")
-                    .path("/oauth")
-                    .queryParams(queryParams)
-                    .build()
-                    .toUri();
-        }
+        return UriComponentsBuilder
+                .newInstance()
+                .scheme("http")
+                .host("bookvillage.kro.kr")
+                .path("/oauth")
+                .queryParams(queryParams)
+                .build()
+                .toUri();
+    }
 }
