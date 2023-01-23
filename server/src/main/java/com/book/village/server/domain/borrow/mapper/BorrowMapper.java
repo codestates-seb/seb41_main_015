@@ -27,7 +27,9 @@ public interface BorrowMapper {
         response.setBookTitle(borrow.getBookTitle());
         response.setAuthor(borrow.getAuthor());
         response.setPublisher(borrow.getPublisher());
+        response.setThumbnail(borrow.getThumbnail());
         response.setDisplayName(borrow.getMember().getDisplayName());
+        response.setImgUrl(borrow.getMember().getImgUrl());
         response.setTalkUrl(borrow.getTalkUrl());
         response.setBorrowWhthr(borrow.getBorrowWhthr());
 

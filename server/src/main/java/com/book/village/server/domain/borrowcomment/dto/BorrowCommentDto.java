@@ -27,6 +27,7 @@ public class BorrowCommentDto {
     @ToString
     public static class Patch {
         private Long borrowCommentId;
+        @NotBlank
         @Lob
         private String content;
     }
@@ -39,7 +40,6 @@ public class BorrowCommentDto {
     @ToString
     public static class Response {
         private Long borrowCommentId;
-        @Lob
         private String content;
         private String displayName;
         private String imgUrl;

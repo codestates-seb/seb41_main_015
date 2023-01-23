@@ -33,7 +33,7 @@ public class BorrowController {
     // Borrow 생성
     @PostMapping
     public ResponseEntity postBorrow(Principal principal,
-                                     @RequestBody BorrowDto.Post borrowPostDto) {
+                                     @Validated @RequestBody BorrowDto.Post borrowPostDto) {
 
         Borrow borrow = borrowMapper.borrowDtoPostToBorrow(borrowPostDto);
         borrowService.createBorrow(borrow, principal.getName());
@@ -43,7 +43,7 @@ public class BorrowController {
     // Borrow 수정
     @PatchMapping("/{borrow-id}")
     public ResponseEntity patchBorrow(Principal principal,
-                                      @RequestBody BorrowDto.Patch borrowPatch,
+                                      @Validated @RequestBody BorrowDto.Patch borrowPatch,
                                       @PathVariable("borrow-id") Long borrowId) {
 
         borrowPatch.setBorrowId(borrowId);
