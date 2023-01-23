@@ -32,7 +32,7 @@ public class BorrowCommentController {
     // 코멘트 등록
     @PostMapping("/{borrow-Id}")
     public ResponseEntity postBorrowComment(@PathVariable("borrow-Id") Long borrowId,
-                                            @RequestBody BorrowCommentDto.Post borrowCommentDtoPost, Principal principal) {
+                                            @Validated @RequestBody BorrowCommentDto.Post borrowCommentDtoPost, Principal principal) {
         BorrowComment borrowComment = borrowCommentMapper.borrowCommentPostDtoToBorrowComment(borrowCommentDtoPost);
         BorrowComment createdBorrowComment = borrowCommentService.createBorrowComment(borrowComment, principal.getName(), borrowId);
 
@@ -43,7 +43,7 @@ public class BorrowCommentController {
     // 코멘트 수정
     @PatchMapping("/{borrowComment-Id}")
     public ResponseEntity patchBorrowComment(@PathVariable("borrowComment-Id") Long borrowCommentId,
-                                             @RequestBody BorrowCommentDto.Patch borrowCommentDtoPatch, Principal principal) {
+                                             @Validated @RequestBody BorrowCommentDto.Patch borrowCommentDtoPatch, Principal principal) {
         borrowCommentDtoPatch.setBorrowCommentId(borrowCommentId);
         BorrowComment borrowComment = borrowCommentMapper.borrowCommentPatchDtoToBorrowComment(borrowCommentDtoPatch);
         BorrowComment updatedBorrowComment = borrowCommentService.updateBorrowComment(borrowComment, principal.getName());
@@ -72,7 +72,5 @@ public class BorrowCommentController {
         borrowCommentService.deleteBorrowComment(borrowCommentId, principal.getName());
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
-
-
 
 }

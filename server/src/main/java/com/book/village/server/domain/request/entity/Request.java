@@ -4,7 +4,6 @@ import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.domain.request_comment.entity.RequestComment;
 import com.book.village.server.global.audit.Auditable;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.ArrayList;
