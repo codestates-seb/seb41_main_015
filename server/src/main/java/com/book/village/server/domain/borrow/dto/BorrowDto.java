@@ -41,23 +41,17 @@ public class BorrowDto {
         @Setter
         private Long borrowId;  // 나눔 게시판 식별자
 
-        @NotBlank
         private String title;   // 나눔글 제목
 
-        @NotBlank
         @Lob
         private String content; // 나눔글 본문
 
-        @NotBlank
         private String bookTitle;   // 나눔 책 제목
 
-        @NotBlank
         private String author;      // 나눔 책 저자
 
-        @NotBlank
         private String publisher;   // 나눔 책 출판사
 
-        @NotBlank
         private String thumbnail;
 
         private String talkUrl;     // 톡 링크
