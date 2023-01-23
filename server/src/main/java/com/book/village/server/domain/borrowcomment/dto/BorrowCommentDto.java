@@ -14,6 +14,7 @@ public class BorrowCommentDto {
     @Getter
     @ToString
     public static class Post {
+        @NotBlank
         @Lob
         private String content;
 
@@ -41,6 +42,7 @@ public class BorrowCommentDto {
         @Lob
         private String content;
         private String displayName;
+        private String imgUrl;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
     }

@@ -36,7 +36,7 @@ public class RequestDto {
         @NotBlank
         private String publisher;
 
-
+        private String thumbnail;
     }
 
     @AllArgsConstructor
@@ -44,7 +44,7 @@ public class RequestDto {
     @Getter
     @Setter
     public static class Response {
-        private long requestId;
+        private Long requestId;
 
         private String talkUrl;
 
@@ -64,7 +64,11 @@ public class RequestDto {
         @NotBlank
         private String publisher;
 
+        private String thumbnail;
+
         private String displayName;
+
+        private String imgUrl;
 
         private List<RequestCommentDto.Response> requestComments;
 
@@ -80,7 +84,7 @@ public class RequestDto {
     @Setter
     public static class Patch {
 
-        private long requestId;
+        private Long requestId;
 
         private String talkUrl;
 
@@ -94,5 +98,7 @@ public class RequestDto {
         private String author;
 
         private String publisher;
+
+        private String thumbnail;
     }
 }

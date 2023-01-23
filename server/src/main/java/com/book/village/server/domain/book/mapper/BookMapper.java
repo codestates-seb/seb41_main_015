@@ -25,6 +25,7 @@ public interface BookMapper {
             response.setBookTitle(book.getBookTitle());
             response.setAuthor(book.getAuthor());
             response.setPublisher(book.getPublisher());
+            response.setThumbnail(book.getThumbnail());
             response.setAvgRate(book.getAvgRate());
             response.setRates(book.getRates().stream()
                     .map(rate-> rateMapper.rateToRateResponseDto(rate))

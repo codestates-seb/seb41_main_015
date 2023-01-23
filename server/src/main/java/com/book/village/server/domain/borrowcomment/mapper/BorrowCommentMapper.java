@@ -10,6 +10,19 @@ import java.util.List;
 public interface BorrowCommentMapper {
     BorrowComment borrowCommentPostDtoToBorrowComment(BorrowCommentDto.Post borrowCommentPostDto);
     BorrowComment borrowCommentPatchDtoToBorrowComment(BorrowCommentDto.Patch borrowCommentPatchDto);
-    BorrowCommentDto.Response borrowCommentToBorrowCommentResponseDto(BorrowComment borrowComment);
+    default BorrowCommentDto.Response borrowCommentToBorrowCommentResponseDto(BorrowComment borrowComment){
+        if (borrowComment == null) {
+            return null;
+        } else {
+            BorrowCommentDto.Response response = new BorrowCommentDto.Response();
+            response.setBorrowCommentId(borrowComment.getBorrowCommentId());
+            response.setContent(borrowComment.getContent());
+            response.setDisplayName(borrowComment.getDisplayName());
+            response.setImgUrl(borrowComment.getMember().getImgUrl());
+            response.setCreatedAt(borrowComment.getCreatedAt());
+            response.setModifiedAt(borrowComment.getModifiedAt());
+            return response;
+        }
+    }
     List<BorrowCommentDto.Response> borrowCommentsToBorrowCommentResponseDtos(List<BorrowComment> borrowComments);
 }

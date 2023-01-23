@@ -17,31 +17,30 @@ public interface BorrowMapper {
     Borrow borrowDtoPatchToBorrow(BorrowDto.Patch borrowDtoPatch);
 
     default BorrowDto.Response borrowToBorrowDtoResponse(Borrow borrow) {
-        if(borrow == null) {
+        if (borrow == null) {
             return null;
         }
         BorrowDto.Response response = new BorrowDto.Response();
-            response.setBorrowId(borrow.getBorrowId());
-            response.setTitle(borrow.getTitle());
-            response.setContent(borrow.getContent());
-            response.setBookTitle(borrow.getBookTitle());
-            response.setAuthor(borrow.getAuthor());
-            response.setPublisher(borrow.getPublisher());
-            response.setDisplayName(borrow.getMember().getDisplayName());
-            response.setTalkUrl(borrow.getTalkUrl());
-            response.setBorrowWhthr(borrow.getBorrowWhthr());
+        response.setBorrowId(borrow.getBorrowId());
+        response.setTitle(borrow.getTitle());
+        response.setContent(borrow.getContent());
+        response.setBookTitle(borrow.getBookTitle());
+        response.setAuthor(borrow.getAuthor());
+        response.setPublisher(borrow.getPublisher());
+        response.setDisplayName(borrow.getMember().getDisplayName());
+        response.setTalkUrl(borrow.getTalkUrl());
+        response.setBorrowWhthr(borrow.getBorrowWhthr());
 
-            if(borrow.getBorrowComments() != null) {
-                response.setBorrowComments(borrow.getBorrowComments().stream()
-                        .map(borrowComment -> borrowCommentMapper.borrowCommentToBorrowCommentResponseDto(borrowComment))
-                        .collect(Collectors.toList()));
-            }
-            response.setCreatedAt(borrow.getCreatedAt());
-            response.setModifiedAt(borrow.getModifiedAt());
+        if (borrow.getBorrowComments() != null) {
+            response.setBorrowComments(borrow.getBorrowComments().stream()
+                    .map(borrowComment -> borrowCommentMapper.borrowCommentToBorrowCommentResponseDto(borrowComment))
+                    .collect(Collectors.toList()));
+        }
+        response.setCreatedAt(borrow.getCreatedAt());
+        response.setModifiedAt(borrow.getModifiedAt());
 
-            return response;
+        return response;
     }
-
 
     default List<BorrowDto.Response> borrowsToBorrowResponseDtos(List<Borrow> borrows) {
         if(borrows == null) {
