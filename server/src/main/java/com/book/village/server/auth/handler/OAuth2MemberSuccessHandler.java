@@ -120,7 +120,7 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                     .queryParams(queryParams)
                     .build()
                     .toUri();
-        } else {
+        }
             return UriComponentsBuilder
                     .newInstance()
                     .scheme("http")
@@ -130,5 +130,4 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                     .build()
                     .toUri();
         }
-    }
 }

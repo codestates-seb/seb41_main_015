@@ -69,7 +69,7 @@ public class BorrowDto {
         private Long borrowId;  //  식별자
 
         private String title;   //  나눔글 제목
-
+        @Lob
         private String content; //  나눔글 본문
         private String bookTitle;   // 나눔 책 제목
         private String author;      // 나눔 책 저자
