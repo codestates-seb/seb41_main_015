@@ -1,7 +1,9 @@
 package com.book.village.server.domain.request.service;
 
 import com.book.village.server.domain.member.service.MemberService;
+import com.book.village.server.domain.request.dto.RequestDto;
 import com.book.village.server.domain.request.entity.Request;
+import com.book.village.server.domain.request.entity.RequestRank;
 import com.book.village.server.domain.request.repository.RequestRepository;
 import com.book.village.server.global.exception.CustomLogicException;
 import com.book.village.server.global.exception.ExceptionCode;
@@ -96,5 +98,9 @@ public class RequestService {
         }
         throw new CustomLogicException(ExceptionCode.REQUEST_WRITER_NOT_MATCH);
 
+    }
+
+    public List<RequestRank> findRankedRequests() {
+        return requestRepository.findRankedRequests();
     }
 }

@@ -476,7 +476,8 @@ public class RequestControllerRestDocsTest {
             LocalDateTime modifiedAt = LocalDateTime.now();
             List<RequestComment> requestComments = new ArrayList<>();
             RequestDto.Response response1 =
-                    new RequestDto.Response(1L, "talkUrl1",
+                    new RequestDto.Response(1L,
+                            "talkUrl1",
                             "title1",
                             "content1",
                             "bookTitle1",
@@ -484,8 +485,8 @@ public class RequestControllerRestDocsTest {
                             "publisher1",
                             "thumbnail1",
                             "displayName1",
-                            "imgUrl1",
                             0L,
+                            "imgUrl1",
                             null,
                             createdAt,
                             modifiedAt);

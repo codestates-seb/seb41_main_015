@@ -115,6 +115,8 @@ public class RequestDto {
         private String author;
 
         private String publisher;
+
+        private Long count;
     }
 
 }
