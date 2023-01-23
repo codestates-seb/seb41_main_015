@@ -121,13 +121,13 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
                     .build()
                     .toUri();
         }
-        return UriComponentsBuilder
-                .newInstance()
-                .scheme("http")
-                .host("bookvillage.kro.kr")
-                .path("/oauth")
-                .queryParams(queryParams)
-                .build()
-                .toUri();
-    }
+            return UriComponentsBuilder
+                    .newInstance()
+                    .scheme("http")
+                    .host("bookvillage.kro.kr")
+                    .path("/oauth")
+                    .queryParams(queryParams)
+                    .build()
+                    .toUri();
+        }
 }
