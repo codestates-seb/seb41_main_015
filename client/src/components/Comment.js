@@ -93,8 +93,8 @@ const SUserComment = styled.div`
   }
 `;
 
-const Comment = ({ data, page }) => {
-  const { id } = useParams();
+const Comment = ({ data, page, id }) => {
+  const { commentId } = useParams();
   const [content, setContent] = useState('');
   const [contentForm, setContentForm] = useState(false);
 
@@ -121,47 +121,81 @@ const Comment = ({ data, page }) => {
   const handleClickModifyComment = () => {
     setContentForm(true);
   };
+  // const commentId = [];
+  // console.log('commentId', commentId);
 
   //댓글 등록
   const commentSubmit = () => {
-    instanceAxios
-      .post(`/v1/${endpoint}/comments/${id}`, {
-        content,
-      })
-      .then((res) => {
-        console.log('postRes', res.data.data);
-        Swal.fire('댓글 등록', '정상적으로 댓글이 등록되었습니다', 'success');
-      })
-      .catch((err) => {
+    //로그인 회원만 이용가능한 서비스
+    const sessionAccessToken = sessionStorage.getItem('accessToken');
+    if (sessionAccessToken) {
+      if (content) {
+        instanceAxios
+          .post(`/v1/${endpoint}/comments/${id}`, {
+            content,
+          })
+          .then((res) => {
+            console.log('postRes', res.data.data);
+            // const borrowCommentId = res.data.data.borrowCommentId;
+            // commentId.push(borrowCommentId);
+            Swal.fire(
+              '댓글 등록',
+              '정상적으로 댓글이 등록되었습니다',
+              'success'
+            );
+          })
+          .catch((err) => {
+            Swal.fire(
+              '댓글 등록 실패',
+              '댓글등록이 이루어지지 않았습니다.',
+              'warning'
+            );
+            console.error(err);
+          });
+      } else {
         Swal.fire(
-          '댓글 등록 실패',
-          '댓글등록이 이루어지지 않았습니다.',
+          '내용을 입력하십시오',
+          '최소 1글자 이상 작성해주세요',
           'warning'
         );
-        console.error(err);
-      });
+      }
+    } else {
+      Swal.fire(
+        '로그인이 필요한 서비스입니다',
+        '로그인 후 이용해주세요.',
+        'warning'
+      );
+    }
   };
   //댓글 수정
   const handleClickPatchComment = () => {
-    instanceAxios
-      .patch(`/v1/${endpoint}/comments/${id}`, {
-        content,
-      })
-      .then(() => {
-        window.location.reload();
-      })
-      .catch(() => {
-        Swal.fire(
-          '댓글수정 실패',
-          '댓글수정이 이루어지지 않았습니다.',
-          'warning'
-        );
-      });
+    if (content) {
+      instanceAxios
+        .patch(`/v1/${endpoint}/comments/${commentId}`, {
+          content,
+        })
+        .then(() => {
+          window.location.reload();
+        })
+        .catch(() => {
+          Swal.fire(
+            '댓글수정 실패',
+            '댓글수정이 이루어지지 않았습니다.',
+            'warning'
+          );
+        });
+    } else {
+      Swal.fire(
+        '내용을 입력하십시오',
+        '최소 1글자 이상 작성해주세요',
+        'warning'
+      );
+    }
   };
   //댓글 삭제
   const handleClickDeleteComment = () => {
     instanceAxios
-      .delete(`/v1/${endpoint}/comments/${id}`)
+      .delete(`/v1/${endpoint}/comments/${commentId}`)
       .then(() => {
         Swal.fire(
           '댓글 삭제 성공',
@@ -186,6 +220,7 @@ const Comment = ({ data, page }) => {
     <SCommentForm>
       <SInputContainer>
         <input
+          type="text"
           className="InputComment"
           placeholder="댓글을 남겨보세요"
           onChange={handleChangeContent}
