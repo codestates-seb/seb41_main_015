@@ -34,10 +34,10 @@ public class BorrowController {
     @PostMapping
     public ResponseEntity postBorrow(Principal principal,
                                      @RequestBody BorrowDto.Post borrowPostDto) {
-        Borrow borrow = borrowMapper.borrowDtoPostToBorrow(borrowPostDto);
-        Borrow createdBorrow = borrowService.createBorrow(borrow, principal.getName());
 
-        return new ResponseEntity<>(new SingleResponse<>(borrowMapper.borrowToBorrowDtoResponse(createdBorrow)), HttpStatus.CREATED);
+        Borrow borrow = borrowMapper.borrowDtoPostToBorrow(borrowPostDto);
+        borrowService.createBorrow(borrow, principal.getName());
+        return new ResponseEntity<>(new SingleResponse<>(borrowMapper.borrowToBorrowDtoResponse(borrow)), HttpStatus.CREATED);
     }
 
     // Borrow 수정
@@ -61,7 +61,8 @@ public class BorrowController {
         // 서비스클래스에서 검증처리 됨.
         Borrow getBorrow = borrowService.findVerificationBorrow(borrowId);
         // 결과가 나오면 return
-        return new ResponseEntity(new SingleResponse<>(borrowMapper.borrowToBorrowDtoResponse(getBorrow)), HttpStatus.OK);
+        return new ResponseEntity(new SingleResponse<>(borrowMapper.borrowToBorrowDtoResponse(getBorrow)),
+                HttpStatus.OK);
     }
 
     // Borrow 전체조회
@@ -93,4 +94,6 @@ public class BorrowController {
         return new ResponseEntity<>(new PageResponseDto<>(borrowMapper.borrowsToBorrowResponseDtos(borrows.getContent()),
                 new PageInfo(borrows.getPageable(), borrows.getTotalElements())), HttpStatus.OK);
     }
+
+
 }

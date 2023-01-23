@@ -25,7 +25,7 @@ public class RequestComment extends Auditable {
     private String displayName;
 
     @ManyToOne
-    @JoinColumn(name = "MEMEBER_ID")
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
     @ManyToOne

@@ -33,6 +33,10 @@ public class JwtTokenizer {
     @Value("${jwt.refresh-token-expiration-minutes}")
     private int refreshTokenExpirationMinutes;
 
+    @Getter
+    @Value("${server.type}")
+    private String serverType;
+
     //key를 base64로 인코딩하기
     public String encodeBase64SecretKey(String secretKey){
         return Encoders.BASE64.encode(secretKey.getBytes(StandardCharsets.UTF_8));

@@ -27,6 +27,7 @@ public class BorrowDto {
         @NotBlank
         private String publisher;   // 나눔 책 출판사
 
+        @NotBlank
         private String talkUrl;     // 오픈 챗 링크
     }
 
@@ -50,6 +51,8 @@ public class BorrowDto {
         private String publisher;   // 나눔 책 출판사
 
         private String talkUrl;     // 톡 링크
+
+        private Boolean borrowWhthr; // 나눔 가능여부
     }
 
 
@@ -71,10 +74,15 @@ public class BorrowDto {
         private String displayName; // 회원 닉네임
         private String talkUrl;     // 톡링크
 
+        private Boolean borrowWhthr; // 나눔 가능여부
+
+
         private List<BorrowCommentDto.Response> borrowComments; // 나눔 댓글리스트.
 
         private LocalDateTime createdAt;     // 나눔글 생성 일자
+
         private LocalDateTime modifiedAt;   // 나눔글 최근 수정 일자
     }
+
 
 }
