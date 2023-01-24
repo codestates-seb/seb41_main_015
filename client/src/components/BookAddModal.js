@@ -134,11 +134,12 @@ const BookAddModal = ({
 
   const handleChoose = (chooseBook) => {
     const { title, authors, publisher, thumbnail } = chooseBook;
+    console.log(authors[0]);
 
     onBookInfoChange({
       ...inputs,
       bookTitle: title,
-      author: authors[0],
+      author: authors[0] === undefined ? '저자없음' : authors[0],
       publisher: publisher,
       thumbnail: thumbnail,
     });
