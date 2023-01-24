@@ -35,7 +35,6 @@ const SCommentContainer = styled.div`
   flex-direction: column;
   padding-bottom: 24px;
   margin: 0 20%;
-  border-bottom: 1px solid #ececec;
 `;
 
 const SUserContainer = styled.div`
@@ -78,7 +77,7 @@ const SUserComment = styled.div`
     outline-color: #aaaaaa;
   }
   .btnBox {
-    margin-top: 10px;
+    margin: 10px;
     float: right;
     color: #aaaaaa;
     font-size: 13px;
@@ -92,22 +91,22 @@ const SUserComment = styled.div`
     }
   }
 `;
+const SCommentWrap = styled.div`
+  border-bottom: 1px solid #ececec;
+  margin: 10px 0;
+`;
 
-const Comment = ({ data, borrowCommentId, page, id }) => {
-  // console.log('borrowCommentId', borrowCommentId);
-  // console.log('data', data);
-  // const { commentId } = useParams();
-  // console.log('commentId', commentId);
+const Comment = ({ data, borrowComment, reqComment, page, id }) => {
   const [content, setContent] = useState('');
   const [contentForm, setContentForm] = useState(false);
-  const [commentData, setCommentData] = useState([]);
+  // const [commentData, setCommentData] = useState('');
   const textarea = useRef();
 
   const endpoint = page === 'share' ? 'borrows' : 'requests';
+  const commentMap = page === 'share' ? borrowComment : reqComment;
 
   // 해당하는 유저에게만 댓글을 수정하고 삭제하는 권한주기
   const currentUser = sessionStorage.getItem('displayName');
-  const isSameUser = data.displayName === currentUser ? true : false;
 
   //수정 폼 글자수 제한 함수
   const handleChangeContent = (e) => {
@@ -132,8 +131,6 @@ const Comment = ({ data, borrowCommentId, page, id }) => {
   const handleClickModifyComment = () => {
     setContentForm(true);
   };
-  const commentId = [];
-  // console.log('commentId', commentId);
 
   //댓글 등록
   const commentSubmit = () => {
@@ -147,9 +144,7 @@ const Comment = ({ data, borrowCommentId, page, id }) => {
           })
           .then((res) => {
             console.log('postRes', res.data.data);
-            // window.location.reload();
-            // const borrowCommentId = res.data.data.borrowCommentId;
-            // commentId.push(borrowCommentId);
+            window.location.reload();
             Swal.fire(
               '댓글 등록',
               '정상적으로 댓글이 등록되었습니다',
@@ -181,10 +176,10 @@ const Comment = ({ data, borrowCommentId, page, id }) => {
   };
 
   //댓글 수정
-  const handleClickPatchComment = () => {
+  const handleClickPatchComment = (commentId) => {
     if (content) {
       instanceAxios
-        .patch(`/v1/${endpoint}/comments/27`, {
+        .patch(`/v1/${endpoint}/comments/${commentId}`, {
           content,
         })
         .then(() => {
@@ -206,10 +201,11 @@ const Comment = ({ data, borrowCommentId, page, id }) => {
     }
   };
   //댓글 삭제
-  const handleClickDeleteComment = () => {
+  const handleClickDeleteComment = (commentId) => {
     instanceAxios
-      .delete(`/v1/${endpoint}/comments/${borrowCommentId}`)
+      .delete(`/v1/${endpoint}/comments/${commentId}`)
       .then(() => {
+        window.location.reload();
         Swal.fire(
           '댓글 삭제 성공',
           '정상적으로 댓글이 삭제되었습니다',
@@ -247,66 +243,79 @@ const Comment = ({ data, borrowCommentId, page, id }) => {
         </button>
       </SInputContainer>
       <SCommentContainer>
-        {borrowCommentId.map((comment) => (
-          <div key={comment.borrowCommentId}>
-            <SUserContainer>
-              <img
-                alt="profileImage"
-                // src부분을 {comment.imgUrl}로 변경하기
-                src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
-              />
-              {/* user => {comment.displayName} */}
-              <span className="userName">{comment.displayName}</span>
-            </SUserContainer>
-            <SUserComment>
-              {contentForm ? (
-                //수정할 때
-                <div>
-                  {/* borrowComments에 값이 들어오면 defaultValue값을 {comment.content}로 수정하기 */}
-                  <textarea
-                    className="tModify"
-                    defaultValue={comment.content}
-                    maxLength="120"
-                    required
-                    ref={textarea}
-                    // style={{ height: 'auto' }}
-                    onChange={(e) => {
-                      handleChangeContent(e);
-                      handleChangeTextareaHeight();
-                    }}
-                  ></textarea>
-                </div>
-              ) : (
-                //수정 안할때
-                <div>
-                  <textarea
-                    className="content"
-                    defaultValue={comment.content}
-                    maxLength="120"
-                    disabled
-                    // onChange={handleChangeContent}
-                  ></textarea>
-                </div>
-              )}
-              {/* 내가 쓴 댓글만 수정가능 */}
-              {isSameUser && (
-                <div className="btnBox">
-                  {contentForm ? (
-                    <div>
-                      <button onClick={handleClickPatchComment}>확인</button>
-                      <button onClick={handleClickCancelModify}>취소</button>
-                    </div>
-                  ) : (
-                    <div>
-                      <button onClick={handleClickModifyComment}>수정</button>
-                      <button onClick={handleClickDeleteComment}>삭제</button>
-                    </div>
-                  )}
-                </div>
-              )}
-            </SUserComment>
-          </div>
-        ))}
+        {commentMap.map((comment) => {
+          console.log('1', comment.borrowCommentId);
+          const commentId =
+            page === 'share'
+              ? comment.borrowCommentId
+              : comment.requestCommentId;
+          const isSameUser = comment.displayName === currentUser ? true : false;
+          return (
+            <SCommentWrap key={commentId}>
+              <SUserContainer>
+                <img
+                  alt="profileImage"
+                  // src부분을 {comment.imgUrl}로 변경하기
+                  src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
+                />
+
+                <span className="userName">{comment.displayName}</span>
+              </SUserContainer>
+              <SUserComment>
+                {contentForm ? (
+                  //수정할 때
+                  <div>
+                    <textarea
+                      className="tModify"
+                      defaultValue={comment.content}
+                      maxLength="120"
+                      required
+                      ref={textarea}
+                      onChange={(e) => {
+                        handleChangeContent(e);
+                        handleChangeTextareaHeight();
+                      }}
+                    ></textarea>
+                  </div>
+                ) : (
+                  //수정 안할때
+                  <div>
+                    <textarea
+                      className="content"
+                      defaultValue={comment.content}
+                      maxLength="120"
+                      disabled
+                    ></textarea>
+                  </div>
+                )}
+                {/* 내가 쓴 댓글만 수정가능 */}
+                {isSameUser && (
+                  <div className="btnBox">
+                    {contentForm ? (
+                      <div>
+                        <button
+                          onClick={() => handleClickPatchComment(commentId)}
+                        >
+                          확인
+                        </button>
+                        <button onClick={handleClickCancelModify}>취소</button>
+                      </div>
+                    ) : (
+                      <div>
+                        <button onClick={handleClickModifyComment}>수정</button>
+                        <button
+                          onClick={() => handleClickDeleteComment(commentId)}
+                        >
+                          삭제
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </SUserComment>
+            </SCommentWrap>
+          );
+        })}
       </SCommentContainer>
     </SCommentForm>
   );
