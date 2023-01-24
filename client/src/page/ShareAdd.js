@@ -1,13 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import ShareForm from '../components/ShareForm';
 import instanceAxios from '../reissue/InstanceAxios';
-
-const StyledShareAdd = styled.div`
-  width: 100%;
-`;
 
 const ShareAdd = () => {
   const navigate = useNavigate();
@@ -19,9 +14,12 @@ const ShareAdd = () => {
     talkUrl: '',
     title: '',
     content: '',
+    thumbnail:
+      'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg',
   });
 
-  const { bookTitle, author, publisher, talkUrl, title, content } = inputs;
+  const { bookTitle, author, publisher, talkUrl, title, content, thumbnail } =
+    inputs;
 
   const handleClickSubmit = () => {
     instanceAxios
@@ -32,6 +30,7 @@ const ShareAdd = () => {
         talkUrl,
         title,
         content,
+        thumbnail,
       })
       .then((res) => {
         Swal.fire(
@@ -55,14 +54,14 @@ const ShareAdd = () => {
   };
 
   return (
-    <StyledShareAdd>
+    <>
       <ShareForm
         page="shareAdd"
         editBtn={handleClickSubmit}
         inputs={inputs}
         onBookInfoChange={handleBookInfoChange}
       />
-    </StyledShareAdd>
+    </>
   );
 };
 
