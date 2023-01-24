@@ -150,7 +150,7 @@ const MyPageEdit = () => {
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [profile, setProfile] = useState('');
+  const [imgUrl, setImgUrl] = useState('');
 
   const navigate = useNavigate();
 
@@ -171,7 +171,7 @@ const MyPageEdit = () => {
     setPhoneNumber(e.target.value);
   };
   const handleChangeProfile = (e) => {
-    setProfile(e.target.value);
+    setImgUrl(e.target.value);
   };
 
   //저장 버튼 클릭 시, 서버로 patch 요청
@@ -182,6 +182,7 @@ const MyPageEdit = () => {
         displayName,
         address,
         phoneNumber,
+        imgUrl,
       })
       .then(() => {
         navigate('/mypage');
@@ -263,7 +264,10 @@ const MyPageEdit = () => {
       <SWrapEdit>
         <SDefaultProfile>
           <img
-            src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
+            src={
+              imgUrl ||
+              'https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg'
+            }
             alt="profile"
           />
         </SDefaultProfile>
@@ -341,7 +345,7 @@ const MyPageEdit = () => {
               type="text"
               className="inputSize"
               placeholder="프로필을 url형태로 입력하십시오"
-              value={profile || ''}
+              value={imgUrl || ''}
               onChange={handleChangeProfile}
             ></input>
 
