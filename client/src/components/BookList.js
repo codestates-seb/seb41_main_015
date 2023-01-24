@@ -192,7 +192,7 @@ const BookList = ({ data, route }) => {
               <div className="informationBox">
                 <p className="fs-18 mb-15">{article.bookTitle}</p>
                 <div className="item-flex">
-                  <p className="mfs-16">{article.author} 저자 /</p>
+                  <p className="mfs-16">{article.author}/</p>
                   <p className="mfs-16">{article.publisher}</p>
                 </div>
                 <div className="createdAt-r">
