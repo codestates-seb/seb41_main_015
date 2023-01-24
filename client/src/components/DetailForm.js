@@ -1,9 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ToggleSwitch from './ToggleSwitch';
+import ShareStatus from './ShareStatus';
 import instanceAxios from '../reissue/InstanceAxios';
 import { prettyDate } from '../util/dateparse';
 import { ReactComponent as KakaoFill } from '../image/kakaofill.svg';
+import { ReactComponent as Eye } from '../image/eye.svg';
 import Swal from 'sweetalert2';
 
 const SDetailLayout = styled.main`
@@ -40,6 +42,7 @@ const SRightSide = styled.div`
   .controlButtons {
     flex-shrink: 0;
     color: #aaaaaa;
+    margin-right: 8px;
   }
 
   .betweenButtons {
@@ -91,16 +94,38 @@ const SAuthorAndStatus = styled.div`
     gap: 10px;
     padding-left: 3px;
 
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
     img {
       margin: 0;
       width: 28px;
+      height: 28px;
       border-radius: 70%;
+    }
+
+    .views {
+      color: #aaaaaa;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 3px;
     }
 
     .createdAt {
       color: #aaaaaa;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
+      @media screen and (max-width: 527px) {
+        display: none;
+      }
     }
+  }
+
+  .onlyInShare {
+    display: none;
   }
 `;
 
@@ -165,6 +190,8 @@ const DetailForm = ({ data, page, id }) => {
   const currentUser = sessionStorage.getItem('displayName');
   const isSameUser = data.displayName === currentUser ? true : false;
 
+  const onlyInShare = page === 'share' ? '' : 'onlyInShare';
+
   // 삭제 버튼 핸들러
   const handleDelete = () => {
     // 서버에 삭제 요청 보내기 (instanceAxios 쓰기)
@@ -191,17 +218,22 @@ const DetailForm = ({ data, page, id }) => {
     });
   };
 
-  // 책 표지 기본이미지
-  const imgUrl = data.imgUrl
-    ? data.imgUrl
+  // 기본 이미지
+  const cover = data.thumbnail
+    ? data.thumbnail
     : 'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg';
+
+  // 프로필 사진 기본 이미지
+  const profile = data.imgUrl
+    ? data.imgUrl
+    : 'https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg';
 
   return (
     <SDetailLayout>
       <div className="container">
         <SDetailWrap>
           <div>
-            <img alt="책 표지" src={imgUrl} />
+            <img alt="책 표지" src={cover} />
           </div>
           <SRightSide>
             <STopWrap>
@@ -227,14 +259,18 @@ const DetailForm = ({ data, page, id }) => {
               </div>
               <SAuthorAndStatus>
                 <div className="authorInfo">
-                  <img
-                    alt="profileImage"
-                    src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
-                  />
-                  <div>{data.displayName}</div>
+                  <div className="author">
+                    <img alt="profileImage" src={profile} />
+                    <div>{data.displayName}</div>
+                  </div>
+                  <div className="views">
+                    <Eye width="14px" height="14px" />0
+                  </div>
                   <div className="createdAt">{prettyDate(data.createdAt)}</div>
                 </div>
-                <ToggleSwitch />
+                <div className={onlyInShare}>
+                  {isSameUser ? <ToggleSwitch /> : <ShareStatus />}
+                </div>
               </SAuthorAndStatus>
             </STopWrap>
             <SBookInfo>

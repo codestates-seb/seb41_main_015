@@ -139,12 +139,16 @@ const NicknameModal = ({ isModalOpen, handleCloseModal }) => {
         })
         .catch((err) => {
           // 중복 닉네임이라 오류 뜰 경우 다루기
-          Swal.fire(
-            '닉네임 등록 실패',
-            '닉네임 설정에 실패했습니다',
-            'warning'
-          );
-          console.error(err);
+          if (err.response.status === 409) {
+            setErrorMessage('이미 사용 중인 닉네임입니다.');
+          } else {
+            Swal.fire(
+              '닉네임 등록 실패',
+              '닉네임 설정에 실패했습니다',
+              'warning'
+            );
+            console.error(err);
+          }
         });
       return;
     }
@@ -184,7 +188,7 @@ const NicknameModal = ({ isModalOpen, handleCloseModal }) => {
                     {errorMessage ? errorMessage : ''}
                   </div>
                   <div className="buttonContainer">
-                    <button onClick={handleInfoPost}>제출</button>
+                    <button onClick={handleInfoPost}>시작하기</button>
                   </div>
                 </div>
               </div>
