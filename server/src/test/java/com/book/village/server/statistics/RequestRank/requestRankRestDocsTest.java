@@ -102,24 +102,24 @@ public class requestRankRestDocsTest {
 
         actions
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data").isArray());
-//                .andDo(document("request-rank",
-//                        getResponsePreProcessor(),
-//                        requestParameters(
-//                                parameterWithName("_csrf").description("csrf")
-//                        ),
-//                        // response body
-//                        responseFields(
-//                                List.of(
-//                                        fieldWithPath("data").type(JsonFieldType.ARRAY).description("결과 데이터"),
-//                                        fieldWithPath("data.bookTitle").type(JsonFieldType.STRING).description("책 제목"),
-//                                        fieldWithPath("data.author").type(JsonFieldType.STRING).description("저자"),
-//                                        fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
-//                                        fieldWithPath("data.count").type(JsonFieldType.STRING).description("같은 책 개수")
-//
-//                                )
-//                        )
-//                ));
+                .andExpect(jsonPath("$.data").isArray())
+                .andDo(document("rank-request",
+                        getResponsePreProcessor(),
+                        requestParameters(
+                                parameterWithName("_csrf").description("csrf")
+                        ),
+                        // response body
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("data").type(JsonFieldType.ARRAY).description("결과 데이터"),
+                                        fieldWithPath("data.[].bookTitle").type(JsonFieldType.STRING).description("책 제목"),
+                                        fieldWithPath("data.[].author").type(JsonFieldType.STRING).description("저자"),
+                                        fieldWithPath("data.[].publisher").type(JsonFieldType.STRING).description("출판사"),
+                                        fieldWithPath("data.[].count").type(JsonFieldType.NUMBER).description("같은 책 개수")
+
+                                )
+                        )
+                ));
 
 
     }

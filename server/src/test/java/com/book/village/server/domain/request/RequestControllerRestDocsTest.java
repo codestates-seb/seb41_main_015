@@ -134,7 +134,8 @@ public class RequestControllerRestDocsTest {
                                         fieldWithPath("content").type(JsonFieldType.STRING).description("게시글 본문"),
                                         fieldWithPath("bookTitle").type(JsonFieldType.STRING).description("책 제목"),
                                         fieldWithPath("author").type(JsonFieldType.STRING).description("저자"),
-                                        fieldWithPath("publisher").type(JsonFieldType.STRING).description("출판사")
+                                        fieldWithPath("publisher").type(JsonFieldType.STRING).description("출판사"),
+                                        fieldWithPath("thumbnail").type(JsonFieldType.STRING).description("책 이미지")
                                 )
 
                         ),
@@ -158,6 +159,7 @@ public class RequestControllerRestDocsTest {
                                         fieldWithPath("data.requestComments.[].requestCommentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
                                         fieldWithPath("data.requestComments.[].content").type(JsonFieldType.STRING).description("댓글 내용"),
                                         fieldWithPath("data.requestComments.[].displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                        fieldWithPath("data.requestComments.[].imgUrl").type(JsonFieldType.STRING).description("댓글 작성자 프로필 이미지"),
                                         fieldWithPath("data.requestComments.[].createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
                                         fieldWithPath("data.requestComments.[].modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                 )
@@ -348,12 +350,16 @@ public class RequestControllerRestDocsTest {
                                             fieldWithPath("data.author").type(JsonFieldType.STRING).description("저자"),
                                             fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
                                             fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                            fieldWithPath("data.thumbnail").type(JsonFieldType.STRING).description("책 이미지 프로필"),
+                                            fieldWithPath("data.views").type(JsonFieldType.NUMBER).description("요청 조회수"),
+                                            fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                             fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                             fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
                                             fieldWithPath("data.requestComments").type(JsonFieldType.ARRAY).description("댓글 정보"),
                                             fieldWithPath("data.requestComments.[].requestCommentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
                                             fieldWithPath("data.requestComments.[].content").type(JsonFieldType.STRING).description("댓글 내용"),
                                             fieldWithPath("data.requestComments.[].displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
+                                            fieldWithPath("data.requestComments.[].imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                             fieldWithPath("data.requestComments.[].createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
                                             fieldWithPath("data.requestComments.[].modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                     )
