@@ -1,7 +1,7 @@
 //Axios를 이용해서 Access 토큰과 Refresh 토큰을 갱신하는 방법
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import { getCookie, removeCookie } from '../cookie/cookie';
+import { getCookie, removeCookie } from '../util/cookie/cookie';
 import Swal from 'sweetalert2';
 
 //###1. axios에 특별한 설정을 하기 위해 axios.create 메소드를 이용해서 인스턴스를 만든다.
