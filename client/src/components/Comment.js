@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 import instanceAxios from '../reissue/InstanceAxios';
-import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useRef } from 'react';
+import { useState } from 'react';
 
 const SCommentForm = styled.div`
   margin: 30px 0;
@@ -56,7 +53,7 @@ const SUserContainer = styled.div`
 const SUserComment = styled.div`
   .content {
     width: 100%;
-    /* height: 85px; */
+    height: 45px;
     border: none;
     padding: 10px;
     overflow: hidden;
@@ -67,7 +64,7 @@ const SUserComment = styled.div`
   }
   .tModify {
     width: 100%;
-    /* height: 85px; */
+    height: 45px;
     padding: 10px;
     overflow: hidden;
     resize: none;
@@ -98,9 +95,9 @@ const SCommentWrap = styled.div`
 
 const Comment = ({ data, borrowComment, reqComment, page, id }) => {
   const [content, setContent] = useState('');
-  const [contentForm, setContentForm] = useState(false);
+  const [contentForm, setContentForm] = useState('');
   // const [commentData, setCommentData] = useState('');
-  const textarea = useRef();
+  // const textarea = useRef();
 
   const endpoint = page === 'share' ? 'borrows' : 'requests';
   const commentMap = page === 'share' ? borrowComment : reqComment;
@@ -111,25 +108,22 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
   //수정 폼 글자수 제한 함수
   const handleChangeContent = (e) => {
     setContent(e.target.value);
+    console.log(e.target.value.length);
     const text_length = e.target.value.length;
-    if (text_length > 120) {
+    if (text_length > 60) {
       Swal.fire(
         '글자 수 초과',
-        '댓글은 120자 이상 작성 할 수 없습니다',
+        '댓글은 60자 이상 작성 할 수 없습니다',
         'warning'
       );
     }
   };
 
-  //textarea 높이 자동조절
-  const handleChangeTextareaHeight = () => {
-    textarea.current.style.height = 'auto';
-    textarea.current.style.height = textarea.current.scrollHeight + 'px';
-  };
-
   //수정 폼 판별하기
-  const handleClickModifyComment = () => {
-    setContentForm(true);
+  const handleClickModifyComment = (commentId) => {
+    setContentForm(commentId);
+
+    console.log(commentId);
   };
 
   //댓글 등록
@@ -143,6 +137,7 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
             content,
           })
           .then((res) => {
+            setContent(res.data.data.content);
             console.log('postRes', res.data.data);
             window.location.reload();
             Swal.fire(
@@ -193,6 +188,7 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
           );
         });
     } else {
+      console.error('err');
       Swal.fire(
         '내용을 입력하십시오',
         '최소 1글자 이상 작성해주세요',
@@ -244,7 +240,6 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
       </SInputContainer>
       <SCommentContainer>
         {commentMap.map((comment) => {
-          console.log('1', comment.borrowCommentId);
           const commentId =
             page === 'share'
               ? comment.borrowCommentId
@@ -255,43 +250,44 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
               <SUserContainer>
                 <img
                   alt="profileImage"
-                  // src부분을 {comment.imgUrl}로 변경하기
-                  src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
+                  src={
+                    comment.imgUrl ||
+                    'https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg'
+                  }
                 />
 
                 <span className="userName">{comment.displayName}</span>
               </SUserContainer>
               <SUserComment>
-                {contentForm ? (
+                {/* 수정할 때 */}
+                {contentForm === commentId ? (
                   //수정할 때
                   <div>
-                    <textarea
+                    <input
                       className="tModify"
+                      placeholder="댓글을 입력하십시오"
                       defaultValue={comment.content}
-                      maxLength="120"
-                      required
-                      ref={textarea}
+                      maxLength="60"
                       onChange={(e) => {
                         handleChangeContent(e);
-                        handleChangeTextareaHeight();
                       }}
-                    ></textarea>
+                    ></input>
                   </div>
                 ) : (
                   //수정 안할때
                   <div>
-                    <textarea
+                    <input
                       className="content"
-                      defaultValue={comment.content}
-                      maxLength="120"
+                      value={comment.content}
                       disabled
-                    ></textarea>
+                    ></input>
                   </div>
                 )}
+
                 {/* 내가 쓴 댓글만 수정가능 */}
                 {isSameUser && (
                   <div className="btnBox">
-                    {contentForm ? (
+                    {contentForm === commentId ? (
                       <div>
                         <button
                           onClick={() => handleClickPatchComment(commentId)}
@@ -302,7 +298,11 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
                       </div>
                     ) : (
                       <div>
-                        <button onClick={handleClickModifyComment}>수정</button>
+                        <button
+                          onClick={() => handleClickModifyComment(commentId)}
+                        >
+                          수정
+                        </button>
                         <button
                           onClick={() => handleClickDeleteComment(commentId)}
                         >
