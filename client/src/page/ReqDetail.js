@@ -8,6 +8,7 @@ import Comment from '../components/Comment';
 const ReqDetail = () => {
   const { id } = useParams();
   const [data, setData] = useState({});
+  const [reqComment, setReqComment] = useState([]);
   const url = 'https://serverbookvillage.kro.kr/';
 
   useEffect(() => {
@@ -16,6 +17,7 @@ const ReqDetail = () => {
       .get(url + `v1/requests/${id}`)
       .then((res) => {
         setData(res.data.data);
+        setReqComment(res.data.data.requestComments);
       })
       .catch((err) => {
         Swal.fire('데이터 로딩 실패', '데이터 로딩에 실패했습니다.', 'warning');
@@ -26,7 +28,7 @@ const ReqDetail = () => {
   return (
     <>
       <DetailForm data={data} page="request" id={id} />
-      <Comment data={data} page="request" id={id} />
+      <Comment data={data} reqComment={reqComment} page="request" id={id} />
     </>
   );
 };
