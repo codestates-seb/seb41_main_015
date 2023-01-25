@@ -17,7 +17,13 @@ const ShareDetail = () => {
         window.scrollTo(0, 0);
         const res = await axios.get(url + `v1/borrows/${id}`);
         setData(res.data.data);
-        setBorrowComment(res.data.data.borrowComments);
+        //sort사용
+        const sortBorrowComments = res.data.data.borrowComments;
+        sortBorrowComments.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+        console.log('sortComments', sortBorrowComments);
+        setBorrowComment(sortBorrowComments);
         console.log('getShareDetail', res.data.data.borrowComments);
       } catch (error) {
         Swal.fire('데이터 로딩 실패', '데이터 로딩에 실패했습니다.', 'warning');
