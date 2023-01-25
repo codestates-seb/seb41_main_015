@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import instanceAxios from '../reissue/InstanceAxios';
+import axios from 'axios';
 
 const SWrapEdit = styled.div`
   display: flex;
@@ -171,15 +172,37 @@ const MyPageEdit = () => {
     setPhoneNumber(e.target.value);
   };
   const handleChangeProfile = (e) => {
-    setImgUrl(e.target.value);
+    setImgUrl(e.target.files[0]);
+    console.log(e.target.files[0]);
+    if (e.target.files) {
+      const uploadFile = e.target.files[0];
+      const formData = new FormData();
+      formData.append('image', uploadFile);
+      const accessToken = sessionStorage.getItem('accessToken');
+      axios
+        .post(
+          `https://serverbookvillage.kro.kr/v1/s3/images/upload`,
+          formData,
+          {
+            headers: {
+              'Content-type': 'multipart/form-data;UTF-8',
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
+        .then((res) => {
+          console.log('post 성공!', res.data.data);
+          setImgUrl(res.data.data);
+        });
+    }
   };
 
   //저장 버튼 클릭 시, 서버로 patch 요청
   const handleClickSave = () => {
+    console.log('33', imgUrl);
     instanceAxios
       .patch('/v1/members', {
         name,
-        displayName,
         address,
         phoneNumber,
         imgUrl,
@@ -213,6 +236,8 @@ const MyPageEdit = () => {
         setDisplayName(res.data.data.displayName);
         setAddress(res.data.data.address);
         setPhoneNumber(res.data.data.phoneNumber);
+        setImgUrl(res.data.data.imgUrl);
+        console.log('s', res.data.data.imgUrl);
       } catch (error) {
         console.error(error);
         navigate('/');
@@ -339,15 +364,18 @@ const MyPageEdit = () => {
               value={phoneNumber || ''}
               onChange={handleChangePhoneNumber}
             ></input>
-
             <input
               id="profile"
-              type="text"
+              type="file"
+              accept="image/*"
               className="inputSize"
               placeholder="프로필을 url형태로 입력하십시오"
-              value={imgUrl || ''}
+              // value={imgUrl || ''}
               onChange={handleChangeProfile}
             ></input>
+            {/* <button onClick={() => profileImgPost(imgUrl)}>
+              프로필 등록 버튼
+            </button> */}
 
             <SWithdraw>회원탈퇴</SWithdraw>
           </SInputList>
