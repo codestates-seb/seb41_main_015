@@ -10,6 +10,7 @@ const SContainer = styled.div`
     border-radius: 15px;
     font-size: 0.8rem;
     color: #000000;
+    line-height: 33px;
   }
 
   .available {
@@ -29,18 +30,17 @@ const SContainer = styled.div`
   }
 `;
 
-const ShareStatus = () => {
+const ShareStatus = ({ status }) => {
   // props로 나눔 상태 받아오기
   // true이면 거래가능
   // false이면 거래완료
 
-  const exampleStatus = true;
-  const status = exampleStatus === true ? 'box available' : 'box done';
-  const statusText = exampleStatus === true ? '나눔가능' : '나눔완료';
+  const shareStatus = status === true ? 'box available' : 'box done';
+  const statusText = status === true ? '나눔가능' : '나눔완료';
 
   return (
     <SContainer>
-      <div className={status}>
+      <div className={shareStatus}>
         <div>{statusText}</div>
       </div>
     </SContainer>

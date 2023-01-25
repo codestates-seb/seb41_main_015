@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import styled from 'styled-components';
+import instanceAxios from '../reissue/InstanceAxios';
 
 const SLabel = styled.label`
   --width: 90px;
@@ -83,7 +84,7 @@ const SLabel = styled.label`
     content: attr(data-on);
     position: absolute;
     color: #474747;
-    top: 7px;
+    top: 6px;
     left: calc(var(--width) * -0.87);
     font-weight: 700;
     opacity: 0;
@@ -101,10 +102,10 @@ const SLabel = styled.label`
   }
 `;
 
-const ToggleSwitch = () => {
+const ToggleSwitch = ({ id, status }) => {
   // 초기값은 서버에서 받아온 나눔 상태 값 (boolean)
   // props로 내려줘야 할 듯!!
-  const [isAvailable, setIsAvailable] = useState(true);
+  const [isAvailable, setIsAvailable] = useState(status);
 
   const handleToggleClick = () => {
     setIsAvailable(!isAvailable);
@@ -123,7 +124,11 @@ const ToggleSwitch = () => {
         handleToggleClick();
         console.log('나눔 상태:', !isAvailable);
         console.log('서버에 정보를 전송합니다...');
-        console.log('---------------------');
+        instanceAxios
+          .patch(`v1/borrows/${id}`, {
+            borrowWhthr: !isAvailable,
+          })
+          .catch((err) => console.error(err));
       }
     });
   };
