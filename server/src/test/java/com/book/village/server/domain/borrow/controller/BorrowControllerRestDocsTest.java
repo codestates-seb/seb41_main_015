@@ -103,6 +103,7 @@ class BorrowControllerRestDocsTest {
                 .imgUrl("imgUrl")
                 .talkUrl("talkUrl")
                 .borrowWhthr(true)
+                .viewCount(0L)
                 .borrowComments(borrowCommentResponse)
                 .createdAt(createdAt)
                 .modifiedAt(modifiedAt)
@@ -169,6 +170,7 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
                                         fieldWithPath("data.borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 가능시 true)"),
+                                        fieldWithPath("data.viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("나눔 게시글 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("나눔 게시글 최신 수정 일자"),
                                         fieldWithPath("data.borrowComments").type(JsonFieldType.ARRAY).description("댓글 정보"),
@@ -203,7 +205,8 @@ class BorrowControllerRestDocsTest {
                         "publisher",
                         "thumbnail",
                         "talkUrl",
-                        true);
+                        true,
+                        0L);
         String content = gson.toJson(patch);
 
         List<BorrowCommentDto.Response> borrowCommentResponse = List.of(
@@ -225,6 +228,7 @@ class BorrowControllerRestDocsTest {
                 "imgUrl",
                 "talkUrl",
                 true,
+                0L,
                 borrowCommentResponse,
                 createdAt,
                 modifiedAt
@@ -278,7 +282,8 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("publisher").type(JsonFieldType.STRING).description("나눌 책 출판사").optional(),
                                         fieldWithPath("thumbnail").type(JsonFieldType.STRING).description("나눌 책 도서 이미지").optional(),
                                         fieldWithPath("talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크").optional(),
-                                        fieldWithPath("borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부").optional()
+                                        fieldWithPath("borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부").optional(),
+                                        fieldWithPath("viewCount").type(JsonFieldType.NUMBER).description("조회 수").optional()
 
                                 )
                         ),
@@ -296,6 +301,7 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
                                         fieldWithPath("data.borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 가능시 true)"),
+                                        fieldWithPath("data.viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("나눔 게시글 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("나눔 게시글 최신 수정 일자"),
                                         fieldWithPath("data.borrowComments").type(JsonFieldType.ARRAY).description("댓글 정보"),
@@ -369,14 +375,30 @@ class BorrowControllerRestDocsTest {
                 .imgUrl("imgUrl")
                 .talkUrl("talkUrl")
                 .borrowWhthr(true)
+                .viewCount(0L)
                 .borrowComments(list)
                 .createdAt(createdAt)
                 .modifiedAt(modifiedAt)
                 .build();
+        Borrow borrow= new Borrow(
+                1L,
+                "title",
+                "content",
+                "bookTitle",
+                "author",
+                "publisher",
+                "thumbnail",
+                "displayName",
+                "talkUrl",
+                true,
+                0L,
+                new Member("email@gmail.com"),
+                null
+        );
 
-        given(borrowService.findVerificationBorrow(Mockito.any(Long.class))).willReturn(new Borrow());
+        given(borrowService.findVerificationBorrow(Mockito.any(Long.class))).willReturn(borrow);
+        given(borrowService.updateBorrow(Mockito.any(Borrow.class),Mockito.anyString())).willReturn(borrow);
         given(borrowMapper.borrowToBorrowDtoResponse(Mockito.any(Borrow.class))).willReturn(responseDto);
-
 
 
         // when
@@ -400,6 +422,7 @@ class BorrowControllerRestDocsTest {
                 .andExpect(jsonPath("$.data.displayName").value(responseDto.getDisplayName()))
                 .andExpect(jsonPath("$.data.imgUrl").value(responseDto.getImgUrl()))
                 .andExpect(jsonPath("$.data.talkUrl").value(responseDto.getTalkUrl()))
+                .andExpect(jsonPath("$.data.viewCount").value(responseDto.getViewCount()))
                 .andDo(document("get-borrow",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
@@ -423,6 +446,7 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
                                         fieldWithPath("data.borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 가능시 true)"),
+                                        fieldWithPath("data.viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
                                         fieldWithPath("data.borrowComments").type(JsonFieldType.ARRAY).description("나눔 댓글 리스트"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("나눔 게시글 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("나눔 게시글 최신 수정 일자"),
@@ -461,6 +485,7 @@ class BorrowControllerRestDocsTest {
                 .talkUrl("talkUrl1")
                 .borrowWhthr(true)
                 .borrowComments(null)
+                .viewCount(0L)
                 .createdAt(createdAt)
                 .modifiedAt(modifiedAt)
                 .build();
@@ -477,6 +502,7 @@ class BorrowControllerRestDocsTest {
                 .imgUrl("imgUrl2")
                 .talkUrl("talkUrl2")
                 .borrowWhthr(true)
+                .viewCount(0L)
                 .borrowComments(null)
                 .createdAt(createdAt)
                 .modifiedAt(modifiedAt)
@@ -496,6 +522,7 @@ class BorrowControllerRestDocsTest {
                 "displayName1",
                 "talkUrl1",
                 true,
+                0L,
                 new Member(),
                 null));
 
@@ -509,6 +536,7 @@ class BorrowControllerRestDocsTest {
                 "displayName2",
                 "talkUrl2",
                 true,
+                0L,
                 new Member(),
                 null));
 
@@ -556,6 +584,7 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.[].talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
                                         fieldWithPath("data.[].borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 가능시 true)"),
+                                        fieldWithPath("data.[].viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
                                         fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("나눔 게시글 생성 일자"),
                                         fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("나눔 게시글 최신 수정 일자"),
                                         fieldWithPath("data.[].borrowComments").type(JsonFieldType.NULL).description("댓글 정보"),
@@ -594,6 +623,7 @@ class BorrowControllerRestDocsTest {
                 "imgUrl1",
                 "talkUrl1",
                 true,
+                0L,
                 null,
                 createdAt,
                 modifiedAt
@@ -610,6 +640,7 @@ class BorrowControllerRestDocsTest {
                 "imgUrl2",
                 "talkUrl2",
                 true,
+                0L,
                 null,
                 createdAt,
                 modifiedAt
@@ -629,6 +660,7 @@ class BorrowControllerRestDocsTest {
                 "displayName1",
                 "talkUrl1",
                 true,
+                0L,
                 new Member(),
                 null
                 ));
@@ -643,6 +675,7 @@ class BorrowControllerRestDocsTest {
                 "displayName2",
                 "talkUrl2",
                 true,
+                0L,
                 new Member(),
                 null
         ));
@@ -692,6 +725,7 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.[].talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
                                         fieldWithPath("data.[].borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 가능시 true)"),
+                                        fieldWithPath("data.[].viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
                                         fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("나눔 게시글 생성 일자"),
                                         fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("나눔 게시글 최신 수정 일자"),
                                         fieldWithPath("data.[].borrowComments").type(JsonFieldType.NULL).description("댓글 정보"),
@@ -779,6 +813,7 @@ class BorrowControllerRestDocsTest {
                 "imgUrl1",
                 "talkUrl1",
                 true,
+                0L,
                 null,
                 createdAt,
                 modifiedAt
@@ -795,6 +830,7 @@ class BorrowControllerRestDocsTest {
                 "imgUrl2",
                 "talkUrl2",
                 true,
+                0L,
                 null,
                 createdAt,
                 modifiedAt
@@ -816,6 +852,7 @@ class BorrowControllerRestDocsTest {
                 "displayName1",
                 "talkUrl1",
                 true,
+                0L,
                 new Member(),
                 null)
         );
@@ -830,6 +867,7 @@ class BorrowControllerRestDocsTest {
                 "displayName2",
                 "talkUrl",
                 true,
+                0L,
                 new Member(),
                 null)
         );
@@ -878,6 +916,7 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.[].talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
                                         fieldWithPath("data.[].borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 가능시 true)"),
+                                        fieldWithPath("data.[].viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
                                         fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("생성 일자"),
                                         fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("수정 일자"),
                                         fieldWithPath("data.[].borrowComments").type(JsonFieldType.NULL).description("댓글 정보"),
@@ -930,6 +969,7 @@ class BorrowControllerRestDocsTest {
                 "imgUrl",
                 "talkUrl",
                 false,
+                0L,
                 borrowCommentResponse,
                 createdAt,
                 modifiedAt
@@ -969,7 +1009,7 @@ class BorrowControllerRestDocsTest {
                         requestFields(
                                 List.of(
                                         fieldWithPath("borrowId").type(JsonFieldType.STRING).description("나눔 식별자").ignored(),
-                                        fieldWithPath("borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 완료시 false)").optional()
+                                        fieldWithPath("borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 완료시 false)")
                                 )
                         ),
                         responseFields(
@@ -985,7 +1025,8 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
-                                        fieldWithPath("data.borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 가능시 true)"),
+                                        fieldWithPath("data.borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 완료시 false)"),
+                                        fieldWithPath("data.viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
                                         fieldWithPath("data.borrowComments").type(JsonFieldType.ARRAY).description("나눔 댓글 리스트"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("나눔 게시글 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("나눔 게시글 최신 수정 일자"),
