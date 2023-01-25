@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import ShareForm from '../components/ShareForm';
 import instanceAxios from '../reissue/InstanceAxios';
-
-const StyledShareEdit = styled.div`
-  width: 100%;
-`;
 
 const ShareEdit = (onBookInfoChange) => {
   const navigate = useNavigate();
@@ -20,9 +15,12 @@ const ShareEdit = (onBookInfoChange) => {
     talkUrl: '',
     title: '',
     content: '',
+    thumbnail:
+      'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg',
   });
 
-  const { bookTitle, author, publisher, talkUrl, title, content } = inputs;
+  const { bookTitle, author, publisher, talkUrl, title, content, thumbnail } =
+    inputs;
 
   const handleClickEdit = () => {
     instanceAxios
@@ -33,6 +31,7 @@ const ShareEdit = (onBookInfoChange) => {
         talkUrl,
         title,
         content,
+        thumbnail,
       })
       .then((res) => {
         Swal.fire(
@@ -68,14 +67,14 @@ const ShareEdit = (onBookInfoChange) => {
   };
 
   return (
-    <StyledShareEdit>
+    <>
       <ShareForm
         page="shareEdit"
         editBtn={handleClickEdit}
         inputs={inputs}
         onBookInfoChange={handleBookInfoChange}
       />
-    </StyledShareEdit>
+    </>
   );
 };
 

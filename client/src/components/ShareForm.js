@@ -32,7 +32,7 @@ const SInputLeft = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  .bookImg {
+  .thumbnail {
     width: 230px;
     margin-bottom: 30px;
 
@@ -137,23 +137,24 @@ const ShareForm = (props) => {
   };
 
   const { inputs, onBookInfoChange } = props;
-  const { bookTitle, author, publisher, talkUrl, title, content } = inputs;
+  const { bookTitle, author, publisher, talkUrl, title, content, thumbnail } =
+    inputs;
 
   const handleChangeString = (e, type) => {
     onBookInfoChange({ ...inputs, [`${type}`]: e.target.value });
-    console.log(e.target.value);
   };
 
-  // 책 표지 업로드
-  const [bookImg, setBookImg] = useState(
-    'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg'
-  );
-  const uploadImg = (e) => {
-    setBookImg(URL.createObjectURL(e.target.files[0]));
+  const handleChangeThmbnail = (image) => {
+    onBookInfoChange({ ...inputs, thumbnail: image });
   };
+
+  const uploadImg = (e) => {
+    handleChangeThmbnail(URL.createObjectURL(e.target.files[0]));
+  };
+
   const deleteImg = () => {
-    URL.revokeObjectURL(bookImg);
-    setBookImg(
+    URL.revokeObjectURL(thumbnail);
+    handleChangeThmbnail(
       'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg'
     );
   };
@@ -172,12 +173,15 @@ const ShareForm = (props) => {
       <h2>{props.page === 'shareAdd' ? '나눔하기' : '수정하기'}</h2>
       <SInputContainer>
         <SInputLeft>
-          {bookImg && <img alt="bookImg" src={bookImg} className="bookImg" />}
+          {thumbnail && (
+            <img alt="thumbnail" src={thumbnail} className="thumbnail" />
+          )}
           <SImgBtn>
             <input
               type="file"
               accept="image/*"
               id="ImgInput"
+              disabled={bookTitle === undefined || bookTitle === ''}
               onChange={uploadImg}
             />
             <label className="ImgInputBtn" htmlFor="ImgInput">
