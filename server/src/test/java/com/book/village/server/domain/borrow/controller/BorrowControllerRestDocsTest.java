@@ -284,9 +284,6 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크").optional(),
                                         fieldWithPath("borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부").optional(),
                                         fieldWithPath("viewCount").type(JsonFieldType.NUMBER).description("조회 수").optional()
-                                        fieldWithPath("borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부").optional()
-                                        fieldWithPath("borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부").optional(),
-                                        fieldWithPath("viewCount").type(JsonFieldType.NUMBER).description("조회 수").optional()
 
                                 )
                         ),
