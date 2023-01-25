@@ -1268,3 +1268,19 @@ include::{snippets}/statistics-communities-view/response-fields.adoc[]
 
 .response-body
 include::{snippets}/statistics-communities-view/response-body.adoc[]
+
+=== 요청 랭킹
+.curl-request
+include::{snippets}/rank-request/curl-request.adoc[]
+
+.http-request
+include::{snippets}/rank-request/http-request.adoc[]
+
+.http-response
+include::{snippets}/rank-request/http-response.adoc[]
+
+.response-fields
+include::{snippets}/rank-request/response-fields.adoc[]
+
+.response-body
+include::{snippets}/rank-request/response-body.adoc[]
