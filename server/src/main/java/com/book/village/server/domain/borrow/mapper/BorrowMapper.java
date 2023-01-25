@@ -33,7 +33,7 @@ public interface BorrowMapper {
         response.setImgUrl(borrow.getMember().getImgUrl());
         response.setTalkUrl(borrow.getTalkUrl());
         response.setBorrowWhthr(borrow.getBorrowWhthr());
-        response.setViewCount(borrow.getViewCount());
+        response.setView(borrow.getView());
         if (borrow.getBorrowComments() != null) {
             response.setBorrowComments(borrow.getBorrowComments().stream()
                     .map(borrowComment -> borrowCommentMapper.borrowCommentToBorrowCommentResponseDto(borrowComment))

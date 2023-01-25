@@ -152,7 +152,7 @@ public class RequestControllerRestDocsTest {
                                         fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
                                         fieldWithPath("data.thumbnail").type(JsonFieldType.STRING).description("책 이미지"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
-                                        fieldWithPath("data.views").type(JsonFieldType.NUMBER).description("요청 조회수"),
+                                        fieldWithPath("data.view").type(JsonFieldType.NUMBER).description("요청 조회수"),
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
@@ -233,7 +233,7 @@ public class RequestControllerRestDocsTest {
                 .andExpect(jsonPath("$.data.bookTitle").value(patch.getBookTitle()))
                 .andExpect(jsonPath("$.data.author").value(patch.getAuthor()))
                 .andExpect(jsonPath("$.data.publisher").value(patch.getPublisher()))
-                .andExpect(jsonPath("$.data.views").value(patch.getViews()))
+                .andExpect(jsonPath("$.data.view").value(patch.getView()))
                 .andDo(document("patch-request",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
@@ -256,7 +256,7 @@ public class RequestControllerRestDocsTest {
                                         fieldWithPath("author").type(JsonFieldType.STRING).description("저자").optional(),
                                         fieldWithPath("publisher").type(JsonFieldType.STRING).description("출판사").optional(),
                                         fieldWithPath("thumbnail").type(JsonFieldType.STRING).description("책 이미지").optional(),
-                                        fieldWithPath("views").type(JsonFieldType.NUMBER).description("조회수").ignored()
+                                        fieldWithPath("view").type(JsonFieldType.NUMBER).description("조회수").ignored()
 
                                 )
 
@@ -273,7 +273,7 @@ public class RequestControllerRestDocsTest {
                                         fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
                                         fieldWithPath("data.thumbnail").type(JsonFieldType.STRING).description("책 이미지 프로필"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
-                                        fieldWithPath("data.views").type(JsonFieldType.NUMBER).description("요청 조회수"),
+                                        fieldWithPath("data.view").type(JsonFieldType.NUMBER).description("요청 조회수"),
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
@@ -370,7 +370,7 @@ public class RequestControllerRestDocsTest {
                                             fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
                                             fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
                                             fieldWithPath("data.thumbnail").type(JsonFieldType.STRING).description("책 이미지 프로필"),
-                                            fieldWithPath("data.views").type(JsonFieldType.NUMBER).description("요청 조회수"),
+                                            fieldWithPath("data.view").type(JsonFieldType.NUMBER).description("요청 조회수"),
                                             fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                             fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                             fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
@@ -476,7 +476,7 @@ public class RequestControllerRestDocsTest {
                                             fieldWithPath("data.[].thumbnail").type(JsonFieldType.STRING).description("책 이미지"),
                                             fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
                                             fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
-                                            fieldWithPath("data.[].views").type(JsonFieldType.NUMBER).description("요청 조회수"),
+                                            fieldWithPath("data.[].view").type(JsonFieldType.NUMBER).description("요청 조회수"),
                                             fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                             fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
                                             fieldWithPath("data.[].requestComments").type(JsonFieldType.NULL).description("댓글 정보"),
@@ -585,7 +585,7 @@ public class RequestControllerRestDocsTest {
                                     fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                     fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("회원 닉네임"),
                                     fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
-                                    fieldWithPath("data.[].views").type(JsonFieldType.NUMBER).description("요청 조회수"),
+                                    fieldWithPath("data.[].view").type(JsonFieldType.NUMBER).description("요청 조회수"),
                                     fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                     fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
                                     fieldWithPath("data.[].requestComments").type(JsonFieldType.NULL).description("댓글 정보"),
@@ -696,7 +696,7 @@ public class RequestControllerRestDocsTest {
                                             fieldWithPath("data.[].publisher").type(JsonFieldType.STRING).description("출판사"),
                                             fieldWithPath("data.[].thumbnail").type(JsonFieldType.STRING).description("책 이미지"),
                                             fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
-                                            fieldWithPath("data.[].views").type(JsonFieldType.NUMBER).description("요청 조회수"),
+                                            fieldWithPath("data.[].view").type(JsonFieldType.NUMBER).description("요청 조회수"),
                                             fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                             fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                             fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
