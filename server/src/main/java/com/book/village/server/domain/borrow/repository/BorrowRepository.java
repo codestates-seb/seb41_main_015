@@ -15,7 +15,7 @@ public interface BorrowRepository extends JpaRepository<Borrow, Long> {
 
     @Query(value =
             "select book_title, author, publisher, count(book_title) as count " +
-                    "from borrow group by book_title, author, publisher limit 5;", nativeQuery = true)
+                    "from borrow group by book_title, author, publisher order by count desc limit 5;", nativeQuery = true)
     List<BorrowRank> findRankedBorrows();
 
     Page<Borrow> findAllByMember_Email(String email, Pageable pageable);
