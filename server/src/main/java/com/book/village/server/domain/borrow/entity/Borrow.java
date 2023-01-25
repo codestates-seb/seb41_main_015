@@ -45,6 +45,10 @@ public class Borrow extends Auditable {
     private String talkUrl;
 
     @Column
+    private Boolean borrowWhthr = true;
+
+    @Column
+    private Long viewCount = 0L;
     private Boolean borrowWhthr;
 
     @ManyToOne

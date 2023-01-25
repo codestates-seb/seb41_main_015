@@ -68,6 +68,8 @@ public class RequestDto {
 
         private String displayName;
 
+        private Long views;
+
         private String imgUrl;
 
         private List<RequestCommentDto.Response> requestComments;
@@ -101,4 +103,20 @@ public class RequestDto {
 
         private String thumbnail;
     }
+
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Getter
+    @Setter
+    public static class rankResponse {
+        @Lob
+        private String bookTitle;
+
+        private String author;
+
+        private String publisher;
+
+        private Long count;
+    }
+
 }

@@ -74,8 +74,8 @@ public class RequestControllerRestDocsTest {
         String content = gson.toJson(post);
         List<RequestCommentDto.Response> requestCommentResponse =
                 List.of(new RequestCommentDto.Response(
-                                1L, "content1", "displayName1","imgUrl1",createdAt, createdAt),
-                        new RequestCommentDto.Response(2L, "content2", "displayName2","imgUrl2",createdAt, createdAt)
+                                1L, "content1", "displayName1","imgUrl1",createdAt, modifiedAt),
+                        new RequestCommentDto.Response(2L, "content2", "displayName2","imgUrl2",createdAt, modifiedAt)
                 );
 
         RequestDto.Response responseDto =
@@ -88,6 +88,7 @@ public class RequestControllerRestDocsTest {
                         "publisher",
                         "thumbnail",
                         "displayName",
+                        0L,
                         "imgUrl",
                         requestCommentResponse,
                         createdAt,
@@ -134,7 +135,7 @@ public class RequestControllerRestDocsTest {
                                         fieldWithPath("bookTitle").type(JsonFieldType.STRING).description("책 제목"),
                                         fieldWithPath("author").type(JsonFieldType.STRING).description("저자"),
                                         fieldWithPath("publisher").type(JsonFieldType.STRING).description("출판사"),
-                                        fieldWithPath("thumbnail").type(JsonFieldType.STRING).description("도서 이미지")
+                                        fieldWithPath("thumbnail").type(JsonFieldType.STRING).description("책 이미지")
                                 )
 
                         ),
@@ -150,6 +151,7 @@ public class RequestControllerRestDocsTest {
                                         fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
                                         fieldWithPath("data.thumbnail").type(JsonFieldType.STRING).description("책 이미지"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                        fieldWithPath("data.views").type(JsonFieldType.NUMBER).description("요청 조회수"),
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
@@ -201,6 +203,7 @@ public class RequestControllerRestDocsTest {
                         "publisher",
                         "thumbnail",
                         "displayName",
+                        0L,
                         "imgUrl",
                         requestCommentResponse,
                         createdAt,
@@ -265,6 +268,7 @@ public class RequestControllerRestDocsTest {
                                         fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
                                         fieldWithPath("data.thumbnail").type(JsonFieldType.STRING).description("책 이미지 프로필"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                        fieldWithPath("data.views").type(JsonFieldType.NUMBER).description("요청 조회수"),
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
@@ -305,6 +309,7 @@ public class RequestControllerRestDocsTest {
                             "publisher",
                             "thumbnail",
                             "displayName",
+                            0L,
                             "imgUrl",
                             requestCommentResponse,
                             createdAt,
@@ -328,8 +333,6 @@ public class RequestControllerRestDocsTest {
                     .andExpect(jsonPath("$.data.bookTitle").value(response.getBookTitle()))
                     .andExpect(jsonPath("$.data.author").value(response.getAuthor()))
                     .andExpect(jsonPath("$.data.publisher").value(response.getPublisher()))
-                    .andExpect(jsonPath("$.data.thumbnail").value(response.getThumbnail()))
-                    .andExpect(jsonPath("$.data.imgUrl").value(response.getImgUrl()))
                     .andDo(document("get-request" ,
                                     getRequestPreProcessor(),
                                     getResponsePreProcessor(),
@@ -346,8 +349,9 @@ public class RequestControllerRestDocsTest {
                                             fieldWithPath("data.bookTitle").type(JsonFieldType.STRING).description("책 제목"),
                                             fieldWithPath("data.author").type(JsonFieldType.STRING).description("저자"),
                                             fieldWithPath("data.publisher").type(JsonFieldType.STRING).description("출판사"),
-                                            fieldWithPath("data.thumbnail").type(JsonFieldType.STRING).description("책 이미지"),
                                             fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                            fieldWithPath("data.thumbnail").type(JsonFieldType.STRING).description("책 이미지 프로필"),
+                                            fieldWithPath("data.views").type(JsonFieldType.NUMBER).description("요청 조회수"),
                                             fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                             fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                             fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
@@ -355,7 +359,7 @@ public class RequestControllerRestDocsTest {
                                             fieldWithPath("data.requestComments.[].requestCommentId").type(JsonFieldType.NUMBER).description("댓글 식별자"),
                                             fieldWithPath("data.requestComments.[].content").type(JsonFieldType.STRING).description("댓글 내용"),
                                             fieldWithPath("data.requestComments.[].displayName").type(JsonFieldType.STRING).description("댓글 작성자"),
-                                            fieldWithPath("data.requestComments.[].imgUrl").type(JsonFieldType.STRING).description("댓글 작성자 프로필 이미지"),
+                                            fieldWithPath("data.requestComments.[].imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                             fieldWithPath("data.requestComments.[].createdAt").type(JsonFieldType.STRING).description("댓글 생성 일자"),
                                             fieldWithPath("data.requestComments.[].modifiedAt").type(JsonFieldType.STRING).description("댓글 수정 일자")
                                     )
@@ -379,6 +383,7 @@ public class RequestControllerRestDocsTest {
                             "publisher1",
                             "thumbnail1",
                             "displayName1",
+                            0L,
                             "imgUrl1",
                             null,
                             createdAt,
@@ -392,6 +397,7 @@ public class RequestControllerRestDocsTest {
                             "publisher2",
                             "thumbnail2",
                             "displayName2",
+                            0L,
                             "imgUrl2",
                             null,
                             createdAt,
@@ -451,6 +457,7 @@ public class RequestControllerRestDocsTest {
                                             fieldWithPath("data.[].thumbnail").type(JsonFieldType.STRING).description("책 이미지"),
                                             fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
                                             fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
+                                            fieldWithPath("data.[].views").type(JsonFieldType.NUMBER).description("요청 조회수"),
                                             fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                             fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
                                             fieldWithPath("data.[].requestComments").type(JsonFieldType.NULL).description("댓글 정보"),
@@ -475,7 +482,8 @@ public class RequestControllerRestDocsTest {
             LocalDateTime modifiedAt = LocalDateTime.now();
             List<RequestComment> requestComments = new ArrayList<>();
             RequestDto.Response response1 =
-                    new RequestDto.Response(1L, "talkUrl1",
+                    new RequestDto.Response(1L,
+                            "talkUrl1",
                             "title1",
                             "content1",
                             "bookTitle1",
@@ -483,6 +491,7 @@ public class RequestControllerRestDocsTest {
                             "publisher1",
                             "thumbnail1",
                             "displayName1",
+                            0L,
                             "imgUrl1",
                             null,
                             createdAt,
@@ -496,6 +505,7 @@ public class RequestControllerRestDocsTest {
                             "publisher2",
                             "thumbnail2",
                             "displayName2",
+                            0L,
                             "imgUrl2",
                             null,
                             createdAt,
@@ -555,6 +565,8 @@ public class RequestControllerRestDocsTest {
                                     fieldWithPath("data.[].thumbnail").type(JsonFieldType.STRING).description("책 이미지"),
                                     fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                     fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                    fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                    fieldWithPath("data.[].views").type(JsonFieldType.NUMBER).description("요청 조회수"),
                                     fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                     fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
                                     fieldWithPath("data.[].requestComments").type(JsonFieldType.NULL).description("댓글 정보"),
@@ -590,6 +602,7 @@ public class RequestControllerRestDocsTest {
                             "publisher1",
                             "thumbnail1",
                             "displayName1",
+                            0L,
                             "imgUrl1",
                             null,
                             createdAt,
@@ -603,6 +616,7 @@ public class RequestControllerRestDocsTest {
                             "publisher2",
                             "thumbnail2",
                             "displayName2",
+                            0L,
                             "imgUrl2",
                             null,
                             createdAt,
@@ -663,6 +677,7 @@ public class RequestControllerRestDocsTest {
                                             fieldWithPath("data.[].publisher").type(JsonFieldType.STRING).description("출판사"),
                                             fieldWithPath("data.[].thumbnail").type(JsonFieldType.STRING).description("책 이미지"),
                                             fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
+                                            fieldWithPath("data.[].views").type(JsonFieldType.NUMBER).description("요청 조회수"),
                                             fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                             fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("요청 생성 일자"),
                                             fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("요청 수정 일자"),
