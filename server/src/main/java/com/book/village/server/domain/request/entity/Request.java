@@ -45,7 +45,7 @@ public class Request extends Auditable {
     private String displayName;
 
     @Column
-    private long views = 0L;
+    private Long view = 0L;
 
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")

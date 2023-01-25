@@ -35,7 +35,7 @@ public interface RequestMapper {
                 response.setThumbnail(request.getThumbnail());
                 response.setDisplayName(request.getMember().getDisplayName());
                 response.setImgUrl(request.getMember().getImgUrl());
-                response.setViews(request.getViews());
+                response.setView(request.getView());
                 response.setRequestComments(request.getRequestComments().stream()
                         .map(requestComment -> recoMapper.requestCommentToRequestCommentResponseDto(requestComment))
                         .collect(Collectors.toList()));

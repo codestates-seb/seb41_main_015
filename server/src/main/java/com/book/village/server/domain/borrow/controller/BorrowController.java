@@ -63,7 +63,7 @@ public class BorrowController {
     public ResponseEntity getBorrow(@PathVariable("borrow-id")Long borrowId) {
         // 서비스클래스에서 검증처리 됨.
         Borrow getBorrow = borrowService.findVerificationBorrow(borrowId);
-        getBorrow.setViewCount(getBorrow.getViewCount()+1);
+        getBorrow.setView(getBorrow.getView()+1);
         borrowService.updateBorrow(getBorrow, getBorrow.getMember().getEmail());
         // 결과가 나오면 return
         return new ResponseEntity(new SingleResponse<>(borrowMapper.borrowToBorrowDtoResponse(getBorrow)),

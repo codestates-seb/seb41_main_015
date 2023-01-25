@@ -70,7 +70,7 @@ public class RequestDto {
 
         private String displayName;
 
-        private Long views;
+        private Long view;
         @Lob
         private String imgUrl;
 
@@ -93,6 +93,8 @@ public class RequestDto {
         private String talkUrl;
 
         private String title;
+
+        private Long view;
 
         @Lob
         private String content;
