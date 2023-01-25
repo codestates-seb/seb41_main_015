@@ -25,21 +25,18 @@ const SAddModal = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
-
   .modalContent {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-top: 1rem;
-
     h2 {
       margin-bottom: 30px;
       color: #bb2649;
       margin: 13px;
     }
   }
-
   .close {
     padding-top: 3px;
     position: absolute;
