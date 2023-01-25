@@ -1,39 +1,60 @@
 import styled from 'styled-components';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import instanceAxios from '../reissue/InstanceAxios';
 
 const SWrapEdit = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
+const SFlexRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+
+  @media screen and (max-width: 1080px) {
+    padding-left: 10px;
+  }
+`;
+const SLabelList = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 50px;
+  label {
+    margin-bottom: 1rem;
+    padding-top: 10px;
+    height: 36px;
+    width: 70px;
+  }
+`;
+
 const SInputList = styled.div`
-  margin: 0 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0px;
+  padding-right: 10%;
+  @media screen and (max-width: 1080px) {
+    padding-left: 10px;
+    justify-content: left;
+  }
+  input {
+    margin-bottom: 1rem;
+  }
   input:disabled {
     background: #f2f2f2;
-  }
-  p {
-    margin-bottom: 31px;
   }
   .inputSize {
     width: 472px;
     height: 36px;
+    @media screen and (max-width: 1080px) {
+      width: 20rem;
+    }
   }
-  .mr-30 {
-    margin-right: 30px;
-  }
-  .mr-18 {
-    margin-right: 18px;
-  }
-  .mr-6 {
-    margin-right: 6px;
-  }
-`;
-
-const SHr = styled.hr`
-  margin-bottom: 50px;
 `;
 
 const SWithdraw = styled.div`
@@ -52,7 +73,7 @@ const SWithdraw = styled.div`
 const SCancelBtn = styled.button`
   height: 43px;
   width: 141px;
-  left: 576px;
+  /* left: 576px; */
   top: 860px;
   border-radius: 5px;
   border: 1px solid #bb2649;
@@ -61,6 +82,11 @@ const SCancelBtn = styled.button`
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
+  @media screen and (max-width: 1080px) {
+    height: 40px;
+    width: 100px;
+    margin-left: 50px;
+  }
 `;
 
 const SSaveBtn = styled.button`
@@ -77,23 +103,43 @@ const SSaveBtn = styled.button`
   font-weight: 700;
   font-size: 16px;
   margin-left: 40px;
+  @media screen and (max-width: 1080px) {
+    height: 40px;
+    width: 100px;
+    margin-left: 20px;
+  }
 `;
 
 const SEditBtn = styled.div`
   text-align: center;
-  margin-bottom: 30%;
   margin-top: 20px;
 `;
 
-const STitle = styled.h1`
-  margin-left: 5%;
+const STitle = styled.div`
+  h2 {
+    color: #2c2c2c;
+    padding: 18px;
+    margin: 20px 10%;
+    border-bottom: 1px solid #acacac;
+  }
 `;
 
 const SDefaultProfile = styled.div`
+  margin: 2rem 0;
+  @media screen and (max-width: 1080px) {
+    display: flex;
+    margin: 2rem 0;
+    justify-content: center;
+  }
   img {
     height: 100px;
     width: 100px;
     /* border-radius: 50%; */
+    @media screen and (max-width: 1080px) {
+      height: 80px;
+      width: 80px;
+      margin-left: 110%;
+    }
   }
 `;
 
@@ -104,9 +150,8 @@ const MyPageEdit = () => {
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [profile, setProfile] = useState('');
+  const [imgUrl, setImgUrl] = useState('');
 
-  //경로 이동
   const navigate = useNavigate();
 
   //input 입력값 상태 저장
@@ -126,27 +171,42 @@ const MyPageEdit = () => {
     setPhoneNumber(e.target.value);
   };
   const handleChangeProfile = (e) => {
-    setProfile(e.target.value);
+    setImgUrl(e.target.value);
   };
 
-  //base url
-  const url = 'https://serverbookvillage.kro.kr';
-
-  //전역상태값 가져오기
-  const user = useSelector((state) => state.user);
+  //저장 버튼 클릭 시, 서버로 patch 요청
+  const handleClickSave = () => {
+    instanceAxios
+      .patch('/v1/members', {
+        name,
+        displayName,
+        address,
+        phoneNumber,
+        imgUrl,
+      })
+      .then(() => {
+        navigate('/mypage');
+        Swal.fire(
+          '프로필 수정 완료.',
+          '프로필 수정이 정상적으로 이루어졌습니다.',
+          'success'
+        );
+      })
+      .catch((err) => {
+        Swal.fire(
+          '프로필 수정 실패',
+          '수정이 정상적으로 등록되지 않았습니다.',
+          'warning'
+        );
+        console.error(err);
+      });
+  };
 
   // 서버 연결 후 주석 풀기!
   useEffect(() => {
     const editData = async () => {
       try {
-        const res = await axios.get(url + '/v1/members', {
-          // 토큰 부분
-          headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            Accept: 'application/json',
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-        });
+        const res = await instanceAxios.get('/v1/members');
         // console.log(res.data.data);
         setName(res.data.data.name);
         setEmail(res.data.data.email);
@@ -155,71 +215,85 @@ const MyPageEdit = () => {
         setPhoneNumber(res.data.data.phoneNumber);
       } catch (error) {
         console.error(error);
-        alert('정보를 불러오는데 실패했습니다');
+        navigate('/');
+        Swal.fire(
+          '죄송합니다',
+          '회원님의 정보를 가져오는데 실패했습니다.',
+          'warning'
+        );
       }
     };
     editData();
   }, []);
 
-  //저장 버튼 클릭 시, 서버로 patch 요청
-  const handleClickSave = () => {
-    axios
-      .patch(
-        `${url}/v1/members`,
-        {
-          name,
-          displayName,
-          address,
-          phoneNumber,
-        },
-        // 토큰 부분
-        {
-          headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            Accept: 'application/json',
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-        }
-      )
-      .then(() => {
-        alert('프로필 수정이 완료되었습니다!');
-      })
-      .catch((err) => {
-        alert('수정이 정상적으로 이루어지지 않았습니다. 다시 시도해주세요!');
-        console.error(err);
-      });
-  };
-
-  //회원탈퇴(주석 풀 것!)
+  //회원탈퇴(이벤트 연결할 것!)
   const handleClickQuit = () => {
-    alert(`${name}님, 회원탈퇴가 정상적으로 이루어졌습니다`);
-    // axios
-    //   .patch(url + '/v1/members/quit', {
-    //     headers: {
-    //       Authorization: `Bearer ${user.accessToken}`,
-    //     },
-    //   })
-    //   .then(() => {
-    //     alert(`${name}님, 회원탈퇴가 정상적으로 이루어졌습니다`);
-    //   });
+    instanceAxios.patch('/v1/members/quit').then(() => {
+      Swal.fire({
+        title: '회원탈퇴를 진행하시겠습니까?',
+        text: '회원탈퇴 후 재로그인이 어렵습니다 신중하게 생각해주세요.',
+        icon: 'warning',
+        showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+        confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+        cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+        confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+        cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+        reverseButtons: true, // 버튼 순서 거꾸로
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // 만약 모달창에서 confirm 버튼을 눌렀다면
+          sessionStorage.clear();
+          navigate('/');
+          window.location.reload();
+          console.log('회원탈퇴!');
+          Swal.fire(
+            '정상적으로 회원탈퇴가 처리되었습니다.',
+            '이용해주셔서 감사합니다',
+            'success'
+          );
+        }
+      });
+    });
   };
 
   return (
     <div>
-      <STitle>회원정보 수정</STitle>
-      <SHr />
+      <STitle>
+        <h2>회원정보 수정</h2>
+      </STitle>
       <SWrapEdit>
         <SDefaultProfile>
           <img
-            src="https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
+            src={
+              imgUrl ||
+              'https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg'
+            }
             alt="profile"
           />
         </SDefaultProfile>
-        <SInputList>
-          <p>
-            <label htmlFor="name" className="mr-30">
+        <SFlexRow>
+          <SLabelList>
+            <label htmlFor="name" className="mr-30 inputSize">
               이름
             </label>
+            <label htmlFor="nickName" className="mr-18 inputSize">
+              닉네임
+            </label>
+
+            <label htmlFor="email" className="mr-18 inputSize">
+              이메일
+            </label>
+            <label htmlFor="address" className="mr-30 inputSize">
+              주소
+            </label>
+            <label htmlFor="phonNumber" className="mr-6 inputSize">
+              전화번호
+            </label>
+            <label htmlFor="profile" className="mr-18 inputSize">
+              프로필
+            </label>
+          </SLabelList>
+          <SInputList>
             <input
               id="name"
               type="text"
@@ -228,24 +302,16 @@ const MyPageEdit = () => {
               value={name || ''}
               onChange={handleChangeName}
             ></input>
-          </p>
-          <p>
-            <label htmlFor="nickName" className="mr-18">
-              닉네임
-            </label>
             <input
               id="nickName"
               type="text"
               className="inputSize"
               placeholder="닉네임을 입력하십시오"
+              disabled
               value={displayName || ''}
               onChange={handleChangeDisplayName}
             ></input>
-          </p>
-          <p>
-            <label htmlFor="email" className="mr-18">
-              이메일
-            </label>
+
             <input
               id="email"
               type="text"
@@ -255,11 +321,7 @@ const MyPageEdit = () => {
               value={email || ''}
               onChange={handleChangeEmail}
             ></input>
-          </p>
-          <p>
-            <label htmlFor="address" className="mr-30">
-              주소
-            </label>
+
             <input
               id="address"
               type="text"
@@ -268,11 +330,7 @@ const MyPageEdit = () => {
               value={address || ''}
               onChange={handleChangeAddress}
             ></input>
-          </p>
-          <p>
-            <label htmlFor="phonNumber" className="mr-6">
-              전화번호
-            </label>
+
             <input
               id="phonNumber"
               type="text"
@@ -281,22 +339,19 @@ const MyPageEdit = () => {
               value={phoneNumber || ''}
               onChange={handleChangePhoneNumber}
             ></input>
-          </p>
-          <p>
-            <label htmlFor="profile" className="mr-18">
-              프로필
-            </label>
+
             <input
               id="profile"
-              type="file"
+              type="text"
               className="inputSize"
               placeholder="프로필을 url형태로 입력하십시오"
-              value={profile || ''}
+              value={imgUrl || ''}
               onChange={handleChangeProfile}
             ></input>
-          </p>
-          <SWithdraw onClick={handleClickQuit}>회원탈퇴</SWithdraw>
-        </SInputList>
+
+            <SWithdraw>회원탈퇴</SWithdraw>
+          </SInputList>
+        </SFlexRow>
       </SWrapEdit>
       <SEditBtn>
         <SCancelBtn onClick={() => navigate('/mypage')}>취소</SCancelBtn>

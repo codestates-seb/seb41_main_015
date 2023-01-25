@@ -1,4 +1,9 @@
 import styled from 'styled-components';
+import Swal from 'sweetalert2';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import instanceAxios from '../reissue/InstanceAxios';
+import { setExisting } from '../redux/slice/userSlice';
 
 const SModalBackground = styled.div`
   position: fixed;
@@ -11,8 +16,8 @@ const SModalBackground = styled.div`
 `;
 
 const SNicknameModal = styled.div`
-  width: 448px;
-  height: 430px;
+  width: 400px;
+  height: 250px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -20,57 +25,174 @@ const SNicknameModal = styled.div`
   border-radius: 5px;
   border: 1px solid #aaaaaa;
   background-color: #ffffff;
+`;
+
+const SModalWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 
   .modalContent {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    padding-top: 2rem;
+    height: 250px;
 
     h3 {
-      margin-bottom: 30px;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .caution {
+      font-size: 0.8rem;
+      margin-bottom: 15px;
+    }
+
+    #impossible {
+      font-weight: 700;
+      color: #bb2649;
     }
   }
 
-  .close {
-    padding-top: 3px;
-    position: absolute;
-    right: 13px;
-    font-size: 2rem;
-    color: #aaaaaa;
-    cursor: pointer;
+  input {
+    width: 264px;
+    height: 35px;
+    font-size: 0.9rem;
+    padding-left: 5px;
   }
 
-  .bottomText {
-    font-size: 0.8rem;
+  .redBorder {
+    border: 1.5px solid #bb2649;
+    border-radius: 3px;
+  }
+
+  .errorMessage {
+    color: #bb2649;
+    font-size: 0.75rem;
+    margin-top: 3px;
+    padding: 3px;
+    height: 25px;
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
   }
 
   button {
-    background-color: white;
-    border: 1px solid #bb2649;
-    margin-top: 30px;
+    background-color: #bb2649;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 130px;
+    margin: 15px 0px;
+    font-weight: 600;
   }
 `;
 
 const NicknameModal = ({ isModalOpen, handleCloseModal }) => {
-  const handlePost = () => {
-    console.log('버튼 클릭!');
+  const dispatch = useDispatch();
+  const [nickname, setNickname] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const validationCheck = (value) => {
+    if (value.match(/^[a-zA-Zㄱ-힣0-9]*$/)) {
+      if (value.length === 0) {
+        setErrorMessage('닉네임은 필수입니다.');
+        return false;
+      }
+      if (value.length === 1) {
+        setErrorMessage('닉네임은 2글자 이상이어야 합니다.');
+        return false;
+      }
+      if (value.length > 20) {
+        setErrorMessage('닉네임은 20글자를 넘을 수 없습니다.');
+        return false;
+      }
+      return true;
+    } else {
+      setErrorMessage('특수문자, 띄어쓰기는 포함할 수 없습니다.');
+      return false;
+    }
   };
+
+  const handleInfoPost = () => {
+    // 유효성 검사를 충족할 때에만 데이터 보내기
+    if (validationCheck(nickname)) {
+      // console.log(nickname);
+      // console.log('서버에 데이터 전송');
+      instanceAxios
+        .patch('v1/members', {
+          displayName: nickname,
+        })
+        .then(() => {
+          handleCloseModal();
+          dispatch(setExisting({ displayName: nickname }));
+          Swal.fire(
+            '닉네임 설정이 완료되었습니다',
+            '북빌리지에 오신 것을 환영합니다!',
+            'success'
+          );
+        })
+        .catch((err) => {
+          // 중복 닉네임이라 오류 뜰 경우 다루기
+          if (err.response.status === 409) {
+            setErrorMessage('이미 사용 중인 닉네임입니다.');
+          } else {
+            Swal.fire(
+              '닉네임 등록 실패',
+              '닉네임 설정에 실패했습니다',
+              'warning'
+            );
+            console.error(err);
+          }
+        });
+      return;
+    }
+    return;
+  };
+
+  const resetErrorMessage = () => {
+    setErrorMessage('');
+  };
+
+  const redBorder = errorMessage.length === 0 ? '' : 'redBorder';
 
   return (
     <>
       {isModalOpen ? (
-        <SModalBackground onClick={handleCloseModal}>
+        <SModalBackground>
           <SNicknameModal onClick={(e) => e.stopPropagation()}>
-            <div className="close" onClick={handleCloseModal}>
-              &times;
-            </div>
-            <div className="modalContent">
-              <h3>닉네임을 입력하세요.</h3>
-              <input type="text" placeholder="닉네임 생성 규칙" />
-              <button>제출</button>
-            </div>
+            <SModalWrap>
+              <div className="modalContent">
+                <div>
+                  <h3>닉네임을 설정해주세요.</h3>
+                  <div className="caution">
+                    닉네임은 변경이 <span id="impossible">불가능</span>하니
+                    신중하게 설정해주세요!
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="2~20자 이내 한글, 영어, 숫자만 가능"
+                    value={nickname}
+                    onChange={(e) => {
+                      setNickname(e.target.value);
+                    }}
+                    onFocus={resetErrorMessage}
+                    className={redBorder}
+                  />
+                  <div className="errorMessage">
+                    {errorMessage ? errorMessage : ''}
+                  </div>
+                  <div className="buttonContainer">
+                    <button onClick={handleInfoPost}>시작하기</button>
+                  </div>
+                </div>
+              </div>
+            </SModalWrap>
           </SNicknameModal>
         </SModalBackground>
       ) : null}

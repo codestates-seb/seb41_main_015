@@ -1,66 +1,80 @@
-import axios from 'axios';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import ShareForm from '../components/ShareForm';
+import instanceAxios from '../reissue/InstanceAxios';
 
-const StyledShareEdit = styled.div`
-  width: 100%;
-`;
-
-const ShareEdit = () => {
+const ShareEdit = (onBookInfoChange) => {
   const navigate = useNavigate();
-  const url = 'https://serverbookvillage.kro.kr';
-  const accessToken = sessionStorage.getItem('accessToken');
+  const { id } = useParams();
 
   const [inputs, setInputs] = useState({
-    bookname: '',
+    bookTitle: '',
     author: '',
     publisher: '',
-    link: '',
+    talkUrl: '',
     title: '',
     content: '',
+    thumbnail:
+      'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg',
   });
 
-  const { bookname, author, publisher, link, title, content } = inputs;
+  const { bookTitle, author, publisher, talkUrl, title, content, thumbnail } =
+    inputs;
 
   const handleClickEdit = () => {
-    axios
-      .patch(
-        `${url}/v1/borrow/`,
-        {
-          bookname,
-          author,
-          publisher,
-          link,
-          title,
-          content,
-        },
-        {
-          header: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            Accept: 'application/json',
-            Authorization: `Bearer  ${accessToken}`,
-          },
-        }
-      )
-      .then((res) => {
-        navigate('/shareDetail');
+    instanceAxios
+      .patch(`v1/borrows/${id}`, {
+        bookTitle,
+        author,
+        publisher,
+        talkUrl,
+        title,
+        content,
+        thumbnail,
       })
-      .catch(() => {});
-    Swal.fire('나눔글 수정 실패', '글 수정이 완료되지 않았습니다.', 'warning');
+      .then((res) => {
+        Swal.fire(
+          '나눔글 수정 완료',
+          '글 수정이 정상적으로 수정되었습니다.',
+          'success'
+        );
+        navigate('/shareList');
+      })
+      .catch((err) => {
+        Swal.fire(
+          '나눔글 수정 실패',
+          '글 수정이 완료되지 않았습니다.',
+          'warning'
+        );
+      });
+  };
+
+  useEffect(() => {
+    const shareAddData = async () => {
+      try {
+        const result = await instanceAxios.get(`v1/borrows/${id}`);
+        setInputs(result.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    shareAddData();
+  }, []);
+
+  const handleBookInfoChange = (bookInfo) => {
+    setInputs(bookInfo);
   };
 
   return (
-    <StyledShareEdit>
+    <>
       <ShareForm
         page="shareEdit"
         editBtn={handleClickEdit}
         inputs={inputs}
-        setInputs={setInputs}
+        onBookInfoChange={handleBookInfoChange}
       />
-    </StyledShareEdit>
+    </>
   );
 };
 

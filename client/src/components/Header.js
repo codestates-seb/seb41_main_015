@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import LoginModal from './LoginModal';
 import styled from 'styled-components';
-import logo from '../image/logo.svg';
-import { Link } from 'react-router-dom';
+import { ReactComponent as Logo } from '../image/logo.svg';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import mypage from '../image/mypage.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/slice/userSlice';
-import axios from 'axios';
+import instanceAxios from '../reissue/InstanceAxios';
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -26,14 +26,13 @@ const SHeaderLogo = styled.a`
   align-items: center;
   position: fixed;
   left: 3%;
-  .logoFont {
-    margin: 0 10px;
-    font-size: 24px;
-    font-weight: 500;
+  .logo {
+    fill: #bb2649;
   }
-  @media screen and (max-width: 930px) {
-    .logoFont {
+  @media screen and (max-width: 1030px) {
+    .logo {
       font-size: 15px;
+      width: 150px;
     }
   }
 `;
@@ -42,7 +41,6 @@ const SNavContainer = styled.ol`
   width: 444px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
   text-align: center;
   padding: 0;
   position: fixed;
@@ -51,14 +49,13 @@ const SNavContainer = styled.ol`
     margin: 5px 33px;
     font-size: 18px;
     font-weight: 600;
-    :focus {
-      border-bottom: 3px solid #bb2649;
-    }
+  }
+  .focused {
+    border-bottom: 3px solid #bb2649;
   }
 
-  @media screen and (max-width: 930px) {
-    position: fixed;
-    left: 11%;
+  @media screen and (max-width: 1030px) {
+    left: 32%;
     .olItem {
       margin: 5px 10px;
       font-size: 15px;
@@ -90,7 +87,7 @@ const SLogout = styled.div`
   display: flex;
   align-items: center;
   position: fixed;
-  right: 3%;
+  right: 2%;
   .mypage {
     display: flex;
     margin-right: 15px;
@@ -118,9 +115,10 @@ const SLogoutBtn = styled.button`
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const accessToken = useSelector((state) => state.user.accessToken);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const user = useSelector((state) => state.user);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -130,32 +128,57 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    // axios
-    //   .post('https://serverbookvillage.kro.kr/v1/members/auth/logout', {
-    //     headers: {
-    //       // 'Content-Type': 'application/json;charset=UTF-8',
-    //       // Accept: 'application / json',
-    //       Authorization: `Bearer ${user.accessToken}`,
-    //     },
-    //   })
-    //   .then(() => {})
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
-    dispatch(logout());
+    instanceAxios
+      .post('/v1/members/auth/logout')
+      .then(() => {
+        dispatch(logout());
+        navigate();
+        window.location.reload();
+        console.log('로그아웃 됨!');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
+
+  // 헤더 바깥부분 클릭해도 유지되는 로직 (수정 후: pathname 이용)
+  // 나눔 관련 경로: shareList, shareAdd, shareDetail, shareEdit
+  // 요청 관련 경로: reqList, reqAdd, reqDetail, reqEdit
+  const currentLocation = (pathname) => {
+    if (pathname.slice(1, 4) === 'req') {
+      return 'request';
+    } else if (pathname.slice(1, 6) === 'share') {
+      return 'share';
+    }
+  };
+
+  const shareClassName =
+    currentLocation(pathname) === 'share' ? 'olItem focused' : 'olItem';
+  const requestClassName =
+    currentLocation(pathname) === 'request' ? 'olItem focused' : 'olItem';
+
+  // 헤더 바깥부분 클릭해도 유지되는 로직 (수정 전)
+  // const [currentTab, setCurrentTab] = useState(0);
+  // const menus = [
+  //   { index: 0, name: '나눔', route: '/shareList' },
+  //   { index: 1, name: '요청', route: '/reqList' },
+  //   { index: 2, name: '평점', route: '/' },
+  //   { index: 3, name: '커뮤니티', route: '/' },
+  // ];
+  // const handleMenuSelect = (index) => {
+  //   setCurrentTab(index);
+  // };
 
   return (
     <StyledHeader>
       <SHeaderLogo href="/">
-        <img src={logo} alt="logo" className="logo" />
-        <div className="logoFont">book village</div>
+        <Logo className="logo" />
       </SHeaderLogo>
       <SNavContainer>
-        <Link to="/shareList" className="olItem">
+        <Link to="/shareList" className={shareClassName}>
           나눔
         </Link>
-        <Link to="/reqList" className="olItem">
+        <Link to="/reqList" className={requestClassName}>
           요청
         </Link>
         <Link to="/" className="olItem">
@@ -164,6 +187,20 @@ const Header = () => {
         <Link to="/" className="olItem">
           커뮤니티
         </Link>
+        {/* {menus.map((el) => {
+          const isFocused =
+            currentTab === el.index ? 'olItem focused' : 'olItem';
+          return (
+            <Link
+              to={el.route}
+              key={el.index}
+              onClick={() => handleMenuSelect(el.index)}
+              className={isFocused}
+            >
+              {el.name}
+            </Link>
+          );
+        })} */}
       </SNavContainer>
       {!accessToken ? (
         <>

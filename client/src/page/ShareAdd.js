@@ -1,60 +1,44 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import ShareForm from '../components/ShareForm';
-
-const StyledShareAdd = styled.div`
-  width: 100%;
-`;
+import instanceAxios from '../reissue/InstanceAxios';
 
 const ShareAdd = () => {
   const navigate = useNavigate();
-  const url = 'https://serverbookvillage.kro.kr';
-  const accessToken = sessionStorage.getItem('accessToken');
 
   const [inputs, setInputs] = useState({
-    bookname: '',
+    bookTitle: '',
     author: '',
     publisher: '',
-    link: '',
+    talkUrl: '',
     title: '',
     content: '',
+    thumbnail:
+      'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg',
   });
 
-  const { bookname, author, publisher, link, title, content } = inputs;
+  const { bookTitle, author, publisher, talkUrl, title, content, thumbnail } =
+    inputs;
 
   const handleClickSubmit = () => {
-    axios
-      .post(
-        `${url}/v1/borrow`,
-        {
-          bookname,
-          author,
-          publisher,
-          link,
-          title,
-          content,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            Accept: 'application/json',
-            Authorization: `Bearer  ${accessToken}`,
-          },
-        }
-      )
+    instanceAxios
+      .post('/v1/borrows', {
+        bookTitle,
+        author,
+        publisher,
+        talkUrl,
+        title,
+        content,
+        thumbnail,
+      })
       .then((res) => {
-        if (accessToken === null) {
-          Swal.fire(
-            '권한이 없습니다.',
-            '로그인 상태에서만 글 작성이 가능합니다.',
-            'warning'
-          );
-        } else {
-          navigate('/shareDetail');
-        }
+        Swal.fire(
+          '나눔 글 등록 완료.',
+          '나눔 글이 정상적으로 작성되었습니다.',
+          'success'
+        );
+        navigate('/shareList');
       })
       .catch((err) => {
         Swal.fire(
@@ -64,15 +48,20 @@ const ShareAdd = () => {
         );
       });
   };
+
+  const handleBookInfoChange = (bookInfo) => {
+    setInputs(bookInfo);
+  };
+
   return (
-    <StyledShareAdd>
+    <>
       <ShareForm
         page="shareAdd"
         editBtn={handleClickSubmit}
         inputs={inputs}
-        setInputs={setInputs}
+        onBookInfoChange={handleBookInfoChange}
       />
-    </StyledShareAdd>
+    </>
   );
 };
 
