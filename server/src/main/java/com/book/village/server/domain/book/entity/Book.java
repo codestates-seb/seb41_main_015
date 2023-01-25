@@ -34,7 +34,8 @@ public class Book extends Auditable {
     @Column
     private String publisher;
 
-    @Column(length=3000)
+    @Column
+    @Lob
     private String thumbnail="https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg";
 
     @Column
