@@ -257,7 +257,6 @@ public class RequestControllerRestDocsTest {
                                         fieldWithPath("publisher").type(JsonFieldType.STRING).description("출판사").optional(),
                                         fieldWithPath("thumbnail").type(JsonFieldType.STRING).description("책 이미지").optional(),
                                         fieldWithPath("view").type(JsonFieldType.NUMBER).description("조회수").ignored()
-
                                 )
 
                         ),
