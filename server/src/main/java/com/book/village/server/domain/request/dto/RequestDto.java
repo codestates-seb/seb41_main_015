@@ -92,6 +92,8 @@ public class RequestDto {
 
         private String title;
 
+        private Long views;
+
         @Lob
         private String content;
 
