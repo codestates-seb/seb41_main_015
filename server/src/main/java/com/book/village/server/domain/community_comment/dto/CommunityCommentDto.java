@@ -39,6 +39,7 @@ public class CommunityCommentDto {
         @Lob
         private String content;
         private String displayName;
+        @Lob
         private String imgUrl;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
