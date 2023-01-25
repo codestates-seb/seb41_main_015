@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCookie, setCookie } from '../../util/cookie/cookie';
+import { getCookie, setCookie, removeCookie } from '../../util/cookie/cookie';
 import instanceAxios from '../../reissue/InstanceAxios';
 
 const sessionAccessToken = sessionStorage.getItem('accessToken');
@@ -49,6 +49,7 @@ const userSlice = createSlice({
     logout: (state) => {
       console.log('세션 스토리지 삭제!');
       sessionStorage.clear();
+      removeCookie('refreshToken');
       state.accessToken = null;
       state.refreshToken = null;
       state.membership = null;
