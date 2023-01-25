@@ -1,5 +1,6 @@
 package com.book.village.server.domain.request;
 
+import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.domain.request.controller.RequestController;
 import com.book.village.server.domain.request.dto.RequestDto;
 import com.book.village.server.domain.request.entity.Request;
@@ -180,6 +181,7 @@ public class RequestControllerRestDocsTest {
                 requestId,
                 "talkUrl",
                 "title",
+                0L,
                 "content",
                 "bookTitle",
                 "author",
@@ -231,6 +233,7 @@ public class RequestControllerRestDocsTest {
                 .andExpect(jsonPath("$.data.bookTitle").value(patch.getBookTitle()))
                 .andExpect(jsonPath("$.data.author").value(patch.getAuthor()))
                 .andExpect(jsonPath("$.data.publisher").value(patch.getPublisher()))
+                .andExpect(jsonPath("$.data.views").value(patch.getViews()))
                 .andDo(document("patch-request",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
@@ -252,7 +255,9 @@ public class RequestControllerRestDocsTest {
                                         fieldWithPath("bookTitle").type(JsonFieldType.STRING).description("책 제목").optional(),
                                         fieldWithPath("author").type(JsonFieldType.STRING).description("저자").optional(),
                                         fieldWithPath("publisher").type(JsonFieldType.STRING).description("출판사").optional(),
-                                        fieldWithPath("thumbnail").type(JsonFieldType.STRING).description("책 이미지").optional()
+                                        fieldWithPath("thumbnail").type(JsonFieldType.STRING).description("책 이미지").optional(),
+                                        fieldWithPath("views").type(JsonFieldType.NUMBER).description("조회수").ignored()
+
                                 )
 
                         ),
@@ -314,10 +319,24 @@ public class RequestControllerRestDocsTest {
                             requestCommentResponse,
                             createdAt,
                             modifiedAt);
+            Request request= new Request(
+                    1L,
+                    "talkUrl",
+                    "title",
+                    "content",
+                    "bookTitle",
+                    "author",
+                    "publisher",
+                    "thumbnail",
+                    "displayName",
+                    1L,
+                    new Member("test@gmail.com"),
+                    null
+            );
 
-            given(requestService.findRequest(Mockito.anyLong())).willReturn(new Request());
+            given(requestService.findRequest(Mockito.anyLong())).willReturn(request);
+            given(requestService.updateRequest(Mockito.any(Request.class),Mockito.anyString())).willReturn(request);
             given(requestMapper.requestToRequestResponseDto(Mockito.any(Request.class))).willReturn(response);
-
             ResultActions actions =
                     mockMvc.perform(
                             get(BASE_URL + "/{request-id}", requestId)
