@@ -390,8 +390,8 @@ class BorrowControllerRestDocsTest {
                 "thumbnail",
                 "displayName",
                 "talkUrl",
-                true,
                 0L,
+                true,
                 new Member("email@gmail.com"),
                 null
         );
@@ -521,8 +521,8 @@ class BorrowControllerRestDocsTest {
                 "thumbnail",
                 "displayName1",
                 "talkUrl1",
-                true,
                 0L,
+                true,
                 new Member(),
                 null));
 
@@ -535,8 +535,8 @@ class BorrowControllerRestDocsTest {
                 "thumbnail2",
                 "displayName2",
                 "talkUrl2",
-                true,
                 0L,
+                true,
                 new Member(),
                 null));
 
@@ -659,8 +659,8 @@ class BorrowControllerRestDocsTest {
                 "thumbnail1",
                 "displayName1",
                 "talkUrl1",
-                true,
                 0L,
+                true,
                 new Member(),
                 null
                 ));
@@ -674,8 +674,8 @@ class BorrowControllerRestDocsTest {
                 "thumbnail2",
                 "displayName2",
                 "talkUrl2",
-                true,
                 0L,
+                true,
                 new Member(),
                 null
         ));
@@ -851,8 +851,8 @@ class BorrowControllerRestDocsTest {
                 "thumbnail1",
                 "displayName1",
                 "talkUrl1",
-                true,
                 0L,
+                true,
                 new Member(),
                 null)
         );
@@ -866,8 +866,8 @@ class BorrowControllerRestDocsTest {
                 "thumbnail2",
                 "displayName2",
                 "talkUrl",
-                true,
                 0L,
+                true,
                 new Member(),
                 null)
         );

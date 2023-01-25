@@ -51,9 +51,7 @@ public class RequestService {
     }
 
     public Request findRequest(long requestId) {
-        Request findRequest = findVerifiedRequest(requestId);
-        findRequest.setViews(findRequest.getViews() + 1L);
-        return findRequest;
+        return findVerifiedRequest(requestId);
     }
 
     public Page<Request> findMyRequests(String userEmail,Pageable pageable) {
