@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import instanceAxios from '../reissue/InstanceAxios';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
+import { prettyDate } from '../util/dateparse';
 
 const SCommentForm = styled.div`
   margin: 30px 0;
@@ -40,14 +41,23 @@ const SUserContainer = styled.div`
   margin-bottom: 24px;
   img {
     margin: 0;
-    width: 43px;
-    border-radius: 70%;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
     margin-right: 10px;
   }
   .userName {
     font-size: 16px;
     font-weight: 700;
     align-items: center;
+  }
+  .createdAt {
+    color: #aaaaaa;
+    font-size: 0.8rem;
+    margin-left: auto;
+    @media screen and (max-width: 527px) {
+      display: none;
+    }
   }
 `;
 const SUserComment = styled.div`
@@ -108,7 +118,7 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
   //수정 폼 글자수 제한 함수
   const handleChangeContent = (e) => {
     setContent(e.target.value);
-    console.log(e.target.value.length);
+    // console.log(e.target.value.length);
     const text_length = e.target.value.length;
     if (text_length > 60) {
       Swal.fire(
@@ -122,8 +132,6 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
   //수정 폼 판별하기
   const handleClickModifyComment = (commentId) => {
     setContentForm(commentId);
-
-    console.log(commentId);
   };
 
   //댓글 등록
@@ -248,15 +256,9 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
           return (
             <SCommentWrap key={commentId}>
               <SUserContainer>
-                <img
-                  alt="profileImage"
-                  src={
-                    comment.imgUrl ||
-                    'https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg'
-                  }
-                />
-
+                <img alt="profileImage" src={comment.imgUrl} />
                 <span className="userName">{comment.displayName}</span>
+                <div className="createdAt">{prettyDate(comment.createdAt)}</div>
               </SUserContainer>
               <SUserComment>
                 {/* 수정할 때 */}
@@ -265,8 +267,9 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
                   <div>
                     <input
                       className="tModify"
+                      type="text"
                       placeholder="댓글을 입력하십시오"
-                      defaultValue={comment.content}
+                      defaultValue={comment.content || ''}
                       maxLength="60"
                       onChange={(e) => {
                         handleChangeContent(e);
@@ -278,7 +281,7 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
                   <div>
                     <input
                       className="content"
-                      value={comment.content}
+                      value={comment.content || ''}
                       disabled
                     ></input>
                   </div>
