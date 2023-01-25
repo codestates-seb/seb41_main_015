@@ -37,14 +37,15 @@ public class Request extends Auditable {
     @Column(length = 100)
     private String publisher;
 
-    @Column(length=3000)
+    @Column
+    @Lob
     private String thumbnail="https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg";
 
     @Column(length = 100)
     private String displayName;
 
     @Column
-    private Long views = 0L;
+    private long views = 0L;
 
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
