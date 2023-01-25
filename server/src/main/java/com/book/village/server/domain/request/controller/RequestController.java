@@ -55,7 +55,7 @@ public class RequestController {
     @GetMapping("/{request-id}")
     public ResponseEntity getRequest(@PathVariable("request-id") long requestId) {
         Request request = requestService.findRequest(requestId);
-        request.setViews(request.getViews()+1L);
+        request.setView(request.getView()+1L);
         requestService.updateRequest(request, request.getMember().getEmail());
         return new ResponseEntity(new SingleResponse<>(requestMapper.requestToRequestResponseDto(request)),
                 HttpStatus.OK);
