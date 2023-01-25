@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import logo from '../image/logo.svg';
+import { ReactComponent as Logo } from '../image/logo.svg';
 import github from '../image/github.svg';
 
 const StyledFooter = styled.footer`
@@ -11,16 +11,11 @@ const StyledFooter = styled.footer`
   flex-flow: row wrap;
   bottom: 0;
   justify-content: center;
+  margin-top: 5%;
 
-  @media screen and (max-width: 1213px) {
+  @media screen and (max-width: 1245px) {
     height: 300px;
     justify-content: flex-start;
-  }
-  @media screen and (max-width: 776px) {
-    height: 350px;
-  }
-  @media screen and (max-width: 569px) {
-    height: 500px;
   }
 `;
 
@@ -39,31 +34,32 @@ const SFooterLogo = styled.div`
     align-items: center;
   }
   .logo {
-    width: 30px;
-    height: 33px;
-  }
-  .logoFont {
-    margin: 0 10px;
-    font-size: 18px;
-    font-weight: 500;
+    width: 160px;
+    height: 100px;
+    fill: #444444;
   }
 `;
 
 const SGitContainer = styled.div`
   display: flex;
   margin: 0 10px 0 30px;
+  color: #444444;
 
   .githubBox {
     max-width: 130px;
     text-align: center;
     padding: 10px 30px 0 0;
     white-space: nowrap;
-
+    @media screen and (max-width: 822px) {
+      padding: 10px 22px 0 0;
+    }
     li {
       display: flex;
       align-items: center;
       font-size: 13px;
       padding: 0 15px 15px;
+      color: #7a7a7a;
+
       a {
         display: flex;
         align-items: center;
@@ -79,16 +75,29 @@ const SDescription = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   p {
     color: #7a7a7a;
     font-weight: 600;
     font-size: 13px;
     line-height: 28px;
+    @media screen and (max-width: 822px) {
+      display: none;
+    }
   }
+
   .copyright {
     color: #7a7a7a;
     font-size: 12px;
+    display: flex;
     justify-content: flex-end;
+
+    @media screen and (max-width: 822px) {
+      position: relative;
+      bottom: -35%;
+      right: -16%;
+      font-size: 11px;
+    }
   }
 `;
 
@@ -97,8 +106,7 @@ const Footer = () => {
     <StyledFooter>
       <SFooterLogo>
         <a href="/">
-          <img src={logo} alt="logo" className="logo" />
-          <div className="logoFont">book village</div>
+          <Logo className="logo" />
         </a>
       </SFooterLogo>
       <SGitContainer>
