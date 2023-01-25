@@ -4,6 +4,7 @@ import com.book.village.server.domain.community.dto.CommunityDto;
 import com.book.village.server.domain.community.entity.Community;
 import com.book.village.server.domain.request.dto.RequestDto;
 import com.book.village.server.domain.request.entity.Request;
+import com.book.village.server.domain.request.entity.RequestRank;
 import com.book.village.server.domain.request_comment.mapper.RequestCommentMapper;
 import com.book.village.server.domain.request_comment.mapper.RequestCommentMapperImpl;
 import org.mapstruct.Mapper;
@@ -34,6 +35,7 @@ public interface RequestMapper {
                 response.setThumbnail(request.getThumbnail());
                 response.setDisplayName(request.getMember().getDisplayName());
                 response.setImgUrl(request.getMember().getImgUrl());
+                response.setViews(request.getViews());
                 response.setRequestComments(request.getRequestComments().stream()
                         .map(requestComment -> recoMapper.requestCommentToRequestCommentResponseDto(requestComment))
                         .collect(Collectors.toList()));
@@ -53,6 +55,23 @@ public interface RequestMapper {
         for ( Request request : requests ) {
             RequestDto.Response response = requestToRequestResponseDto( request );
             response.setRequestComments(null);
+            list.add(response);
+        }
+        return list;
+    }
+
+    default List<RequestDto.rankResponse> requestRanksTorankedResponses(List<RequestRank> requests) {
+        if (requests == null) {
+            return null;
+        }
+        List<RequestDto.rankResponse> list = new ArrayList<>(requests.size());
+        for (RequestRank request : requests) {
+            RequestDto.rankResponse response = new RequestDto.rankResponse(
+                    request.getBook_Title(),
+                    request.getAuthor(),
+                    request.getPublisher(),
+                    request.getCount()
+            );
             list.add(response);
         }
         return list;
