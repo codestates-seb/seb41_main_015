@@ -1,20 +1,36 @@
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import DetailForm from '../components/DetailForm';
+import Swal from 'sweetalert2';
+import Comment from '../components/Comment';
 
 const ShareDetail = () => {
-  // get 요청으로 데이터 받아오면 될 듯
-  const dummyData = {
-    title: '팝니다',
-    bookTitle: 'ETS 토익 정기시험 기출문제집 1000 Vol 3 READING(리딩)',
-    bookAuthor: 'ETS',
-    bookPublisher: 'YBM',
-    imgUrl:
-      'https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788917238549.jpg',
-    content: '상태 최상, 한 번도 편 적 없음',
-  };
+  const { id } = useParams();
+  const [data, setData] = useState({});
+  const [borrowComment, setBorrowComment] = useState([]);
+  const url = 'https://serverbookvillage.kro.kr/';
+
+  useEffect(() => {
+    const shareData = async () => {
+      try {
+        window.scrollTo(0, 0);
+        const res = await axios.get(url + `v1/borrows/${id}`);
+        setData(res.data.data);
+        setBorrowComment(res.data.data.borrowComments);
+        console.log('getShareDetail', res.data.data.borrowComments);
+      } catch (error) {
+        Swal.fire('데이터 로딩 실패', '데이터 로딩에 실패했습니다.', 'warning');
+        console.error(error);
+      }
+    };
+    shareData();
+  }, []);
 
   return (
     <>
-      <DetailForm data={dummyData} page="share" />
+      <DetailForm data={data} page="share" id={id} />
+      <Comment data={data} borrowComment={borrowComment} page="share" id={id} />
     </>
   );
 };
