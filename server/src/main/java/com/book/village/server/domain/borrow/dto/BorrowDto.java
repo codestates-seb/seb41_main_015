@@ -57,6 +57,7 @@ public class BorrowDto {
         private String talkUrl;     // 톡 링크
 
         private Boolean borrowWhthr; // 나눔 가능여부
+        private Long viewCount;      // 조회 수
     }
 
 
@@ -80,7 +81,7 @@ public class BorrowDto {
         private String talkUrl;     // 톡링크
 
         private Boolean borrowWhthr; // 나눔 가능여부
-
+        private Long viewCount;      // 조회 수
 
         private List<BorrowCommentDto.Response> borrowComments; // 나눔 댓글리스트.
 
@@ -88,6 +89,23 @@ public class BorrowDto {
 
         private LocalDateTime modifiedAt;   // 나눔글 최근 수정 일자
     }
+
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Getter
+    @Setter
+    public static class rankResponse {
+        @Lob
+        private String bookTitle;
+
+        private String author;
+
+        private String publisher;
+
+        private Long count;
+    }
+
+
 
 
 }
