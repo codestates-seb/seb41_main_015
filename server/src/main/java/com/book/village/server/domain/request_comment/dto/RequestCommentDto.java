@@ -29,6 +29,7 @@ public class RequestCommentDto {
 
         private String displayName;
 
+        @Lob
         private String imgUrl;
 
         private LocalDateTime createdAt;

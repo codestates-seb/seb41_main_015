@@ -50,6 +50,7 @@ public class CommunityDto {
         private String content;
         private String displayName;
         private Long view;
+        @Lob
         private String imgUrl;
         private List<CommunityCommentDto.Response> communityComments;
         private LocalDateTime createdAt;

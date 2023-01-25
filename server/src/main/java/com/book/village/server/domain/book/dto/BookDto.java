@@ -5,6 +5,7 @@ import com.book.village.server.domain.rate.dto.RateDto;
 import lombok.*;
 
 import javax.persistence.Column;
+import javax.persistence.Lob;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class BookDto {
         private String bookTitle;
         private String author;
         private String publisher;
+        @Lob
         private String thumbnail;
         private Long totalRate;
         private Long rateCount;
@@ -37,6 +39,7 @@ public class BookDto {
         private String bookTitle;
         private String author;
         private String publisher;
+        @Lob
         private String thumbnail;
         private Double avgRate;
         private List<RateDto.Response> rates;

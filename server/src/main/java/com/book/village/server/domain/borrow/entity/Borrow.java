@@ -35,7 +35,8 @@ public class Borrow extends Auditable {
     @Column(length = 50)
     private String publisher;
 
-    @Column(length=3000)
+    @Column
+    @Lob
     private String thumbnail="https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg";
 
     @Column(length = 50)
@@ -49,7 +50,6 @@ public class Borrow extends Auditable {
 
     @Column
     private Long viewCount = 0L;
-    private Boolean borrowWhthr;
 
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")

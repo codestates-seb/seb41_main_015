@@ -36,6 +36,7 @@ public class RequestDto {
         @NotBlank
         private String publisher;
 
+        @Lob
         private String thumbnail;
     }
 
@@ -64,12 +65,13 @@ public class RequestDto {
         @NotBlank
         private String publisher;
 
+        @Lob
         private String thumbnail;
 
         private String displayName;
 
         private Long views;
-
+        @Lob
         private String imgUrl;
 
         private List<RequestCommentDto.Response> requestComments;
@@ -101,6 +103,7 @@ public class RequestDto {
 
         private String publisher;
 
+        @Lob
         private String thumbnail;
     }
 
