@@ -71,7 +71,6 @@ public class RequestDto {
         private String displayName;
 
         private Long views;
-
         @Lob
         private String imgUrl;
 
