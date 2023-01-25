@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BookAddModal from './BookAddModal';
+import axios from 'axios';
 
 const StyledShareForm = styled.div`
   h2 {
@@ -149,7 +150,28 @@ const ShareForm = (props) => {
   };
 
   const uploadImg = (e) => {
-    handleChangeThmbnail(URL.createObjectURL(e.target.files[0]));
+    if (e.target.files) {
+      const uploadImg = e.target.files[0];
+      const accessToken = sessionStorage.getItem('accessToken');
+      const formData = new FormData();
+      formData.append('image', uploadImg);
+      axios
+        .post(
+          'https://serverbookvillage.kro.kr/v1/s3/images/upload',
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              Athorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          handleChangeThmbnail(res.data.data);
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   const deleteImg = () => {

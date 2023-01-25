@@ -106,20 +106,16 @@ const SShareTop = styled.div`
     height: 40px;
     margin-right: 0px;
     /* margin-top: 22px; */
-    border-radius: 6px;
-    border: 1.5px solid #bb2649;
+    border-radius: 3px;
+    border: 1px solid #bb2649;
     color: #bb2649;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     /* line-height: 24px; */
     /* align-items: center;
   text-align: center; */
     @media screen and (max-width: 1023px) {
-      width: 80px;
+      width: 90px;
       height: 41px;
-      font-size: 15px;
       margin-right: 0;
     }
   }

@@ -1,8 +1,15 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
 * {
   box-sizing: border-box;
   font-family: 'Roboto', 'Noto Sans KR', 'PingFang SC', 'Apple SD Gothic Neo',
     'Microsoft YaHei UI', 'Malgun Gothic', sans-serif;
 }
+
 body {
   margin: 0;
   padding: 0;
