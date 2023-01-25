@@ -2,6 +2,10 @@ package com.book.village.server.domain.borrow.mapper;
 
 import com.book.village.server.domain.borrow.dto.BorrowDto;
 import com.book.village.server.domain.borrow.entity.Borrow;
+<<<<<<< HEAD
+=======
+import com.book.village.server.domain.borrow.entity.BorrowRank;
+>>>>>>> 84ea6f2c1228dfa581dd3adcfaf6643e37220698
 import com.book.village.server.domain.borrowcomment.mapper.BorrowCommentMapper;
 import com.book.village.server.domain.borrowcomment.mapper.BorrowCommentMapperImpl;
 import org.mapstruct.Mapper;
@@ -32,7 +36,7 @@ public interface BorrowMapper {
         response.setImgUrl(borrow.getMember().getImgUrl());
         response.setTalkUrl(borrow.getTalkUrl());
         response.setBorrowWhthr(borrow.getBorrowWhthr());
-
+        response.setViewCount(borrow.getViewCount());
         if (borrow.getBorrowComments() != null) {
             response.setBorrowComments(borrow.getBorrowComments().stream()
                     .map(borrowComment -> borrowCommentMapper.borrowCommentToBorrowCommentResponseDto(borrowComment))

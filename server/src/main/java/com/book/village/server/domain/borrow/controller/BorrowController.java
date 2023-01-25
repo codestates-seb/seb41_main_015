@@ -94,6 +94,11 @@ public class BorrowController {
         return new ResponseEntity<>(new PageResponseDto<>(borrowMapper.borrowsToBorrowResponseDtos(borrows.getContent()),
                 new PageInfo(borrows.getPageable(), borrows.getTotalElements())), HttpStatus.OK);
     }
-
+    @GetMapping("/rank")
+    public ResponseEntity BorrowRank() {
+        List<BorrowRank> rankResponses = borrowService.findRankedBorrows();
+        return new ResponseEntity(
+                new ListResponse<>(borrowMapper.borrowRanksTorankedResponses(rankResponses)),HttpStatus.OK);
+    }
 
 }
