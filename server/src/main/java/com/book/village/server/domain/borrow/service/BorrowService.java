@@ -1,7 +1,6 @@
 package com.book.village.server.domain.borrow.service;
 
 import com.book.village.server.domain.borrow.entity.Borrow;
-import com.book.village.server.domain.borrow.entity.BorrowRank;
 import com.book.village.server.domain.borrow.repository.BorrowRepository;
 import com.book.village.server.domain.member.service.MemberService;
 import com.book.village.server.global.exception.CustomLogicException;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,8 +34,7 @@ public class BorrowService {
     public Borrow createBorrow(Borrow borrow, String userEmail) {
         borrow.setMember(memberService.findMember(userEmail));  // 이메일로 인한 유저멤버 변경
         borrow.setDisplayName(borrow.getMember().getDisplayName()); // 닉네임 유저 닉네임으로 변경.
-        borrow.setBorrowWhthr(true);
-        borrow.setViewCount(0L);
+        borrow.setBorrowWhthr(true);  // 상태 나눔 가능으로 수정 후, 데이터베이스에 넣음.
         return borrowRepository.save(borrow);
     }
 
@@ -107,7 +104,4 @@ public class BorrowService {
         }
     }
 
-    public List<BorrowRank> findRankedBorrows() {
-        return borrowRepository.findRankedBorrows();
-    }
 }

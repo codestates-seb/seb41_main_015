@@ -2,10 +2,8 @@ package com.book.village.server.domain.borrow.controller;
 
 import com.book.village.server.domain.borrow.dto.BorrowDto;
 import com.book.village.server.domain.borrow.entity.Borrow;
-import com.book.village.server.domain.borrow.entity.BorrowRank;
 import com.book.village.server.domain.borrow.mapper.BorrowMapper;
 import com.book.village.server.domain.borrow.service.BorrowService;
-import com.book.village.server.global.response.ListResponse;
 import com.book.village.server.global.response.PageInfo;
 import com.book.village.server.global.response.PageResponseDto;
 import com.book.village.server.global.response.SingleResponse;
@@ -18,7 +16,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.List;
 
 @RestController
 @Validated
@@ -63,8 +60,6 @@ public class BorrowController {
     public ResponseEntity getBorrow(@PathVariable("borrow-id")Long borrowId) {
         // 서비스클래스에서 검증처리 됨.
         Borrow getBorrow = borrowService.findVerificationBorrow(borrowId);
-        getBorrow.setViewCount(getBorrow.getViewCount()+1);
-        borrowService.updateBorrow(getBorrow, getBorrow.getMember().getEmail());
         // 결과가 나오면 return
         return new ResponseEntity(new SingleResponse<>(borrowMapper.borrowToBorrowDtoResponse(getBorrow)),
                 HttpStatus.OK);
@@ -98,13 +93,6 @@ public class BorrowController {
         Page<Borrow> borrows = borrowService.searchBorrow(keyword, field, pageable);
         return new ResponseEntity<>(new PageResponseDto<>(borrowMapper.borrowsToBorrowResponseDtos(borrows.getContent()),
                 new PageInfo(borrows.getPageable(), borrows.getTotalElements())), HttpStatus.OK);
-    }
-
-    @GetMapping("/rank")
-    public ResponseEntity BorrowRank() {
-        List<BorrowRank> rankResponses = borrowService.findRankedBorrows();
-        return new ResponseEntity(
-                new ListResponse<>(borrowMapper.borrowRanksTorankedResponses(rankResponses)),HttpStatus.OK);
     }
 
 

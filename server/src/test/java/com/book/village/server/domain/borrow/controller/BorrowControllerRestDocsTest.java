@@ -103,7 +103,10 @@ class BorrowControllerRestDocsTest {
                 .imgUrl("imgUrl")
                 .talkUrl("talkUrl")
                 .borrowWhthr(true)
+<<<<<<< HEAD
                 .viewCount(0L)
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 .borrowComments(borrowCommentResponse)
                 .createdAt(createdAt)
                 .modifiedAt(modifiedAt)
@@ -170,7 +173,10 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
                                         fieldWithPath("data.borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 가능시 true)"),
+<<<<<<< HEAD
                                         fieldWithPath("data.viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("나눔 게시글 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("나눔 게시글 최신 수정 일자"),
                                         fieldWithPath("data.borrowComments").type(JsonFieldType.ARRAY).description("댓글 정보"),
@@ -205,8 +211,12 @@ class BorrowControllerRestDocsTest {
                         "publisher",
                         "thumbnail",
                         "talkUrl",
+<<<<<<< HEAD
                         true,
                         0L);
+=======
+                        true);
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
         String content = gson.toJson(patch);
 
         List<BorrowCommentDto.Response> borrowCommentResponse = List.of(
@@ -228,7 +238,10 @@ class BorrowControllerRestDocsTest {
                 "imgUrl",
                 "talkUrl",
                 true,
+<<<<<<< HEAD
                 0L,
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 borrowCommentResponse,
                 createdAt,
                 modifiedAt
@@ -282,8 +295,12 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("publisher").type(JsonFieldType.STRING).description("나눌 책 출판사").optional(),
                                         fieldWithPath("thumbnail").type(JsonFieldType.STRING).description("나눌 책 도서 이미지").optional(),
                                         fieldWithPath("talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크").optional(),
+<<<<<<< HEAD
                                         fieldWithPath("borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부").optional(),
                                         fieldWithPath("viewCount").type(JsonFieldType.NUMBER).description("조회 수").optional()
+=======
+                                        fieldWithPath("borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부").optional()
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
 
                                 )
                         ),
@@ -301,7 +318,10 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
                                         fieldWithPath("data.borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 가능시 true)"),
+<<<<<<< HEAD
                                         fieldWithPath("data.viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("나눔 게시글 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("나눔 게시글 최신 수정 일자"),
                                         fieldWithPath("data.borrowComments").type(JsonFieldType.ARRAY).description("댓글 정보"),
@@ -375,7 +395,10 @@ class BorrowControllerRestDocsTest {
                 .imgUrl("imgUrl")
                 .talkUrl("talkUrl")
                 .borrowWhthr(true)
+<<<<<<< HEAD
                 .viewCount(0L)
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 .borrowComments(list)
                 .createdAt(createdAt)
                 .modifiedAt(modifiedAt)
@@ -446,7 +469,10 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
                                         fieldWithPath("data.borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 가능시 true)"),
+<<<<<<< HEAD
                                         fieldWithPath("data.viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                                         fieldWithPath("data.borrowComments").type(JsonFieldType.ARRAY).description("나눔 댓글 리스트"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("나눔 게시글 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("나눔 게시글 최신 수정 일자"),
@@ -502,7 +528,10 @@ class BorrowControllerRestDocsTest {
                 .imgUrl("imgUrl2")
                 .talkUrl("talkUrl2")
                 .borrowWhthr(true)
+<<<<<<< HEAD
                 .viewCount(0L)
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 .borrowComments(null)
                 .createdAt(createdAt)
                 .modifiedAt(modifiedAt)
@@ -522,7 +551,10 @@ class BorrowControllerRestDocsTest {
                 "displayName1",
                 "talkUrl1",
                 true,
+<<<<<<< HEAD
                 0L,
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 new Member(),
                 null));
 
@@ -536,7 +568,10 @@ class BorrowControllerRestDocsTest {
                 "displayName2",
                 "talkUrl2",
                 true,
+<<<<<<< HEAD
                 0L,
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 new Member(),
                 null));
 
@@ -584,7 +619,10 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.[].talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
                                         fieldWithPath("data.[].borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 가능시 true)"),
+<<<<<<< HEAD
                                         fieldWithPath("data.[].viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                                         fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("나눔 게시글 생성 일자"),
                                         fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("나눔 게시글 최신 수정 일자"),
                                         fieldWithPath("data.[].borrowComments").type(JsonFieldType.NULL).description("댓글 정보"),
@@ -623,7 +661,10 @@ class BorrowControllerRestDocsTest {
                 "imgUrl1",
                 "talkUrl1",
                 true,
+<<<<<<< HEAD
                 0L,
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 null,
                 createdAt,
                 modifiedAt
@@ -640,7 +681,10 @@ class BorrowControllerRestDocsTest {
                 "imgUrl2",
                 "talkUrl2",
                 true,
+<<<<<<< HEAD
                 0L,
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 null,
                 createdAt,
                 modifiedAt
@@ -660,7 +704,10 @@ class BorrowControllerRestDocsTest {
                 "displayName1",
                 "talkUrl1",
                 true,
+<<<<<<< HEAD
                 0L,
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 new Member(),
                 null
                 ));
@@ -675,7 +722,10 @@ class BorrowControllerRestDocsTest {
                 "displayName2",
                 "talkUrl2",
                 true,
+<<<<<<< HEAD
                 0L,
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 new Member(),
                 null
         ));
@@ -725,7 +775,10 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.[].talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
                                         fieldWithPath("data.[].borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 가능시 true)"),
+<<<<<<< HEAD
                                         fieldWithPath("data.[].viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                                         fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("나눔 게시글 생성 일자"),
                                         fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("나눔 게시글 최신 수정 일자"),
                                         fieldWithPath("data.[].borrowComments").type(JsonFieldType.NULL).description("댓글 정보"),
@@ -813,7 +866,10 @@ class BorrowControllerRestDocsTest {
                 "imgUrl1",
                 "talkUrl1",
                 true,
+<<<<<<< HEAD
                 0L,
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 null,
                 createdAt,
                 modifiedAt
@@ -830,7 +886,10 @@ class BorrowControllerRestDocsTest {
                 "imgUrl2",
                 "talkUrl2",
                 true,
+<<<<<<< HEAD
                 0L,
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 null,
                 createdAt,
                 modifiedAt
@@ -852,7 +911,10 @@ class BorrowControllerRestDocsTest {
                 "displayName1",
                 "talkUrl1",
                 true,
+<<<<<<< HEAD
                 0L,
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 new Member(),
                 null)
         );
@@ -867,7 +929,10 @@ class BorrowControllerRestDocsTest {
                 "displayName2",
                 "talkUrl",
                 true,
+<<<<<<< HEAD
                 0L,
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 new Member(),
                 null)
         );
@@ -916,7 +981,10 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.[].talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
                                         fieldWithPath("data.[].borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 가능시 true)"),
+<<<<<<< HEAD
                                         fieldWithPath("data.[].viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                                         fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("생성 일자"),
                                         fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("수정 일자"),
                                         fieldWithPath("data.[].borrowComments").type(JsonFieldType.NULL).description("댓글 정보"),
@@ -969,7 +1037,10 @@ class BorrowControllerRestDocsTest {
                 "imgUrl",
                 "talkUrl",
                 false,
+<<<<<<< HEAD
                 0L,
+=======
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                 borrowCommentResponse,
                 createdAt,
                 modifiedAt
@@ -1009,7 +1080,11 @@ class BorrowControllerRestDocsTest {
                         requestFields(
                                 List.of(
                                         fieldWithPath("borrowId").type(JsonFieldType.STRING).description("나눔 식별자").ignored(),
+<<<<<<< HEAD
                                         fieldWithPath("borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 완료시 false)")
+=======
+                                        fieldWithPath("borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 완료시 false)").optional()
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                                 )
                         ),
                         responseFields(
@@ -1025,8 +1100,12 @@ class BorrowControllerRestDocsTest {
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("회원 닉네임"),
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("회원 프로필 이미지"),
                                         fieldWithPath("data.talkUrl").type(JsonFieldType.STRING).description("오픈톡 링크"),
+<<<<<<< HEAD
                                         fieldWithPath("data.borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 완료시 false)"),
                                         fieldWithPath("data.viewCount").type(JsonFieldType.NUMBER).description("조회 수"),
+=======
+                                        fieldWithPath("data.borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 가능시 true)"),
+>>>>>>> 958796400c10d05704653d6074833e629309d3a7
                                         fieldWithPath("data.borrowComments").type(JsonFieldType.ARRAY).description("나눔 댓글 리스트"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("나눔 게시글 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("나눔 게시글 최신 수정 일자"),

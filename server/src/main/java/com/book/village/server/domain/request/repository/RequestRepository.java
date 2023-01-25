@@ -15,7 +15,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
 
     @Query(value =
             "select book_title, author, publisher,count(book_title) as count " +
-                    "from request group by book_title, author, publisher order by count desc limit 5;", nativeQuery = true)
+                    "from request group by book_title, author, publisher limit 5;", nativeQuery = true)
     List<RequestRank> findRankedRequests();
 
     Page<Request> findAllByMember_Email(String email,Pageable pageable);

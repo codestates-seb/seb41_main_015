@@ -1303,19 +1303,3 @@ include::{snippets}/rank-request/response-fields.adoc[]
 
 .response-body
 include::{snippets}/rank-request/response-body.adoc[]
-
-=== 나눔 랭킹
-.curl-request
-include::{snippets}/rank-borrow/curl-request.adoc[]
-
-.http-request
-include::{snippets}/rank-borrow/http-request.adoc[]
-
-.http-response
-include::{snippets}/rank-borrow/http-response.adoc[]
-
-.response-fields
-include::{snippets}/rank-borrow/response-fields.adoc[]
-
-.response-body
-include::{snippets}/rank-borrow/response-body.adoc[]
