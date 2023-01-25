@@ -269,7 +269,11 @@ const DetailForm = ({ data, page, id }) => {
                   <div className="createdAt">{prettyDate(data.createdAt)}</div>
                 </div>
                 <div className={onlyInShare}>
-                  {isSameUser ? <ToggleSwitch /> : <ShareStatus />}
+                  {isSameUser ? (
+                    <ToggleSwitch id={id} status={data.borrowWhthr} />
+                  ) : (
+                    <ShareStatus status={data.borrowWhthr} />
+                  )}
                 </div>
               </SAuthorAndStatus>
             </STopWrap>
