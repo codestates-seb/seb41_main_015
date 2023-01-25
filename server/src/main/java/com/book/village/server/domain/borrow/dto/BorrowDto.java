@@ -28,6 +28,7 @@ public class BorrowDto {
         private String publisher;   // 나눔 책 출판사
 
         @NotBlank
+        @Lob
         private String thumbnail;
 
         private String talkUrl;     // 오픈 챗 링크
@@ -52,6 +53,7 @@ public class BorrowDto {
 
         private String publisher;   // 나눔 책 출판사
 
+        @Lob
         private String thumbnail;
 
         private String talkUrl;     // 톡 링크
@@ -75,8 +77,10 @@ public class BorrowDto {
         private String bookTitle;   // 나눔 책 제목
         private String author;      // 나눔 책 저자
         private String publisher;   // 나눔 책 출판사
+        @Lob
         private String thumbnail;
         private String displayName; // 회원 닉네임
+        @Lob
         private String imgUrl;
         private String talkUrl;     // 톡링크
 
