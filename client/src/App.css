@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', 'Noto Sans KR', 'PingFang SC', 'Apple SD Gothic Neo',
+    'Microsoft YaHei UI', 'Malgun Gothic', sans-serif;
+}
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+button {
+  padding: 0;
+  background-color: transparent;
+  font-size: 100%;
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+  outline: none;
+  font-size: 100%;
+  color: inherit;
+}
