@@ -107,5 +107,4 @@ public class BorrowController {
                 new ListResponse<>(borrowMapper.borrowRanksTorankedResponses(rankResponses)),HttpStatus.OK);
     }
 
-
 }
