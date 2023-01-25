@@ -48,7 +48,8 @@ public class Borrow extends Auditable {
     @Column
     private Long viewCount = 0L;
 
-    private Boolean borrowWhthr;
+    @Column
+    private Boolean borrowWhthr = true;
 
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
