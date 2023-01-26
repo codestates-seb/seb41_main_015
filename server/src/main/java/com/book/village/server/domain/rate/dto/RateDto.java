@@ -14,9 +14,10 @@ public class RateDto {
     public static class Post{
         @Range(min = 1,max = 5)
         private Long rating;
-        private String title;
         @Lob
         private String content;
+        @Lob
+        private String thumbnail;
     }
 
     @AllArgsConstructor
@@ -29,7 +30,6 @@ public class RateDto {
         @Range(min = 1,max = 5)
         private Long rating;
         private String displayName;
-        private String title;
         @Lob
         private String content;
     }
@@ -46,7 +46,6 @@ public class RateDto {
         private String displayName;
         @Lob
         private String imgUrl;
-        private String title;
         @Lob
         private String content;
         private LocalDateTime createdAt;
