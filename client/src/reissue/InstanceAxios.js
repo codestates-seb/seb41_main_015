@@ -49,7 +49,6 @@ instanceAxios.interceptors.request.use(
         const cookieRefreshToken = getCookie('refreshToken');
         // const sessionStorageRefreshToken =
         //   sessionStorage.getItem('refreshToken');
-
         const token = async () => {
           await axios
             .post(

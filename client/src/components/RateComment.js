@@ -240,7 +240,6 @@ const RateComment = ({ data }) => {
         </SCommentWrap>
       )}
     </>
-
   );
 };
 

@@ -261,6 +261,7 @@ const RateDetail = () => {
           </SRightSide>
         </SDetailWrap>
         <RateComment data={data.rates} />
+
       </div>
     </SDetailLayout>
   );
