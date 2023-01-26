@@ -35,7 +35,7 @@ const Home = () => {
           handleCloseModal={handleCloseModal}
         />
       ) : null}
-      <p>홈 화면 부분입니다!</p>
+      <p>홈 화면 부분입니다! 제발 되어주세요</p>
       {/* 캐러셀 */}
       <CarouselForm />
     </>

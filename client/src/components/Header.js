@@ -65,7 +65,6 @@ const SNavContainer = styled.ol`
   }
 `;
 
-// 로그인
 const SLoginBtn = styled.button`
   width: 90px;
   height: 33px;
@@ -82,7 +81,6 @@ const SLoginBtn = styled.button`
   }
 `;
 
-// 로그아웃
 const SLogout = styled.div`
   display: flex;
   align-items: center;
@@ -149,6 +147,8 @@ const Header = () => {
       return 'request';
     } else if (pathname.slice(1, 6) === 'share') {
       return 'share';
+    } else if (pathname.slice(1, 5) === 'rate') {
+      return 'rate';
     }
   };
 
@@ -156,6 +156,9 @@ const Header = () => {
     currentLocation(pathname) === 'share' ? 'olItem focused' : 'olItem';
   const requestClassName =
     currentLocation(pathname) === 'request' ? 'olItem focused' : 'olItem';
+
+  const rateClassName =
+    currentLocation(pathname) === 'rate' ? 'olItem focused' : 'olItem';
 
   // 헤더 바깥부분 클릭해도 유지되는 로직 (수정 전)
   // const [currentTab, setCurrentTab] = useState(0);
@@ -181,7 +184,7 @@ const Header = () => {
         <Link to="/reqList" className={requestClassName}>
           요청
         </Link>
-        <Link to="/" className="olItem">
+        <Link to="/rateList" className={rateClassName}>
           평점
         </Link>
         <Link to="/" className="olItem">
