@@ -16,7 +16,8 @@ public class PageInfo {
         this.currentPage = pageable.getPageNumber();
         this.pageSize = pageable.getPageSize();
         this.totalElements = totalElements;
-        this.totalPage = (totalElements + pageSize - 1) / pageSize;
+        this.totalPage = (long)Math.ceil((double)totalElements/pageSize);
+
         this.currentElements = Math.min(pageSize, totalElements - (currentPage * pageSize));
         this.first = currentPage == 0;
         this.last = currentPage == totalPage - 1;
