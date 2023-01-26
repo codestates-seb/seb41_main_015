@@ -72,8 +72,8 @@ public class RateControllerRestDocsTest {
 
         RateDto.Post post = new RateDto.Post(
                 3L,
-                "title1",
-                "content1"
+                "content1",
+                "thumbnail1"
         );
         LocalDateTime createdAt=LocalDateTime.now();
         LocalDateTime modifiedAt=createdAt;
@@ -85,7 +85,6 @@ public class RateControllerRestDocsTest {
                 3L,
                 "displayName1",
                 "imgUrl1",
-                "title1",
                 "content1",
                 createdAt,
                 createdAt
@@ -93,7 +92,7 @@ public class RateControllerRestDocsTest {
 
         given(mapper.ratePostDtoToRate(Mockito.any(RateDto.Post.class))).willReturn(new Rate());
         given(rateService.createRate(Mockito.any(Rate.class),Mockito.anyString(),
-                Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString())).willReturn(new Rate());
+                Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString())).willReturn(new Rate());
         given(mapper.rateToRateResponseDto(Mockito.any(Rate.class))).willReturn(response);
 
         ResultActions actions =
@@ -112,7 +111,6 @@ public class RateControllerRestDocsTest {
         actions
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.data.rating").value(post.getRating()))
-                .andExpect(jsonPath("$.data.title").value(post.getTitle()))
                 .andExpect(jsonPath("$.data.content").value(post.getContent()))
                 .andDo(document("post-rate",
                         getRequestPreProcessor(),
@@ -131,8 +129,8 @@ public class RateControllerRestDocsTest {
                         requestFields(
                                 List.of(
                                         fieldWithPath("rating").type(JsonFieldType.NUMBER).description("평점"),
-                                        fieldWithPath("title").type(JsonFieldType.STRING).description("평점 제목"),
-                                        fieldWithPath("content").type(JsonFieldType.STRING).description("평점 내용")
+                                        fieldWithPath("content").type(JsonFieldType.STRING).description("평점 내용"),
+                                        fieldWithPath("thumbnail").type(JsonFieldType.STRING).description("책 표지 이미지")
                                 )
                         ),
                         // response body
@@ -143,7 +141,6 @@ public class RateControllerRestDocsTest {
                                         fieldWithPath("data.rating").type(JsonFieldType.NUMBER).description("평점"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("작성자"),
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("작성자 프로필 이미지"),
-                                        fieldWithPath("data.title").type(JsonFieldType.STRING).description("평점 제목"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("평점 내용"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("평점 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("평점 수정 일자")
@@ -162,7 +159,6 @@ public class RateControllerRestDocsTest {
                 rateId,
                 3L,
                 "displayName1",
-                "title1",
                 "content1"
         );
         LocalDateTime createdAt = LocalDateTime.now();
@@ -175,7 +171,6 @@ public class RateControllerRestDocsTest {
                 3L,
                 "displayName1",
                 "imgUrl1",
-                "title1",
                 "content1",
                 createdAt,
                 createdAt
@@ -198,7 +193,6 @@ public class RateControllerRestDocsTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data.rating").value(patch.getRating()))
                 .andExpect(jsonPath("$.data.displayName").value(patch.getDisplayName()))
-                .andExpect(jsonPath("$.data.title").value(patch.getTitle()))
                 .andExpect(jsonPath("$.data.content").value(patch.getContent()))
                 .andDo(document("patch-rate",
                         getRequestPreProcessor(),
@@ -215,7 +209,6 @@ public class RateControllerRestDocsTest {
                                         fieldWithPath("rateId").type(JsonFieldType.NUMBER).description("평점 식별자").ignored(),
                                         fieldWithPath("rating").type(JsonFieldType.NUMBER).description("평점").optional(),
                                         fieldWithPath("displayName").type(JsonFieldType.STRING).description("평점 작성자").optional(),
-                                        fieldWithPath("title").type(JsonFieldType.STRING).description("평점 제목").optional(),
                                         fieldWithPath("content").type(JsonFieldType.STRING).description("평점 내용").optional()
                                 )
                         ),
@@ -227,7 +220,6 @@ public class RateControllerRestDocsTest {
                                         fieldWithPath("data.rating").type(JsonFieldType.NUMBER).description("평점"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("작성자"),
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("작성자 프로필 이미지"),
-                                        fieldWithPath("data.title").type(JsonFieldType.STRING).description("평점 제목"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("평점 내용"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("평점 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("평점 수정 일자")
@@ -250,7 +242,6 @@ public class RateControllerRestDocsTest {
                 3L,
                 "displayName1",
                 "imgUrl",
-                "title1",
                 "content1",
                 createdAt,
                 createdAt
@@ -281,7 +272,6 @@ public class RateControllerRestDocsTest {
                                         fieldWithPath("data.rating").type(JsonFieldType.NUMBER).description("평점"),
                                         fieldWithPath("data.displayName").type(JsonFieldType.STRING).description("작성자"),
                                         fieldWithPath("data.imgUrl").type(JsonFieldType.STRING).description("작성자 프로필 이미지"),
-                                        fieldWithPath("data.title").type(JsonFieldType.STRING).description("평점 제목"),
                                         fieldWithPath("data.content").type(JsonFieldType.STRING).description("평점 내용"),
                                         fieldWithPath("data.createdAt").type(JsonFieldType.STRING).description("평점 생성 일자"),
                                         fieldWithPath("data.modifiedAt").type(JsonFieldType.STRING).description("평점 수정 일자")
@@ -304,7 +294,6 @@ public class RateControllerRestDocsTest {
                 3L,
                 "displayName1",
                 "imgUrl1",
-                "title1",
                 "content1",
                 createdAt,
                 createdAt
@@ -315,7 +304,6 @@ public class RateControllerRestDocsTest {
                 3L,
                 "displayName2",
                 "imgUrl2",
-                "title2",
                 "content2",
                 createdAt,
                 createdAt
@@ -325,8 +313,8 @@ public class RateControllerRestDocsTest {
         responseList.add(response2);
 
         List<Rate> list = List.of(
-                new Rate(1L, 3L, "displayName1", "title1","content1", new Book(), new Member()),
-                new Rate(2L, 3L, "displayName2", "title2","content2", new Book(), new Member())
+                new Rate(1L, 3L, "displayName1", "content1", new Book(), new Member()),
+                new Rate(2L, 3L, "displayName2", "content2", new Book(), new Member())
         );
 
         given(rateService.findMyRates(Mockito.anyString(),Mockito.any(Pageable.class))).willReturn(
@@ -368,7 +356,6 @@ public class RateControllerRestDocsTest {
                                         fieldWithPath("data.[].rating").type(JsonFieldType.NUMBER).description("평점"),
                                         fieldWithPath("data.[].displayName").type(JsonFieldType.STRING).description("작성자"),
                                         fieldWithPath("data.[].imgUrl").type(JsonFieldType.STRING).description("작성자 프로필 이미지"),
-                                        fieldWithPath("data.[].title").type(JsonFieldType.STRING).description("평점 제목"),
                                         fieldWithPath("data.[].content").type(JsonFieldType.STRING).description("평점 내용"),
                                         fieldWithPath("data.[].createdAt").type(JsonFieldType.STRING).description("평점 생성 일자"),
                                         fieldWithPath("data.[].modifiedAt").type(JsonFieldType.STRING).description("평점 수정 일자"),

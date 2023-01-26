@@ -20,6 +20,7 @@ instanceAxios.interceptors.request.use(
     const sessionAccessToken = sessionStorage.getItem('accessToken');
     const cookieRefreshToken = getCookie('refreshToken');
     // const sessionStorageRefreshToken = sessionStorage.getItem('refreshToken');
+
     //토큰 디코딩
     const accessDecoded = jwtDecode(sessionAccessToken);
     const refreshDecode = jwtDecode(cookieRefreshToken);
@@ -48,6 +49,7 @@ instanceAxios.interceptors.request.use(
         const cookieRefreshToken = getCookie('refreshToken');
         // const sessionStorageRefreshToken =
         //   sessionStorage.getItem('refreshToken');
+
         const token = async () => {
           await axios
             .post(
