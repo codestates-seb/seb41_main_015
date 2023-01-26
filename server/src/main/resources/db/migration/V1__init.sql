@@ -1,4 +1,4 @@
-create table book
+create table if not exists book
 (
     book_id     bigint auto_increment
         primary key,
@@ -16,7 +16,7 @@ create table book
         unique (isbn)
 );
 
-create table member
+create table if not exists member
 (
     member_id     bigint auto_increment
         primary key,
@@ -35,7 +35,7 @@ create table member
         unique (email)
 );
 
-create table borrow
+create table if not exists borrow
 (
     borrow_id    bigint auto_increment
         primary key,
@@ -56,7 +56,7 @@ create table borrow
         foreign key (member_id) references member (member_id)
 );
 
-create table borrow_comment
+create table if not exists borrow_comment
 (
     borrow_comment_id bigint auto_increment
         primary key,
@@ -72,7 +72,7 @@ create table borrow_comment
         foreign key (borrow_id) references borrow (borrow_id)
 );
 
-create table community
+create table if not exists community
 (
     community_id bigint auto_increment
         primary key,
@@ -88,7 +88,7 @@ create table community
         foreign key (member_id) references member (member_id)
 );
 
-create table community_comment
+create table if not exists community_comment
 (
     community_comment_id bigint auto_increment
         primary key,
@@ -104,7 +104,7 @@ create table community_comment
         foreign key (member_id) references member (member_id)
 );
 
-create table member_roles
+create table if not exists member_roles
 (
     member_member_id bigint       not null,
     roles            varchar(255) null,
@@ -112,7 +112,7 @@ create table member_roles
         foreign key (member_member_id) references member (member_id)
 );
 
-create table rate
+create table if not exists rate
 (
     rate_id      bigint auto_increment
         primary key,
@@ -129,7 +129,7 @@ create table rate
         foreign key (member_id) references member (member_id)
 );
 
-create table refresh_token
+create table if not exists refresh_token
 (
     refresh_token_id bigint auto_increment
         primary key,
@@ -139,7 +139,7 @@ create table refresh_token
         foreign key (member) references member (member_id)
 );
 
-create table request
+create table if not exists request
 (
     request_id   bigint auto_increment
         primary key,
@@ -159,7 +159,7 @@ create table request
         foreign key (member_id) references member (member_id)
 );
 
-create table request_comment
+create table if not exists request_comment
 (
     request_comment_id bigint auto_increment
         primary key,
