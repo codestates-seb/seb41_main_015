@@ -17,6 +17,9 @@ const SBookContainer = styled.li`
   &:hover {
     background-color: #e3e3e369;
     transition: 0.2s;
+    #title {
+      color: #bb2649;
+    }
   }
 
   @media screen and (max-width: 1080px) {
@@ -130,12 +133,12 @@ const SBookContainer = styled.li`
   .onlyInShare {
     display: none;
   }
-  #title {
+  /* #title {
     &:hover {
       color: #bb2649;
       cursor: pointer;
     }
-  }
+  } */
   .f-row {
     flex-direction: column;
   }
