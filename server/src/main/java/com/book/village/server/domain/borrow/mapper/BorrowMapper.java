@@ -2,7 +2,6 @@ package com.book.village.server.domain.borrow.mapper;
 
 import com.book.village.server.domain.borrow.dto.BorrowDto;
 import com.book.village.server.domain.borrow.entity.Borrow;
-import com.book.village.server.domain.borrow.entity.BorrowRank;
 import com.book.village.server.domain.borrowcomment.mapper.BorrowCommentMapper;
 import com.book.village.server.domain.borrowcomment.mapper.BorrowCommentMapperImpl;
 import org.mapstruct.Mapper;
@@ -53,23 +52,6 @@ public interface BorrowMapper {
         for( Borrow borrow : borrows) {
             BorrowDto.Response response = borrowToBorrowDtoResponse( borrow );
             response.setBorrowComments(null);
-            list.add(response);
-        }
-        return list;
-    }
-
-    default List<BorrowDto.rankResponse> borrowRanksTorankedResponses(List<BorrowRank> borrows) {
-        if (borrows == null) {
-            return null;
-        }
-        List<BorrowDto.rankResponse> list = new ArrayList<>(borrows.size());
-        for (BorrowRank borrow : borrows) {
-            BorrowDto.rankResponse response = new BorrowDto.rankResponse(
-                    borrow.getBook_Title(),
-                    borrow.getAuthor(),
-                    borrow.getPublisher(),
-                    borrow.getCount()
-            );
             list.add(response);
         }
         return list;
