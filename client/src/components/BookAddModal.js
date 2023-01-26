@@ -108,6 +108,7 @@ const BookAddModal = ({
   handleCloseModal,
   onBookInfoChange,
   inputs,
+  isRate = false,
 }) => {
   const [bookList, setBookList] = useState([]);
   const [text, setText] = useState('');
@@ -133,16 +134,27 @@ const BookAddModal = ({
   };
 
   const handleChoose = (chooseBook) => {
-    const { title, authors, publisher, thumbnail } = chooseBook;
+    const { title, authors, publisher, thumbnail, isbn } = chooseBook;
     console.log(authors[0]);
 
-    onBookInfoChange({
-      ...inputs,
-      bookTitle: title,
-      author: authors[0] === undefined ? '저자없음' : authors[0],
-      publisher: publisher,
-      thumbnail: thumbnail,
-    });
+    if (isRate === true) {
+      onBookInfoChange({
+        ...inputs,
+        bookTitle: title,
+        author: authors[0] === undefined ? '저자없음' : authors[0],
+        publisher: publisher,
+        thumbnail: thumbnail,
+        isbn: isbn,
+      });
+    } else {
+      onBookInfoChange({
+        ...inputs,
+        bookTitle: title,
+        author: authors[0] === undefined ? '저자없음' : authors[0],
+        publisher: publisher,
+        thumbnail: thumbnail,
+      });
+    }
 
     handleCloseModal();
   };
