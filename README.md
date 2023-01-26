@@ -1,18 +1,6 @@
 # 북 빌리지(Book Village)
 
 
-## Index
-[프로젝트 소개](#About-project)
-
-[배포 주소](#Deployed-Link)
-
-[프로젝트 기간](#Period)
-
-[기술 스택](#Skill-stack)
-
-[팀원 소개](#Teammates)
-
-[문서](#Documents)
 
 ## About project
 <img src="https://user-images.githubusercontent.com/90237119/214839894-60ce9d7f-c647-408e-9851-0bac2988b842.png"/>
@@ -24,11 +12,11 @@
 함께하는 독서 습관을 만들어주는 서비스, book village에 오신 걸 환영합니다!
 ---
 
-## Deployed Link
+## :link:Deployed Link
 
 ---
 
-## Period
+## :date:Period
 ### 2022.01.03 - 2022.02.03
 
 ---
@@ -90,7 +78,7 @@
 
 --- 
 
-## Teammates
+## :busts_in_silhouette:Teammates
 
 ### FE
 
@@ -105,7 +93,7 @@
 | [Github](https://github.com/SsangSoo) | [Github](https://github.com/orioncsy) | [Github](https://github.com/pjongk148 ) |
 
 
-## Documents
+## :clipboard:Documents
 [API 명세서](https://serverbookvillage.kro.kr/docs/index.html)
 
 [요구사항 정의서](https://docs.google.com/spreadsheets/d/1s_uDAJEEsSa-ojYmqWtKNOzHXdKeygg3pqBt5e6STzc/edit#gid=428803499)
