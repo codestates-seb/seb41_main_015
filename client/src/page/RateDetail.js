@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { prettyDate } from '../util/dateparse';
 import { ReactComponent as Star } from '../image/star.svg';
 import RateModal from '../components/RateModal';
+import RateComment from '../components/RateComment';
 
 const SDetailLayout = styled.main`
   padding: 24px;
@@ -259,6 +260,7 @@ const RateDetail = () => {
             <p className="description">{data.content}</p>
           </SRightSide>
         </SDetailWrap>
+        <RateComment data={data.rates} />
       </div>
     </SDetailLayout>
   );

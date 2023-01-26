@@ -19,7 +19,6 @@ public interface RateMapper {
             response.setRating(rate.getRating());
             response.setDisplayName(rate.getDisplayName());
             response.setImgUrl(rate.getMember().getImgUrl());
-            response.setTitle(rate.getTitle());
             response.setContent(rate.getContent());
             response.setCreatedAt(rate.getCreatedAt());
             response.setModifiedAt(rate.getModifiedAt());
