@@ -23,7 +23,7 @@
 
 ## Skill stack
 
-### System Architecture
+### :books:System Architecture
 
 <img src="https://user-images.githubusercontent.com/90237119/214830731-13205243-7ee1-4cd4-9837-ab3cb129d5a7.png"/>
 
@@ -82,16 +82,16 @@
 
 ### FE
 
-|    김혜민     |    장예진     |             최윤지             |    최창훈     |
-|:----------:|:----------:|:---------------------------:|:----------:|
-| [Github](https://github.com/aemaaeng) | [Github](https://github.com/yejin32) | [Github](https://github.com/djWjfk) | [Github](https://github.com/cjsrmachs) |
+| <a href=https://github.com/aemaaeng><img src="https://avatars.githubusercontent.com/u/78579776?v=4" width=100px/> | <a href=https://github.com/yejin32><img src="https://avatars.githubusercontent.com/u/93540726?v=4" width=100px/> | <a href=https://github.com/djWjfk><img src="https://avatars.githubusercontent.com/u/105706403?v=4" width=100px/> | <a href=https://github.com/cjsrmachs><img src="https://avatars.githubusercontent.com/u/111436967?v=4" width=100px/> |
+|:----------------------------------:|:----------:|:---------------------------:|:----------:|
+|                김혜민                 |    장예진     |             최윤지             |    최창훈     |
+
 
 ### BE
 
-|                   김성수                   |                   채승윤                   |                   박종혁                    |
-|:---------------------------------------:|:---------------------------------------:|:----------------------------------------:|
-| [Github](https://github.com/SsangSoo) | [Github](https://github.com/orioncsy) | [Github](https://github.com/pjongk148 ) |
-
+| <a href=https://github.com/SsangSoo><img src="https://avatars.githubusercontent.com/u/85716720?v=4" width=100px/> | <a href=https://github.com/orioncsy><img src="https://avatars.githubusercontent.com/u/90237119?v=4" width=100px/> | <a href=https://github.com/pjongk148><img src="https://avatars.githubusercontent.com/u/77969043?v=4" width=100px/> |
+|:--------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------:|
+|                                          김성수                                           |                                                        채승윤                                                        |                                          박종혁                                           |
 
 ## :clipboard:Documents
 [API 명세서](https://serverbookvillage.kro.kr/docs/index.html)
