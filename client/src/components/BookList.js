@@ -205,7 +205,8 @@ const BookList = ({ data, route }) => {
                   <div id="articleInfo">
                     <div id="createdAt">{elapsed(article.createdAt)}</div>
                     <div id="views">
-                      <Eye width="14px" height="14px" />0
+                      <Eye width="14px" height="14px" />
+                      {article.view}
                     </div>
                   </div>
                 </div>
