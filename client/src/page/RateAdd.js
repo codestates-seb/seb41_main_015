@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import BookAddModal from '../components/BookAddModal';
 import instanceAxios from '../reissue/InstanceAxios';
-import RateStar from '../components/RateStar';
+import { RateStar } from '../components/RateStar';
 import Swal from 'sweetalert2';
 
 const StyledForm = styled.div`

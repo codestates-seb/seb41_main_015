@@ -11,6 +11,17 @@ const SRatingContainer = styled.div`
   }
 `;
 
+const SRatingContainerSmall = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+  #rate {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+`;
+
 const RateStar = ({ rating, setRating }) => {
   return (
     <SRatingContainer>
@@ -28,4 +39,21 @@ const RateStar = ({ rating, setRating }) => {
   );
 };
 
-export default RateStar;
+const RateStarSmall = ({ rating, setRating }) => {
+  return (
+    <SRatingContainerSmall>
+      <StarRatings
+        rating={rating}
+        starRatedColor="#f1e05a"
+        starHoverColor="#f1e05a"
+        starDimension="20px"
+        starSpacing="3px"
+        changeRating={setRating}
+        name="ratingSmall"
+      />
+      <div id="rate">{rating}</div>
+    </SRatingContainerSmall>
+  );
+};
+
+export { RateStar, RateStarSmall };
