@@ -23,7 +23,11 @@
 
 ## Skill stack
 
+<<<<<<< HEAD
 ### :books:System Architecture
+=======
+### System Architecture
+>>>>>>> 58d61b164a985b5393fc1fa6ee8bef1406401361
 
 <img src="https://user-images.githubusercontent.com/90237119/214830731-13205243-7ee1-4cd4-9837-ab3cb129d5a7.png"/>
 
@@ -92,6 +96,7 @@
 | <a href=https://github.com/SsangSoo><img src="https://avatars.githubusercontent.com/u/85716720?v=4" width=100px/><br/><sub><b>@SsangSoo</b></sub></a><br/> | <a href=https://github.com/orioncsy><img src="https://avatars.githubusercontent.com/u/90237119?v=4" width=100px/><br/><sub><b>@orioncsy</b></sub></a><br/> | <a href=https://github.com/pjongk148><img src="https://avatars.githubusercontent.com/u/77969043?v=4" width=100px/><br/><sub><b>@pjongk148</b></sub></a><br/> |
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------:|
 |                                                                            김성수                                                                             |                                                                            채승윤                                                                             |                                          박종혁                                           |
+
 
 ## :clipboard:Documents
 [API 명세서](https://serverbookvillage.kro.kr/docs/index.html)
