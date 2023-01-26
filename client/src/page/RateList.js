@@ -10,12 +10,21 @@ const StyledRateList = styled.div`
     margin: 0px 50px;
   }
   .rateHeader {
+    height: 146px;
     color: #2c2c2c;
     padding: 18px;
     border-bottom: 1px solid #acacac;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .title {
+      display: flex;
+      flex-direction: column;
+      h2 {
+        margin-bottom: 0;
+        font-size: 22px;
+      }
+    }
     .rateBtn {
       width: 100px;
       height: 38px;
@@ -57,7 +66,10 @@ const RateList = (props) => {
   return (
     <StyledRateList>
       <div className="rateHeader">
-        <h2>평점</h2>
+        <div className="title">
+          <h2>빌리지 사람들의 평점 목록입니다!</h2>
+          <p>알고 있는 책에 자유롭게 평점을 매겨보세요!</p>
+        </div>
         <button className="rateBtn" onClick={() => navigate('/rateAdd')}>
           책 등록하기
         </button>
