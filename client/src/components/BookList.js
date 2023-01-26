@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import ShareStatus from './ShareStatus';
 import { ReactComponent as Eye } from '../image/eye.svg';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { elapsed } from '../util/dateparse';
 
 const SBookContainer = styled.li`
@@ -13,6 +13,11 @@ const SBookContainer = styled.li`
   height: 100%;
   padding: 0 18px;
   /* margin: 0.8rem; */
+
+  &:hover {
+    background-color: #e3e3e369;
+    transition: 0.2s;
+  }
 
   @media screen and (max-width: 1080px) {
     /* display: flex;
@@ -152,7 +157,6 @@ const SBookList = styled.ol`
 `;
 
 const BookList = ({ data, route }) => {
-  const navigate = useNavigate();
   const path = route === 'share' ? '/shareDetail' : '/reqDetail';
   const onlyInShare = route === 'share' ? '' : 'onlyInShare';
 
@@ -173,47 +177,42 @@ const BookList = ({ data, route }) => {
         const status = route === 'share' ? article.borrowWhthr : null;
 
         return (
-          <SBookContainer key={index}>
-            <div className="shareTitle">
-              <Link to={`${path}/${id}`}>
+          <Link to={`${path}/${id}`}>
+            <SBookContainer key={index}>
+              <div className="shareTitle">
                 <span id="title">{article.title}</span>
-              </Link>
-              <div className={onlyInShare}>
-                <ShareStatus status={status} />
-              </div>
-            </div>
-            <div className="f-row">
-              <div className="coverBox">
-                <img
-                  className="bookCover"
-                  src={cover}
-                  alt="bookCover"
-                  onClick={() => navigate(`${path}/${id}`)}
-                />
-              </div>
-              <div className="informationBox">
-                <p className="fs-18 mb-15">{article.bookTitle}</p>
-                <div className="item-flex">
-                  <p className="mfs-16">{article.author}/</p>
-                  <p className="mfs-16">{article.publisher}</p>
+                <div className={onlyInShare}>
+                  <ShareStatus status={status} />
                 </div>
-                <div className="createdAt-r">
-                  <div id="displayName">
-                    <img src={profile} alt="프로필사진" />
-                    {article.displayName}
+              </div>
+              <div className="f-row">
+                <div className="coverBox">
+                  <img className="bookCover" src={cover} alt="bookCover" />
+                </div>
+                <div className="informationBox">
+                  <p className="fs-18 mb-15">{article.bookTitle}</p>
+                  <div className="item-flex">
+                    <p className="mfs-16">{article.author}/</p>
+                    <p className="mfs-16">{article.publisher}</p>
                   </div>
-                  <div id="articleInfo">
-                    <div id="createdAt">{elapsed(article.createdAt)}</div>
-                    <div id="views">
-                      <Eye width="14px" height="14px" />
-                      {article.view}
+                  <div className="createdAt-r">
+                    <div id="displayName">
+                      <img src={profile} alt="프로필사진" />
+                      {article.displayName}
+                    </div>
+                    <div id="articleInfo">
+                      <div id="createdAt">{elapsed(article.createdAt)}</div>
+                      <div id="views">
+                        <Eye width="14px" height="14px" />
+                        {article.view}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <p className="word-break mt-20 mfs-16">{article.content}</p>
-          </SBookContainer>
+              <p className="word-break mt-20 mfs-16">{article.content}</p>
+            </SBookContainer>
+          </Link>
         );
       })}
     </SBookList>
