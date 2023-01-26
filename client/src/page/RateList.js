@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import instanceAxios from '../reissue/InstanceAxios';
+import axios from 'axios';
 import styled from 'styled-components';
 import RateItems from '../components/RateItems';
 import { useNavigate } from 'react-router-dom';
@@ -51,10 +51,11 @@ const StyledRateList = styled.div`
 const RateList = (props) => {
   const [bookItems, setBookItems] = useState([]);
   const navigate = useNavigate();
+  const url = 'https://serverbookvillage.kro.kr/';
 
   useEffect(() => {
-    instanceAxios
-      .get(`v1/books?page=0&size=5&sort=createdAt%2Cdesc`)
+    axios
+      .get(url + `v1/books?page=0&size=5&sort=createdAt%2Cdesc`)
       .then((res) => {
         setBookItems(res.data.data);
       })

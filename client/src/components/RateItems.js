@@ -14,22 +14,33 @@ const StyledRateItems = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 20px 0 10px;
+    color: #3d3d3d;
+    font-weight: 500;
 
     img {
       width: 150px;
     }
 
     .bookInfo {
-      p,
-      span {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 3px 0;
-      }
+      width: 140px;
+    }
+    p,
+    span {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      margin: 4px auto 0;
       span {
         margin: 0;
       }
+    }
+    .bookStar {
+      font-size: 15px;
+      color: #595959;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
     }
   }
 `;
@@ -50,7 +61,7 @@ const RateItems = (data) => {
             <div className="bookInfo">
               <p>{item.bookTitle}</p>
               <span className="bookStar">
-                <BookStar className="bookStar" />
+                <BookStar />
                 {item.avgRate}
               </span>
             </div>
