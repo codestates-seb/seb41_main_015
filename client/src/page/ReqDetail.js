@@ -17,6 +17,10 @@ const ReqDetail = () => {
       .get(url + `v1/requests/${id}`)
       .then((res) => {
         setData(res.data.data);
+        const sortRequestComments = res.data.data.requestComments;
+        sortRequestComments.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
         setReqComment(res.data.data.requestComments);
       })
       .catch((err) => {

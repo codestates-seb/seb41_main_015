@@ -288,13 +288,7 @@ const MyPageEdit = () => {
       </STitle>
       <SWrapEdit>
         <SDefaultProfile>
-          <img
-            src={
-              imgUrl ||
-              'https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg'
-            }
-            alt="profile"
-          />
+          <img src={imgUrl} alt="profile" />
         </SDefaultProfile>
         <SFlexRow>
           <SLabelList>
