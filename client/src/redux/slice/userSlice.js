@@ -3,11 +3,11 @@ import { getCookie, setCookie, removeCookie } from '../../util/cookie/cookie';
 import instanceAxios from '../../reissue/InstanceAxios';
 
 const sessionAccessToken = sessionStorage.getItem('accessToken');
-const sessionStorageRefreshToken = sessionStorage.getItem('refreshToken');
-// const cookieRefreshToken = getCookie('refreshToken');
+// const sessionStorageRefreshToken = sessionStorage.getItem('refreshToken');
+const cookieRefreshToken = getCookie('refreshToken');
 const initialState = {
   accessToken: sessionAccessToken,
-  refreshToken: sessionStorageRefreshToken,
+  refreshToken: cookieRefreshToken,
   membership: null,
 };
 
@@ -38,12 +38,12 @@ const userSlice = createSlice({
         });
       }
       sessionStorage.setItem('membership', membership);
-      sessionStorage.setItem('refreshToken', refreshToken);
-      // setCookie('refreshToken', refreshToken, {
-      //   path: '/',
-      //   secure: true,
-      //   sameSite: 'none',
-      // });
+      // sessionStorage.setItem('refreshToken', refreshToken);
+      setCookie('refreshToken', refreshToken, {
+        path: '/',
+        secure: true,
+        sameSite: 'none',
+      });
       state.accessToken = accessToken;
       state.refreshToken = refreshToken;
       state.membership = membership;
@@ -51,7 +51,7 @@ const userSlice = createSlice({
     logout: (state) => {
       console.log('세션 스토리지 삭제!');
       sessionStorage.clear();
-      // removeCookie('refreshToken');
+      removeCookie('refreshToken');
       state.accessToken = null;
       state.refreshToken = null;
       state.membership = null;
