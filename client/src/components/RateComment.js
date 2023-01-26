@@ -165,73 +165,81 @@ const RateComment = ({ data }) => {
   // displayName, content, createdAt, imgUrl, rating
 
   return (
-    <SCommentWrap>
-      <h2>리뷰 {data.length}</h2>
-      {data.map((rate) => {
-        const currentUser = sessionStorage.getItem('displayName');
-        const isSameUser = rate.displayName === currentUser ? true : false;
+    <>
+      {data && (
+        <SCommentWrap>
+          <h2>리뷰 {data.length}</h2>
+          {data.map((rate) => {
+            const currentUser = sessionStorage.getItem('displayName');
+            const isSameUser = rate.displayName === currentUser ? true : false;
 
-        return (
-          <SCommentContainer key={rate.rateId}>
-            <img src={rate.imgUrl} alt="profile" />
-            <div className="texts">
-              <div className="commentTop">
-                <div className="commentInfo">
-                  <div id="author">{rate.displayName}</div>
-                  {editId === rate.rateId ? (
-                    <RateStarSmall rating={rating} setRating={setRating} />
-                  ) : (
-                    <div id="rates">
-                      <BookStar />
-                      <span>{rate.rating}</span>
+            return (
+              <SCommentContainer key={rate.rateId}>
+                <img src={rate.imgUrl} alt="profile" />
+                <div className="texts">
+                  <div className="commentTop">
+                    <div className="commentInfo">
+                      <div id="author">{rate.displayName}</div>
+                      {editId === rate.rateId ? (
+                        <RateStarSmall rating={rating} setRating={setRating} />
+                      ) : (
+                        <div id="rates">
+                          <BookStar />
+                          <span>{rate.rating}</span>
+                        </div>
+                      )}
                     </div>
+                    {isSameUser ? (
+                      <SControlButtons>
+                        {editId === rate.rateId ? (
+                          <span className="button" onClick={handleSubmitEdit}>
+                            확인
+                          </span>
+                        ) : (
+                          <span
+                            className="button"
+                            onClick={() =>
+                              handleEditMode(
+                                rate.rateId,
+                                rate.rating,
+                                rate.content
+                              )
+                            }
+                          >
+                            수정
+                          </span>
+                        )}
+                        <span>|</span>
+                        {editId === rate.rateId ? (
+                          <span className="button" onClick={handleCancelEdit}>
+                            취소
+                          </span>
+                        ) : (
+                          <span
+                            className="button"
+                            onClick={() => handleDeleteRate(rate.rateId)}
+                          >
+                            삭제
+                          </span>
+                        )}
+                      </SControlButtons>
+                    ) : null}
+                  </div>
+                  {editId === rate.rateId ? (
+                    <input
+                      defaultValue={rate.content}
+                      onChange={handleChangeInput}
+                    ></input>
+                  ) : (
+                    <div id="content">{rate.content}</div>
                   )}
                 </div>
-                {isSameUser ? (
-                  <SControlButtons>
-                    {editId === rate.rateId ? (
-                      <span className="button" onClick={handleSubmitEdit}>
-                        확인
-                      </span>
-                    ) : (
-                      <span
-                        className="button"
-                        onClick={() =>
-                          handleEditMode(rate.rateId, rate.rating, rate.content)
-                        }
-                      >
-                        수정
-                      </span>
-                    )}
-                    <span>|</span>
-                    {editId === rate.rateId ? (
-                      <span className="button" onClick={handleCancelEdit}>
-                        취소
-                      </span>
-                    ) : (
-                      <span
-                        className="button"
-                        onClick={() => handleDeleteRate(rate.rateId)}
-                      >
-                        삭제
-                      </span>
-                    )}
-                  </SControlButtons>
-                ) : null}
-              </div>
-              {editId === rate.rateId ? (
-                <input
-                  defaultValue={rate.content}
-                  onChange={handleChangeInput}
-                ></input>
-              ) : (
-                <div id="content">{rate.content}</div>
-              )}
-            </div>
-          </SCommentContainer>
-        );
-      })}
-    </SCommentWrap>
+              </SCommentContainer>
+            );
+          })}
+        </SCommentWrap>
+      )}
+    </>
   );
 };
 
