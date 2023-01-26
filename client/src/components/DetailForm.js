@@ -25,7 +25,7 @@ const SDetailWrap = styled.div`
 
   img {
     margin: 24px 24px 24px 0px;
-    width: 350px;
+    width: 250px;
   }
 
   @media screen and (max-width: 1100px) {
@@ -264,12 +264,17 @@ const DetailForm = ({ data, page, id }) => {
                     <div>{data.displayName}</div>
                   </div>
                   <div className="views">
-                    <Eye width="14px" height="14px" />0
+                    <Eye width="14px" height="14px" />
+                    {data.view}
                   </div>
                   <div className="createdAt">{prettyDate(data.createdAt)}</div>
                 </div>
                 <div className={onlyInShare}>
-                  {isSameUser ? <ToggleSwitch /> : <ShareStatus />}
+                  {isSameUser ? (
+                    <ToggleSwitch id={id} status={data.borrowWhthr} />
+                  ) : (
+                    <ShareStatus status={data.borrowWhthr} />
+                  )}
                 </div>
               </SAuthorAndStatus>
             </STopWrap>

@@ -63,6 +63,11 @@ const SModalWrap = styled.div`
     padding-left: 5px;
   }
 
+  .inputContainer {
+    display: flex;
+    justify-content: center;
+  }
+
   .redBorder {
     border: 1.5px solid #bb2649;
     border-radius: 3px;
@@ -174,16 +179,18 @@ const NicknameModal = ({ isModalOpen, handleCloseModal }) => {
                     닉네임은 변경이 <span id="impossible">불가능</span>하니
                     신중하게 설정해주세요!
                   </div>
-                  <input
-                    type="text"
-                    placeholder="2~20자 이내 한글, 영어, 숫자만 가능"
-                    value={nickname}
-                    onChange={(e) => {
-                      setNickname(e.target.value);
-                    }}
-                    onFocus={resetErrorMessage}
-                    className={redBorder}
-                  />
+                  <div className="inputContainer">
+                    <input
+                      type="text"
+                      placeholder="2~20자 이내 한글, 영어, 숫자만 가능"
+                      value={nickname}
+                      onChange={(e) => {
+                        setNickname(e.target.value);
+                      }}
+                      onFocus={resetErrorMessage}
+                      className={redBorder}
+                    />
+                  </div>
                   <div className="errorMessage">
                     {errorMessage ? errorMessage : ''}
                   </div>

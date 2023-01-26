@@ -169,6 +169,8 @@ const BookList = ({ data, route }) => {
           : 'https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg';
         // 아이디
         const id = route === 'share' ? article.borrowId : article.requestId;
+        // 상태
+        const status = route === 'share' ? article.borrowWhthr : null;
 
         return (
           <SBookContainer key={index}>
@@ -177,7 +179,7 @@ const BookList = ({ data, route }) => {
                 <span id="title">{article.title}</span>
               </Link>
               <div className={onlyInShare}>
-                <ShareStatus />
+                <ShareStatus status={status} />
               </div>
             </div>
             <div className="f-row">
@@ -203,7 +205,8 @@ const BookList = ({ data, route }) => {
                   <div id="articleInfo">
                     <div id="createdAt">{elapsed(article.createdAt)}</div>
                     <div id="views">
-                      <Eye width="14px" height="14px" />0
+                      <Eye width="14px" height="14px" />
+                      {article.view}
                     </div>
                   </div>
                 </div>
