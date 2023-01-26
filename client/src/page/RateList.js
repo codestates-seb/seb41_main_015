@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import RateItems from '../components/RateItems';
 import { useNavigate } from 'react-router-dom';
+import Paging from '../components/Paging';
 
 const StyledRateList = styled.div`
   margin: 0 190px;
@@ -48,21 +49,53 @@ const StyledRateList = styled.div`
     }
   }
 `;
+
 const RateList = (props) => {
   const [bookItems, setBookItems] = useState([]);
+  const [page, setPage] = useState(1);
+  const [count, setCount] = useState(0);
+  // const [item, setItem] = useState();
+  const PER_PAGE = 5;
+
   const navigate = useNavigate();
   const url = 'https://serverbookvillage.kro.kr/';
 
   useEffect(() => {
     axios
-      .get(url + `v1/books?page=0&size=5&sort=createdAt%2Cdesc`)
+      .get(url + `v1/books?page=0&size=${PER_PAGE}&sort=createdAt%2Cdesc`)
       .then((res) => {
+        console.log('1111', res.data.pageInfo.totalElements);
         setBookItems(res.data.data);
+        setCount(res.data.pageInfo.totalElements);
+        // setPage(4);
       })
       .catch((err) => {
+        setCount(0);
+        setBookItems([]);
         console.log(err);
       });
   }, []);
+
+  //서버에 요청
+  const getDatabyPage = async (page) => {
+    try {
+      const res = await axios.get(
+        url + `v1/books?page=${page - 1}&size=${PER_PAGE}&sort=createdAt%2Cdesc`
+      );
+      const data = res.data;
+      console.log(data);
+      return data;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handlePageChange = async (page) => {
+    setPage(page);
+    const pageData = await getDatabyPage(page);
+    setBookItems(pageData.data);
+    console.log('222', pageData.data);
+  };
 
   return (
     <StyledRateList>
@@ -75,7 +108,13 @@ const RateList = (props) => {
           책 등록하기
         </button>
       </div>
-      <RateItems className="rateItems" data={bookItems} />
+      <RateItems data={bookItems} />
+      <Paging
+        count={count}
+        page={page}
+        perPage={PER_PAGE}
+        handlePageChange={handlePageChange}
+      />
     </StyledRateList>
   );
 };
