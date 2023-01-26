@@ -183,7 +183,7 @@ const BookAddModal = ({
                     onKeyDown={handleEnter}
                     onChange={hadleTextUpdate}
                     value={text}
-                    autocomplete="off"
+                    autoComplete="off"
                   />
                   <button className="search" onClick={handleClickSearch}>
                     검색
