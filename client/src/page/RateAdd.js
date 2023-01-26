@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import styled from 'styled-components';
+import BookAddModal from '../components/BookAddModal';
 
 const StyledForm = styled.div`
   margin: 0px 190px;
@@ -9,20 +11,21 @@ const StyledForm = styled.div`
     border-bottom: 1px solid #acacac;
   }
 
-  @media screen and (max-width: 1360px) {
+  @media screen and (max-width: 1200px) {
     margin: 0px 50px;
   }
 `;
 
 const SInputContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 30px 0px;
   font-size: 13px;
-  @media screen and (max-width: 930px) {
+  @media screen and (max-width: 1200px) {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 30px;
     margin: 0;
   }
 `;
@@ -60,6 +63,9 @@ const SInputs = styled.div`
       border-bottom: 2px solid #4f4f4f;
     }
   }
+  @media screen and (max-width: 1200px) {
+    width: 80%;
+  }
   .content {
     height: 220px;
     border: none;
@@ -95,6 +101,12 @@ const SButtonBox = styled.div`
 `;
 
 const RateAdd = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <StyledForm>
       <div className="title">
@@ -112,11 +124,32 @@ const RateAdd = () => {
           <div>그리고 별 다섯개..</div>
         </SImageContainer>
         <SInputs>
-          <input placeholder="책 제목을 입력해주세요" />
-          <input placeholder="책 저자를 입력해주세요" />
-          <input placeholder="출판사를 입력해주세요" />
+          <input
+            placeholder="책 제목을 입력해주세요"
+            onClick={() => setIsModalOpen(true)}
+            autoComplete="off"
+          />
+          <BookAddModal
+            isModalOpen={isModalOpen}
+            // onBookInfoChange={onBookInfoChange}
+            handleCloseModal={handleCloseModal}
+          />
+          <input
+            placeholder="책 저자를 입력해주세요"
+            disabled
+            autoComplete="off"
+          />
+          <input
+            placeholder="출판사를 입력해주세요"
+            disabled
+            autoComplete="off"
+          />
           <input placeholder="제목을 입력해주세요" />
-          <input placeholder="코멘트를 입력해주세요" className="content" />
+          <input
+            placeholder="코멘트를 입력해주세요"
+            className="content"
+            autoComplete="off"
+          />
         </SInputs>
       </SInputContainer>
       <SButtonBox>
