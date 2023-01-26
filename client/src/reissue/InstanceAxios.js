@@ -18,11 +18,12 @@ instanceAxios.interceptors.request.use(
     //##요청이 전달되기 전에 작업 수행
     // 토큰 가져오기
     const sessionAccessToken = sessionStorage.getItem('accessToken');
-    // const cookieRefreshToken = getCookie('refreshToken');
-    const sessionStorageRefreshToken = sessionStorage.getItem('refreshToken');
+    const cookieRefreshToken = getCookie('refreshToken');
+    // const sessionStorageRefreshToken = sessionStorage.getItem('refreshToken');
+
     //토큰 디코딩
     const accessDecoded = jwtDecode(sessionAccessToken);
-    const refreshDecode = jwtDecode(sessionStorageRefreshToken);
+    const refreshDecode = jwtDecode(cookieRefreshToken);
     //현재시간(초 단위)
     const now = Math.floor(Date.now() / 1000);
     // console.log(
@@ -41,13 +42,13 @@ instanceAxios.interceptors.request.use(
       if (refreshDecode.exp - now < 60 * 1) {
         //로그아웃
         sessionStorage.clear();
-        // removeCookie('refreshToken');
+        removeCookie('refreshToken');
         window.location.reload();
       } else {
         //리프레쉬토큰 만료기간이 남았다면 엑세스토큰 갱신 요청
-        // const cookieRefreshToken = getCookie('refreshToken');
-        const sessionStorageRefreshToken =
-          sessionStorage.getItem('refreshToken');
+        const cookieRefreshToken = getCookie('refreshToken');
+        // const sessionStorageRefreshToken =
+        //   sessionStorage.getItem('refreshToken');
         const token = async () => {
           await axios
             .post(
@@ -57,7 +58,7 @@ instanceAxios.interceptors.request.use(
                 headers: {
                   'Content-Type': 'application/json;charset=UTF-8',
                   Accept: 'application/json',
-                  Authorization: sessionStorageRefreshToken,
+                  Authorization: cookieRefreshToken,
                 },
               }
             )
@@ -70,6 +71,7 @@ instanceAxios.interceptors.request.use(
               }
             })
             .catch((err) => {
+              console.error(err);
               Swal.fire(
                 '죄송합니다',
                 '로그아웃 후 다시 이용해주세요.',
