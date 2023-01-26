@@ -21,12 +21,10 @@
 
 ---
 
-## Skill stack
+## :books:Skill stack
 
 
-### :books:System Architecture
-
-### System Architecture
+### :wrench:System Architecture
 
 <img src="https://user-images.githubusercontent.com/90237119/214830731-13205243-7ee1-4cd4-9837-ab3cb129d5a7.png"/>
 
