@@ -13,6 +13,9 @@ import ReqDetail from './page/ReqDetail';
 import MyPage from './page/MyPage';
 import MyPageEdit from './page/MyPageEdit';
 import Callback from './page/Callback';
+import RateList from './page/RateList';
+import RateAdd from './page/RateAdd';
+import RateDetail from './page/RateDetail';
 
 const App = () => {
   return (
@@ -50,6 +53,9 @@ const App = () => {
           <Route path="/reqDetail/:id" element={<ReqDetail />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/mypageEdit" element={<MyPageEdit />} />
+          <Route path="/rateList" element={<RateList />} />
+          <Route path="/rateAdd" element={<RateAdd />} />
+          <Route path="/rateEdit" element={<RateDetail />} />
         </Route>
         {/* 푸터 필요없는 부분 */}
         <Route path="/oauth" element={<Callback />} />
