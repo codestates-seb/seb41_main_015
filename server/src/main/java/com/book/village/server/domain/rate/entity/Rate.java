@@ -29,9 +29,6 @@ public class Rate extends Auditable {
     private String displayName;
 
     @Column(nullable = false)
-    private String title;
-
-    @Column(nullable = false)
     @Lob
     private String content;
 

@@ -34,7 +34,7 @@ public class RateService {
         this.bookRepository = bookRepository;
     }
 
-    public Rate createRate(Rate rate, String email, String isbn, String bookTitle, String author, String publisher){
+    public Rate createRate(Rate rate, String email, String isbn, String bookTitle, String author, String publisher, String thumbnail) {
         if(rateRepository.findByMember_EmailAndBook_Isbn(email, isbn).isPresent())
             throw new CustomLogicException(ExceptionCode.RATE_DUPLICATE);
         if(!bookRepository.findByIsbn(isbn).isPresent()){
@@ -43,6 +43,7 @@ public class RateService {
             book.setBookTitle(bookTitle);
             book.setIsbn(isbn);
             book.setPublisher(publisher);
+            book.setThumbnail(thumbnail);
             bookRepository.save(book);
         }
         Book findBook=bookRepository.findByIsbn(isbn).get();

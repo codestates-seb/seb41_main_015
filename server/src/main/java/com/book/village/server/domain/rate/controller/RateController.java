@@ -36,9 +36,10 @@ public class RateController {
                                    @RequestParam String bookTitle,
                                    @RequestParam String author,
                                    @RequestParam String publisher,
-                                   Principal principal){
+                                   Principal principal) {
+        String thumbnail= ratePostDto.getThumbnail();
         Rate rate = rateService.createRate(mapper.ratePostDtoToRate(ratePostDto), principal.getName(),
-                isbn,bookTitle, author, publisher);
+                isbn,bookTitle, author, publisher,thumbnail);
         return new ResponseEntity(new SingleResponse<>(mapper.rateToRateResponseDto(rate)),
                 HttpStatus.CREATED);
     }
