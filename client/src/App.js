@@ -55,7 +55,7 @@ const App = () => {
           <Route path="/mypageEdit" element={<MyPageEdit />} />
           <Route path="/rateList" element={<RateList />} />
           <Route path="/rateAdd" element={<RateAdd />} />
-          <Route path="/rateEdit" element={<RateDetail />} />
+          <Route path="/rateDetail/:id" element={<RateDetail />} />
         </Route>
         {/* 푸터 필요없는 부분 */}
         <Route path="/oauth" element={<Callback />} />
