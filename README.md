@@ -82,16 +82,16 @@
 
 ### FE
 
-| <a href=https://github.com/aemaaeng><img src="https://avatars.githubusercontent.com/u/78579776?v=4" width=100px/> | <a href=https://github.com/yejin32><img src="https://avatars.githubusercontent.com/u/93540726?v=4" width=100px/> | <a href=https://github.com/djWjfk><img src="https://avatars.githubusercontent.com/u/105706403?v=4" width=100px/> | <a href=https://github.com/cjsrmachs><img src="https://avatars.githubusercontent.com/u/111436967?v=4" width=100px/> |
+| <a href=https://github.com/aemaaeng><img src="https://avatars.githubusercontent.com/u/78579776?v=4" width=100px/><br/><sub><b>@aemaaeng</b></sub></a><br/> | <a href=https://github.com/yejin32><img src="https://avatars.githubusercontent.com/u/93540726?v=4" width=100px/><br/><sub><b>@yejin32</b></sub></a><br/> | <a href=https://github.com/djWjfk><img src="https://avatars.githubusercontent.com/u/105706403?v=4" width=100px/><br/><sub><b>@djWjfk</b></sub></a><br/> | <a href=https://github.com/cjsrmachs><img src="https://avatars.githubusercontent.com/u/111436967?v=4" width=100px/><br/><sub><b>@cjsrmachs</b></sub></a><br/> |
 |:----------------------------------:|:----------:|:---------------------------:|:----------:|
 |                김혜민                 |    장예진     |             최윤지             |    최창훈     |
 
 
 ### BE
 
-| <a href=https://github.com/SsangSoo><img src="https://avatars.githubusercontent.com/u/85716720?v=4" width=100px/> | <a href=https://github.com/orioncsy><img src="https://avatars.githubusercontent.com/u/90237119?v=4" width=100px/> | <a href=https://github.com/pjongk148><img src="https://avatars.githubusercontent.com/u/77969043?v=4" width=100px/> |
-|:--------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------:|
-|                                          김성수                                           |                                                        채승윤                                                        |                                          박종혁                                           |
+| <a href=https://github.com/SsangSoo><img src="https://avatars.githubusercontent.com/u/85716720?v=4" width=100px/><br/><sub><b>@SsangSoo</b></sub></a><br/> | <a href=https://github.com/orioncsy><img src="https://avatars.githubusercontent.com/u/90237119?v=4" width=100px/><br/><sub><b>@orioncsy</b></sub></a><br/> | <a href=https://github.com/pjongk148><img src="https://avatars.githubusercontent.com/u/77969043?v=4" width=100px/><br/><sub><b>@pjongk148</b></sub></a><br/> |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------:|
+|                                                                            김성수                                                                             |                                                                            채승윤                                                                             |                                          박종혁                                           |
 
 ## :clipboard:Documents
 [API 명세서](https://serverbookvillage.kro.kr/docs/index.html)
