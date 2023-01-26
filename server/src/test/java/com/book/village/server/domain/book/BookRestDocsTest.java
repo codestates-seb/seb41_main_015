@@ -85,8 +85,8 @@ public class BookRestDocsTest {
         String content = gson.toJson(patch);
 
         List<RateDto.Response> rateResponse = List.of(
-                new RateDto.Response(1L, 3L, "displayName1","img1", "title1", "content1", createdAt, createdAt),
-                new RateDto.Response(2L, 3L, "displayName2","img2", "title2", "content2", createdAt, createdAt)
+                new RateDto.Response(1L, 3L, "displayName1","img1", "content1", createdAt, createdAt),
+                new RateDto.Response(2L, 3L, "displayName2","img2", "content2", createdAt, createdAt)
         );
         BookDto.Response response=new BookDto.Response(
                 bookId,
@@ -161,7 +161,6 @@ public class BookRestDocsTest {
                                         fieldWithPath("data.rates.[].rating").type(JsonFieldType.NUMBER).description("평점"),
                                         fieldWithPath("data.rates.[].displayName").type(JsonFieldType.STRING).description("평점 작성자"),
                                         fieldWithPath("data.rates.[].imgUrl").type(JsonFieldType.STRING).description("평점 작성자 프로필 이미지"),
-                                        fieldWithPath("data.rates.[].title").type(JsonFieldType.STRING).description("평점 제목"),
                                         fieldWithPath("data.rates.[].content").type(JsonFieldType.STRING).description("평점 내용"),
                                         fieldWithPath("data.rates.[].createdAt").type(JsonFieldType.STRING).description("평점 생성 일자"),
                                         fieldWithPath("data.rates.[].modifiedAt").type(JsonFieldType.STRING).description("평점 수정 일자")
@@ -180,8 +179,8 @@ public class BookRestDocsTest {
         LocalDateTime modifiedAt=createdAt;
 
         List<RateDto.Response> rateResponse = List.of(
-                new RateDto.Response(1L, 3L, "displayName1", "imgUrl1", "title1", "content1", createdAt, createdAt),
-                new RateDto.Response(2L, 3L, "displayName2","imgUrl2", "title2", "content2", createdAt, createdAt)
+                new RateDto.Response(1L, 3L, "displayName1", "imgUrl1",  "content1", createdAt, createdAt),
+                new RateDto.Response(2L, 3L, "displayName2","imgUrl2","content2", createdAt, createdAt)
         );
         BookDto.Response response=new BookDto.Response(
                 bookId,
@@ -231,7 +230,6 @@ public class BookRestDocsTest {
                                         fieldWithPath("data.rates.[].rating").type(JsonFieldType.NUMBER).description("평점"),
                                         fieldWithPath("data.rates.[].displayName").type(JsonFieldType.STRING).description("평점 작성자"),
                                         fieldWithPath("data.rates.[].imgUrl").type(JsonFieldType.STRING).description("평점 작성자 프로필 이미지"),
-                                        fieldWithPath("data.rates.[].title").type(JsonFieldType.STRING).description("평점 제목"),
                                         fieldWithPath("data.rates.[].content").type(JsonFieldType.STRING).description("평점 내용"),
                                         fieldWithPath("data.rates.[].createdAt").type(JsonFieldType.STRING).description("평점 생성 일자"),
                                         fieldWithPath("data.rates.[].modifiedAt").type(JsonFieldType.STRING).description("평점 수정 일자")
