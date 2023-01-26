@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import CarouselForm from '../components/Carousel';
 import NicknameModal from '../components/NicknameModal';
+import Ranking from '../components/Ranking';
 
 const Home = () => {
   // 모달을 띄워보자
@@ -38,6 +39,7 @@ const Home = () => {
       <p>홈 화면 부분입니다! 제발 되어주세요</p>
       {/* 캐러셀 */}
       <CarouselForm />
+      <Ranking />
     </>
   );
 };
