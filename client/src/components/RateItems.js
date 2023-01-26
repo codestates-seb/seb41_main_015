@@ -44,7 +44,7 @@ const RateItems = (data) => {
             className="rateContainer"
             key={index}
             item={item}
-            onClick={() => navigate('/rateDetail')}
+            onClick={() => navigate(`/rateDetail/${item.bookId}`)}
           >
             <img src={item.thumbnail} alt="img" />
             <div className="bookInfo">
