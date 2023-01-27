@@ -4,11 +4,16 @@ import { ReactComponent as BookStar } from '../image/bookStar.svg';
 import bookAd from '../image/bookAd.png';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import eventB from '../image/eventB.png';
 
 const StyledRanking = styled.div`
   .bookAd {
     width: 80%;
     margin: 5% 10%;
+  }
+  .eventB {
+    width: 60%;
+    margin: 3% 20%;
   }
 `;
 
@@ -66,8 +71,13 @@ const SRateContainer = styled.div`
 const SContainer = styled.div`
   display: flex;
   justify-content: center;
-  /* justify-content: space-evenly; */
   margin: 30px;
+  @media screen and (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   h3 {
     padding: 10px;
     border-bottom: 1px solid #aaaaaa;
@@ -90,7 +100,9 @@ const SContainer = styled.div`
   .leftConntainer {
     margin-right: 7%;
     width: 500px;
-    /* border: 1px solid #3d3d3d; */
+    @media screen and (max-width: 800px) {
+      margin: 0 0 50px;
+    }
   }
   .rightConntainer {
     width: 500px;
@@ -165,7 +177,7 @@ const Ranking = () => {
       <img src={bookAd} alt="bookAd" className="bookAd" />
 
       <SContainer>
-        <div class="leftConntainer">
+        <div className="leftConntainer">
           <h3> ⚡ 빌리지 사람들이 많이 나눔하는 책</h3>
           <div className="rankingBox">
             {bookBorRank.map((item, index) => (
@@ -181,7 +193,7 @@ const Ranking = () => {
           </div>
         </div>
 
-        <div class="rightConntainer">
+        <div className="rightConntainer">
           <h3> ⚡ 빌리지 사람들이 많이 요청하는 책 </h3>
           <div className="rankingBox">
             {bookReqRank.map((item, index) => (
@@ -197,6 +209,8 @@ const Ranking = () => {
           </div>
         </div>
       </SContainer>
+
+      <img src={eventB} alt="bookAd" className="eventB" />
     </StyledRanking>
   );
 };
