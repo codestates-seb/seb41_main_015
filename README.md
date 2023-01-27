@@ -68,7 +68,7 @@
   <br>
 </div>
 
-### Cooperation tools
+### :two_men_holding_hands:Cooperation tools
 <div align=center>
   <img src="https://img.shields.io/badge/postman-FC4C02?style=for-the-badge&logo=postman&logoColor=white">
   <img src="https://img.shields.io/badge/discord-283274?style=for-the-badge&logo=discord&logoColor=white">
