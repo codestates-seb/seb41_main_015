@@ -12,6 +12,7 @@ const StyledRateItems = styled.div`
 
   .rateContainer {
     display: flex;
+    cursor: pointer;
     flex-direction: column;
     margin: 0 20px 0 10px;
     color: #3d3d3d;

@@ -22,6 +22,16 @@ const ShareAdd = () => {
     inputs;
 
   const handleClickSubmit = () => {
+    const accessToken = sessionStorage.getItem('accessToken');
+    if (!accessToken) {
+      Swal.fire(
+        '로그인이 필요한 서비스입니다',
+        '로그인 후 이용해주세요.',
+        'warning'
+      );
+      return;
+    }
+
     instanceAxios
       .post('/v1/borrows', {
         bookTitle,

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BookAddModal from './BookAddModal';
+import Swal from 'sweetalert2';
 
 const StyledReqForm = styled.div`
   h2 {
@@ -113,9 +114,6 @@ const SButtonBox = styled.div`
 
 const ReqForm = (props) => {
   const navigate = useNavigate();
-  const goBack = () => {
-    navigate(-1);
-  };
 
   const { inputs, onBookInfoChange } = props;
   const { bookTitle, author, publisher, talkUrl, title, content, thumbnail } =
@@ -124,6 +122,22 @@ const ReqForm = (props) => {
   const handleChangeString = (e, type) => {
     onBookInfoChange({ ...inputs, [`${type}`]: e.target.value });
     console.log(e.target.value);
+  };
+
+  const goBack = () => {
+    Swal.fire({
+      title: '작성을 취소하시겠습니까?',
+      text: '작성 중인 내용은 저장되지 않습니다',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#bb2649',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+    }).then((res) => {
+      if (res.isConfirmed) {
+        navigate(-1);
+      }
+    });
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);

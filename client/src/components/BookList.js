@@ -12,7 +12,6 @@ const SBookContainer = styled.li`
   width: 100%;
   height: 100%;
   padding: 0 18px;
-  /* margin: 0.8rem; */
 
   &:hover {
     background-color: #e3e3e369;
@@ -20,13 +19,6 @@ const SBookContainer = styled.li`
     #title {
       color: #bb2649;
     }
-  }
-
-  @media screen and (max-width: 1080px) {
-    /* display: flex;
-    flex-direction: column;
-    width: auto; */
-    /* padding: 0; */
   }
   .coverBox {
     margin-right: 1rem;
@@ -42,7 +34,6 @@ const SBookContainer = styled.li`
   }
   .informationBox {
     margin-left: 0;
-    /* margin-right: 1rem; */
     color: #212124;
   }
   .fs-18 {
@@ -133,12 +124,6 @@ const SBookContainer = styled.li`
   .onlyInShare {
     display: none;
   }
-  /* #title {
-    &:hover {
-      color: #bb2649;
-      cursor: pointer;
-    }
-  } */
   .f-row {
     flex-direction: column;
   }
@@ -147,7 +132,6 @@ const SBookContainer = styled.li`
 const SBookList = styled.ol`
   display: grid;
   grid-template-rows: repeat(auto-fill, 1fr);
-  /* grid-template-rows: repeat(6, 1fr); */
   grid-template-columns: repeat(2, minmax(446px, 1fr));
   gap: 30px;
   padding: 0px 10px;
@@ -180,8 +164,8 @@ const BookList = ({ data, route }) => {
         const status = route === 'share' ? article.borrowWhthr : null;
 
         return (
-          <Link to={`${path}/${id}`}>
-            <SBookContainer key={index}>
+          <Link to={`${path}/${id}`} key={index}>
+            <SBookContainer>
               <div className="shareTitle">
                 <span id="title">{article.title}</span>
                 <div className={onlyInShare}>
