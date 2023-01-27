@@ -18,9 +18,6 @@ const SLabel = styled.label`
   }
 
   input:checked + .statusSwitch {
-    /* 배경색 논의해보기 */
-    /* 테마색 */
-    /* background-color: #bb2649; */
     background-color: #c8f9b6;
   }
 
@@ -104,7 +101,6 @@ const SLabel = styled.label`
 
 const ToggleSwitch = ({ id, status }) => {
   // 초기값은 서버에서 받아온 나눔 상태 값 (boolean)
-  // props로 내려줘야 할 듯!!
   const [isAvailable, setIsAvailable] = useState(status);
 
   const handleToggleClick = () => {
@@ -122,12 +118,8 @@ const ToggleSwitch = ({ id, status }) => {
     }).then((res) => {
       if (res.isConfirmed) {
         handleToggleClick();
-        console.log('나눔 상태:', !isAvailable);
-        console.log('서버에 정보를 전송합니다...');
         instanceAxios
-          .patch(`v1/borrows/${id}`, {
-            borrowWhthr: !isAvailable,
-          })
+          .patch(`v1/borrows/completion/${id}`)
           .catch((err) => console.error(err));
       }
     });
