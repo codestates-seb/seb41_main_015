@@ -2,9 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 import styled from 'styled-components';
-import { prettyDate } from '../util/dateparse';
 import { ReactComponent as BookStar } from '../image/bookStar.svg';
 import RateModal from '../components/RateModal';
 import RateComment from '../components/RateComment';
@@ -43,7 +41,6 @@ const SDetailWrap = styled.div`
 
 const SRightSide = styled.div`
   margin: 24px;
-  /* border: 1px solid green; */
   width: calc(100% - 610px);
   .controlButtons {
     flex-shrink: 0;
@@ -70,7 +67,6 @@ const SRightSide = styled.div`
 
 const SBookInfo = styled.div`
   border-radius: 5px;
-  /* border-bottom: 1px solid #aaaaaa; */
   padding: 10px 0;
 
   h2 {
@@ -154,6 +150,7 @@ const RateDetail = () => {
   const url = 'https://serverbookvillage.kro.kr';
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const rateData = async () => {
       try {
         const res = await axios.get(url + `/v1/books/${id}`);
@@ -183,12 +180,6 @@ const RateDetail = () => {
             />
           </div>
           <SRightSide>
-            {/* <STopWrap>
-              <div className="titleAndButton">
-                <h1>{data.title}</h1>
-              </div>
-              <div className="createdAt">{prettyDate(data.createdAt)}</div>
-            </STopWrap> */}
             <SBookInfo>
               <div className="flex">
                 <h2>{data.bookTitle}</h2>
@@ -197,7 +188,6 @@ const RateDetail = () => {
                   {data.avgRate}
                 </SStarIcon>
               </div>
-
               <div className="mb-5 textCor">
                 저자: <span>{data.author || ''}</span>
               </div>
