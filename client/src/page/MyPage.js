@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import { useNavigate } from 'react-router-dom';
 import instanceAxios from '../reissue/InstanceAxios';
+import Paging from '../components/Paging';
 
 const STable = styled.table`
   /* margin-left: auto;
@@ -128,13 +130,34 @@ const MyPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
+  const [imgUrl, setImgUrl] = useState('');
   const [data, setData] = useState([]);
 
+  const url = 'https://serverbookvillage.kro.kr/';
+ 
+  const [page, setPage] = useState(1);
+
+  // 총 데이터 개수
+  const [count, setCount] = useState(0);
+  const PER_PAGE = 4;
+
   useEffect(() => {
+    setPage(1);
+    setData([]);
+
+     axios
+     .get(url + `/v1/borrows/mine?page=0&size=${PER_PAGE}&sort=createdAt%2Cdesc`)
+     .then((res) => {
+       setData(res.data.data);
+       setCount(res.data.pageInfo.totalElements);
+       setPage(1);
+     });
+
     instanceAxios.get('/v1/members').then((res) => {
       console.log(res);
       setEmail(res.data.data.email);
       setNickname(res.data.data.displayName);
+      setImgUrl(res.data.data.imgUrl);
     });
 
     instanceAxios
@@ -144,6 +167,28 @@ const MyPage = () => {
         setData(res.data.data);
       });
   }, []);
+
+
+
+  // const getDatabyPage = async (page);
+  //     const res = await axios.get(
+  //       url +
+  //         `v1/borrows/mine?page=${
+  //           page - 1
+  //         }&size=${PER_PAGE}&sort=createdAt%2Cdesc`
+  //     );
+  //     const data = res.data;
+  //     return data;
+
+  //   };
+  // const handlePageChange = async (page) => {
+  //   setPage(page);
+  //     const pageData = await getDatabyPage(page);
+  //     setData(pageData.data);
+  // };
+  
+
+
 
   return (
     <>
@@ -169,10 +214,17 @@ const MyPage = () => {
               <td>
                 <tr>
                   <td>
+                  {imgUrl.length !== 0 ? (
                     <SImage
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQve-F1mablIoZC6aIu2aVyBwDsaCAUu2863A&usqp=CAU"
+                      src={imgUrl}
                       alt="..."
                     ></SImage>
+                    ) : (
+                      <SImage
+                      src="	https://img.icons8.com/windows/32/null/user-male-circle.png"
+                      alt="..."
+                    ></SImage>
+                    )}
                   </td>
                   <SProfile>
                     이메일
@@ -200,7 +252,7 @@ const MyPage = () => {
                             <tr>
                               <td>
                                 <SDivideImage
-                                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9sYgypcA8MhjHyNJD7-u9L0EjZj7YomKVTA&usqp=CAU"
+                                  src={book.imgUrl}
                                   alt="..."
                                 ></SDivideImage>
                               </td>
@@ -225,6 +277,13 @@ const MyPage = () => {
                               </td>
                             </tr>
                           </table>
+                          <Paging
+                            page={page}
+                            count={count}
+                            perPage={PER_PAGE}
+                            // handlePageChange={handlePageChange}
+                            
+                          />
                         </SDivide>
                         <br></br>
                       </>
