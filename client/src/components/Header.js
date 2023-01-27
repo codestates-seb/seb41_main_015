@@ -181,7 +181,6 @@ const Header = () => {
         dispatch(logout());
         navigate();
         window.location.reload();
-        console.log('로그아웃 됨!');
       })
       .catch((err) => {
         console.error(err);
@@ -205,7 +204,6 @@ const Header = () => {
     currentLocation(pathname) === 'share' ? 'olItem focused' : 'olItem';
   const requestClassName =
     currentLocation(pathname) === 'request' ? 'olItem focused' : 'olItem';
-
   const rateClassName =
     currentLocation(pathname) === 'rate' ? 'olItem focused' : 'olItem';
 
@@ -214,7 +212,6 @@ const Header = () => {
     const profileData = async () => {
       try {
         const res = await instanceAxios.get('/v1/members');
-        console.log('s', res.data.data.imgUrl);
         setProfileData(res.data.data.imgUrl);
       } catch (error) {
         console.error(error);
