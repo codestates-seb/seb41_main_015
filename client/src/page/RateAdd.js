@@ -201,7 +201,7 @@ const RateAdd = () => {
           <input
             placeholder="책 제목을 입력해주세요"
             onClick={() => setIsModalOpen(true)}
-            value={bookTitle}
+            value={bookTitle || ''}
             onChange={(e) => handleChangeString(e, 'bookTitle')}
             autoComplete="off"
           />

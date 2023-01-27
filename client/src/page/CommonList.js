@@ -32,7 +32,7 @@ const CommonList = (props) => {
 
   // 총 데이터 개수
   const [count, setCount] = useState(0);
-  const PER_PAGE = 4;
+  const PER_PAGE = 10;
 
   useEffect(() => {
     // 상태 초기화
