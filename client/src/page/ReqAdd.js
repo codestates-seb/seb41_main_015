@@ -23,6 +23,16 @@ const ReqAdd = () => {
     inputs;
 
   const handleClickSubmit = () => {
+    const accessToken = sessionStorage.getItem('accessToken');
+    if (!accessToken) {
+      Swal.fire(
+        '로그인이 필요한 서비스입니다',
+        '로그인 후 이용해주세요.',
+        'warning'
+      );
+      return;
+    }
+
     console.log(inputs);
     instanceAxios
       .post('/v1/requests', {
