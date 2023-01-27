@@ -38,7 +38,6 @@ const SRateInfo = styled.div`
   flex-direction: column;
   margin: 0;
   text-align: center;
-  /* text-align: center; */
   .rateExplain {
     margin-top: 40px;
     margin-bottom: 10px;
@@ -80,27 +79,42 @@ const RateModal = ({ isModalOpen, handleCloseModal, data }) => {
   };
 
   const handleClickRateSubmit = () => {
-    instanceAxios
-      .post(
-        `/v1/rates?isbn=${data.isbn}&bookTitle=${data.bookTitle}&author=${data.author}&publisher=${data.publisher}`,
-        {
-          rating,
-          content,
-        }
-      )
-      .then((res) => {
-        handleCloseModal();
-        window.location.reload();
-        console.log('모달 평점 post', res.data.data);
-      })
-      .catch(() => {
-        Swal.fire(
-          '이미 평점이 등록되었습니다.',
-          '평점은 한 번만 등록할 수 있습니다.',
-          'warning'
-        );
-        handleCloseModal();
-      });
+    //로그인 회원만 이용가능한 서비스
+    const sessionAccessToken = sessionStorage.getItem('accessToken');
+    if (sessionAccessToken) {
+      if (content.length === 0) {
+        Swal.fire('평점 등록 실패', '1글자 이상 작성하셔야 합니다.', 'warning');
+      } else {
+        instanceAxios
+          .post(
+            `/v1/rates?isbn=${data.isbn}&bookTitle=${data.bookTitle}&author=${data.author}&publisher=${data.publisher}`,
+            {
+              rating,
+              content,
+            }
+          )
+          .then((res) => {
+            handleCloseModal();
+            window.location.reload();
+            console.log('모달 평점 post', res.data.data);
+          })
+          .catch((err) => {
+            console.error(err);
+            Swal.fire(
+              '이미 평점이 등록되었습니다.',
+              '평점은 한 번만 등록할 수 있습니다.',
+              'warning'
+            );
+            handleCloseModal();
+          });
+      }
+    } else {
+      Swal.fire(
+        '로그인이 필요한 서비스입니다',
+        '로그인 후 이용해주세요.',
+        'warning'
+      );
+    }
   };
 
   return (

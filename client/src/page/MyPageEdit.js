@@ -228,6 +228,24 @@ const MyPageEdit = () => {
     );
   };
 
+  //수정 취소 확인 함수
+  const handleCancel = () => {
+    Swal.fire({
+      title: '작성을 취소하시겠습니까?',
+      text: '작성 중인 내용은 저장되지 않습니다',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#bb2649',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+      // reverseButtons: true, //버튼 순서 거꾸로
+    }).then((res) => {
+      if (res.isConfirmed) {
+        window.location.reload();
+      }
+    });
+  };
+
   //저장 버튼 클릭 시, 서버로 patch 요청
   const handleClickSave = () => {
     console.log('33', imgUrl);
@@ -282,20 +300,18 @@ const MyPageEdit = () => {
 
   //회원탈퇴
   const handleClickQuit = () => {
-    instanceAxios.patch('/v1/members/quit').then(() => {
-      Swal.fire({
-        title: '회원탈퇴를 진행하시겠습니까?',
-        text: '회원탈퇴 후 재로그인이 어렵습니다 신중하게 생각해주세요.',
-        icon: 'warning',
-        showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-        confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-        cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-        confirmButtonText: '승인', // confirm 버튼 텍스트 지정
-        cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-        reverseButtons: true, // 버튼 순서 거꾸로
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // 만약 모달창에서 confirm 버튼을 눌렀다면
+    Swal.fire({
+      title: '회원탈퇴를 진행하시겠습니까?',
+      text: '회원탈퇴 후 로그인이 불가하니 신중하게 생각해주세요.',
+      icon: 'warning',
+      showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+      confirmButtonColor: '#bb2649', // confrim 버튼 색깔 지정
+      confirmButtonText: '탈퇴', // confirm 버튼 텍스트 지정
+      cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+    }).then((res) => {
+      if (res.isConfirmed) {
+        // 만약 모달창에서 confirm 버튼을 눌렀다면
+        instanceAxios.patch('/v1/members/quit').then(() => {
           sessionStorage.clear();
           navigate('/');
           window.location.reload();
@@ -305,8 +321,8 @@ const MyPageEdit = () => {
             '이용해주셔서 감사합니다',
             'success'
           );
-        }
-      });
+        });
+      }
     });
   };
 
@@ -403,7 +419,7 @@ const MyPageEdit = () => {
         </SFlexRow>
       </SWrapEdit>
       <SEditBtn>
-        <SCancelBtn onClick={() => navigate('/mypage')}>취소</SCancelBtn>
+        <SCancelBtn onClick={handleCancel}>취소</SCancelBtn>
         <SSaveBtn onClick={handleClickSave}>저장</SSaveBtn>
       </SEditBtn>
     </div>
