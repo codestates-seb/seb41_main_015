@@ -26,7 +26,7 @@
 
 ### :wrench:System Architecture
 
-<img src="https://user-images.githubusercontent.com/90237119/214830731-13205243-7ee1-4cd4-9837-ab3cb129d5a7.png"/>
+<img src="https://user-images.githubusercontent.com/90237119/215009495-92ee5ab6-7790-4d3a-b44b-1cb222332e8e.png"/>
 
 ### FE
 <div align=center>
@@ -57,6 +57,7 @@
   <br>
 
   <img src="https://img.shields.io/badge/spring Boot-6DB33F?style=for-the-badge&logo=springBoot&logoColor=white">
+  <img src="https://img.shields.io/badge/fly way-ED1C24?style=for-the-badge&logo=flyway&logoColor=white">
   <img src="https://img.shields.io/badge/linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"> 
   <img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
   <br>
