@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
-
+// import axios from 'axios';
+import Paging from '../components/Paging';
+import { prettyDate } from '../util/dateparse';
 import { useNavigate } from 'react-router-dom';
 import instanceAxios from '../reissue/InstanceAxios';
-import Paging from '../components/Paging';
 
 const STable = styled.table`
   /* margin-left: auto;
@@ -75,26 +75,26 @@ const SInformationtd = styled.td`
   text-align: right;
   width: 50%;
 `;
-const SMyPageText = styled.h3`
-  width: 200px;
-  height: 10px;
-  font-weight: 750;
-  font-size: 30px;
-  text-align: right;
-`;
+// const SMyPageText = styled.h3`
+//   width: 200px;
+//   height: 10px;
+//   font-weight: 750;
+//   font-size: 30px;
+//   text-align: right;
+//`;
 const SText = styled.td`
   font-size: 13px;
 `;
-const SCommunity = styled.div`
-  border-bottom: 1px solid black;
-`;
-const SComment = styled.strong`
-  background: lightgray;
-`;
+// const SCommunity = styled.div`
+//   border-bottom: 1px solid black;
+// `;
+// const SComment = styled.strong`
+//   background: lightgray;
+// `;
 
-const SHR = styled.hr`
-  margin-bottom: 50px;
-`;
+// const SHR = styled.hr`
+//   margin-bottom: 50px;
+// `;
 
 const SImage = styled.img`
   border-radius: 50%;
@@ -133,26 +133,13 @@ const MyPage = () => {
   const [imgUrl, setImgUrl] = useState('');
   const [data, setData] = useState([]);
 
-  const url = 'https://serverbookvillage.kro.kr/';
- 
   const [page, setPage] = useState(1);
-
-  // 총 데이터 개수
-  const [count, setCount] = useState(0);
-  const PER_PAGE = 4;
+  const [count, setCount] = useState(0); // 총 데이터 개수
+  const PER_PAGE = 2;
+  // const url = 'https://serverbookvillage.kro.kr/';
 
   useEffect(() => {
-    setPage(1);
-    setData([]);
-
-     axios
-     .get(url + `/v1/borrows/mine?page=0&size=${PER_PAGE}&sort=createdAt%2Cdesc`)
-     .then((res) => {
-       setData(res.data.data);
-       setCount(res.data.pageInfo.totalElements);
-       setPage(1);
-     });
-
+    // 회원 정보 받아오는 코드
     instanceAxios.get('/v1/members').then((res) => {
       console.log(res);
       setEmail(res.data.data.email);
@@ -160,35 +147,24 @@ const MyPage = () => {
       setImgUrl(res.data.data.imgUrl);
     });
 
+    // 내가 나눔한 목록 받아오는 코드 (페이지네이션 필요)
     instanceAxios
-      .get('/v1/borrows/mine?page=0&size=10&sort=createdAt%2Cdesc')
+      .get(`/v1/borrows/mine?page=0&size=${PER_PAGE}&sort=createdAt%2Cdesc`)
       .then((res) => {
-        console.log(res);
+        console.log('나눔 목록: ', res);
         setData(res.data.data);
+        setCount(res.data.pageInfo.totalElements);
       });
   }, []);
 
-
-
-  // const getDatabyPage = async (page);
-  //     const res = await axios.get(
-  //       url +
-  //         `v1/borrows/mine?page=${
-  //           page - 1
-  //         }&size=${PER_PAGE}&sort=createdAt%2Cdesc`
-  //     );
-  //     const data = res.data;
-  //     return data;
-
-  //   };
-  // const handlePageChange = async (page) => {
-  //   setPage(page);
-  //     const pageData = await getDatabyPage(page);
-  //     setData(pageData.data);
-  // };
-  
-
-
+  //pagenation 페이지네이션 컴포넌트에서 각 숫자를 눌렀을 때 작동하는 함수
+  const handlePageChange = async (page) => {
+    setPage(page);
+    const res = await instanceAxios.get(
+      `/v1/borrows/mine?page=${page - 1}&size=${PER_PAGE}&sort=createdAt%2Cdesc`
+    );
+    setData(res.data.data);
+  };
 
   return (
     <>
@@ -214,16 +190,13 @@ const MyPage = () => {
               <td>
                 <tr>
                   <td>
-                  {imgUrl.length !== 0 ? (
-                    <SImage
-                      src={imgUrl}
-                      alt="..."
-                    ></SImage>
+                    {imgUrl.length !== 0 ? (
+                      <SImage src={imgUrl} alt="img from share"></SImage>
                     ) : (
                       <SImage
-                      src="	https://img.icons8.com/windows/32/null/user-male-circle.png"
-                      alt="..."
-                    ></SImage>
+                        src="	https://img.icons8.com/windows/32/null/user-male-circle.png"
+                        alt="when it hasn't been uploaded"
+                      ></SImage>
                     )}
                   </td>
                   <SProfile>
@@ -242,7 +215,7 @@ const MyPage = () => {
             </tr>
             <tr>
               <td>
-                <STitle2>{nickname}의 나눔 세상</STitle2>
+                <STitle2>{nickname}의 나눔</STitle2>
                 <SBoxA>
                   {data.length !== 0 ? (
                     data.map((book) => (
@@ -252,8 +225,8 @@ const MyPage = () => {
                             <tr>
                               <td>
                                 <SDivideImage
-                                  src={book.imgUrl}
-                                  alt="..."
+                                  src={book.thumbnail}
+                                  alt="book img"
                                 ></SDivideImage>
                               </td>
                               <td>
@@ -272,19 +245,15 @@ const MyPage = () => {
                                   <SText>출판사 : {book.author}</SText>
                                 </tr>
                                 <tr>
-                                  <SText>작성일자 : {book.id}</SText>
+                                  <SText>
+                                    작성일자 : {prettyDate(book.createdAt)}
+                                  </SText>
                                 </tr>
                               </td>
                             </tr>
                           </table>
-                          <Paging
-                            page={page}
-                            count={count}
-                            perPage={PER_PAGE}
-                            // handlePageChange={handlePageChange}
-                            
-                          />
                         </SDivide>
+
                         <br></br>
                       </>
                     ))
@@ -296,9 +265,15 @@ const MyPage = () => {
                     </SDivide>
                   )}
                 </SBoxA>
+                <Paging
+                  page={page}
+                  count={count}
+                  perPage={PER_PAGE}
+                  handlePageChange={handlePageChange}
+                />
               </td>
               <td>
-                <STitle2>우리{nickname}의 커뮤 활동 </STitle2>
+                <STitle2>{nickname}의 커뮤니티 </STitle2>
                 <SBoxB>
                   <SDivide>
                     <table>
