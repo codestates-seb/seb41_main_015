@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-
+// import axios from 'axios';
+import Paging from '../components/Paging';
+import { prettyDate } from '../util/dateparse';
 import { useNavigate } from 'react-router-dom';
 import instanceAxios from '../reissue/InstanceAxios';
 
@@ -73,26 +75,26 @@ const SInformationtd = styled.td`
   text-align: right;
   width: 50%;
 `;
-const SMyPageText = styled.h3`
-  width: 200px;
-  height: 10px;
-  font-weight: 750;
-  font-size: 30px;
-  text-align: right;
-`;
+// const SMyPageText = styled.h3`
+//   width: 200px;
+//   height: 10px;
+//   font-weight: 750;
+//   font-size: 30px;
+//   text-align: right;
+//`;
 const SText = styled.td`
   font-size: 13px;
 `;
-const SCommunity = styled.div`
-  border-bottom: 1px solid black;
-`;
-const SComment = styled.strong`
-  background: lightgray;
-`;
+// const SCommunity = styled.div`
+//   border-bottom: 1px solid black;
+// `;
+// const SComment = styled.strong`
+//   background: lightgray;
+// `;
 
-const SHR = styled.hr`
-  margin-bottom: 50px;
-`;
+// const SHR = styled.hr`
+//   margin-bottom: 50px;
+// `;
 
 const SImage = styled.img`
   border-radius: 50%;
@@ -128,22 +130,41 @@ const MyPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
+  const [imgUrl, setImgUrl] = useState('');
   const [data, setData] = useState([]);
 
+  const [page, setPage] = useState(1);
+  const [count, setCount] = useState(0); // 총 데이터 개수
+  const PER_PAGE = 2;
+  // const url = 'https://serverbookvillage.kro.kr/';
+
   useEffect(() => {
+    // 회원 정보 받아오는 코드
     instanceAxios.get('/v1/members').then((res) => {
       console.log(res);
       setEmail(res.data.data.email);
       setNickname(res.data.data.displayName);
+      setImgUrl(res.data.data.imgUrl);
     });
 
+    // 내가 나눔한 목록 받아오는 코드 (페이지네이션 필요)
     instanceAxios
-      .get('/v1/borrows/mine?page=0&size=10&sort=createdAt%2Cdesc')
+      .get(`/v1/borrows/mine?page=0&size=${PER_PAGE}&sort=createdAt%2Cdesc`)
       .then((res) => {
-        console.log(res);
+        console.log('나눔 목록: ', res);
         setData(res.data.data);
+        setCount(res.data.pageInfo.totalElements);
       });
   }, []);
+
+  //pagenation 페이지네이션 컴포넌트에서 각 숫자를 눌렀을 때 작동하는 함수
+  const handlePageChange = async (page) => {
+    setPage(page);
+    const res = await instanceAxios.get(
+      `/v1/borrows/mine?page=${page - 1}&size=${PER_PAGE}&sort=createdAt%2Cdesc`
+    );
+    setData(res.data.data);
+  };
 
   return (
     <>
@@ -169,10 +190,14 @@ const MyPage = () => {
               <td>
                 <tr>
                   <td>
-                    <SImage
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQve-F1mablIoZC6aIu2aVyBwDsaCAUu2863A&usqp=CAU"
-                      alt="..."
-                    ></SImage>
+                    {imgUrl.length !== 0 ? (
+                      <SImage src={imgUrl} alt="img from share"></SImage>
+                    ) : (
+                      <SImage
+                        src="	https://img.icons8.com/windows/32/null/user-male-circle.png"
+                        alt="when it hasn't been uploaded"
+                      ></SImage>
+                    )}
                   </td>
                   <SProfile>
                     이메일
@@ -190,7 +215,7 @@ const MyPage = () => {
             </tr>
             <tr>
               <td>
-                <STitle2>{nickname}의 나눔 세상</STitle2>
+                <STitle2>{nickname}의 나눔</STitle2>
                 <SBoxA>
                   {data.length !== 0 ? (
                     data.map((book) => (
@@ -200,8 +225,8 @@ const MyPage = () => {
                             <tr>
                               <td>
                                 <SDivideImage
-                                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9sYgypcA8MhjHyNJD7-u9L0EjZj7YomKVTA&usqp=CAU"
-                                  alt="..."
+                                  src={book.thumbnail}
+                                  alt="book img"
                                 ></SDivideImage>
                               </td>
                               <td>
@@ -220,12 +245,15 @@ const MyPage = () => {
                                   <SText>출판사 : {book.author}</SText>
                                 </tr>
                                 <tr>
-                                  <SText>작성일자 : {book.id}</SText>
+                                  <SText>
+                                    작성일자 : {prettyDate(book.createdAt)}
+                                  </SText>
                                 </tr>
                               </td>
                             </tr>
                           </table>
                         </SDivide>
+
                         <br></br>
                       </>
                     ))
@@ -237,9 +265,15 @@ const MyPage = () => {
                     </SDivide>
                   )}
                 </SBoxA>
+                <Paging
+                  page={page}
+                  count={count}
+                  perPage={PER_PAGE}
+                  handlePageChange={handlePageChange}
+                />
               </td>
               <td>
-                <STitle2>우리{nickname}의 커뮤 활동 </STitle2>
+                <STitle2>{nickname}의 커뮤니티 </STitle2>
                 <SBoxB>
                   <SDivide>
                     <table>
