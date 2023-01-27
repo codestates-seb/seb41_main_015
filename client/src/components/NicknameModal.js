@@ -104,7 +104,7 @@ const NicknameModal = ({ isModalOpen, handleCloseModal }) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const validationCheck = (value) => {
-    if (value.match(/^[a-zA-Zㄱ-힣0-9]*$/)) {
+    if (value.match(/^[a-zA-Z0-9가-힣+_.-]+$/)) {
       if (value.length === 0) {
         setErrorMessage('닉네임은 필수입니다.');
         return false;
@@ -182,7 +182,7 @@ const NicknameModal = ({ isModalOpen, handleCloseModal }) => {
                   <div className="inputContainer">
                     <input
                       type="text"
-                      placeholder="2~20자 이내 한글, 영어, 숫자만 가능"
+                      placeholder="2~20자 한글, 영어, 숫자, 특수문자(-._)"
                       value={nickname}
                       onChange={(e) => {
                         setNickname(e.target.value);
