@@ -3,7 +3,7 @@ package com.book.village.server.domain.request.service;
 import com.book.village.server.domain.member.service.MemberService;
 import com.book.village.server.domain.request.dto.RequestDto;
 import com.book.village.server.domain.request.entity.Request;
-import com.book.village.server.domain.request.entity.RequestRank;
+import com.book.village.server.domain.request.repository.RequestQuerydslRepository;
 import com.book.village.server.domain.request.repository.RequestRepository;
 import com.book.village.server.global.exception.CustomLogicException;
 import com.book.village.server.global.exception.ExceptionCode;
@@ -24,12 +24,13 @@ public class RequestService {
 
     private final RequestRepository requestRepository;
     private final MemberService memberService;
-
+    private final RequestQuerydslRepository requestQuerydslRepository;
     private final CustomBeanUtils beanUtils;
 
-    public RequestService(RequestRepository requestRepository, MemberService memberService, CustomBeanUtils beanUtils) {
+    public RequestService(RequestRepository requestRepository, MemberService memberService, RequestQuerydslRepository requestQuerydslRepository, CustomBeanUtils beanUtils) {
         this.requestRepository = requestRepository;
         this.memberService = memberService;
+        this.requestQuerydslRepository = requestQuerydslRepository;
         this.beanUtils = beanUtils;
     }
 
@@ -98,7 +99,8 @@ public class RequestService {
 
     }
 
-    public List<RequestRank> findRankedRequests() {
-        return requestRepository.findRankedRequests();
+    public List<RequestDto.rankResponse> findRankedRequests() {
+//        return requestRepository.findRankedRequests();
+        return requestQuerydslRepository.RequestRankByBookTitleCount();
     }
 }

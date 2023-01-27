@@ -1,8 +1,9 @@
 package com.book.village.server.domain.borrow.service;
 
+import com.book.village.server.domain.borrow.dto.BorrowDto;
 import com.book.village.server.domain.borrow.entity.Borrow;
-import com.book.village.server.domain.borrow.entity.BorrowRank;
 import com.book.village.server.domain.borrow.repository.BorrowRepository;
+import com.book.village.server.domain.borrow.repository.BorrowQuerydslRepository;
 import com.book.village.server.domain.member.service.MemberService;
 import com.book.village.server.global.exception.CustomLogicException;
 import com.book.village.server.global.exception.ExceptionCode;
@@ -22,13 +23,16 @@ import java.util.Optional;
 public class BorrowService {
     private final BorrowRepository borrowRepository;
     private final MemberService memberService;
+
+    private final BorrowQuerydslRepository borrowQuerydslRepository;
     private final CustomBeanUtils customBeanUtils;
 
     public BorrowService(BorrowRepository borrowRepository,
                          MemberService memberService,
-                         CustomBeanUtils customBeanUtils) {
+                         BorrowQuerydslRepository borrowQuerydslRepository, CustomBeanUtils customBeanUtils) {
         this.borrowRepository = borrowRepository;
         this.memberService = memberService;
+        this.borrowQuerydslRepository = borrowQuerydslRepository;
         this.customBeanUtils = customBeanUtils;
     }
 
@@ -107,7 +111,7 @@ public class BorrowService {
         }
     }
 
-    public List<BorrowRank> findRankedBorrows() {
-        return borrowRepository.findRankedBorrows();
+    public List<BorrowDto.rankResponse> findRankedBorrows() {
+        return borrowQuerydslRepository.BorrowRankByBookTitleCount();
     }
 }
