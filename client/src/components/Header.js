@@ -215,10 +215,13 @@ const Header = () => {
         setProfileData(res.data.data.imgUrl);
       } catch (error) {
         console.error(error);
-        navigate('/');
       }
     };
-    profileData();
+    // 로그인한 상태일 때만 profileData 함수가 작동
+    const accessToken = sessionStorage.getItem('accessToken');
+    if (accessToken) {
+      profileData();
+    }
   }, []);
 
   return (

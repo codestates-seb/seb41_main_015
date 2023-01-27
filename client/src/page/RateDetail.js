@@ -155,7 +155,6 @@ const RateDetail = () => {
       try {
         const res = await axios.get(url + `/v1/books/${id}`);
         setData(res.data.data);
-        console.log('getData', res.data.data);
       } catch (error) {
         console.error(error);
       }
