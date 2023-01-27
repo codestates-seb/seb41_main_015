@@ -2,12 +2,10 @@ package com.book.village.server.statistics.borrowRank;
 
 import com.book.village.server.domain.borrow.controller.BorrowController;
 import com.book.village.server.domain.borrow.dto.BorrowDto;
-import com.book.village.server.domain.borrow.entity.BorrowRank;
 import com.book.village.server.domain.borrow.mapper.BorrowMapper;
 import com.book.village.server.domain.borrow.service.BorrowService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -46,12 +44,12 @@ public class BorrowRankRestDocsTest {
     private BorrowService borrowService;
 
     @MockBean
-    private BorrowMapper mapper;
+    private BorrowMapper borrowMapper; //사용 안하더라도 주석 남겨주기(의존성 주입)
 
     private static final String BASE_URL = "/v1/borrows";
 
     @Test
-    @DisplayName("요청 중 가장 많은 책 5개 정렬")
+    @DisplayName("나눔 중 가장 많은 책 5개 정렬")
     @WithMockUser
     public void BorrowRankTest() throws Exception {
 
@@ -62,36 +60,9 @@ public class BorrowRankRestDocsTest {
 
         List<BorrowDto.rankResponse> responseList = new ArrayList<>();
         responseList.add(response1);
+        responseList.add(response2);
 
-        List<BorrowRank> BorrowRankList = new ArrayList<>();
-        BorrowRank borrowRank = new BorrowRank() {
-            @Override
-            public String getBook_Title() {
-                return null;
-            }
-
-            @Override
-            public String getAuthor() {
-                return null;
-            }
-
-            @Override
-            public String getPublisher() {
-                return null;
-            }
-
-            @Override
-            public Long getCount() {
-                return null;
-            }
-        };
-
-        BorrowRankList.add(borrowRank);
-        BorrowRankList.add(borrowRank);
-        BorrowRankList.add(borrowRank);
-
-        given(borrowService.findRankedBorrows()).willReturn(BorrowRankList);
-        given(mapper.borrowRanksTorankedResponses(Mockito.anyList())).willReturn(responseList);
+        given(borrowService.findRankedBorrows()).willReturn(responseList);
 
         ResultActions actions =
                 mockMvc.perform(

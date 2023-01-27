@@ -2,7 +2,6 @@ package com.book.village.server.domain.borrow.controller;
 
 import com.book.village.server.domain.borrow.dto.BorrowDto;
 import com.book.village.server.domain.borrow.entity.Borrow;
-import com.book.village.server.domain.borrow.entity.BorrowRank;
 import com.book.village.server.domain.borrow.mapper.BorrowMapper;
 import com.book.village.server.domain.borrow.service.BorrowService;
 import com.book.village.server.global.response.ListResponse;
@@ -57,6 +56,14 @@ public class BorrowController {
         return new ResponseEntity<>(new SingleResponse<>(borrowMapper.borrowToBorrowDtoResponse(updatedBorrow)), HttpStatus.OK);
     }
 
+    @PatchMapping("/completion/{borrow-id}")
+    public ResponseEntity patchBorrow(Principal principal,
+                                      @PathVariable("borrow-id") Long borrowId) {
+        Borrow updatedBorrow = borrowService.completeBorrow(borrowService.findBorrow(borrowId), principal.getName());
+
+        return new ResponseEntity<>(new SingleResponse<>(borrowMapper.borrowToBorrowDtoResponse(updatedBorrow)), HttpStatus.OK);
+    }
+
 //     Borrow 조회
 //      그냥 조회는 인증 굳이 필요없음.
     @GetMapping("/{borrow-id}")
@@ -102,9 +109,8 @@ public class BorrowController {
 
     @GetMapping("/rank")
     public ResponseEntity BorrowRank() {
-        List<BorrowRank> rankResponses = borrowService.findRankedBorrows();
         return new ResponseEntity(
-                new ListResponse<>(borrowMapper.borrowRanksTorankedResponses(rankResponses)),HttpStatus.OK);
+                new ListResponse<>(borrowService.findRankedBorrows()),HttpStatus.OK);
     }
 
 }

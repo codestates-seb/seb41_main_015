@@ -1,8 +1,9 @@
 package com.book.village.server.domain.borrow.service;
 
+import com.book.village.server.domain.borrow.dto.BorrowDto;
 import com.book.village.server.domain.borrow.entity.Borrow;
-import com.book.village.server.domain.borrow.entity.BorrowRank;
 import com.book.village.server.domain.borrow.repository.BorrowRepository;
+import com.book.village.server.domain.borrow.repository.BorrowQuerydslRepository;
 import com.book.village.server.domain.member.service.MemberService;
 import com.book.village.server.global.exception.CustomLogicException;
 import com.book.village.server.global.exception.ExceptionCode;
@@ -22,13 +23,16 @@ import java.util.Optional;
 public class BorrowService {
     private final BorrowRepository borrowRepository;
     private final MemberService memberService;
+
+    private final BorrowQuerydslRepository borrowQuerydslRepository;
     private final CustomBeanUtils customBeanUtils;
 
     public BorrowService(BorrowRepository borrowRepository,
                          MemberService memberService,
-                         CustomBeanUtils customBeanUtils) {
+                         BorrowQuerydslRepository borrowQuerydslRepository, CustomBeanUtils customBeanUtils) {
         this.borrowRepository = borrowRepository;
         this.memberService = memberService;
+        this.borrowQuerydslRepository = borrowQuerydslRepository;
         this.customBeanUtils = customBeanUtils;
     }
 
@@ -42,10 +46,17 @@ public class BorrowService {
     }
 
     // Borrow 수정
-    public Borrow updateBorrow(Borrow borrow, String userEamil) {
+    public Borrow updateBorrow(Borrow borrow, String userEmail) {
         Borrow findBorrow = findVerificationBorrow(borrow.getBorrowId());   // 게시글 유무 확인.
-        verificationBorrow(findBorrow, userEamil);  // 회원 이메일로 나눔글 작성자와 수정할 사람이 동일한 이메일인지 확인
+        verificationBorrow(findBorrow, userEmail);  // 회원 이메일로 나눔글 작성자와 수정할 사람이 동일한 이메일인지 확인
         customBeanUtils.copyNonNullProperties(borrow, findBorrow);
+        return borrowRepository.save(findBorrow);
+    }
+
+    public Borrow completeBorrow(Borrow borrow, String userEmail){
+        Borrow findBorrow = findVerificationBorrow(borrow.getBorrowId());   // 게시글 유무 확인.
+        verificationBorrow(findBorrow, userEmail);
+        findBorrow.setBorrowWhthr(findBorrow.getBorrowWhthr() ? false : true);
         return borrowRepository.save(findBorrow);
     }
 
@@ -107,7 +118,7 @@ public class BorrowService {
         }
     }
 
-    public List<BorrowRank> findRankedBorrows() {
-        return borrowRepository.findRankedBorrows();
+    public List<BorrowDto.rankResponse> findRankedBorrows() {
+        return borrowQuerydslRepository.BorrowRankByBookTitleCount();
     }
 }
