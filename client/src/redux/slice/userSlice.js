@@ -3,7 +3,9 @@ import { getCookie, setCookie, removeCookie } from '../../util/cookie/cookie';
 import instanceAxios from '../../reissue/InstanceAxios';
 
 const sessionAccessToken = sessionStorage.getItem('accessToken');
+// const sessionStorageRefreshToken = sessionStorage.getItem('refreshToken');
 const cookieRefreshToken = getCookie('refreshToken');
+
 const initialState = {
   accessToken: sessionAccessToken,
   refreshToken: cookieRefreshToken,
@@ -37,11 +39,13 @@ const userSlice = createSlice({
         });
       }
       sessionStorage.setItem('membership', membership);
+      // sessionStorage.setItem('refreshToken', refreshToken);
       setCookie('refreshToken', refreshToken, {
         path: '/',
         secure: true,
         sameSite: 'none',
       });
+
       state.accessToken = accessToken;
       state.refreshToken = refreshToken;
       state.membership = membership;

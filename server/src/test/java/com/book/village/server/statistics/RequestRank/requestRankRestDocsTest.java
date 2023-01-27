@@ -2,7 +2,6 @@ package com.book.village.server.statistics.RequestRank;
 
 import com.book.village.server.domain.request.controller.RequestController;
 import com.book.village.server.domain.request.dto.RequestDto;
-import com.book.village.server.domain.request.entity.RequestRank;
 import com.book.village.server.domain.request.mapper.RequestMapper;
 import com.book.village.server.domain.request.service.RequestService;
 import org.junit.jupiter.api.DisplayName;
@@ -42,10 +41,11 @@ public class requestRankRestDocsTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private RequestService requestService;
+    private RequestMapper requestMapper; //사용 안하더라도 주석 남겨주기(의존성 주입)
 
     @MockBean
-    private RequestMapper mapper;
+    private RequestService requestService;
+
 
     private static final String BASE_URL = "/v1/requests";
 
@@ -61,36 +61,9 @@ public class requestRankRestDocsTest {
 
         List<RequestDto.rankResponse> responseList = new ArrayList<>();
         responseList.add(response1);
+        responseList.add(response2);
 
-        List<RequestRank> RequestRankList = new ArrayList<>();
-        RequestRank requestRank = new RequestRank() {
-            @Override
-            public String getBook_Title() {
-                return null;
-            }
-
-            @Override
-            public String getAuthor() {
-                return null;
-            }
-
-            @Override
-            public String getPublisher() {
-                return null;
-            }
-
-            @Override
-            public Long getCount() {
-                return null;
-            }
-        };
-
-        RequestRankList.add(requestRank);
-        RequestRankList.add(requestRank);
-        RequestRankList.add(requestRank);
-
-        given(requestService.findRankedRequests()).willReturn(RequestRankList);
-        given(mapper.requestRanksTorankedResponses(Mockito.anyList())).willReturn(responseList);
+        given(requestService.findRankedRequests()).willReturn(responseList);
 
         ResultActions actions =
                 mockMvc.perform(

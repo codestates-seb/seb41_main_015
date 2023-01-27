@@ -19,6 +19,8 @@ instanceAxios.interceptors.request.use(
     // 토큰 가져오기
     const sessionAccessToken = sessionStorage.getItem('accessToken');
     const cookieRefreshToken = getCookie('refreshToken');
+    // const sessionStorageRefreshToken = sessionStorage.getItem('refreshToken');
+
     //토큰 디코딩
     const accessDecoded = jwtDecode(sessionAccessToken);
     const refreshDecode = jwtDecode(cookieRefreshToken);
@@ -45,6 +47,8 @@ instanceAxios.interceptors.request.use(
       } else {
         //리프레쉬토큰 만료기간이 남았다면 엑세스토큰 갱신 요청
         const cookieRefreshToken = getCookie('refreshToken');
+        // const sessionStorageRefreshToken =
+        //   sessionStorage.getItem('refreshToken');
         const token = async () => {
           await axios
             .post(
@@ -67,6 +71,7 @@ instanceAxios.interceptors.request.use(
               }
             })
             .catch((err) => {
+              console.error(err);
               Swal.fire(
                 '죄송합니다',
                 '로그아웃 후 다시 이용해주세요.',

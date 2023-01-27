@@ -2,7 +2,6 @@ package com.book.village.server.domain.borrow.controller;
 
 import com.book.village.server.domain.borrow.dto.BorrowDto;
 import com.book.village.server.domain.borrow.entity.Borrow;
-import com.book.village.server.domain.borrow.entity.BorrowRank;
 import com.book.village.server.domain.borrow.mapper.BorrowMapper;
 import com.book.village.server.domain.borrow.service.BorrowService;
 import com.book.village.server.global.response.ListResponse;
@@ -102,9 +101,8 @@ public class BorrowController {
 
     @GetMapping("/rank")
     public ResponseEntity BorrowRank() {
-        List<BorrowRank> rankResponses = borrowService.findRankedBorrows();
         return new ResponseEntity(
-                new ListResponse<>(borrowMapper.borrowRanksTorankedResponses(rankResponses)),HttpStatus.OK);
+                new ListResponse<>(borrowService.findRankedBorrows()),HttpStatus.OK);
     }
 
 }
