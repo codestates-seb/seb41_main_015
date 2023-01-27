@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import LoginModal from './LoginModal';
 import styled from 'styled-components';
 import { ReactComponent as Logo } from '../image/logo.svg';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import mypage from '../image/mypage.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/slice/userSlice';
 import instanceAxios from '../reissue/InstanceAxios';
@@ -54,6 +53,52 @@ const SNavContainer = styled.ol`
     border-bottom: 3px solid #bb2649;
   }
 
+  .preparing {
+    color: #acacac;
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  .balloon {
+    display: none;
+    position: absolute;
+    width: 120px;
+    padding: 8px;
+    top: 28px;
+    left: 305px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background: #333333db;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    @media screen and (max-width: 1030px) {
+      top: 25px;
+      left: 120px;
+    }
+  }
+
+  .balloon:after {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -10px;
+    border: solid transparent;
+    border-color: rgba(51, 51, 51, 0);
+    border-bottom-color: #333333db;
+    border-width: 10px;
+    pointer-events: none;
+    content: ' ';
+  }
+
+  div:hover + p.balloon {
+    display: block;
+  }
+
   @media screen and (max-width: 1030px) {
     left: 32%;
     .olItem {
@@ -89,6 +134,9 @@ const SLogout = styled.div`
   .mypage {
     display: flex;
     margin-right: 15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
     @media screen and (max-width: 550px) {
       display: none;
     }
@@ -117,6 +165,7 @@ const Header = () => {
   const { pathname } = useLocation();
   const accessToken = useSelector((state) => state.user.accessToken);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [profileData, setProfileData] = useState('');
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -132,7 +181,6 @@ const Header = () => {
         dispatch(logout());
         navigate();
         window.location.reload();
-        console.log('로그아웃 됨!');
       })
       .catch((err) => {
         console.error(err);
@@ -156,21 +204,22 @@ const Header = () => {
     currentLocation(pathname) === 'share' ? 'olItem focused' : 'olItem';
   const requestClassName =
     currentLocation(pathname) === 'request' ? 'olItem focused' : 'olItem';
-
   const rateClassName =
     currentLocation(pathname) === 'rate' ? 'olItem focused' : 'olItem';
 
-  // 헤더 바깥부분 클릭해도 유지되는 로직 (수정 전)
-  // const [currentTab, setCurrentTab] = useState(0);
-  // const menus = [
-  //   { index: 0, name: '나눔', route: '/shareList' },
-  //   { index: 1, name: '요청', route: '/reqList' },
-  //   { index: 2, name: '평점', route: '/' },
-  //   { index: 3, name: '커뮤니티', route: '/' },
-  // ];
-  // const handleMenuSelect = (index) => {
-  //   setCurrentTab(index);
-  // };
+  //프로필 이미지 가져오기
+  useEffect(() => {
+    const profileData = async () => {
+      try {
+        const res = await instanceAxios.get('/v1/members');
+        setProfileData(res.data.data.imgUrl);
+      } catch (error) {
+        console.error(error);
+        navigate('/');
+      }
+    };
+    profileData();
+  }, []);
 
   return (
     <StyledHeader>
@@ -187,23 +236,8 @@ const Header = () => {
         <Link to="/rateList" className={rateClassName}>
           평점
         </Link>
-        <Link to="/" className="olItem">
-          커뮤니티
-        </Link>
-        {/* {menus.map((el) => {
-          const isFocused =
-            currentTab === el.index ? 'olItem focused' : 'olItem';
-          return (
-            <Link
-              to={el.route}
-              key={el.index}
-              onClick={() => handleMenuSelect(el.index)}
-              className={isFocused}
-            >
-              {el.name}
-            </Link>
-          );
-        })} */}
+        <div className="olItem preparing">커뮤니티</div>
+        <p className="balloon">준비 중입니다.</p>
       </SNavContainer>
       {!accessToken ? (
         <>
@@ -216,7 +250,7 @@ const Header = () => {
       ) : (
         <SLogout>
           <Link to="/mypage">
-            <img src={mypage} alt="mypage" className="mypage" />
+            <img src={profileData} alt="mypage" className="mypage" />
           </Link>
           <SLogoutBtn onClick={handleLogout}>로그아웃</SLogoutBtn>
         </SLogout>

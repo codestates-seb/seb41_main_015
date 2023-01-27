@@ -2,11 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Swal from 'sweetalert2';
-import Comment from '../components/Comment';
 import styled from 'styled-components';
-import { prettyDate } from '../util/dateparse';
-import { ReactComponent as Star } from '../image/star.svg';
+import { ReactComponent as BookStar } from '../image/bookStar.svg';
 import RateModal from '../components/RateModal';
 import RateComment from '../components/RateComment';
 
@@ -19,7 +16,7 @@ const SDetailLayout = styled.main`
   }
 `;
 const STitle = styled.div`
-  p {
+  h2 {
     color: #2c2c2c;
     padding: 18px;
     font-weight: 700;
@@ -33,7 +30,7 @@ const SDetailWrap = styled.div`
   justify-content: center;
   gap: 35px;
   img {
-    margin: 24px 24px 24px 0px;
+    margin: 24px 0;
     width: 250px;
   }
   @media screen and (max-width: 1100px) {
@@ -44,7 +41,6 @@ const SDetailWrap = styled.div`
 
 const SRightSide = styled.div`
   margin: 24px;
-  /* border: 1px solid green; */
   width: calc(100% - 610px);
   .controlButtons {
     flex-shrink: 0;
@@ -69,81 +65,32 @@ const SRightSide = styled.div`
   }
 `;
 
-const STopWrap = styled.div`
-  padding-bottom: 5px;
-  border-bottom: 1px solid #aaaaaa;
-  /* max-width: 677px; */
-  h1 {
-    margin: 10px 0px;
-  }
-  .titleAndButton {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-  }
-`;
-
-const SAuthorAndStatus = styled.div`
-  display: flex;
-  justify-content: space-between;
-  /* align-items: center; */
-  margin-bottom: 10px;
-  .authorInfo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-left: 3px;
-    .author {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    img {
-      margin: 0;
-      width: 28px;
-      height: 28px;
-      border-radius: 70%;
-    }
-    .views {
-      color: #aaaaaa;
-      font-size: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 3px;
-    }
-    .createdAt {
-      color: #aaaaaa;
-      font-size: 0.8rem;
-      @media screen and (max-width: 527px) {
-        display: none;
-      }
-    }
-  }
-  .onlyInShare {
-    display: none;
-  }
-`;
-
 const SBookInfo = styled.div`
-  margin-top: 20px;
-  margin-bottom: 40px;
-  /* border: 1px solid #bb2649; */
-  background-color: #fffbeac2;
   border-radius: 5px;
-  /* border-bottom: 1px solid #aaaaaa; */
-  padding: 24px 12px 5px 24px;
+  padding: 10px 0;
+
   h2 {
     margin-top: 0;
+    margin-bottom: 30px;
   }
   div {
     color: #000000;
-    /* margin: 5px 0px; */
     font-weight: 600;
     font-size: 1rem;
-    span {
-      color: #505050;
-    }
+  }
+  .mb-5 {
+    margin-bottom: 5px;
+  }
+  .mb-10 {
+    margin-bottom: 10px;
+  }
+  .textCor {
+    color: #505050;
+  }
+  .flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 `;
 
@@ -153,7 +100,6 @@ const SContact = styled.div`
   align-items: center;
   div {
     font-weight: 600;
-    /* margin-right: 15px; */
     color: #7c7c7c;
     font-size: 0.9rem;
   }
@@ -171,14 +117,25 @@ const SContact = styled.div`
     gap: 5px;
     flex-shrink: 0;
   }
+  .RateText {
+    margin-right: 15px;
+  }
 `;
 const SStarIcon = styled.div`
   text-align: right;
+  display: flex;
+  font-size: 30px;
+  font-weight: 700;
+  color: #6e6d6d;
+  align-items: center;
+  margin-bottom: 30px;
+  .rateStar {
+    margin: 0 2px;
+  }
 `;
 
 const RateDetail = () => {
   const { id } = useParams();
-  // console.log(id);
   const [data, setData] = useState({});
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -193,6 +150,7 @@ const RateDetail = () => {
   const url = 'https://serverbookvillage.kro.kr';
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const rateData = async () => {
       try {
         const res = await axios.get(url + `/v1/books/${id}`);
@@ -208,7 +166,7 @@ const RateDetail = () => {
   return (
     <SDetailLayout>
       <STitle>
-        <p>{data.bookTitle}</p>
+        <h2>{data.bookTitle}</h2>
       </STitle>
       <div className="container">
         <SDetailWrap>
@@ -222,27 +180,23 @@ const RateDetail = () => {
             />
           </div>
           <SRightSide>
-            <STopWrap>
-              <div className="titleAndButton">
-                <h1>{data.title}</h1>
-              </div>
-              <div className="createdAt">{prettyDate(data.createdAt)}</div>
-              <SAuthorAndStatus></SAuthorAndStatus>
-            </STopWrap>
-            <SStarIcon>
-              <Star />
-              {data.avgRate}
-            </SStarIcon>
             <SBookInfo>
-              <h2>{data.bookTitle}</h2>
-              <div>
-                저자: <span>{data.author}</span>
+              <div className="flex">
+                <h2>{data.bookTitle}</h2>
+                <SStarIcon>
+                  평균 <BookStar className="rateStar" />
+                  {data.avgRate}
+                </SStarIcon>
               </div>
-              <div>
-                출판사: <span>{data.publisher}</span>
+              <div className="mb-5 textCor">
+                저자: <span>{data.author || ''}</span>
               </div>
+              <div className="mb-10 textCor">
+                출판사: <span>{data.publisher || ''}</span>
+              </div>
+
               <SContact>
-                <div>{data.bookTitle} 리뷰하러 가기 ➡️</div>
+                <div className="RateText">아직 평점을 남기지 않으셨나요?</div>
                 <button
                   className="RateModalBtn"
                   //모달
@@ -257,11 +211,9 @@ const RateDetail = () => {
                 />
               </SContact>
             </SBookInfo>
-            <p className="description">{data.content}</p>
           </SRightSide>
         </SDetailWrap>
         <RateComment data={data.rates} />
-
       </div>
     </SDetailLayout>
   );

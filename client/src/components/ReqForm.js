@@ -157,7 +157,7 @@ const ReqForm = (props) => {
               onChange={(e) => handleChangeString(e, bookTitle)}
               placeholder="책 제목을 입력해주세요."
               onClick={handleOpenModal}
-              autocomplete="off"
+              autoComplete="off"
             />
             {/* 검색 모달  */}
             <BookAddModal
@@ -190,7 +190,7 @@ const ReqForm = (props) => {
               value={talkUrl || ''}
               onChange={(e) => handleChangeString(e, 'talkUrl')}
               placeholder="오픈채팅 대화방 링크를 입력해주세요."
-              autocomplete="off"
+              autoComplete="off"
             />
           </div>
           <div>
@@ -199,7 +199,7 @@ const ReqForm = (props) => {
               value={title || ''}
               onChange={(e) => handleChangeString(e, 'title')}
               placeholder="게시글 제목을 입력해주세요."
-              autocomplete="off"
+              autoComplete="off"
             />
           </div>
           <div>
@@ -209,7 +209,7 @@ const ReqForm = (props) => {
               onChange={(e) => handleChangeString(e, 'content')}
               className="inputContent"
               placeholder="게시글 내용을 입력해주세요. (ex. 책 상태, 구매 시기 등)"
-              autocomplete="off"
+              autoComplete="off"
             />
           </div>
         </SInputRight>
