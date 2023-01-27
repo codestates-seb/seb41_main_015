@@ -91,12 +91,13 @@ public class RequestDto {
         private Long requestId;
 
         private String talkUrl;
-
+        @NotBlank
         private String title;
 
         private Long view;
 
         @Lob
+        @NotBlank
         private String content;
 
         private String bookTitle;
@@ -121,7 +122,12 @@ public class RequestDto {
 
         private String publisher;
 
+        @Lob
+        private String thumbnail;
+
         private Long count;
+
+
     }
 
 }

@@ -24,9 +24,10 @@ public class RequestQuerydslRepository {
                         request.bookTitle,
                         request.author,
                         request.publisher,
+                        request.thumbnail,
                         request.bookTitle.count().as("count")))
                 .from(request)
-                .groupBy(request.bookTitle, request.author,request.publisher)
+                .groupBy(request.bookTitle, request.author,request.publisher,request.thumbnail)
                 .orderBy(request.bookTitle.count().desc())
                 .limit(5)
                 .fetch();

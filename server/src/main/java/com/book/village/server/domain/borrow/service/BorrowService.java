@@ -46,10 +46,17 @@ public class BorrowService {
     }
 
     // Borrow 수정
-    public Borrow updateBorrow(Borrow borrow, String userEamil) {
+    public Borrow updateBorrow(Borrow borrow, String userEmail) {
         Borrow findBorrow = findVerificationBorrow(borrow.getBorrowId());   // 게시글 유무 확인.
-        verificationBorrow(findBorrow, userEamil);  // 회원 이메일로 나눔글 작성자와 수정할 사람이 동일한 이메일인지 확인
+        verificationBorrow(findBorrow, userEmail);  // 회원 이메일로 나눔글 작성자와 수정할 사람이 동일한 이메일인지 확인
         customBeanUtils.copyNonNullProperties(borrow, findBorrow);
+        return borrowRepository.save(findBorrow);
+    }
+
+    public Borrow completeBorrow(Borrow borrow, String userEmail){
+        Borrow findBorrow = findVerificationBorrow(borrow.getBorrowId());   // 게시글 유무 확인.
+        verificationBorrow(findBorrow, userEmail);
+        findBorrow.setBorrowWhthr(findBorrow.getBorrowWhthr() ? false : true);
         return borrowRepository.save(findBorrow);
     }
 

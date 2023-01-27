@@ -14,6 +14,7 @@ public class RequestCommentDto {
     @Setter
     public static class Post {
         @Lob
+        @NotBlank
         private String content;
     }
 
@@ -23,7 +24,7 @@ public class RequestCommentDto {
     @Setter
     public static class Response {
         private Long requestCommentId;
-
+        @NotBlank
         @Lob
         private String content;
 
@@ -46,6 +47,7 @@ public class RequestCommentDto {
         private Long requestCommentId;
 
         @Lob
+        @NotBlank
         private String content;
     }
 

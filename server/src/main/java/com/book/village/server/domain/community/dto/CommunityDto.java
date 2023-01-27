@@ -15,6 +15,7 @@ public class CommunityDto {
     @ToString
     public static class Post{
         private String type;
+        @NotBlank
         private String title;
         @Lob
         @NotBlank
@@ -30,8 +31,10 @@ public class CommunityDto {
     public static class Patch{
         private Long communityId;
         private String type;
+        @NotBlank
         private String title;
         @Lob
+        @NotBlank
         private String content;
         private String displayName;
         private Long view;
@@ -45,8 +48,10 @@ public class CommunityDto {
     public static class Response{
         private Long communityId;
         private String type;
+        @NotBlank
         private String title;
         @Lob
+        @NotBlank
         private String content;
         private String displayName;
         private Long view;

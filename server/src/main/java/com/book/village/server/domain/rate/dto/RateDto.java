@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.Lob;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 public class RateDto {
@@ -15,6 +16,7 @@ public class RateDto {
         @Range(min = 1,max = 5)
         private Long rating;
         @Lob
+        @NotBlank
         private String content;
         @Lob
         private String thumbnail;
@@ -31,6 +33,7 @@ public class RateDto {
         private Long rating;
         private String displayName;
         @Lob
+        @NotBlank
         private String content;
     }
 
@@ -42,11 +45,13 @@ public class RateDto {
     public static class Response{
         private Long rateId;
         @Range(min = 1,max = 5)
+        @NotBlank
         private Long rating;
         private String displayName;
         @Lob
         private String imgUrl;
         @Lob
+        @NotBlank
         private String content;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
