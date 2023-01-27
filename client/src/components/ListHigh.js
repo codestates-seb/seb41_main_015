@@ -5,11 +5,8 @@ import { useNavigate } from 'react-router-dom';
 const SShareTop = styled.div`
   display: flex;
   flex-direction: row;
-  /* margin-bottom: 50px;
-  margin-top: 30px; */
   color: #2c2c2c;
   padding: 18px;
-  /* margin: 20px 10%; */
   border-bottom: 1px solid #acacac;
   justify-content: space-between;
   @media screen and (max-width: 1180px) {
@@ -42,7 +39,6 @@ const SShareTop = styled.div`
   .ml-5 {
     margin-left: 0px;
     @media screen and (max-width: 930px) {
-      /* margin-left: 6%; */
       margin-left: 0px;
     }
   }
@@ -53,7 +49,6 @@ const SShareTop = styled.div`
     width: 288px;
     height: 41px;
     box-sizing: border-box;
-    /* margin-top: 22px; */
     padding-left: 7px;
     font-size: 20px;
     background: #ffffff;
@@ -61,7 +56,6 @@ const SShareTop = styled.div`
     border-radius: 6px;
     @media screen and (max-width: 1023px) {
       width: 200px;
-      /* margin-left: 20%; */
     }
   }
   .search-icon {
@@ -105,14 +99,14 @@ const SShareTop = styled.div`
     width: 100px;
     height: 40px;
     margin-right: 0px;
-    /* margin-top: 22px; */
     border-radius: 3px;
     border: 1px solid #bb2649;
     color: #bb2649;
     font-size: 16px;
-    /* line-height: 24px; */
-    /* align-items: center;
-  text-align: center; */
+    :hover {
+      background-color: #bb2649;
+      color: #ffffff;
+    }
     @media screen and (max-width: 1023px) {
       width: 90px;
       height: 41px;
@@ -161,7 +155,7 @@ const ListHigh = ({
         </div>
         <div>
           <button className="register" onClick={() => navigate(path)}>
-            책 등록하기
+            {route === 'share' ? '나눔하기' : '요청하기'}
           </button>
         </div>
       </div>
