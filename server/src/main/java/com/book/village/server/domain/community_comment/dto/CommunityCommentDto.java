@@ -26,6 +26,7 @@ public class CommunityCommentDto {
         private Long communityCommentId;
 
         @Lob
+        @NotBlank
         private String content;
     }
 
@@ -37,6 +38,7 @@ public class CommunityCommentDto {
     public static class Response{
         private Long communityCommentId;
         @Lob
+        @NotBlank
         private String content;
         private String displayName;
         @Lob

@@ -1,22 +1,13 @@
 package com.book.village.server.domain.request.repository;
 
 import com.book.village.server.domain.request.entity.Request;
-import com.book.village.server.domain.request.entity.RequestRank;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Long> {
-
-    @Query(value =
-            "select book_title, author, publisher,count(book_title) as count " +
-                    "from request group by book_title, author, publisher order by count desc limit 5;", nativeQuery = true)
-    List<RequestRank> findRankedRequests();
 
     Page<Request> findAllByMember_Email(String email,Pageable pageable);
 
@@ -33,4 +24,5 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     Page<Request> findAllByAuthor(String author, Pageable pageable);
 
     Page<Request> findAllByPublisher(String publisher, Pageable pageable);
+
 }

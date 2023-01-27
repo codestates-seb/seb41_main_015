@@ -2,7 +2,6 @@ package com.book.village.server.statistics.RequestRank;
 
 import com.book.village.server.domain.request.controller.RequestController;
 import com.book.village.server.domain.request.dto.RequestDto;
-import com.book.village.server.domain.request.entity.RequestRank;
 import com.book.village.server.domain.request.mapper.RequestMapper;
 import com.book.village.server.domain.request.service.RequestService;
 import org.junit.jupiter.api.DisplayName;
@@ -42,10 +41,11 @@ public class requestRankRestDocsTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private RequestService requestService;
+    private RequestMapper requestMapper; //사용 안하더라도 주석 남겨주기(의존성 주입)
 
     @MockBean
-    private RequestMapper mapper;
+    private RequestService requestService;
+
 
     private static final String BASE_URL = "/v1/requests";
 
@@ -55,42 +55,15 @@ public class requestRankRestDocsTest {
     public void RequestRankTest() throws Exception {
 
         RequestDto.rankResponse response1 = new RequestDto.rankResponse(
-                "book_title1", "author1", "publisher1", 2L);
+                "book_title1", "author1", "publisher1","thumbnail1", 1L);
         RequestDto.rankResponse response2 = new RequestDto.rankResponse(
-                "book_title2", "author2", "publisher2", 1L);
+                "book_title2", "author2", "publisher2","thumbnail2",  2L);
 
         List<RequestDto.rankResponse> responseList = new ArrayList<>();
         responseList.add(response1);
+        responseList.add(response2);
 
-        List<RequestRank> RequestRankList = new ArrayList<>();
-        RequestRank requestRank = new RequestRank() {
-            @Override
-            public String getBook_Title() {
-                return null;
-            }
-
-            @Override
-            public String getAuthor() {
-                return null;
-            }
-
-            @Override
-            public String getPublisher() {
-                return null;
-            }
-
-            @Override
-            public Long getCount() {
-                return null;
-            }
-        };
-
-        RequestRankList.add(requestRank);
-        RequestRankList.add(requestRank);
-        RequestRankList.add(requestRank);
-
-        given(requestService.findRankedRequests()).willReturn(RequestRankList);
-        given(mapper.requestRanksTorankedResponses(Mockito.anyList())).willReturn(responseList);
+        given(requestService.findRankedRequests()).willReturn(responseList);
 
         ResultActions actions =
                 mockMvc.perform(
@@ -115,7 +88,9 @@ public class requestRankRestDocsTest {
                                         fieldWithPath("data.[].bookTitle").type(JsonFieldType.STRING).description("책 제목"),
                                         fieldWithPath("data.[].author").type(JsonFieldType.STRING).description("저자"),
                                         fieldWithPath("data.[].publisher").type(JsonFieldType.STRING).description("출판사"),
+                                        fieldWithPath("data.[].thumbnail").type(JsonFieldType.STRING).description("요청 책 이미지"),
                                         fieldWithPath("data.[].count").type(JsonFieldType.NUMBER).description("같은 책 개수")
+
 
                                 )
                         )

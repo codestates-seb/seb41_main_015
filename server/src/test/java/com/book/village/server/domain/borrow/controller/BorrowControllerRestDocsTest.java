@@ -942,14 +942,6 @@ class BorrowControllerRestDocsTest {
         LocalDateTime createdAt = time;
         LocalDateTime modifiedAt = LocalDateTime.now();
 
-        BorrowDto.Patch patch =
-                BorrowDto.Patch.builder()
-                        .borrowId(borrowId)
-                        .borrowWhthr(false)
-                        .build();
-
-        String content = gson.toJson(patch);
-
         List<BorrowCommentDto.Response> borrowCommentResponse = List.of(
                 new BorrowCommentDto.Response(
                         1L, "content1", "displayName1", "imgUrl", createdAt, modifiedAt)
@@ -975,42 +967,29 @@ class BorrowControllerRestDocsTest {
                 modifiedAt
         );
 
-
-        given(borrowMapper.borrowDtoPatchToBorrow(Mockito.any(BorrowDto.Patch.class))).willReturn(new Borrow());
-
-        given(borrowService.updateBorrow(Mockito.any(Borrow.class), Mockito.anyString())).willReturn(new Borrow());
-
+        given(borrowService.findBorrow(Mockito.anyLong())).willReturn(new Borrow());
+        given(borrowService.completeBorrow(Mockito.any(Borrow.class),Mockito.anyString())).willReturn(new Borrow());
         given(borrowMapper.borrowToBorrowDtoResponse(Mockito.any(Borrow.class))).willReturn(responseDto);
 
         // when
         ResultActions actions =
                 mockMvc.perform(
-                        patch(BASE_URL + "/{borrow-id}", borrowId)
+                        patch(BASE_URL + "/completion/{borrow-id}", borrowId)
                                 .accept(MediaType.APPLICATION_JSON)
                                 .with(csrf())
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(content)
                                 .headers(GenerateMockToken.getMockHeaderToken()));
-
 
         // then
         actions
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.borrowWhthr").value(patch.getBorrowWhthr()))
                 .andDo(document("borrow-complete",
-                        getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         requestHeaders(
                                 headerWithName("Authorization").description("Bearer Token")
                         ),
                         pathParameters(
                                 parameterWithName("borrow-id").description("나눔 식별자")
-                        ),
-                        requestFields(
-                                List.of(
-                                        fieldWithPath("borrowId").type(JsonFieldType.STRING).description("나눔 식별자").ignored(),
-                                        fieldWithPath("borrowWhthr").type(JsonFieldType.BOOLEAN).description("나눔 가능 여부(나눔 완료시 false)")
-                                )
                         ),
                         responseFields(
                                 List.of(

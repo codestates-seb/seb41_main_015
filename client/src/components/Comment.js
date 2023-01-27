@@ -106,8 +106,6 @@ const SCommentWrap = styled.div`
 const Comment = ({ data, borrowComment, reqComment, page, id }) => {
   const [content, setContent] = useState('');
   const [contentForm, setContentForm] = useState('');
-  // const [commentData, setCommentData] = useState('');
-  // const textarea = useRef();
 
   const endpoint = page === 'share' ? 'borrows' : 'requests';
   const commentMap = page === 'share' ? borrowComment : reqComment;
@@ -118,7 +116,6 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
   //수정 폼 글자수 제한 함수
   const handleChangeContent = (e) => {
     setContent(e.target.value);
-    // console.log(e.target.value.length);
     const text_length = e.target.value.length;
     if (text_length > 60) {
       Swal.fire(
@@ -130,8 +127,9 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
   };
 
   //수정 폼 판별하기
-  const handleClickModifyComment = (commentId) => {
+  const handleClickModifyComment = (commentId, content) => {
     setContentForm(commentId);
+    setContent(content);
   };
 
   //댓글 등록
@@ -204,6 +202,7 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
       );
     }
   };
+
   //댓글 삭제
   const handleClickDeleteComment = (commentId) => {
     instanceAxios
@@ -226,7 +225,7 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
   };
 
   const handleClickCancelModify = () => {
-    window.location.reload();
+    setContentForm('');
   };
 
   return (
@@ -261,7 +260,6 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
                 <div className="createdAt">{prettyDate(comment.createdAt)}</div>
               </SUserContainer>
               <SUserComment>
-                {/* 수정할 때 */}
                 {contentForm === commentId ? (
                   //수정할 때
                   <div>
@@ -286,7 +284,6 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
                     ></input>
                   </div>
                 )}
-
                 {/* 내가 쓴 댓글만 수정가능 */}
                 {isSameUser && (
                   <div className="btnBox">
@@ -302,7 +299,9 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
                     ) : (
                       <div>
                         <button
-                          onClick={() => handleClickModifyComment(commentId)}
+                          onClick={() =>
+                            handleClickModifyComment(commentId, comment.content)
+                          }
                         >
                           수정
                         </button>

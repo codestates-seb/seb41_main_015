@@ -1,7 +1,6 @@
 package com.book.village.server.domain.request.controller;
 import com.book.village.server.domain.request.dto.RequestDto;
 import com.book.village.server.domain.request.entity.Request;
-import com.book.village.server.domain.request.entity.RequestRank;
 import com.book.village.server.domain.request.mapper.RequestMapper;
 import com.book.village.server.domain.request.service.RequestService;
 import com.book.village.server.global.response.ListResponse;
@@ -97,9 +96,8 @@ public class RequestController {
 
     @GetMapping("/rank")
     public ResponseEntity RequestRank() {
-        List<RequestRank> rankResponses = requestService.findRankedRequests();
         return new ResponseEntity(
-                new ListResponse<>(requestMapper.requestRanksTorankedResponses(rankResponses)),HttpStatus.OK);
+                new ListResponse<>(requestService.findRankedRequests()), HttpStatus.OK);
     }
 }
 

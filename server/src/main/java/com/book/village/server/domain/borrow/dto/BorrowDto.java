@@ -42,9 +42,11 @@ public class BorrowDto {
         @Setter
         private Long borrowId;  // 나눔 게시판 식별자
 
+        @NotBlank
         private String title;   // 나눔글 제목
 
         @Lob
+        @NotBlank
         private String content; // 나눔글 본문
 
         private String bookTitle;   // 나눔 책 제목
