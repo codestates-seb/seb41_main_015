@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 import instanceAxios from '../reissue/InstanceAxios';
-import { ReactComponent as Star } from '../image/star.svg';
+import { RateStar } from '../components/RateStar';
 
 const SModalBackground = styled.div`
   position: fixed;
@@ -73,14 +73,10 @@ const SLimitNumber = styled.div`
 
 const RateModal = ({ isModalOpen, handleCloseModal, data }) => {
   const [content, setContent] = useState('');
-  const [rating, setRating] = useState(1);
-  const [thumbnail, setThumbnail] = useState('');
+  const [rating, setRating] = useState(0);
 
   const handleChangeRateContent = (e) => {
     setContent(e.target.value);
-  };
-  const handleChangeRate = (e) => {
-    setRating(e.target.value);
   };
 
   const handleClickRateSubmit = () => {
@@ -94,7 +90,16 @@ const RateModal = ({ isModalOpen, handleCloseModal, data }) => {
       )
       .then((res) => {
         handleCloseModal();
+        window.location.reload();
         console.log('모달 평점 post', res.data.data);
+      })
+      .catch(() => {
+        Swal.fire(
+          '이미 평점이 등록되었습니다.',
+          '평점은 한 번만 등록할 수 있습니다.',
+          'warning'
+        );
+        handleCloseModal();
       });
   };
 
@@ -112,11 +117,7 @@ const RateModal = ({ isModalOpen, handleCloseModal, data }) => {
                 이 책에 대한 평점과 리뷰를 남겨보세요
               </div>
               <div className="star">
-                <Star />
-                <Star />
-                <Star />
-                <Star />
-                <Star />
+                <RateStar rating={rating} setRating={setRating} />
               </div>
               <div>
                 <textarea

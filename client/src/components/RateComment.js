@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { RateStarSmall } from '../components/RateStar.js';
 import { ReactComponent as BookStar } from '../image/bookStar.svg';
 import instanceAxios from '../reissue/InstanceAxios';
@@ -27,7 +26,6 @@ const SCommentWrap = styled.div`
 
 const SCommentContainer = styled.div`
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   gap: 12px;
   margin: 20px 0px;
@@ -150,20 +148,6 @@ const RateComment = ({ data }) => {
       }
     });
   };
-
-  // // props로 상속받으면 됨. 아래 useEffect와 useState는 나중에 삭제하기!
-  // // bookId는 props로 내려받아야 함
-  // const [data, setData] = useState([]);
-  // const url = 'https://serverbookvillage.kro.kr';
-  // // book을 조회할 때 내려오는 rates를 렌더링!
-  // useEffect(() => {
-  //   axios.get(url + `/v1/books/2`).then((res) => {
-  //     setData(res.data.data.rates);
-  //   });
-  // }, []);
-
-  // displayName, content, createdAt, imgUrl, rating
-
   return (
     <>
       {data && (

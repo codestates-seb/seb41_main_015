@@ -29,11 +29,28 @@ const SLabelList = styled.div`
     margin-bottom: 1rem;
     padding-top: 10px;
     height: 36px;
-    width: 70px;
+    width: 100px;
+  }
+  .upload-Btn {
+    border-radius: 5px;
+    height: 36px;
+    padding: 5px 10px;
+    :hover {
+      color: #bb2649;
+      cursor: pointer;
+    }
   }
 `;
 
 const SInputList = styled.div`
+  input[type='file'] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+  }
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,6 +73,9 @@ const SInputList = styled.div`
       width: 20rem;
     }
   }
+  .upload-name {
+    color: #999999;
+  }
 `;
 
 const SWithdraw = styled.div`
@@ -74,7 +94,6 @@ const SWithdraw = styled.div`
 const SCancelBtn = styled.button`
   height: 43px;
   width: 141px;
-  /* left: 576px; */
   top: 860px;
   border-radius: 5px;
   border: 1px solid #bb2649;
@@ -89,7 +108,6 @@ const SCancelBtn = styled.button`
     margin-left: 50px;
   }
 `;
-
 const SSaveBtn = styled.button`
   height: 43px;
   width: 141px;
@@ -135,11 +153,18 @@ const SDefaultProfile = styled.div`
   img {
     height: 100px;
     width: 100px;
-    /* border-radius: 50%; */
+    border-radius: 50%;
     @media screen and (max-width: 1080px) {
       height: 80px;
       width: 80px;
       margin-left: 110%;
+    }
+  }
+  .profileRemove {
+    border: none;
+    padding: 10px;
+    :hover {
+      color: #bb2649;
     }
   }
 `;
@@ -196,6 +221,12 @@ const MyPageEdit = () => {
         });
     }
   };
+  //프로필 제거 함수
+  const handleClickProfileRemove = () => {
+    setImgUrl(
+      'https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg'
+    );
+  };
 
   //저장 버튼 클릭 시, 서버로 patch 요청
   const handleClickSave = () => {
@@ -209,6 +240,7 @@ const MyPageEdit = () => {
       })
       .then(() => {
         navigate('/mypage');
+        window.location.reload();
         Swal.fire(
           '프로필 수정 완료.',
           '프로필 수정이 정상적으로 이루어졌습니다.',
@@ -225,19 +257,16 @@ const MyPageEdit = () => {
       });
   };
 
-  // 서버 연결 후 주석 풀기!
   useEffect(() => {
     const editData = async () => {
       try {
         const res = await instanceAxios.get('/v1/members');
-        // console.log(res.data.data);
         setName(res.data.data.name);
         setEmail(res.data.data.email);
         setDisplayName(res.data.data.displayName);
         setAddress(res.data.data.address);
         setPhoneNumber(res.data.data.phoneNumber);
         setImgUrl(res.data.data.imgUrl);
-        console.log('s', res.data.data.imgUrl);
       } catch (error) {
         console.error(error);
         navigate('/');
@@ -251,7 +280,7 @@ const MyPageEdit = () => {
     editData();
   }, []);
 
-  //회원탈퇴(이벤트 연결할 것!)
+  //회원탈퇴
   const handleClickQuit = () => {
     instanceAxios.patch('/v1/members/quit').then(() => {
       Swal.fire({
@@ -289,6 +318,9 @@ const MyPageEdit = () => {
       <SWrapEdit>
         <SDefaultProfile>
           <img src={imgUrl} alt="profile" />
+          <button className="profileRemove" onClick={handleClickProfileRemove}>
+            삭제
+          </button>
         </SDefaultProfile>
         <SFlexRow>
           <SLabelList>
@@ -308,8 +340,8 @@ const MyPageEdit = () => {
             <label htmlFor="phonNumber" className="mr-6 inputSize">
               전화번호
             </label>
-            <label htmlFor="profile" className="mr-18 inputSize">
-              프로필
+            <label htmlFor="profile" className="profileLabel mr-6 inputSize">
+              <div className="upload-Btn">프로필등록</div>
             </label>
           </SLabelList>
           <SInputList>
@@ -330,7 +362,6 @@ const MyPageEdit = () => {
               value={displayName || ''}
               onChange={handleChangeDisplayName}
             ></input>
-
             <input
               id="email"
               type="text"
@@ -340,7 +371,6 @@ const MyPageEdit = () => {
               value={email || ''}
               onChange={handleChangeEmail}
             ></input>
-
             <input
               id="address"
               type="text"
@@ -349,7 +379,6 @@ const MyPageEdit = () => {
               value={address || ''}
               onChange={handleChangeAddress}
             ></input>
-
             <input
               id="phonNumber"
               type="text"
@@ -359,19 +388,17 @@ const MyPageEdit = () => {
               onChange={handleChangePhoneNumber}
             ></input>
             <input
-              id="profile"
+              className="upload-name inputSize profileInput"
+              placeholder="프로필을 등록하세요"
+              disabled
+            />
+            <input
               type="file"
+              id="profile"
               accept="image/*"
-              className="inputSize"
-              placeholder="프로필을 url형태로 입력하십시오"
-              // value={imgUrl || ''}
               onChange={handleChangeProfile}
-            ></input>
-            {/* <button onClick={() => profileImgPost(imgUrl)}>
-              프로필 등록 버튼
-            </button> */}
-
-            <SWithdraw>회원탈퇴</SWithdraw>
+            />
+            <SWithdraw onClick={handleClickQuit}>회원탈퇴</SWithdraw>
           </SInputList>
         </SFlexRow>
       </SWrapEdit>

@@ -3,47 +3,280 @@ import Carousel from 'react-material-ui-carousel';
 import { Paper } from '@mui/material';
 import leftArrow from '../image/leftArrow.svg';
 import rightArrow from '../image/rightArrow.svg';
+import loginModalScreen from '../image/loginModalScreen.png';
+import shareListImg from '../image/shareList.png';
+import reqAddImg from '../image/reqAddImg.png';
+import rateList from '../image/rateList.png';
+import { useNavigate } from 'react-router-dom';
 
 const StyledCarousel = styled.div`
-  /* padding: 0 50px; */
-  .Form {
-    height: 500px;
-    padding: 10px 45px;
+  .Form1 {
+    height: 600px;
     background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    .homeContainer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 1024px;
+      margin: 0 auto;
+      @media screen and (max-width: 900px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    img {
+      width: 380px;
+      border-radius: 5px;
+      @media screen and (max-width: 900px) {
+        display: none;
+      }
+    }
+    .desSt {
+      color: #42728f;
+    }
+  }
+  .Form2 {
+    height: 600px;
+    background-color: #fbf7f2;
+    display: flex;
+    align-items: center;
+    .shareContainer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 1024px;
+      margin: 0 auto;
+      @media screen and (max-width: 785px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    img {
+      width: 320px;
+      border-radius: 5px;
+      @media screen and (max-width: 785px) {
+        display: none;
+      }
+    }
+    .ask {
+      color: #d57600;
+      margin-bottom: 10px;
+    }
+    .toShareAdd {
+      outline: none;
+      padding: 6px 10px;
+      color: #d57600;
+      border: 2px solid #d57600;
+      border-radius: 5px;
+      &:hover {
+        font-weight: 600;
+      }
+    }
+  }
+  .Form3 {
+    height: 600px;
+    background-color: #e7ece9;
+    display: flex;
+    align-items: center;
+    .reqContainer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 1024px;
+      margin: 0 auto;
+      @media screen and (max-width: 785px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    img {
+      width: 320px;
+      border-radius: 5px;
+      @media screen and (max-width: 785px) {
+        display: none;
+      }
+    }
+    .ask {
+      color: #6f957b;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 5px 0;
+    }
+    button {
+      outline: none;
+      padding: 6px 10px;
+      color: #6f957b;
+      border: 2px solid #6f957b;
+      border-radius: 5px;
+      &:hover {
+        font-weight: 600;
+      }
+    }
+  }
+  .Form4 {
+    height: 600px;
+    background-color: #eeeaee;
+    display: flex;
+    align-items: center;
+    .rateContainer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 1024px;
+      margin: 0 auto;
+      @media screen and (max-width: 996px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    img {
+      width: 600px;
+      border-radius: 3px;
+      @media screen and (max-width: 996px) {
+        display: none;
+      }
+    }
+    .ask {
+      color: #a24da2;
+      margin-bottom: 10px;
+    }
+    p {
+      line-height: 1.3rem;
+    }
+    .toRateList {
+      outline: none;
+      padding: 6px 10px;
+      color: #a24da2;
+      border: 2px solid #a24da2;
+      border-radius: 5px;
+      &:hover {
+        font-weight: 600;
+      }
+    }
   }
 `;
 
-const CarouselForm = (props) => {
-  var items = [
-    {
-      title: '# page1',
-      content: 'Carousel 1',
-      des: '',
-      img: 'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg',
-    },
-    {
-      title: '# page2',
-      content: 'Carousel 2',
-      des: '더 이상 독서는 혼자만의 취미가 아니다. 책을 사랑하는, 책과 가까워지고 싶은, 혹은 비슷한 사람들끼리 취미를 공유하고 싶어하는 모두가 모여 하나의 마을을 형성하는 book village는 사용자 모두가 이웃처럼 서로의 지식을 나누고 책을 공유합니다. 함께하는 독서 습관을 만들어주는 서비스, book village에 오신 걸 환영합니다!',
-    },
-  ];
-
+const CarouselForm = () => {
+  const navigate = useNavigate();
   return (
-    <Carousel
-      NextIcon={<img src={rightArrow} alt="rightArrow" />}
-      PrevIcon={<img src={leftArrow} alt="leftArrow" />}
-    >
-      {items.map((item, index) => (
-        <StyledCarousel key={index} item={item}>
-          <Paper variant="outlined" square className="Form">
-            <h2>{item.title}</h2>
-            <p>{item.content}</p>
-            <p>{item.des}</p>
-            <img src={item.img} alt="img" />
+    <>
+      <Carousel
+        navButtonsProps={{
+          style: {
+            padding: '15px',
+          },
+        }}
+        navButtonsWrapperProps={{
+          style: {
+            padding: '5%',
+          },
+        }}
+        NextIcon={<img src={rightArrow} alt="rightArrow" />}
+        PrevIcon={<img src={leftArrow} alt="leftArrow" />}
+      >
+        <StyledCarousel>
+          <Paper variant="outlined" square className="Form1">
+            <div className="homeContainer">
+              <img src={loginModalScreen} alt="loginModalScreen" />
+              <div>
+                <h1>
+                  나만의 공간,
+                  <br />
+                  우리 모두의 공간
+                </h1>
+                <p>다양한 책을 무료나눔하고 읽고싶은 책은 요청까지 한 번에</p>
+                <p>
+                  복잡한 회원가입 과정없이 소셜로그인만으로 편리하게 즐겨보세요
+                </p>
+                <p className="desSt">
+                  책을 가까이 하는 삶을 만드는 Book Village 입니다
+                </p>
+              </div>
+            </div>
           </Paper>
         </StyledCarousel>
-      ))}
-    </Carousel>
+        <StyledCarousel>
+          <Paper variant="outlined" square className="Form2">
+            <div className="shareContainer">
+              <div>
+                <h1>
+                  좋은 책,
+                  <br />안 읽는 책은 공유해요
+                </h1>
+                <p>갖고 있는 도서를 무료나눔할 수 있어요.</p>
+                <div className="ask">나눔하고 싶은 책이 있나요?</div>
+                <button
+                  className="toShareAdd"
+                  onClick={() => navigate(`/shareAdd`)}
+                >
+                  나눔하러 가기 &gt;
+                </button>
+              </div>
+              <div>
+                <img src={shareListImg} alt="shareListImg" />
+              </div>
+            </div>
+          </Paper>
+        </StyledCarousel>
+        <StyledCarousel>
+          <Paper variant="outlined" square className="Form3">
+            <div className="reqContainer">
+              <img src={reqAddImg} alt="reqAddImg" />
+              <div>
+                <h1>
+                  나에게 없는 책은 <br />
+                  빌리지 사람들에게서
+                </h1>
+                <p>읽고 싶은 책이 있다면, 다른 사람들에게 책을 요청하세요</p>
+                <div className="ask">요청하고 싶은 책이 있나요?</div>
+                <button
+                  className="toRateList"
+                  onClick={() => navigate(`/reqAdd`)}
+                >
+                  요청하러 가기 &gt;
+                </button>
+              </div>
+            </div>
+          </Paper>
+        </StyledCarousel>
+        <StyledCarousel>
+          <Paper variant="outlined" square className="Form4">
+            <div className="rateContainer">
+              <div>
+                <h1>
+                  같은 생각, <br />
+                  다른 생각을 공유해요
+                </h1>
+                <p>
+                  특별히 감명깊게 읽은 책이 있다면 평점을 남기고 <br />
+                  다른 사람들은 어떻게 생각하는지 구경할 수 있어요
+                </p>
+                <div className="ask">
+                  빌리지 사람들이 평가한 책이 궁금하다면
+                </div>
+                <button
+                  className="toRateList"
+                  onClick={() => navigate(`/rateList`)}
+                >
+                  구경하러 가기 &gt;
+                </button>
+              </div>
+              <div>
+                <img src={rateList} alt="rateListImg" />
+              </div>
+            </div>
+          </Paper>
+        </StyledCarousel>
+      </Carousel>
+    </>
   );
 };
 
