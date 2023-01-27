@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import LoginModal from './LoginModal';
 import styled from 'styled-components';
 import { ReactComponent as Logo } from '../image/logo.svg';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import mypage from '../image/mypage.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/slice/userSlice';
 import instanceAxios from '../reissue/InstanceAxios';
@@ -135,6 +134,9 @@ const SLogout = styled.div`
   .mypage {
     display: flex;
     margin-right: 15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
     @media screen and (max-width: 550px) {
       display: none;
     }
@@ -163,6 +165,7 @@ const Header = () => {
   const { pathname } = useLocation();
   const accessToken = useSelector((state) => state.user.accessToken);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [profileData, setProfileData] = useState('');
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -206,17 +209,20 @@ const Header = () => {
   const rateClassName =
     currentLocation(pathname) === 'rate' ? 'olItem focused' : 'olItem';
 
-  // 헤더 바깥부분 클릭해도 유지되는 로직 (수정 전)
-  // const [currentTab, setCurrentTab] = useState(0);
-  // const menus = [
-  //   { index: 0, name: '나눔', route: '/shareList' },
-  //   { index: 1, name: '요청', route: '/reqList' },
-  //   { index: 2, name: '평점', route: '/' },
-  //   { index: 3, name: '커뮤니티', route: '/' },
-  // ];
-  // const handleMenuSelect = (index) => {
-  //   setCurrentTab(index);
-  // };
+  //프로필 이미지 가져오기
+  useEffect(() => {
+    const profileData = async () => {
+      try {
+        const res = await instanceAxios.get('/v1/members');
+        console.log('s', res.data.data.imgUrl);
+        setProfileData(res.data.data.imgUrl);
+      } catch (error) {
+        console.error(error);
+        navigate('/');
+      }
+    };
+    profileData();
+  }, []);
 
   return (
     <StyledHeader>
@@ -235,20 +241,6 @@ const Header = () => {
         </Link>
         <div className="olItem preparing">커뮤니티</div>
         <p className="balloon">준비 중입니다.</p>
-        {/* {menus.map((el) => {
-          const isFocused =
-            currentTab === el.index ? 'olItem focused' : 'olItem';
-          return (
-            <Link
-              to={el.route}
-              key={el.index}
-              onClick={() => handleMenuSelect(el.index)}
-              className={isFocused}
-            >
-              {el.name}
-            </Link>
-          );
-        })} */}
       </SNavContainer>
       {!accessToken ? (
         <>
@@ -261,7 +253,7 @@ const Header = () => {
       ) : (
         <SLogout>
           <Link to="/mypage">
-            <img src={mypage} alt="mypage" className="mypage" />
+            <img src={profileData} alt="mypage" className="mypage" />
           </Link>
           <SLogoutBtn onClick={handleLogout}>로그아웃</SLogoutBtn>
         </SLogout>
