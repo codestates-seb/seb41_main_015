@@ -20,6 +20,10 @@ spring:
   redis:
     host: ${REDIS_HOST}
     port: ${REDIS_PORT}
+  servlet:
+    multipart:
+      max-file-size: 3MB
+      max-request-size: 3MB
   security:
     oauth2:
       client:
