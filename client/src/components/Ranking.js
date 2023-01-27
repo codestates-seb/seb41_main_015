@@ -125,9 +125,6 @@ const Ranking = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-
-  useEffect(() => {
     axios
       .get(url + `v1/requests/rank`)
       .then((res) => {
@@ -136,9 +133,6 @@ const Ranking = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-
-  useEffect(() => {
     axios
       .get(url + `v1/borrows/rank`)
       .then((res) => {
