@@ -54,6 +54,52 @@ const SNavContainer = styled.ol`
     border-bottom: 3px solid #bb2649;
   }
 
+  .preparing {
+    color: #acacac;
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  .balloon {
+    display: none;
+    position: absolute;
+    width: 120px;
+    padding: 8px;
+    top: 28px;
+    left: 305px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background: #333333db;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    @media screen and (max-width: 1030px) {
+      top: 25px;
+      left: 120px;
+    }
+  }
+
+  .balloon:after {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -10px;
+    border: solid transparent;
+    border-color: rgba(51, 51, 51, 0);
+    border-bottom-color: #333333db;
+    border-width: 10px;
+    pointer-events: none;
+    content: ' ';
+  }
+
+  div:hover + p.balloon {
+    display: block;
+  }
+
   @media screen and (max-width: 1030px) {
     left: 32%;
     .olItem {
@@ -187,9 +233,8 @@ const Header = () => {
         <Link to="/rateList" className={rateClassName}>
           평점
         </Link>
-        <Link to="/" className="olItem">
-          커뮤니티
-        </Link>
+        <div className="olItem preparing">커뮤니티</div>
+        <p className="balloon">준비 중입니다.</p>
         {/* {menus.map((el) => {
           const isFocused =
             currentTab === el.index ? 'olItem focused' : 'olItem';
