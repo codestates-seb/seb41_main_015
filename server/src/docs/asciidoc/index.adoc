@@ -558,14 +558,8 @@ include::{snippets}/borrow-complete/http-request.adoc[]
 .request-headers
 include::{snippets}/borrow-complete/request-headers.adoc[]
 
-.request-fields
-include::{snippets}/borrow-complete/request-fields.adoc[]
-
 .path-parameters
 include::{snippets}/borrow-complete/path-parameters.adoc[]
-
-.request-body
-include::{snippets}/borrow-complete/request-body.adoc[]
 
 .http-response
 include::{snippets}/borrow-complete/http-response.adoc[]

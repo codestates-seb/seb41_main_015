@@ -55,9 +55,9 @@ public class requestRankRestDocsTest {
     public void RequestRankTest() throws Exception {
 
         RequestDto.rankResponse response1 = new RequestDto.rankResponse(
-                "book_title1", "author1", "publisher1", 2L);
+                "book_title1", "author1", "publisher1","thumbnail1", 1L);
         RequestDto.rankResponse response2 = new RequestDto.rankResponse(
-                "book_title2", "author2", "publisher2", 1L);
+                "book_title2", "author2", "publisher2","thumbnail2",  2L);
 
         List<RequestDto.rankResponse> responseList = new ArrayList<>();
         responseList.add(response1);
@@ -88,7 +88,9 @@ public class requestRankRestDocsTest {
                                         fieldWithPath("data.[].bookTitle").type(JsonFieldType.STRING).description("책 제목"),
                                         fieldWithPath("data.[].author").type(JsonFieldType.STRING).description("저자"),
                                         fieldWithPath("data.[].publisher").type(JsonFieldType.STRING).description("출판사"),
+                                        fieldWithPath("data.[].thumbnail").type(JsonFieldType.STRING).description("요청 책 이미지"),
                                         fieldWithPath("data.[].count").type(JsonFieldType.NUMBER).description("같은 책 개수")
+
 
                                 )
                         )
