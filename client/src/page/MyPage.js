@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Paging from '../components/Paging';
 import { prettyDate } from '../util/dateparse';
@@ -210,47 +210,49 @@ const MyPage = () => {
               <SBoxA>
                 {data.length !== 0 ? (
                   data.map((book) => (
-                    <>
+                    <React.Fragment key={book.borrowId}>
                       <SDivide
                         onClick={() =>
                           navigate(`/shareDetail/${book.borrowId}`)
                         }
                       >
                         <table>
-                          <tr>
-                            <td>
-                              <SDivideImage
-                                src={book.thumbnail}
-                                alt="book img"
-                              ></SDivideImage>
-                            </td>
-                            <td>
-                              <tr>
-                                <td>
-                                  <STextStrong>{book.title}</STextStrong>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <strong>책 제목</strong> : {book.bookTitle}
-                                </td>
-                              </tr>
-                              <tr>
-                                <SText>저자 : {book.author}</SText>
-                                <SText>출판사 : {book.author}</SText>
-                              </tr>
-                              <tr>
-                                <SText>
-                                  작성일자 : {prettyDate(book.createdAt)}
-                                </SText>
-                              </tr>
-                            </td>
-                          </tr>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <SDivideImage
+                                  src={book.thumbnail}
+                                  alt="book img"
+                                ></SDivideImage>
+                              </td>
+                              <td>
+                                <tr>
+                                  <td>
+                                    <STextStrong>{book.title}</STextStrong>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <strong>책 제목</strong> : {book.bookTitle}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <SText>저자 : {book.author}</SText>
+                                  <SText>출판사 : {book.author}</SText>
+                                </tr>
+                                <tr>
+                                  <SText>
+                                    작성일자 : {prettyDate(book.createdAt)}
+                                  </SText>
+                                </tr>
+                              </td>
+                            </tr>
+                          </tbody>
                         </table>
                       </SDivide>
 
                       <br></br>
-                    </>
+                    </React.Fragment>
                   ))
                 ) : (
                   <SDivide>
