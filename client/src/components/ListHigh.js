@@ -84,8 +84,8 @@ const SShareTop = styled.div`
     -webkit-appearance: none;
     appearance: none;
 
-    padding: 7px;
-    font-size: 1rem;
+    padding: 0px 10px;
+    font-size: 0.8rem;
     border: 1px solid #aaaaaa;
     border-radius: 6px;
     height: 41px;
@@ -96,21 +96,30 @@ const SShareTop = styled.div`
     }
   }
   .register {
-    width: 100px;
-    height: 40px;
-    margin-right: 0px;
-    border-radius: 3px;
+    width: 90px;
+    height: 38px;
+    padding: 10px;
     border: 1px solid #bb2649;
-    color: #bb2649;
-    font-size: 16px;
+    border-radius: 3px;
+    color: #ffffff;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #cf385b;
+    box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, 0.7);
+
     :hover {
-      background-color: #bb2649;
       color: #ffffff;
+      background-color: #bb2649;
+      border: 1px solid #bb2649;
     }
+
     @media screen and (max-width: 1023px) {
-      width: 90px;
+      width: 80px;
       height: 41px;
       margin-right: 0;
+      font-size: 0.95rem;
     }
   }
 `;
