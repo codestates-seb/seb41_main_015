@@ -6,10 +6,10 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const StyledShareForm = styled.div`
-  h2 {
+  .title {
     color: #2c2c2c;
     padding: 18px;
-    margin: 20px 10%;
+    margin: 0 10%;
     border-bottom: 1px solid #acacac;
   }
 `;
@@ -21,7 +21,7 @@ const SInputContainer = styled.div`
   #ImgInput {
     display: none;
   }
-  @media screen and (max-width: 930px) {
+  @media screen and (max-width: 1070px) {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,6 +41,14 @@ const SInputLeft = styled.div`
 
     @media screen and (max-width: 930px) {
       width: 160px;
+      height: 205px;
+    }
+  }
+  .imgAddDes {
+    color: #626262;
+    font-size: 11px;
+    @media screen and (max-width: 1070px) {
+      margin-bottom: 15px;
     }
   }
 `;
@@ -65,6 +73,7 @@ const SImgBtn = styled.div`
       cursor: pointer;
     }
   }
+
   .imgDelete {
     width: 100px;
     height: 30px;
@@ -85,7 +94,7 @@ const SInputRight = styled.div`
   flex-direction: column;
   margin-top: 10px;
   input {
-    width: 95%;
+    width: 100%;
     height: 40px;
     margin-bottom: 20px;
     border: none;
@@ -99,7 +108,7 @@ const SInputRight = styled.div`
     }
   }
   .inputContent {
-    width: 95%;
+    width: 100%;
     height: 220px;
     border: none;
     margin-bottom: 30px;
@@ -219,7 +228,12 @@ const ShareForm = (props) => {
 
   return (
     <StyledShareForm>
-      <h2>{props.page === 'shareAdd' ? '나눔하기' : '수정하기'}</h2>
+      <div className="title">
+        <h2>{props.page === 'shareAdd' ? '나눔하기' : '나눔글 수정하기'}</h2>
+        <div>
+          {props.page === 'shareAdd' ? '갖고 있는 도서를 나눠보세요!' : ''}
+        </div>
+      </div>
       <SInputContainer>
         <SInputLeft>
           {thumbnail && (
@@ -240,6 +254,11 @@ const ShareForm = (props) => {
               삭제
             </button>
           </SImgBtn>
+          <div className="imgAddDes">
+            {props.page === 'shareAdd'
+              ? '책 상태를 보여줄 수 있는 사진을 첨부해주시면 더 좋습니다!'
+              : ''}
+          </div>
         </SInputLeft>
         <SInputRight>
           <div>

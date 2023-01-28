@@ -5,10 +5,10 @@ import BookAddModal from './BookAddModal';
 import Swal from 'sweetalert2';
 
 const StyledReqForm = styled.div`
-  h2 {
+  .title {
     color: #2c2c2c;
     padding: 18px;
-    margin: 20px 10%;
+    margin: 0 10% 20px;
     border-bottom: 1px solid #acacac;
   }
 `;
@@ -39,6 +39,7 @@ const SInputLeft = styled.div`
 
     @media screen and (max-width: 930px) {
       width: 160px;
+      height: 205px;
     }
   }
 `;
@@ -65,7 +66,7 @@ const SInputRight = styled.div`
   flex-direction: column;
   margin-top: 10px;
   input {
-    width: 95%;
+    width: 100%;
     height: 40px;
     margin-bottom: 20px;
     border: none;
@@ -78,7 +79,7 @@ const SInputRight = styled.div`
     }
   }
   .inputContent {
-    width: 95%;
+    width: 100%;
     height: 220px;
     border: none;
     margin-bottom: 30px;
@@ -151,7 +152,13 @@ const ReqForm = (props) => {
 
   return (
     <StyledReqForm>
-      <h2>{props.page === 'reqAdd' ? '요청하기' : '수정하기'}</h2>
+      <div className="title">
+        <h2>{props.page === 'reqAdd' ? '요청하기' : '요청글 수정하기'}</h2>
+        <div>
+          {props.page === 'reqAdd' ? '원하는 도서를 요청해보세요!' : ''}
+        </div>
+      </div>
+
       <SInputContainer>
         <SInputLeft>
           <SImgBtn>
