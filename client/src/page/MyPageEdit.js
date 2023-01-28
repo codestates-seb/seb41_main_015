@@ -166,6 +166,9 @@ const SDefaultProfile = styled.div`
     :hover {
       color: #bb2649;
     }
+    @media screen and (max-width: 1080px) {
+      display: none;
+    }
   }
 `;
 
@@ -196,9 +199,9 @@ const MyPageEdit = () => {
   const handleChangePhoneNumber = (e) => {
     setPhoneNumber(e.target.value);
   };
+  //이미지 사진 반영하기
   const handleChangeProfile = (e) => {
     setImgUrl(e.target.files[0]);
-    console.log(e.target.files[0]);
     if (e.target.files) {
       const uploadFile = e.target.files[0];
       const formData = new FormData();
@@ -216,16 +219,31 @@ const MyPageEdit = () => {
           }
         )
         .then((res) => {
-          console.log('post 성공!', res.data.data);
           setImgUrl(res.data.data);
         });
     }
   };
   //프로필 제거 함수
   const handleClickProfileRemove = () => {
-    setImgUrl(
-      'https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg'
-    );
+    setImgUrl('https://img.icons8.com/windows/32/null/user-male-circle.png');
+  };
+
+  //수정 취소 확인 함수
+  const handleCancel = () => {
+    Swal.fire({
+      title: '작성을 취소하시겠습니까?',
+      text: '작성 중인 내용은 저장되지 않습니다',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#bb2649',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+      // reverseButtons: true, //버튼 순서 거꾸로
+    }).then((res) => {
+      if (res.isConfirmed) {
+        window.location.reload();
+      }
+    });
   };
 
   //수정 취소 확인 함수
@@ -248,7 +266,6 @@ const MyPageEdit = () => {
 
   //저장 버튼 클릭 시, 서버로 patch 요청
   const handleClickSave = () => {
-    console.log('33', imgUrl);
     instanceAxios
       .patch('/v1/members', {
         name,
@@ -285,6 +302,7 @@ const MyPageEdit = () => {
         setAddress(res.data.data.address);
         setPhoneNumber(res.data.data.phoneNumber);
         setImgUrl(res.data.data.imgUrl);
+        console.log('이미지 확인', res.data.data);
       } catch (error) {
         console.error(error);
         navigate('/');
@@ -315,7 +333,6 @@ const MyPageEdit = () => {
           sessionStorage.clear();
           navigate('/');
           window.location.reload();
-          console.log('회원탈퇴!');
           Swal.fire(
             '정상적으로 회원탈퇴가 처리되었습니다.',
             '이용해주셔서 감사합니다',
@@ -333,7 +350,15 @@ const MyPageEdit = () => {
       </STitle>
       <SWrapEdit>
         <SDefaultProfile>
-          <img src={imgUrl} alt="profile" />
+          {imgUrl === '' ? (
+            <img
+              src="https://img.icons8.com/windows/32/null/user-male-circle.png"
+              alt="noProfile"
+            />
+          ) : (
+            <img src={imgUrl} alt="profile" />
+          )}
+          {/* <img src={imgUrl || ''} alt="profile" /> */}
           <button className="profileRemove" onClick={handleClickProfileRemove}>
             삭제
           </button>

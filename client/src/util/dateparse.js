@@ -28,10 +28,9 @@ const elapsed = (date) => {
           hour12: false,
           hour: '2-digit',
           minute: '2-digit',
-          timeZone: 'Asia/Seoul',
         };
 
-        let converted = uploaded.toLocaleDateString('ko-KR', options).split('');
+        let converted = kr_curr.toLocaleDateString('ko-KR', options).split('');
         let sliced = converted.slice(0, -6);
 
         return sliced.join('');
