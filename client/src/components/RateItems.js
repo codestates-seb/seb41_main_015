@@ -23,7 +23,10 @@ const StyledRateItems = styled.div`
     }
 
     .bookInfo {
-      width: 140px;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      width: 150px;
     }
     p,
     span {
