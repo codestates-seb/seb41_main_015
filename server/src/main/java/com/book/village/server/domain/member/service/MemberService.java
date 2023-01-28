@@ -87,6 +87,7 @@ public class MemberService {
         String email = (String)claims.get("username");
         String logoutKey = "logout:" + jws;
         valueOperations.set(logoutKey, email, Duration.ofMinutes(jwtTokenizer.getAccessTokenExpirationMinutes()));
-        tokenRepository.delete(tokenRepository.findByMember(memberRepository.findByEmail(pemail).get()).get());
+        if(memberRepository.findByEmail(pemail).isPresent())
+            tokenRepository.delete(tokenRepository.findByMember(memberRepository.findByEmail(pemail).get()).get());
     }
 }
