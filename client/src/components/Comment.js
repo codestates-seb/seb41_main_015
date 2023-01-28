@@ -3,6 +3,7 @@ import instanceAxios from '../reissue/InstanceAxios';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 import { prettyDate } from '../util/dateparse';
+import { useNavigate } from 'react-router-dom';
 
 const SCommentForm = styled.div`
   margin: 30px 0;
@@ -106,6 +107,7 @@ const SCommentWrap = styled.div`
 const Comment = ({ data, borrowComment, reqComment, page, id }) => {
   const [content, setContent] = useState('');
   const [contentForm, setContentForm] = useState('');
+  const navigate = useNavigate();
 
   const endpoint = page === 'share' ? 'borrows' : 'requests';
   const commentMap = page === 'share' ? borrowComment : reqComment;
@@ -204,29 +206,58 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
 
   //댓글 삭제
   const handleClickDeleteComment = (commentId) => {
-    instanceAxios
-      .delete(`/v1/${endpoint}/comments/${commentId}`)
-      .then(() => {
-        window.location.reload();
-        Swal.fire(
-          '댓글 삭제 성공',
-          '정상적으로 댓글이 삭제되었습니다',
-          'success'
-        );
-      })
-      .catch(() => {
-        Swal.fire(
-          '댓글 삭제 실패',
-          '댓글삭제가 정상적으로 이루어지지 않았습니다.',
-          'warning'
-        );
-      });
+    Swal.fire({
+      title: '작성을 취소하시겠습니까?',
+      text: '작성 중인 내용은 저장되지 않습니다',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#bb2649',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+      // reverseButtons: true, //버튼 순서 거꾸로
+    }).then((res) => {
+      if (res.isConfirmed) {
+        instanceAxios
+          .delete(`/v1/${endpoint}/comments/${commentId}`)
+          .then(() => {
+            window.location.reload();
+            Swal.fire(
+              '댓글 삭제 성공',
+              '정상적으로 댓글이 삭제되었습니다',
+              'success'
+            );
+          })
+          .catch(() => {
+            Swal.fire(
+              '댓글 삭제 실패',
+              '댓글삭제가 정상적으로 이루어지지 않았습니다.',
+              'warning'
+            );
+          });
+      }
+    });
   };
 
   const handleClickCancelModify = () => {
     setContentForm('');
   };
-
+  //수정 취소 확인 함수
+  const handleCancel = () => {
+    Swal.fire({
+      title: '작성을 취소하시겠습니까?',
+      text: '작성 중인 내용은 저장되지 않습니다',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#bb2649',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+      // reverseButtons: true, //버튼 순서 거꾸로
+    }).then((res) => {
+      if (res.isConfirmed) {
+        navigate(-1);
+      }
+    });
+  };
   return (
     <SCommentForm>
       <SInputContainer>
@@ -246,6 +277,7 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
       </SInputContainer>
       <SCommentContainer>
         {commentMap.map((comment) => {
+          console.log('comment', comment);
           const commentId =
             page === 'share'
               ? comment.borrowCommentId
@@ -254,7 +286,13 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
           return (
             <SCommentWrap key={commentId}>
               <SUserContainer>
-                <img alt="profileImage" src={comment.imgUrl} />
+                <img
+                  alt="profileImage"
+                  src={
+                    comment.imgUrl ||
+                    'https://img.icons8.com/windows/32/null/user-male-circle.png'
+                  }
+                />
                 <span className="userName">{comment.displayName}</span>
                 <div className="createdAt">{prettyDate(comment.createdAt)}</div>
               </SUserContainer>

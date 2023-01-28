@@ -83,7 +83,8 @@ const SImage = styled.img`
 `;
 
 const SDivideImage = styled.img`
-  width: 70%;
+  width: 150px;
+  height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
