@@ -25,7 +25,6 @@ const ReqEdit = () => {
     inputs;
 
   const handleClickSubmit = () => {
-    console.log(inputs);
     instanceAxios
       .patch(`/v1/requests/${id}`, {
         bookTitle,

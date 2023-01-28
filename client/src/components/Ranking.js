@@ -28,9 +28,6 @@ const SRateContainer = styled.div`
     font-weight: 500;
   }
   .rankingItem {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
     padding: 10px;
     :hover {
       cursor: pointer;

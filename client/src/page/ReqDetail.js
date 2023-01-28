@@ -18,6 +18,7 @@ const ReqDetail = () => {
       .then((res) => {
         setData(res.data.data);
         const sortRequestComments = res.data.data.requestComments;
+        //댓글 최신순 정렬
         sortRequestComments.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );

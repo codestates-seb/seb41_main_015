@@ -96,7 +96,6 @@ const RateModal = ({ isModalOpen, handleCloseModal, data }) => {
           .then((res) => {
             handleCloseModal();
             window.location.reload();
-            console.log('모달 평점 post', res.data.data);
           })
           .catch((err) => {
             console.error(err);

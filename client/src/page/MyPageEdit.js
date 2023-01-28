@@ -246,24 +246,6 @@ const MyPageEdit = () => {
     });
   };
 
-  //수정 취소 확인 함수
-  const handleCancel = () => {
-    Swal.fire({
-      title: '작성을 취소하시겠습니까?',
-      text: '작성 중인 내용은 저장되지 않습니다',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#bb2649',
-      confirmButtonText: '확인',
-      cancelButtonText: '취소',
-      // reverseButtons: true, //버튼 순서 거꾸로
-    }).then((res) => {
-      if (res.isConfirmed) {
-        window.location.reload();
-      }
-    });
-  };
-
   //저장 버튼 클릭 시, 서버로 patch 요청
   const handleClickSave = () => {
     instanceAxios
@@ -302,7 +284,6 @@ const MyPageEdit = () => {
         setAddress(res.data.data.address);
         setPhoneNumber(res.data.data.phoneNumber);
         setImgUrl(res.data.data.imgUrl);
-        console.log('이미지 확인', res.data.data);
       } catch (error) {
         console.error(error);
         navigate('/');
@@ -358,7 +339,6 @@ const MyPageEdit = () => {
           ) : (
             <img src={imgUrl} alt="profile" />
           )}
-          {/* <img src={imgUrl || ''} alt="profile" /> */}
           <button className="profileRemove" onClick={handleClickProfileRemove}>
             삭제
           </button>
