@@ -127,8 +127,6 @@ const NicknameModal = ({ isModalOpen, handleCloseModal }) => {
   const handleInfoPost = () => {
     // 유효성 검사를 충족할 때에만 데이터 보내기
     if (validationCheck(nickname)) {
-      // console.log(nickname);
-      // console.log('서버에 데이터 전송');
       instanceAxios
         .patch('v1/members', {
           displayName: nickname,

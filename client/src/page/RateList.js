@@ -90,7 +90,6 @@ const RateList = (props) => {
       });
   }, []);
 
-  //서버에 요청
   const getDatabyPage = async (page) => {
     try {
       const res = await axios.get(
