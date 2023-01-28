@@ -110,10 +110,6 @@ const RateAdd = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
-  // 필요한 정보
-  // 파라미터: isbn, bookTitle, author, publisher, thumbnail
-  // body: rating, title, content
   const defaultImg =
     'https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg';
   const [inputs, setInputs] = useState({
@@ -210,7 +206,6 @@ const RateAdd = () => {
       <SInputContainer>
         <SImageContainer>
           <img alt="bookImg" src={thumbnail} className="bookImg" />
-          {/* 별점 컴포넌트 */}
           <RateStar rating={rating} setRating={setRating} />
         </SImageContainer>
         <SInputs>

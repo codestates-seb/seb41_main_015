@@ -19,7 +19,6 @@ instanceAxios.interceptors.request.use(
     // 토큰 가져오기
     const sessionAccessToken = sessionStorage.getItem('accessToken');
     const cookieRefreshToken = getCookie('refreshToken');
-    // const sessionStorageRefreshToken = sessionStorage.getItem('refreshToken');
 
     //토큰 디코딩
     const accessDecoded = jwtDecode(sessionAccessToken);
@@ -39,9 +38,6 @@ instanceAxios.interceptors.request.use(
       } else {
         //리프레쉬토큰 만료기간이 남았다면 엑세스토큰 갱신 요청
         const cookieRefreshToken = getCookie('refreshToken');
-        // const sessionStorageRefreshToken =
-        //   sessionStorage.getItem('refreshToken');
-
         const token = async () => {
           await axios
             .post(

@@ -4,12 +4,7 @@ import NicknameModal from '../components/NicknameModal';
 import Ranking from '../components/Ranking';
 
 const Home = () => {
-  // 모달을 띄워보자
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // const handleOpenModal = () => {
-  //   setIsModalOpen(true);
-  // }
 
   useEffect(() => {
     // membership 상태에 따라 바꾸기
@@ -29,7 +24,6 @@ const Home = () => {
 
   return (
     <>
-      {/* <button onClick={handleOpenModal}>모달 열기</button> */}
       {isModalOpen ? (
         <NicknameModal
           isModalOpen={isModalOpen}

@@ -339,7 +339,6 @@ const MyPageEdit = () => {
           ) : (
             <img src={imgUrl} alt="profile" />
           )}
-          {/* <img src={imgUrl || ''} alt="profile" /> */}
           <button className="profileRemove" onClick={handleClickProfileRemove}>
             삭제
           </button>

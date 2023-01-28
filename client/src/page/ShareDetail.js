@@ -17,7 +17,7 @@ const ShareDetail = () => {
         window.scrollTo(0, 0);
         const res = await axios.get(url + `v1/borrows/${id}`);
         setData(res.data.data);
-        //sort사용
+        //댓글 최신순 정렬
         const sortBorrowComments = res.data.data.borrowComments;
         sortBorrowComments.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)

@@ -15,13 +15,10 @@ const SContainer = styled.div`
     }
   }
   li {
-    /* width: 30px; */
-    /* border: 1px solid #c8c8c8; */
     padding: 4px 13px;
     border-radius: 2px;
     &:hover {
       color: #bb2649;
-      /* background-color: #dcdcdc; */
       cursor: pointer;
     }
   }

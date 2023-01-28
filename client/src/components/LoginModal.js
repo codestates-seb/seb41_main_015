@@ -82,7 +82,6 @@ const SLoginModal = styled.div`
 
 const LoginModal = ({ isModalOpen, handleCloseModal }) => {
   const handleSocialLogin = (type) => {
-
     window.location.assign(
       `https://serverbookvillage.kro.kr/oauth2/authorization/${type}`
     );
@@ -91,7 +90,6 @@ const LoginModal = ({ isModalOpen, handleCloseModal }) => {
     //   window.location.assign(
     //     'http://localhost:3000/oauth?access_token=&refresh_token=&membership=existing'
     //   );
-
   };
 
   return (

@@ -17,7 +17,6 @@ const SListContainer = styled.div`
 const CommonList = (props) => {
   const { headTitle, endpoint, route } = props;
   const { pathname } = useLocation();
-  // const id = pathname === '/shareList' ? 'borrowId' : 'requestId';
 
   const url = 'https://serverbookvillage.kro.kr/';
 
@@ -100,7 +99,6 @@ const CommonList = (props) => {
   };
 
   const handleKeyword = (e) => {
-    // setKeyword(e.target.value.replace(/^\s+|\s+$/gm, ''));
     setKeyword(e.target.value);
   };
 
@@ -154,8 +152,6 @@ const CommonList = (props) => {
           );
           console.error(err);
         });
-
-      // setKeyword('');
     }
   };
 

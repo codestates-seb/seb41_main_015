@@ -196,11 +196,7 @@ const RateDetail = () => {
 
               <SContact>
                 <div className="RateText">아직 평점을 남기지 않으셨나요?</div>
-                <button
-                  className="RateModalBtn"
-                  //모달
-                  onClick={handleOpenModal}
-                >
+                <button className="RateModalBtn" onClick={handleOpenModal}>
                   평가 등록하러 가기
                 </button>
                 <RateModal
