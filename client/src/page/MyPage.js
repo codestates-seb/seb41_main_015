@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 // import axios from 'axios';
 import Paging from '../components/Paging';
+
 import { prettyDate } from '../util/dateparse';
 import { useNavigate } from 'react-router-dom';
 import instanceAxios from '../reissue/InstanceAxios';
@@ -14,36 +15,39 @@ const STable = styled.table`
   flex-direction: row;
 `;
 
-const SOverflow = styled.div`
-  overflow-y: auto;
-  height: 700px;
-`;
 
 const SBoxA = styled.div`
-  overflow: scroll;
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #bb2649;
-    border-radius: 10px;
-  }
-  height: 300px;
+  // overflow: scroll;
+  // ::-webkit-scrollbar {
+  //   width: 4px;
+  // }
+  // ::-webkit-scrollbar-thumb {
+  //   background-color: #bb2649;
+  //   border-radius: 2%;
+  // }
+  height: 500px;
   padding: 10px;
+  width: 800px;
+  border-radius: 50%;
+
+
 `;
 
-const SBoxB = styled.div`
-  overflow: scroll;
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #bb2649;
-    border-radius: 10px;
-  }
-  height: 300px;
-  padding: 10px;
-`;
+// const SBoxB = styled.div`
+//   overflow: scroll;
+//   ::-webkit-scrollbar {
+//     width: 4px;
+//   }
+//   ::-webkit-scrollbar-thumb {
+//     background-color: #bb2649;
+//     border-radius: 10px;
+//   }
+//   height: 300px;
+//   padding: 10px;
+//   -moz-border-radius: 3px;
+//   -webkit-border-radius: 3px;
+//   border-radius: 3px;
+// `;
 
 const SProfile = styled.td`
   font-size: 14px;
@@ -52,7 +56,29 @@ const SProfile = styled.td`
 `;
 
 const SDivide = styled.div`
-  border: 1px solid black;
+  border: 1px solid #acacac;
+  height: 150px;
+  border-radius: 2.5px;
+  display: flex;
+    padding-left: 10px;
+    &:hover {
+    background-color: #e3e3e369;
+    transition: 0.2s;
+   cursor: pointer;
+    }
+ 
+`;
+
+const Str = styled.div`
+    font-size: 13px;
+    font-weight: 395; 
+    ;
+`;
+
+const STr2 = styled.strong`
+margin-left: 10px;
+font-size: 18px;
+color: #bb2649;
 `;
 
 const SInformation = styled.button`
@@ -68,7 +94,11 @@ const SInformation = styled.button`
     color: #ffffff;
     background-color: #bb2649;
   }
-  margin-right: 10%;
+  margin-left: 10%;
+  
+  transform: translateX(5.2em);
+  /* transform: translateY(0.1in);
+  */
 `;
 
 const SInformationtd = styled.td`
@@ -106,6 +136,11 @@ const SImage = styled.img`
 const SDivideImage = styled.img`
   width: 70%;
   display: flex;
+  display : flex;
+ align-items: center;
+ justify-content: center;
+ align-content: center;
+  
 `;
 
 const STitle = styled.div`
@@ -120,10 +155,25 @@ const STitle = styled.div`
 const STitle2 = styled.h2`
   margin-left: 10px;
   font-size: 20px;
+  
+  color: #acacac;
+    &:hover {
+      cursor: default;
+    }
+  
 `;
 
 const STextStrong = styled.strong`
   font-size: 18px;
+
+`;
+
+const SShareList= styled.tr`
+ display : flex;
+ align-items: center;
+ justify-content: center;
+ align-content: center;
+  
 `;
 
 const MyPage = () => {
@@ -135,7 +185,7 @@ const MyPage = () => {
 
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(0); // 총 데이터 개수
-  const PER_PAGE = 2;
+  const PER_PAGE = 3;
   // const url = 'https://serverbookvillage.kro.kr/';
 
   useEffect(() => {
@@ -168,14 +218,12 @@ const MyPage = () => {
 
   return (
     <>
-      <SOverflow>
+      
         <STitle>
           <h2>마이 페이지</h2>
         </STitle>
         <div>
-          <SInformation onClick={() => navigate('/mypageEdit')}>
-            정보수정
-          </SInformation>
+          
         </div>
         <STable>
           <tbody>
@@ -202,25 +250,32 @@ const MyPage = () => {
                   <SProfile>
                     이메일
                     <br></br>
+                    <Str>
                     {email}
+                    </Str>
                     <br></br>
                     <br></br>
                     닉네임
                     <br></br>
+                    <Str>
                     {nickname}
+                    </Str>
                   </SProfile>
                 </tr>
               </td>
+              <SInformation onClick={() => navigate('/mypageEdit')}>
+            정보수정
+          </SInformation>
               <td></td>
             </tr>
-            <tr>
+            <SShareList>
               <td>
-                <STitle2>{nickname}의 나눔</STitle2>
+                <STitle2><STr2>{nickname}</STr2> 의 나눔목록</STitle2>
                 <SBoxA>
                   {data.length !== 0 ? (
                     data.map((book) => (
-                      <>
-                        <SDivide>
+                <>
+                        <SDivide onClick={() => navigate(`/shareDetail/${book.borrowId}`)}>
                           <table>
                             <tr>
                               <td>
@@ -272,8 +327,8 @@ const MyPage = () => {
                   handlePageChange={handlePageChange}
                 />
               </td>
-              <td>
-                <STitle2>{nickname}의 커뮤니티 </STitle2>
+              {/* <td>
+                <STitle2>{nickname} 의 커뮤니티 </STitle2>
                 <SBoxB>
                   <SDivide>
                     <table>
@@ -281,11 +336,17 @@ const MyPage = () => {
                     </table>
                   </SDivide>
                 </SBoxB>
-              </td>
-            </tr>
+                <Pagingtwo
+                  page={page}
+                  count={count}
+                  perPage={PER_PAGE}
+                  handlePageChange={handlePageChange}
+                />
+              </td> */}
+            </SShareList>
           </tbody>
         </STable>
-      </SOverflow>
+      
     </>
   );
 };
