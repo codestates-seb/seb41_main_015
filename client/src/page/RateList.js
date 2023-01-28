@@ -10,6 +10,7 @@ const StyledRateList = styled.div`
   @media screen and (max-width: 1360px) {
     margin: 0px 50px;
   }
+
   .rateHeader {
     height: 146px;
     color: #2c2c2c;
@@ -18,12 +19,23 @@ const StyledRateList = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media screen and (max-width: 555px) {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      height: 150px;
+    }
     .title {
       display: flex;
       flex-direction: column;
       h2 {
         margin-bottom: 0;
         font-size: 22px;
+      }
+      p {
+        @media screen and (max-width: 555px) {
+          display: none;
+        }
       }
     }
     .rateBtn {
@@ -32,13 +44,18 @@ const StyledRateList = styled.div`
       padding: 10px;
       border: 1px solid #bb2649;
       border-radius: 3px;
-      color: #bb2649;
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
+      background-color: #cf385b;
+      box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, 0.7);
+      font-weight: 500;
+
       :hover {
         color: #ffffff;
         background-color: #bb2649;
+        border: 1px solid #bb2649;
       }
       @media screen and (max-width: 1023px) {
         font-size: 16px;
@@ -99,9 +116,11 @@ const RateList = (props) => {
           <h2>빌리지 사람들의 평점 목록입니다!</h2>
           <p>알고 있는 책에 자유롭게 평점을 매겨보세요!</p>
         </div>
-        <button className="rateBtn" onClick={() => navigate('/rateAdd')}>
-          책 등록하기
-        </button>
+        <div>
+          <button className="rateBtn" onClick={() => navigate('/rateAdd')}>
+            책 등록하기
+          </button>
+        </div>
       </div>
       <RateItems data={bookItems} />
       <Paging
