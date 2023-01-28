@@ -241,7 +241,7 @@ const MyPageEdit = () => {
       // reverseButtons: true, //버튼 순서 거꾸로
     }).then((res) => {
       if (res.isConfirmed) {
-        window.location.reload();
+        navigate(-1);
       }
     });
   };
