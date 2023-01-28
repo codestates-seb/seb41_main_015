@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Paging from '../components/Paging';
-
 import { prettyDate } from '../util/dateparse';
 import { useNavigate } from 'react-router-dom';
 import instanceAxios from '../reissue/InstanceAxios';
@@ -10,6 +9,10 @@ const STable = styled.table`
   display: flex;
   justify-content: center;
   flex-direction: row;
+
+  .toEdit {
+    transform: translate(384px, -55px);
+  }
 `;
 
 const SBoxA = styled.div`
@@ -22,7 +25,6 @@ const SBoxA = styled.div`
 const SProfile = styled.td`
   font-size: 14px;
   font-weight: 600;
-  transform: translateX(50px);
 `;
 
 const SDivide = styled.div`
@@ -54,7 +56,7 @@ const SInformation = styled.button`
   height: 33px;
   font-size: 16px;
   font-weight: 600;
-  float: right;
+  margin: 18px;
   color: #bb2649;
   border: 1px solid #bb2649;
   border-radius: 10px;
@@ -62,9 +64,6 @@ const SInformation = styled.button`
     color: #ffffff;
     background-color: #bb2649;
   }
-  margin-left: 10%;
-
-  transform: translateX(5.2em);
 `;
 
 const SInformationtd = styled.td`
@@ -80,11 +79,11 @@ const SImage = styled.img`
   width: 150px;
   height: 150px;
   margin-left: 50px;
+  margin-right: 30px;
 `;
 
 const SDivideImage = styled.img`
   width: 70%;
-  display: flex;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,11 +91,14 @@ const SDivideImage = styled.img`
 `;
 
 const STitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 10%;
+  border-bottom: 1px solid #acacac;
   h2 {
     color: #2c2c2c;
     padding: 18px;
-    margin: 20px 10%;
-    border-bottom: 1px solid #acacac;
   }
 `;
 
@@ -162,6 +164,9 @@ const MyPage = () => {
     <>
       <STitle>
         <h2>마이 페이지</h2>
+        <SInformation onClick={() => navigate('/mypageEdit')}>
+          정보수정
+        </SInformation>
       </STitle>
       <div></div>
       <STable>
@@ -175,32 +180,26 @@ const MyPage = () => {
 
           <tr>
             <td>
-              <tr>
-                <td>
-                  {imgUrl.length !== 0 ? (
-                    <SImage src={imgUrl} alt="img from share"></SImage>
-                  ) : (
-                    <SImage
-                      src="	https://img.icons8.com/windows/32/null/user-male-circle.png"
-                      alt="when it hasn't been uploaded"
-                    ></SImage>
-                  )}
-                </td>
-                <SProfile>
-                  이메일
-                  <br></br>
-                  <Str>{email}</Str>
-                  <br></br>
-                  <br></br>
-                  닉네임
-                  <br></br>
-                  <Str>{nickname}</Str>
-                </SProfile>
-              </tr>
+              {imgUrl.length !== 0 ? (
+                <SImage src={imgUrl} alt="img from share"></SImage>
+              ) : (
+                <SImage
+                  src="	https://img.icons8.com/windows/32/null/user-male-circle.png"
+                  alt="when it hasn't been uploaded"
+                ></SImage>
+              )}
             </td>
-            <SInformation onClick={() => navigate('/mypageEdit')}>
-              정보수정
-            </SInformation>
+            <SProfile>
+              이메일
+              <br></br>
+              <Str>{email}</Str>
+              <br></br>
+              <br></br>
+              닉네임
+              <br></br>
+              <Str>{nickname}</Str>
+            </SProfile>
+            <td className="toEdit"></td>
             <td></td>
           </tr>
           <SShareList>
@@ -256,7 +255,11 @@ const MyPage = () => {
                 ) : (
                   <SDivide>
                     <table>
-                      <tr>데이터가없습니다.</tr>
+                      <tbody>
+                        <tr>
+                          <td>데이터가 없습니다.</td>
+                        </tr>
+                      </tbody>
                     </table>
                   </SDivide>
                 )}
