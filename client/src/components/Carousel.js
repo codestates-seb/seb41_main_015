@@ -111,9 +111,6 @@ const StyledCarousel = styled.div`
       margin-bottom: 10px;
     }
 
-    p {
-      margin: 5px 0;
-    }
     button {
       outline: none;
       padding: 6px 10px;
