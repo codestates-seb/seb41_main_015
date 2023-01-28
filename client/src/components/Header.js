@@ -31,7 +31,7 @@ const SHeaderLogo = styled.a`
   @media screen and (max-width: 1030px) {
     .logo {
       font-size: 15px;
-      width: 150px;
+      width: 140px;
     }
   }
 `;
@@ -253,7 +253,15 @@ const Header = () => {
       ) : (
         <SLogout>
           <Link to="/mypage">
-            <img src={profileData} alt="mypage" className="mypage" />
+            {profileData === '' ? (
+              <img
+                src="https://img.icons8.com/windows/32/null/user-male-circle.png"
+                alt="noProfile"
+                className="mypage"
+              />
+            ) : (
+              <img src={profileData} alt="profile" className="mypage" />
+            )}
           </Link>
           <SLogoutBtn onClick={handleLogout}>로그아웃</SLogoutBtn>
         </SLogout>
