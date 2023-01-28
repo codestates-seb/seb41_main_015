@@ -4,6 +4,7 @@ import { Paper } from '@mui/material';
 import leftArrow from '../image/leftArrow.svg';
 import rightArrow from '../image/rightArrow.svg';
 import loginModalScreen from '../image/loginModalScreen.png';
+import introImg from '../image/bookvillageImg.png';
 import shareListImg from '../image/shareList.png';
 import reqAddImg from '../image/reqAddImg.png';
 import rateList from '../image/rateList.png';
@@ -28,14 +29,18 @@ const StyledCarousel = styled.div`
       }
     }
     img {
-      width: 380px;
+      width: 550px;
       border-radius: 5px;
       @media screen and (max-width: 900px) {
         display: none;
       }
     }
+    .img1Container {
+      padding-bottom: 20px;
+    }
     .desSt {
       color: #42728f;
+      font-weight: 500;
     }
   }
   .Form2 {
@@ -106,9 +111,6 @@ const StyledCarousel = styled.div`
       margin-bottom: 10px;
     }
 
-    p {
-      margin: 5px 0;
-    }
     button {
       outline: none;
       padding: 6px 10px;
@@ -162,6 +164,40 @@ const StyledCarousel = styled.div`
       }
     }
   }
+  .Form5 {
+    height: 600px;
+    background-color: #f2f2fb;
+    display: flex;
+    align-items: center;
+    .loginContainer {
+      display: flex;
+      justify-content: center;
+      gap: 100px;
+      align-items: center;
+      width: 1024px;
+      margin: 0 auto;
+      @media screen and (max-width: 996px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    img {
+      width: 380px;
+      border-radius: 3px;
+      @media screen and (max-width: 996px) {
+        display: none;
+      }
+    }
+    .ask {
+      color: #9066ba;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    p {
+      line-height: 1.3rem;
+    }
+  }
 `;
 
 const CarouselForm = () => {
@@ -185,17 +221,16 @@ const CarouselForm = () => {
         <StyledCarousel>
           <Paper variant="outlined" square className="Form1">
             <div className="homeContainer">
-              <img src={loginModalScreen} alt="loginModalScreen" />
+              <div className="img1Container">
+                <img src={introImg} alt="loginModalScreen" />
+              </div>
               <div>
                 <h1>
                   나만의 공간,
                   <br />
                   우리 모두의 공간
                 </h1>
-                <p>다양한 책을 무료나눔하고 읽고싶은 책은 요청까지 한 번에</p>
-                <p>
-                  복잡한 회원가입 과정없이 소셜로그인만으로 편리하게 즐겨보세요
-                </p>
+                <p>다양한 책을 무료나눔하고 읽고 싶은 책은 요청까지 한 번에</p>
                 <p className="desSt">
                   책을 가까이 하는 삶을 만드는 Book Village 입니다
                 </p>
@@ -271,6 +306,28 @@ const CarouselForm = () => {
               </div>
               <div>
                 <img src={rateList} alt="rateListImg" />
+              </div>
+            </div>
+          </Paper>
+        </StyledCarousel>
+        <StyledCarousel>
+          <Paper variant="outlined" square className="Form5">
+            <div className="loginContainer">
+              <div>
+                <img src={loginModalScreen} alt="loginModalImg" />
+              </div>
+              <div>
+                <h1>
+                  쉽고 간편하게 <br />
+                  소셜 로그인으로
+                </h1>
+                <p>
+                  복잡한 회원가입 없이 <br />
+                  편리하게 이용할 수 있어요.
+                </p>
+                <div className="ask">
+                  지금 바로 Book Village를 시작해보세요!
+                </div>
               </div>
             </div>
           </Paper>
