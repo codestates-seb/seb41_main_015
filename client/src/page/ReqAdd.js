@@ -32,8 +32,6 @@ const ReqAdd = () => {
       );
       return;
     }
-
-    console.log(inputs);
     instanceAxios
       .post('/v1/requests', {
         bookTitle,
@@ -45,7 +43,6 @@ const ReqAdd = () => {
         thumbnail,
       })
       .then((res) => {
-        console.log(res);
         Swal.fire(
           '요청 글 등록 완료.',
           '요청 글이 정상적으로 작성되었습니다.',

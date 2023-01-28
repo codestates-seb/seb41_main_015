@@ -144,7 +144,6 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
           })
           .then((res) => {
             setContent(res.data.data.content);
-            console.log('postRes', res.data.data);
             window.location.reload();
             Swal.fire(
               '댓글 등록',

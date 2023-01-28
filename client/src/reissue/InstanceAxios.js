@@ -26,14 +26,6 @@ instanceAxios.interceptors.request.use(
     const refreshDecode = jwtDecode(cookieRefreshToken);
     //현재시간(초 단위)
     const now = Math.floor(Date.now() / 1000);
-    // console.log(
-    //   '엑세스 토큰 남은 만료시간(분)',
-    //   (accessDecoded.exp - now) / 60
-    // );
-    // console.log(
-    //   '리프레쉬 토큰 남은 만료시간(시)',
-    //   (refreshDecode.exp - now) / 60
-    // );
 
     //###3. 엑세스토큰의 유효기간이 끝나기 전에 갱신처리/리프레쉬토큰은 로그아웃 처리
     // 60* 5 => 5분

@@ -88,16 +88,12 @@ const CommonList = (props) => {
 
   const handlePageChange = async (page) => {
     setPage(page);
-
     if (!isSearchMode) {
       const pageData = await getDatabyPage(page);
       setItems(pageData.data);
-      // console.log('검색 중이 아닙니다.');
     } else {
-      // console.log(keyword);
       const pageData = await getSearchDatabyPage(keyword, type, page);
       setItems(pageData.data);
-      // console.log('검색 중입니다.');
     }
 
     window.scrollTo(0, 0);
@@ -117,7 +113,6 @@ const CommonList = (props) => {
     if (e.nativeEvent.isComposing === true) return;
 
     if (e.key === 'Enter') {
-      // console.log(keyword);
       // 검색어가 공백으로만 이루어진 경우
       if (keyword.replace(/^\s+|\s+$/gm, '').length === 0) {
         alert('검색어를 입력해주세요.');
@@ -146,7 +141,6 @@ const CommonList = (props) => {
             `v1/${endpoint}/search?field=${type}&keyword=${keyword}&page=0&size=${PER_PAGE}&sort=createdAt%2Cdesc`
         )
         .then((res) => {
-          // console.log(res.data);
           setIsSearchMode(true);
           setItems(res.data.data);
           setCount(res.data.pageInfo.totalElements);

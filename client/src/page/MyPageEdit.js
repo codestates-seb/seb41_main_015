@@ -284,7 +284,6 @@ const MyPageEdit = () => {
         setAddress(res.data.data.address);
         setPhoneNumber(res.data.data.phoneNumber);
         setImgUrl(res.data.data.imgUrl);
-        console.log('이미지 확인', res.data.data);
       } catch (error) {
         console.error(error);
         navigate('/');

@@ -100,8 +100,6 @@ const RateComment = ({ data }) => {
   };
 
   const handleSubmitEdit = () => {
-    console.log('editId: ', editId);
-    console.log(rating, editInput);
     // 서버에 요청 보내기 (id는 나중에 props로 내려받기)
     instanceAxios
       .patch(`v1/rates/${editId}`, {
@@ -130,7 +128,6 @@ const RateComment = ({ data }) => {
   };
 
   const handleDeleteRate = (rateId) => {
-    console.log(rateId);
     // 삭제하기 전에 한 번 물어보기
     Swal.fire({
       title: '평점을 삭제하시겠습니까?',

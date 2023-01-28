@@ -122,7 +122,6 @@ const ReqForm = (props) => {
 
   const handleChangeString = (e, type) => {
     onBookInfoChange({ ...inputs, [`${type}`]: e.target.value });
-    console.log(e.target.value);
   };
 
   const goBack = () => {

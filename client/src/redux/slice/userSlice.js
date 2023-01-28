@@ -51,7 +51,6 @@ const userSlice = createSlice({
       state.membership = membership;
     },
     logout: (state) => {
-      console.log('세션 스토리지 삭제!');
       sessionStorage.clear();
       removeCookie('refreshToken');
       state.accessToken = null;

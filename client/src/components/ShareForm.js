@@ -174,7 +174,6 @@ const ShareForm = (props) => {
           }
         )
         .then((res) => {
-          console.log(res);
           handleChangeThmbnail(res.data.data);
         })
         .catch((err) => console.log(err));

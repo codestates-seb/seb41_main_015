@@ -22,9 +22,7 @@ const ShareDetail = () => {
         sortBorrowComments.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
-        console.log('sortComments', sortBorrowComments);
         setBorrowComment(sortBorrowComments);
-        console.log('getShareDetail', res.data.data.borrowComments);
       } catch (error) {
         Swal.fire('데이터 로딩 실패', '데이터 로딩에 실패했습니다.', 'warning');
         console.error(error);

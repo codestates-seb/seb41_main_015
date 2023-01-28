@@ -135,7 +135,6 @@ const BookAddModal = ({
 
   const handleChoose = (chooseBook) => {
     const { title, authors, publisher, thumbnail, isbn } = chooseBook;
-    console.log(authors[0]);
 
     if (isRate === true) {
       onBookInfoChange({

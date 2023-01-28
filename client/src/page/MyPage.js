@@ -15,7 +15,6 @@ const STable = styled.table`
   flex-direction: row;
 `;
 
-
 const SBoxA = styled.div`
   // overflow: scroll;
   // ::-webkit-scrollbar {
@@ -29,8 +28,6 @@ const SBoxA = styled.div`
   padding: 10px;
   width: 800px;
   border-radius: 50%;
-
-
 `;
 
 // const SBoxB = styled.div`
@@ -60,25 +57,23 @@ const SDivide = styled.div`
   height: 150px;
   border-radius: 2.5px;
   display: flex;
-    padding-left: 10px;
-    &:hover {
+  padding-left: 10px;
+  &:hover {
     background-color: #e3e3e369;
     transition: 0.2s;
-   cursor: pointer;
-    }
- 
+    cursor: pointer;
+  }
 `;
 
 const Str = styled.div`
-    font-size: 13px;
-    font-weight: 395; 
-    ;
+  font-size: 13px;
+  font-weight: 395;
 `;
 
 const STr2 = styled.strong`
-margin-left: 10px;
-font-size: 18px;
-color: #bb2649;
+  margin-left: 10px;
+  font-size: 18px;
+  color: #bb2649;
 `;
 
 const SInformation = styled.button`
@@ -95,7 +90,7 @@ const SInformation = styled.button`
     background-color: #bb2649;
   }
   margin-left: 10%;
-  
+
   transform: translateX(5.2em);
   /* transform: translateY(0.1in);
   */
@@ -136,11 +131,10 @@ const SImage = styled.img`
 const SDivideImage = styled.img`
   width: 70%;
   display: flex;
-  display : flex;
- align-items: center;
- justify-content: center;
- align-content: center;
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 `;
 
 const STitle = styled.div`
@@ -155,25 +149,22 @@ const STitle = styled.div`
 const STitle2 = styled.h2`
   margin-left: 10px;
   font-size: 20px;
-  
+
   color: #acacac;
-    &:hover {
-      cursor: default;
-    }
-  
+  &:hover {
+    cursor: default;
+  }
 `;
 
 const STextStrong = styled.strong`
   font-size: 18px;
-
 `;
 
-const SShareList= styled.tr`
- display : flex;
- align-items: center;
- justify-content: center;
- align-content: center;
-  
+const SShareList = styled.tr`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 `;
 
 const MyPage = () => {
@@ -191,7 +182,6 @@ const MyPage = () => {
   useEffect(() => {
     // 회원 정보 받아오는 코드
     instanceAxios.get('/v1/members').then((res) => {
-      console.log(res);
       setEmail(res.data.data.email);
       setNickname(res.data.data.displayName);
       setImgUrl(res.data.data.imgUrl);
@@ -201,7 +191,6 @@ const MyPage = () => {
     instanceAxios
       .get(`/v1/borrows/mine?page=0&size=${PER_PAGE}&sort=createdAt%2Cdesc`)
       .then((res) => {
-        console.log('나눔 목록: ', res);
         setData(res.data.data);
         setCount(res.data.pageInfo.totalElements);
       });
@@ -218,116 +207,115 @@ const MyPage = () => {
 
   return (
     <>
-      
-        <STitle>
-          <h2>마이 페이지</h2>
-        </STitle>
-        <div>
-          
-        </div>
-        <STable>
-          <tbody>
-            <tr>
-              <SInformationtd></SInformationtd>
-            </tr>
-            <tr>
-              <td colSpan={2}></td>
-            </tr>
+      <STitle>
+        <h2>마이 페이지</h2>
+      </STitle>
+      <div></div>
+      <STable>
+        <tbody>
+          <tr>
+            <SInformationtd></SInformationtd>
+          </tr>
+          <tr>
+            <td colSpan={2}></td>
+          </tr>
 
-            <tr>
-              <td>
-                <tr>
-                  <td>
-                    {imgUrl.length !== 0 ? (
-                      <SImage src={imgUrl} alt="img from share"></SImage>
-                    ) : (
-                      <SImage
-                        src="	https://img.icons8.com/windows/32/null/user-male-circle.png"
-                        alt="when it hasn't been uploaded"
-                      ></SImage>
-                    )}
-                  </td>
-                  <SProfile>
-                    이메일
-                    <br></br>
-                    <Str>
-                    {email}
-                    </Str>
-                    <br></br>
-                    <br></br>
-                    닉네임
-                    <br></br>
-                    <Str>
-                    {nickname}
-                    </Str>
-                  </SProfile>
-                </tr>
-              </td>
-              <SInformation onClick={() => navigate('/mypageEdit')}>
-            정보수정
-          </SInformation>
-              <td></td>
-            </tr>
-            <SShareList>
-              <td>
-                <STitle2><STr2>{nickname}</STr2> 의 나눔목록</STitle2>
-                <SBoxA>
-                  {data.length !== 0 ? (
-                    data.map((book) => (
-                <>
-                        <SDivide onClick={() => navigate(`/shareDetail/${book.borrowId}`)}>
-                          <table>
-                            <tr>
-                              <td>
-                                <SDivideImage
-                                  src={book.thumbnail}
-                                  alt="book img"
-                                ></SDivideImage>
-                              </td>
-                              <td>
-                                <tr>
-                                  <td>
-                                    <STextStrong>{book.title}</STextStrong>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <strong>책 제목</strong> : {book.bookTitle}
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <SText>저자 : {book.author}</SText>
-                                  <SText>출판사 : {book.author}</SText>
-                                </tr>
-                                <tr>
-                                  <SText>
-                                    작성일자 : {prettyDate(book.createdAt)}
-                                  </SText>
-                                </tr>
-                              </td>
-                            </tr>
-                          </table>
-                        </SDivide>
-
-                        <br></br>
-                      </>
-                    ))
+          <tr>
+            <td>
+              <tr>
+                <td>
+                  {imgUrl.length !== 0 ? (
+                    <SImage src={imgUrl} alt="img from share"></SImage>
                   ) : (
-                    <SDivide>
-                      <table>
-                        <tr>데이터가없습니다.</tr>
-                      </table>
-                    </SDivide>
+                    <SImage
+                      src="	https://img.icons8.com/windows/32/null/user-male-circle.png"
+                      alt="when it hasn't been uploaded"
+                    ></SImage>
                   )}
-                </SBoxA>
-                <Paging
-                  page={page}
-                  count={count}
-                  perPage={PER_PAGE}
-                  handlePageChange={handlePageChange}
-                />
-              </td>
-              {/* <td>
+                </td>
+                <SProfile>
+                  이메일
+                  <br></br>
+                  <Str>{email}</Str>
+                  <br></br>
+                  <br></br>
+                  닉네임
+                  <br></br>
+                  <Str>{nickname}</Str>
+                </SProfile>
+              </tr>
+            </td>
+            <SInformation onClick={() => navigate('/mypageEdit')}>
+              정보수정
+            </SInformation>
+            <td></td>
+          </tr>
+          <SShareList>
+            <td>
+              <STitle2>
+                <STr2>{nickname}</STr2> 의 나눔목록
+              </STitle2>
+              <SBoxA>
+                {data.length !== 0 ? (
+                  data.map((book) => (
+                    <>
+                      <SDivide
+                        onClick={() =>
+                          navigate(`/shareDetail/${book.borrowId}`)
+                        }
+                      >
+                        <table>
+                          <tr>
+                            <td>
+                              <SDivideImage
+                                src={book.thumbnail}
+                                alt="book img"
+                              ></SDivideImage>
+                            </td>
+                            <td>
+                              <tr>
+                                <td>
+                                  <STextStrong>{book.title}</STextStrong>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <strong>책 제목</strong> : {book.bookTitle}
+                                </td>
+                              </tr>
+                              <tr>
+                                <SText>저자 : {book.author}</SText>
+                                <SText>출판사 : {book.author}</SText>
+                              </tr>
+                              <tr>
+                                <SText>
+                                  작성일자 : {prettyDate(book.createdAt)}
+                                </SText>
+                              </tr>
+                            </td>
+                          </tr>
+                        </table>
+                      </SDivide>
+
+                      <br></br>
+                    </>
+                  ))
+                ) : (
+                  <SDivide>
+                    <table>
+                      <tr>데이터가없습니다.</tr>
+                    </table>
+                  </SDivide>
+                )}
+              </SBoxA>
+              <Paging
+                page={page}
+                count={count}
+                perPage={PER_PAGE}
+                handlePageChange={handlePageChange}
+              />
+            </td>
+            {/* <td>
                 <STitle2>{nickname} 의 커뮤니티 </STitle2>
                 <SBoxB>
                   <SDivide>
@@ -343,10 +331,9 @@ const MyPage = () => {
                   handlePageChange={handlePageChange}
                 />
               </td> */}
-            </SShareList>
-          </tbody>
-        </STable>
-      
+          </SShareList>
+        </tbody>
+      </STable>
     </>
   );
 };
