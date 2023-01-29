@@ -26,7 +26,7 @@
 
 ### :wrench:System Architecture
 
-<img src="https://user-images.githubusercontent.com/90237119/215009495-92ee5ab6-7790-4d3a-b44b-1cb222332e8e.png"/>
+<img src="https://user-images.githubusercontent.com/90237119/215304129-d8006105-cf1c-49c7-a819-4f819dfac523.png"/>
 
 ### FE
 <div align=center>
