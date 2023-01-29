@@ -43,7 +43,7 @@
 
   <img src="https://img.shields.io/badge/axios-6935D3?style=for-the-badge&logo=axios&logoColor=white">
   <img src="https://img.shields.io/badge/styled Components-E9568E?style=for-the-badge&logo=styledComponents&logoColor=white">
-  <img src="https://img.shields.io/badge/redux-66459B?style=for-the-badge&logo=redux&logoColor=white">
+  <img src="https://img.shields.io/badge/redux toolkit-66459B?style=for-the-badge&logo=redux&logoColor=white">
   <img src="https://img.shields.io/badge/npm-ED1C24?style=for-the-badge&logo=npm&logoColor=white">
   
   <br>
