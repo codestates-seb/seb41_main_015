@@ -241,23 +241,7 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
   const handleClickCancelModify = () => {
     setContentForm('');
   };
-  //수정 취소 확인 함수
-  const handleCancel = () => {
-    Swal.fire({
-      title: '작성을 취소하시겠습니까?',
-      text: '작성 중인 내용은 저장되지 않습니다',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#bb2649',
-      confirmButtonText: '확인',
-      cancelButtonText: '취소',
-      // reverseButtons: true, //버튼 순서 거꾸로
-    }).then((res) => {
-      if (res.isConfirmed) {
-        navigate(-1);
-      }
-    });
-  };
+
   return (
     <SCommentForm>
       <SInputContainer>

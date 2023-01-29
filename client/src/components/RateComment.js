@@ -4,6 +4,7 @@ import { RateStarSmall } from '../components/RateStar.js';
 import { ReactComponent as BookStar } from '../image/bookStar.svg';
 import instanceAxios from '../reissue/InstanceAxios';
 import Swal from 'sweetalert2';
+import { prettyDate } from '../util/dateparse';
 
 const SCommentWrap = styled.div`
   margin: 0px 10%;
@@ -70,6 +71,13 @@ const SCommentContainer = styled.div`
 
   #content {
     font-size: 0.9rem;
+  }
+
+  #createdAt {
+    margin-left: 15px;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: #acacac;
   }
 `;
 
@@ -167,6 +175,7 @@ const RateComment = ({ data }) => {
                         <div id="rates">
                           <BookStar />
                           <span>{rate.rating}</span>
+                          <div id="createdAt">{prettyDate(rate.createdAt)}</div>
                         </div>
                       )}
                     </div>

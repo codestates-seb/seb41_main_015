@@ -137,6 +137,7 @@ const SStarIcon = styled.div`
 const RateDetail = () => {
   const { id } = useParams();
   const [data, setData] = useState({});
+  const [rateComment, serRateComment] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -154,7 +155,14 @@ const RateDetail = () => {
     const rateData = async () => {
       try {
         const res = await axios.get(url + `/v1/books/${id}`);
+        console.log('rateDetail', res.data.data);
         setData(res.data.data);
+        //댓글 최신순 정렬
+        const sortRateComments = res.data.data.rates;
+        sortRateComments.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+        serRateComment(sortRateComments);
       } catch (error) {
         console.error(error);
       }
@@ -208,7 +216,7 @@ const RateDetail = () => {
             </SBookInfo>
           </SRightSide>
         </SDetailWrap>
-        <RateComment data={data.rates} />
+        <RateComment data={rateComment} />
       </div>
     </SDetailLayout>
   );
