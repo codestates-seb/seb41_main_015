@@ -261,7 +261,6 @@ const Comment = ({ data, borrowComment, reqComment, page, id }) => {
       </SInputContainer>
       <SCommentContainer>
         {commentMap.map((comment) => {
-          console.log('comment', comment);
           const commentId =
             page === 'share'
               ? comment.borrowCommentId

@@ -155,7 +155,6 @@ const RateDetail = () => {
     const rateData = async () => {
       try {
         const res = await axios.get(url + `/v1/books/${id}`);
-        console.log('rateDetail', res.data.data);
         setData(res.data.data);
         //댓글 최신순 정렬
         const sortRateComments = res.data.data.rates;
