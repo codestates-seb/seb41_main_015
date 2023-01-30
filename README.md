@@ -120,6 +120,43 @@
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------:|
 |                                                                            김성수                                                                             |                                                                            채승윤                                                                             |                                          박종혁                                           |
 
+## 📑 Project Rules
+
+### Branch Strategy
+> - main / dev 브랜치 기본 생성 
+> - main과 dev로 직접 push 제한
+> - PR 전 최소 1인 이상 승인 필수
+### Git Convention
+> - feat : 기능 추가 
+> - fix : 오류 수정 
+> - hotfix : 급한 오류 수정 
+> - docs : 문서 수정 
+> - refactor : 리팩토링 
+> - test : 테스트 코드
+
+### Code Convention
+>BE
+> - 패키지명 전체 소문자
+> - 클래스명, 인터페이스명 CamelCase
+> - 클래스 이름 명사 사용
+> - 상수명 SNAKE_CASE
+> - Controller, Service, Dto, Repository, mapper 앞에 접미사로 통일(ex. MemberController)
+> - service 계층 메서드명 create, update, find, delete로 CRUD 통일(ex. createMember) 
+> - Test 클래스는 접미사로 Test 사용(ex. memberFindTest)
+
+
+> FE
+> - styled-Component 변수명 S + 변수명 (ex. Swrap)
+> - styled-Component는 return문 위에 작성
+> - 크게는 styled-Component, 그 안에서 className 사용 
+> - Event handler 사용 (ex. handle ~)
+> - export방식 (ex. export default ~)
+> - 화살표 함수 사용
+
+### Communication Rules
+> - Discord 활용 
+> - 정기 회의
+
 
 ## :clipboard: Documents
 [API 명세서](https://serverbookvillage.kro.kr/docs/index.html)
