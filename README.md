@@ -1,6 +1,5 @@
 ![book_village_logo]
 
-
 ## 📖 About project
 <img src="https://user-images.githubusercontent.com/90237119/215382190-b5792acf-d508-4633-b604-490a2f22d94c.png"/>
 
