@@ -1,4 +1,4 @@
-![logo]![book_village_logo]
+![logo]  ![book_village_logo]
 
 ## :books:About project
 <img src="https://user-images.githubusercontent.com/90237119/215382190-b5792acf-d508-4633-b604-490a2f22d94c.png"/>
@@ -130,5 +130,6 @@
 
 [테이블 명세서](https://docs.google.com/spreadsheets/d/1HKlI9rWg450lafp10r2BiF46fGzeD1FFI8UovCx5P1I/edit#gid=0)
 
+<!--logos -->
 [logo]: /logos/logo.svg
 [book_village_logo]: /logos/book_village_logo.svg
