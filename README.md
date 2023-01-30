@@ -1,6 +1,6 @@
 ![book_village_logo]
 
-## 🕮 About project
+## 📖 About project
 <img src="https://user-images.githubusercontent.com/90237119/215382190-b5792acf-d508-4633-b604-490a2f22d94c.png"/>
 
 >더 이상 독서는 혼자만의 취미가 아니다❌
@@ -133,6 +133,8 @@
 > - docs : 문서 수정 
 > - refactor : 리팩토링 
 > - test : 테스트 코드
+> - style : 코드 포맷 변경, 세미 콜론 누락, 코드 수정이 없는 경우 
+> - design : CSS 등 사용자 UI 디자인 변경
 
 ### Code Convention
 >BE
