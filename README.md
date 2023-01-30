@@ -1,9 +1,9 @@
-# 북 빌리지(Book Village)
+# ⛪Book Village
 
 
 
 ## About project
-<img src="https://user-images.githubusercontent.com/90237119/214839894-60ce9d7f-c647-408e-9851-0bac2988b842.png"/>
+<img src="https://user-images.githubusercontent.com/90237119/215382190-b5792acf-d508-4633-b604-490a2f22d94c.png"/>
 
 >더 이상 독서는 혼자만의 취미가 아니다❌
 책을 사랑하는, 책과 가까워지고 싶은, 혹은 비슷한 사람들끼리 취미를 공유하고 싶어하는
@@ -17,8 +17,34 @@
 ---
 
 ## :date:Period
-### 2022.01.03 - 2022.02.03
+    2022.01.03 - 2022.02.03
 
+---
+
+## 🖥️Service operation
+|   메인 화면 1  |  메인 화면 2  |   소셜 로그인 1   |
+|:--------:|:------:|:--------:|
+| <img src="https://lh6.googleusercontent.com/M7RxaY_ZsF5sQcqiIOafdBGHuVGqKrQ0c07hzOtLgkhxYTK-aRKWdhkMfi8DaoZxyDWLZKhdUEDKBIEpETcm2_sH5JdW69mrOXzASMQYHFEiaP0QbgCEHa5bnKzITG-v9ztn0QfbCeZtznJ8q-SDo2qoEA=s2048" alt="MainPage1"> |   <img src="https://lh6.googleusercontent.com/WSSZM-N1tpBvXui0ivLMaSJv5u-Jn8oUNXik40GOW7thMqmNdMPrjfO4-halmEZ80GuBBlI5ENm8TtDovjSOMRqHE6Z5w7F5yYxdplO643k3wfhyW4wT0IUT15Rv6kk_FAnST07-50NOOeXHjRfjh6dEBA=s2048" alt="MainPage2">  | <img src="https://lh6.googleusercontent.com/LgLnyK4xbij_SmBQd_9b-zKL7NjFBceXLFr97o-S9z4JMw7bZaO4E9W5SbwJn_xOAVu4xCk9Se0eqShfP8YkzkaL-QilqVa6LRaQEQ5h4PHLZOgmT8ZByBV-eEIZEr9D3I1mB6qu5nhIehup3910FytnrQ=s2048" alt="Login1"> |
+
+|     소셜 로그인 2   |  나눔글 등록 1     |   나눔글 등록 2    |
+|:--------:|:------:|:-------:|
+| <img src="https://lh3.googleusercontent.com/_WEmqGBbE04OIWsmijjjMk7eyk2jKBC9qXLFTWJjpWHfcUknRcVfOSA5Xy5QqTILk75qm4EcbgyXNM5h8dtitdmfuQ7Gg7YSR_Hb8GBffFeiEMLx6NYXVPDLA8BwHVUHrfZtHl-yATyXIiJhtdsaOMoMqA=s2048" alt=""> |<img src="https://lh4.googleusercontent.com/L9ZfLB7j1hZ0vLFPPjAjqwIZ1Ul279vj_RC5FAY_mehvENPlg7Gp3tb0vNrVj4MNkPILYy7RqUde7nOGcC8msDvO0KnHAChTqvLs1Hn6IQgZL780wk_k1BdPJCzBlqdegyQ8UT_CU8V9tI9s4uzmngBxJg=s2048" alt="CreateShare1"> | <img src="https://lh6.googleusercontent.com/uQJWChKZY7rtI-IdUgG9AxKSUfEeAUbFu3vnfrEkxDXSYHF7-e2ban3omp9Hn0yjtIh6uyQUC3DY8FXOOTLZEk5oK5t3BhD4WS6_jdJclc-L-zn8iavUnRgtLf0In1yH_C933V2MVtYE6_a40slzphM88A=s2048" alt="CreateShare2"> | 
+
+|      나눔글 댓글      |      나눔 상태 토글    |     나눔 게시글 검색   |
+|:-------:|:---------:|:--------:|
+| <img src="https://lh3.googleusercontent.com/X9EC4tAH1PteJ4bVSU2MzPYhf3SMDWn08OtgdMt-jcSNKxT-R5KImtM4PsBDDJjJi_CiyrYiWYJGe9lnKQVMzSFl2hYtDytTD34ubBobI-xanjOHRzV8WFCH9Szv1KbIOjh1n-gdW5ZXe4AGt6NpJjJV5g=s2048" alt="ShareComment"> | <img src="https://lh4.googleusercontent.com/iFbgPqWgK__YmSB8ha53yHTLfU_LtwJNEAf7KCDUxbraZbJhh1vQkAjTMLhaQF24HN2s3oniEsOL75mfiiMV2gRUs0exNptePw0hp0a9Q0Ko3XzfN3l4lPoWY5NP3Eif4KONMmgWQ-kKTYamb2mOiGiMlw=s2048" alt="ShareStatus"> | <img src="https://lh4.googleusercontent.com/TBqn1-oJm59EbLQyqSPLZ5_cidaanTljcr1Qq_XTPxcdTzD-IwxHrKL0ZfQhoZrkOVjokRLckca1x-9w8k0me4-6JTHPG6rbwuQ4pkmrgjEpAJZxAMM8HxR5x6vDtiCotwODnUJbo0wYK-Y62U4BTx17Cw=s2048" alt="SearchShare"> |
+
+|              요청글 등록              |              요청글 수정              |              요청글 댓글               |
+|:--------------------------------:|:--------------------------------:|:---------------------------------:|
+| <img src="https://lh4.googleusercontent.com/3od9me49rKBnI9saCG7TuRqlg4RQGb9JX4z8PyXMHfpqW6jF4gLgly_fZympLUsQUzxVBfWeEDIOha2-TyV-6pV_BiIbafOb9AG6vZVAgBomqyfgr8r6I_Xilqyi-p5rTA6q8lJeVqt-en4I1jnEGoK19Q=s2048" alt="CreateRequset"> | <img src="https://lh4.googleusercontent.com/vJ2PSqYwWttmoXqED3pfS8HQxiaL-FSLZAjJa45u3KQ7bqkNbLW9_y8HN5MjURQGTmClDCqnkJxLvxJ5gX6v96iQKuTpmRY2fekNh22LPfuJrah7QgNGe7z6P45e4sZ3bAig0vei49TauuLdwPcAQPGDzg=s2048" alt="UpdateRequest"> | <img src="https://lh5.googleusercontent.com/ngtbM1TwsYkrv1gAbcs7S61jJtgIKb66IdtppaIvVCT9mbthSK3Q66YBV9EOZ3ipc3SrlahE7OlVw7Bu-nwLeACpUKZ0BzYmoFTZSNPwgC0xVA_pZ69Spq34yk5xfNo7AgTN0FEiTmRVNs0_vXnlfrwUCQ=s2048" alt="RequestComment"> |
+
+|              요청글 검색              |            도서 평점 등록             |         도서 평점 수정 및 삭제          |
+|:--------------------------------:|:-------------------------------:|:------------------------------:|
+| <img src="https://lh6.googleusercontent.com/AV4lIIXPUjDm9RTAmZSn8vkyJx8Ltiybi5wD6gyrydKw5uXa0EMRK3ysShfVhHLdZYoDSHNbdfEr_pc9yUEDWEwT2cTdf7vDSZcbCKxcy_gDiBjL15ofE94LCoXZu4VuQ5BTkImsh8RzgwL31sSib5VBVg=s2048" alt="SearchRequest"> | <img src="https://lh6.googleusercontent.com/16_o-x4RHI9TU7pypuH0E2dypPuYE2G2jP8VhTxWwiiZuNSVTxqdkprKOigJ2F0okPILkVNd9BnYyKjgEYTH9uKkuEtEm5TBqy9gJOxRli6DP7DRCqORo6o07ym1onjJVsCbOvEIAVSMYL6-oGroAVJyjw=s2048" alt="CreateRating"> | <img src="https://lh5.googleusercontent.com/KjjwMZ-FrNzlWa0N8IS2iYAr92JgQCMbOFEwZdtScJJwzt5XY70dZII-OyvHUSbWV_7qBNCFc3pslsgcfLX9ZAM54y0F5pRrO4e2EMv8ee1K2FzzieU5ByAn9UhBqB08Fk1pHUaGvRzxGt8HhFh17fongw=s2048" alt="UpateRating"> |
+
+|             마이페이지 1             |           마이페이지2           |
+|:----------:|:--------------------------:|
+| <img src="https://lh5.googleusercontent.com/KRfPZ8P2TzvLBeHAcApzzHDn6xbkCYp8Z9sDmWSifQNwQwfC7HAjczd-KHVs5dGbKhi2AO5O3A8wd8mewcze3TKb_yM9y5-PHQVE7axz5HVdWsI1alg2-qatjn7G2c0Y6Fx786KMjoiIULFLpCoQx6HWJA=s2048" alt="MyPage1"> | <img src="https://lh5.googleusercontent.com/eTvLqwjRti-QhqDMWb2gMw692w-qmSipvVOjcXHvVIetlZiBvgbzcDakCP2Gmf-kGNx5vuZ5fm_3ExzA3_rD3ux4DaDK5xaP90LgDmK6fRYPdGdolg8dJrdh8fKT7a4H0odAYlK9t4-iLxjtsbinTnz0ow=s2048" alt="MyPage2"> |
 ---
 
 ## :books:Skill stack
