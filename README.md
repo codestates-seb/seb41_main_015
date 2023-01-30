@@ -1,6 +1,6 @@
-![logo]  ![book_village_logo]
+![book_village_logo]
 
-## :books:About project
+## 🕮 About project
 <img src="https://user-images.githubusercontent.com/90237119/215382190-b5792acf-d508-4633-b604-490a2f22d94c.png"/>
 
 >더 이상 독서는 혼자만의 취미가 아니다❌
@@ -10,16 +10,16 @@
 함께하는 독서 습관을 만들어주는 서비스, book village에 오신 걸 환영합니다!
 ---
 
-## :link:Deployed Link
+## :link: Deployed Link
 
 ---
 
-## :date:Period
+## :date: Period
     2022.01.03 - 2022.02.03
 
 ---
 
-## 🖥️Service operation
+## 🖥️ Service operation
 |   메인 화면 1  |  메인 화면 2  |   소셜 로그인 1   |
 |:--------:|:------:|:--------:|
 | <img src="https://lh6.googleusercontent.com/M7RxaY_ZsF5sQcqiIOafdBGHuVGqKrQ0c07hzOtLgkhxYTK-aRKWdhkMfi8DaoZxyDWLZKhdUEDKBIEpETcm2_sH5JdW69mrOXzASMQYHFEiaP0QbgCEHa5bnKzITG-v9ztn0QfbCeZtznJ8q-SDo2qoEA=s2048" alt="MainPage1"> |   <img src="https://lh6.googleusercontent.com/WSSZM-N1tpBvXui0ivLMaSJv5u-Jn8oUNXik40GOW7thMqmNdMPrjfO4-halmEZ80GuBBlI5ENm8TtDovjSOMRqHE6Z5w7F5yYxdplO643k3wfhyW4wT0IUT15Rv6kk_FAnST07-50NOOeXHjRfjh6dEBA=s2048" alt="MainPage2">  | <img src="https://lh6.googleusercontent.com/LgLnyK4xbij_SmBQd_9b-zKL7NjFBceXLFr97o-S9z4JMw7bZaO4E9W5SbwJn_xOAVu4xCk9Se0eqShfP8YkzkaL-QilqVa6LRaQEQ5h4PHLZOgmT8ZByBV-eEIZEr9D3I1mB6qu5nhIehup3910FytnrQ=s2048" alt="Login1"> |
@@ -45,10 +45,10 @@
 | <img src="https://lh5.googleusercontent.com/KjjwMZ-FrNzlWa0N8IS2iYAr92JgQCMbOFEwZdtScJJwzt5XY70dZII-OyvHUSbWV_7qBNCFc3pslsgcfLX9ZAM54y0F5pRrO4e2EMv8ee1K2FzzieU5ByAn9UhBqB08Fk1pHUaGvRzxGt8HhFh17fongw=s2048" alt="UpateRating"> |<img src="https://lh5.googleusercontent.com/KRfPZ8P2TzvLBeHAcApzzHDn6xbkCYp8Z9sDmWSifQNwQwfC7HAjczd-KHVs5dGbKhi2AO5O3A8wd8mewcze3TKb_yM9y5-PHQVE7axz5HVdWsI1alg2-qatjn7G2c0Y6Fx786KMjoiIULFLpCoQx6HWJA=s2048" alt="MyPage1"> | <img src="https://lh5.googleusercontent.com/eTvLqwjRti-QhqDMWb2gMw692w-qmSipvVOjcXHvVIetlZiBvgbzcDakCP2Gmf-kGNx5vuZ5fm_3ExzA3_rD3ux4DaDK5xaP90LgDmK6fRYPdGdolg8dJrdh8fKT7a4H0odAYlK9t4-iLxjtsbinTnz0ow=s2048" alt="MyPage2"> |
 ---
 
-## :books:Skill stack
+## 🧰 Skill stack
 
 
-### :wrench:System Architecture
+### :wrench: System Architecture
 
 <img src="https://user-images.githubusercontent.com/90237119/215304129-d8006105-cf1c-49c7-a819-4f819dfac523.png"/>
 
@@ -92,7 +92,7 @@
   <br>
 </div>
 
-### :two_men_holding_hands:Cooperation tools
+### :two_men_holding_hands: Cooperation tools
 <div align=center>
   <img src="https://img.shields.io/badge/postman-FC4C02?style=for-the-badge&logo=postman&logoColor=white">
   <img src="https://img.shields.io/badge/discord-283274?style=for-the-badge&logo=discord&logoColor=white">
@@ -105,7 +105,7 @@
 
 --- 
 
-## :busts_in_silhouette:Teammates
+## :busts_in_silhouette: Teammates
 
 ### FE
 
@@ -121,7 +121,7 @@
 |                                                                            김성수                                                                             |                                                                            채승윤                                                                             |                                          박종혁                                           |
 
 
-## :clipboard:Documents
+## :clipboard: Documents
 [API 명세서](https://serverbookvillage.kro.kr/docs/index.html)
 
 [요구사항 정의서](https://docs.google.com/spreadsheets/d/1s_uDAJEEsSa-ojYmqWtKNOzHXdKeygg3pqBt5e6STzc/edit#gid=428803499)
@@ -131,5 +131,4 @@
 [테이블 명세서](https://docs.google.com/spreadsheets/d/1HKlI9rWg450lafp10r2BiF46fGzeD1FFI8UovCx5P1I/edit#gid=0)
 
 <!--logos -->
-[logo]: /logos/logo.svg
 [book_village_logo]: /logos/book_village_logo.svg
