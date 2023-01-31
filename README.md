@@ -9,14 +9,13 @@
 서로의 지식을 나누고 책을 공유합니다.
 함께하는 독서 습관을 만들어주는 서비스, book village에 오신 걸 환영합니다!
 ---
+## GuidLine
+### :link: Deployed Link
 
-## :link: Deployed Link
+> [⛪Book Village](https://bookvillage.kro.kr/)
 
----
-
-## :date: Period
-    2022.01.03 - 2022.02.03
-
+### :date: Period
+> 2022.01.03 - 2022.02.03
 ---
 
 ## 🖥️ Service operation
@@ -161,13 +160,13 @@
 
 
 ## :clipboard: Documents
-[API 명세서](https://serverbookvillage.kro.kr/docs/index.html)
-
-[요구사항 정의서](https://docs.google.com/spreadsheets/d/1s_uDAJEEsSa-ojYmqWtKNOzHXdKeygg3pqBt5e6STzc/edit#gid=428803499)
-
-[ERD](https://www.erdcloud.com/d/WTsSXaEZSoBc5Ntw7)
-
-[테이블 명세서](https://docs.google.com/spreadsheets/d/1HKlI9rWg450lafp10r2BiF46fGzeD1FFI8UovCx5P1I/edit#gid=0)
+> [📜 API 명세서](https://serverbookvillage.kro.kr/docs/index.html)
+> 
+> [📜 요구사항 정의서](https://docs.google.com/spreadsheets/d/1s_uDAJEEsSa-ojYmqWtKNOzHXdKeygg3pqBt5e6STzc/edit#gid=428803499)
+> 
+> [📜 ERD](https://www.erdcloud.com/d/WTsSXaEZSoBc5Ntw7)
+> 
+> [📜 테이블 명세서](https://docs.google.com/spreadsheets/d/1HKlI9rWg450lafp10r2BiF46fGzeD1FFI8UovCx5P1I/edit#gid=0)
 
 <!--logos -->
 [book_village_logo]: /logos/book_village_logo.svg
