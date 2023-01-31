@@ -18,7 +18,7 @@
 ## 🗣️ Project
 
 > ### 🗓️ 2022.01.03 - 2022.02.03
-> ### [📺 Presentation Video]()
+> ### [📺 Presentation Video](https://www.youtube.com/watch?v=rMWT7g226UI)
 > ### [📑 Presentation document](https://www.notion.so/codestates/Demo-Day-8ae0d62db09c4077a14a402e09398bf2)
 
 ---
