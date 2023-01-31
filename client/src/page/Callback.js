@@ -22,7 +22,7 @@ const Callback = () => {
     // main page에서 accessToken이 존재하고 new일 때만 모달 띄우도록 하기
   }, []);
 
-  // git test
+  // 홈으로 이동
   useEffect(() => {
     navigate('/');
   }, [sessionAccessToken]);
