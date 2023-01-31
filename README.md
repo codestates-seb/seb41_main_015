@@ -12,7 +12,7 @@
 
 ## :link: Deployed Link
 
-> ### [⛪Book Village](https://bookvillage.kro.kr/)
+> ### [⛪ Book Village](https://bookvillage.kro.kr/)
 
 ---
 ## 🗣️ Project
@@ -172,6 +172,8 @@
 > [📜 ERD](https://www.erdcloud.com/d/WTsSXaEZSoBc5Ntw7)
 > 
 > [📜 테이블 명세서](https://docs.google.com/spreadsheets/d/1HKlI9rWg450lafp10r2BiF46fGzeD1FFI8UovCx5P1I/edit#gid=0)
+>
+> [📜 화면 정의서](https://www.notion.so/codestates/book15-3da849ab3014484080e2cd214f5a67fd?p=e29978182b544be7bf575788202dba74&pm=s)
 
 <!--logos -->
 [book_village_logo]: /logos/book_village_logo.svg
