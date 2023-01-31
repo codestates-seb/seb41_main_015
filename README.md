@@ -12,10 +12,14 @@
 
 ## :link: Deployed Link
 
----
+> ### [⛪ Book Village](https://bookvillage.kro.kr/)
 
-## :date: Period
-    2022.01.03 - 2022.02.03
+---
+## 🗣️ Project
+
+> ### 🗓️ 2022.01.03 - 2022.02.03
+> ### [📺 Presentation Video](https://www.youtube.com/watch?v=rMWT7g226UI)
+> ### [📑 Presentation document](https://www.notion.so/codestates/Demo-Day-8ae0d62db09c4077a14a402e09398bf2)
 
 ---
 
@@ -24,21 +28,21 @@
 |:--------:|:------:|:--------:|
 | <img src="https://lh6.googleusercontent.com/M7RxaY_ZsF5sQcqiIOafdBGHuVGqKrQ0c07hzOtLgkhxYTK-aRKWdhkMfi8DaoZxyDWLZKhdUEDKBIEpETcm2_sH5JdW69mrOXzASMQYHFEiaP0QbgCEHa5bnKzITG-v9ztn0QfbCeZtznJ8q-SDo2qoEA=s2048" alt="MainPage1"> |   <img src="https://lh6.googleusercontent.com/WSSZM-N1tpBvXui0ivLMaSJv5u-Jn8oUNXik40GOW7thMqmNdMPrjfO4-halmEZ80GuBBlI5ENm8TtDovjSOMRqHE6Z5w7F5yYxdplO643k3wfhyW4wT0IUT15Rv6kk_FAnST07-50NOOeXHjRfjh6dEBA=s2048" alt="MainPage2">  | <img src="https://lh6.googleusercontent.com/LgLnyK4xbij_SmBQd_9b-zKL7NjFBceXLFr97o-S9z4JMw7bZaO4E9W5SbwJn_xOAVu4xCk9Se0eqShfP8YkzkaL-QilqVa6LRaQEQ5h4PHLZOgmT8ZByBV-eEIZEr9D3I1mB6qu5nhIehup3910FytnrQ=s2048" alt="Login1"> |
 
-|                                                                                                          소셜 로그인 2                                                                                                           |                                                                                                              나눔글 등록                                                                                                               |                                                                                                             나눔글 목록                                                                                                             |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| <img src="https://lh3.googleusercontent.com/_WEmqGBbE04OIWsmijjjMk7eyk2jKBC9qXLFTWJjpWHfcUknRcVfOSA5Xy5QqTILk75qm4EcbgyXNM5h8dtitdmfuQ7Gg7YSR_Hb8GBffFeiEMLx6NYXVPDLA8BwHVUHrfZtHl-yATyXIiJhtdsaOMoMqA=s2048" alt="Login2"> | <img src="https://lh5.googleusercontent.com/aDemHsQONSk8ej090AqivoRgmH9hb1nqGzq_QuIFidH6AZw_oUfEtaakt-XUGaHg0T2xLKyDEWdPoNvfmpmGhXcVPbDgL7VJbskUDHIEi9R7HDhgI8NWrEsXdfTadv6QJNqWtxzl60wrLwkXFxqN9bCR_A=s2048" alt="CreateShare1"> | <img src="https://lh5.googleusercontent.com/ZCKtujg67ITezKGCnheHU78qvcEVONNOh7vOguVC5y1RIS4-EXNJADi1CO95s625mihu5beML7lkeOqfKtqqcCmV3LErE3ogmX3mq3wtjAOzCHjtRIOljwKCdnvJAXo7GxToDuqmy-ai1ksLTkuluvBz9Q=s2048" alt="ShareList"> |
+|                                                                                                          소셜 로그인 2                                                                                                           |                                                                                                              나눔글 등록 및 수정                                                                                                               |                                                                                                             나눔글 목록                                                                                                             |
+|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| <img src="https://lh3.googleusercontent.com/_WEmqGBbE04OIWsmijjjMk7eyk2jKBC9qXLFTWJjpWHfcUknRcVfOSA5Xy5QqTILk75qm4EcbgyXNM5h8dtitdmfuQ7Gg7YSR_Hb8GBffFeiEMLx6NYXVPDLA8BwHVUHrfZtHl-yATyXIiJhtdsaOMoMqA=s2048" alt="Login2"> | <img src="https://lh6.googleusercontent.com/wQiDqzndpvTRfIsHy-l3_eCjPDQ0JF28pCmLrDdSFQfR0UTuJHiF_erHsz57FuHFDWbHMnmOLquWxJxqUwjeAy_JnhaOzpjdemsvAzwPQdfK6J-H6vqOj3GwrnpBMs43Gl6BhC_idUh9lVyONEgCdIHMPQ=s2048" alt="CreateUpdateShare"> | <img src="https://lh6.googleusercontent.com/l6hiRBG-gYZpIp_E23PVm4sOBS-W2wFvncoP5bKlZQfU66NRMzxmfdgyJDagDmnqJLwxnJ9P7tu1eBlmOerah9AOx8NcBDLQR1lmLTZ083GR4zr0kBpI9XVdqVHDe571bTYFZ5fnCztg4Yw2JVyv0W-Sug=s2048" alt="ShareList"> |
 
-| 나눔글 수정                                                                                                                                                                                                                           |      나눔글 댓글      |      나눔 상태 토글    |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------:|:---------:|
-| <img src="https://lh6.googleusercontent.com/uQJWChKZY7rtI-IdUgG9AxKSUfEeAUbFu3vnfrEkxDXSYHF7-e2ban3omp9Hn0yjtIh6uyQUC3DY8FXOOTLZEk5oK5t3BhD4WS6_jdJclc-L-zn8iavUnRgtLf0In1yH_C933V2MVtYE6_a40slzphM88A=s2048" alt="UpdateShare"> | <img src="https://lh6.googleusercontent.com/gs8HXpN_GGwlXTG9ZXldKc2rIYwqKE3IzQY3r6SYVwmp1M7-0_KJggGrbM0-VY_yL_Gh8V4_1argDczgglGIKjGuteRAFVKNCyK8BtM_Gsarut-Y4K-_1H7_Bj168cxmw1f7zRT9FUVjYnoGl2AG574nIg=s2048" alt="ShareComment"> | <img src="https://lh4.googleusercontent.com/iFbgPqWgK__YmSB8ha53yHTLfU_LtwJNEAf7KCDUxbraZbJhh1vQkAjTMLhaQF24HN2s3oniEsOL75mfiiMV2gRUs0exNptePw0hp0a9Q0Ko3XzfN3l4lPoWY5NP3Eif4KONMmgWQ-kKTYamb2mOiGiMlw=s2048" alt="ShareStatus"> |
+|                                                                                                             나눔글 이미지 업로드                                                                                                             |      나눔글 댓글      |      나눔 상태 토글    |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------:|:---------:|
+| <img src="https://lh6.googleusercontent.com/uQJWChKZY7rtI-IdUgG9AxKSUfEeAUbFu3vnfrEkxDXSYHF7-e2ban3omp9Hn0yjtIh6uyQUC3DY8FXOOTLZEk5oK5t3BhD4WS6_jdJclc-L-zn8iavUnRgtLf0In1yH_C933V2MVtYE6_a40slzphM88A=s2048" alt="UpdateShareImg"> | <img src="https://lh6.googleusercontent.com/gs8HXpN_GGwlXTG9ZXldKc2rIYwqKE3IzQY3r6SYVwmp1M7-0_KJggGrbM0-VY_yL_Gh8V4_1argDczgglGIKjGuteRAFVKNCyK8BtM_Gsarut-Y4K-_1H7_Bj168cxmw1f7zRT9FUVjYnoGl2AG574nIg=s2048" alt="ShareComment"> | <img src="https://lh4.googleusercontent.com/iFbgPqWgK__YmSB8ha53yHTLfU_LtwJNEAf7KCDUxbraZbJhh1vQkAjTMLhaQF24HN2s3oniEsOL75mfiiMV2gRUs0exNptePw0hp0a9Q0Ko3XzfN3l4lPoWY5NP3Eif4KONMmgWQ-kKTYamb2mOiGiMlw=s2048" alt="ShareStatus"> |
 
-| 나눔 게시글 검색                                                                                                                                                                                                                        |              요청글 등록              |              요청글 수정              |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------:|:--------------------------------:|
-| <img src="https://lh4.googleusercontent.com/TBqn1-oJm59EbLQyqSPLZ5_cidaanTljcr1Qq_XTPxcdTzD-IwxHrKL0ZfQhoZrkOVjokRLckca1x-9w8k0me4-6JTHPG6rbwuQ4pkmrgjEpAJZxAMM8HxR5x6vDtiCotwODnUJbo0wYK-Y62U4BTx17Cw=s2048" alt="SearchShare"> | <img src="https://lh4.googleusercontent.com/3od9me49rKBnI9saCG7TuRqlg4RQGb9JX4z8PyXMHfpqW6jF4gLgly_fZympLUsQUzxVBfWeEDIOha2-TyV-6pV_BiIbafOb9AG6vZVAgBomqyfgr8r6I_Xilqyi-p5rTA6q8lJeVqt-en4I1jnEGoK19Q=s2048" alt="CreateRequset"> | <img src="https://lh4.googleusercontent.com/vJ2PSqYwWttmoXqED3pfS8HQxiaL-FSLZAjJa45u3KQ7bqkNbLW9_y8HN5MjURQGTmClDCqnkJxLvxJ5gX6v96iQKuTpmRY2fekNh22LPfuJrah7QgNGe7z6P45e4sZ3bAig0vei49TauuLdwPcAQPGDzg=s2048" alt="UpdateRequest"> |
+|                                                                                                             나눔 게시글 검색                                                                                                             |              요청글 등록              |              요청글 수정              |
+|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------:|:--------------------------------:|
+| <img src="https://lh4.googleusercontent.com/TBqn1-oJm59EbLQyqSPLZ5_cidaanTljcr1Qq_XTPxcdTzD-IwxHrKL0ZfQhoZrkOVjokRLckca1x-9w8k0me4-6JTHPG6rbwuQ4pkmrgjEpAJZxAMM8HxR5x6vDtiCotwODnUJbo0wYK-Y62U4BTx17Cw=s2048" alt="SearchShare">  | <img src="https://lh4.googleusercontent.com/3od9me49rKBnI9saCG7TuRqlg4RQGb9JX4z8PyXMHfpqW6jF4gLgly_fZympLUsQUzxVBfWeEDIOha2-TyV-6pV_BiIbafOb9AG6vZVAgBomqyfgr8r6I_Xilqyi-p5rTA6q8lJeVqt-en4I1jnEGoK19Q=s2048" alt="CreateRequset"> | <img src="https://lh4.googleusercontent.com/vJ2PSqYwWttmoXqED3pfS8HQxiaL-FSLZAjJa45u3KQ7bqkNbLW9_y8HN5MjURQGTmClDCqnkJxLvxJ5gX6v96iQKuTpmRY2fekNh22LPfuJrah7QgNGe7z6P45e4sZ3bAig0vei49TauuLdwPcAQPGDzg=s2048" alt="UpdateRequest"> |
 
-| 요청글 댓글                                                                                                                                                                                                                             |              요청글 검색              |            도서 평점 등록             |
-|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------:|:-------------------------------:|
-|<img src="https://lh5.googleusercontent.com/ngtbM1TwsYkrv1gAbcs7S61jJtgIKb66IdtppaIvVCT9mbthSK3Q66YBV9EOZ3ipc3SrlahE7OlVw7Bu-nwLeACpUKZ0BzYmoFTZSNPwgC0xVA_pZ69Spq34yk5xfNo7AgTN0FEiTmRVNs0_vXnlfrwUCQ=s2048" alt="RequestComment"> | <img src="https://lh6.googleusercontent.com/AV4lIIXPUjDm9RTAmZSn8vkyJx8Ltiybi5wD6gyrydKw5uXa0EMRK3ysShfVhHLdZYoDSHNbdfEr_pc9yUEDWEwT2cTdf7vDSZcbCKxcy_gDiBjL15ofE94LCoXZu4VuQ5BTkImsh8RzgwL31sSib5VBVg=s2048" alt="SearchRequest"> | <img src="https://lh6.googleusercontent.com/16_o-x4RHI9TU7pypuH0E2dypPuYE2G2jP8VhTxWwiiZuNSVTxqdkprKOigJ2F0okPILkVNd9BnYyKjgEYTH9uKkuEtEm5TBqy9gJOxRli6DP7DRCqORo6o07ym1onjJVsCbOvEIAVSMYL6-oGroAVJyjw=s2048" alt="CreateRating"> |
+|                                                                                                               요청글 댓글                                                                                                                |              요청글 검색              |            도서 평점 등록             |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------:|:-------------------------------:|
+| <img src="https://lh5.googleusercontent.com/ngtbM1TwsYkrv1gAbcs7S61jJtgIKb66IdtppaIvVCT9mbthSK3Q66YBV9EOZ3ipc3SrlahE7OlVw7Bu-nwLeACpUKZ0BzYmoFTZSNPwgC0xVA_pZ69Spq34yk5xfNo7AgTN0FEiTmRVNs0_vXnlfrwUCQ=s2048" alt="RequestComment"> | <img src="https://lh6.googleusercontent.com/AV4lIIXPUjDm9RTAmZSn8vkyJx8Ltiybi5wD6gyrydKw5uXa0EMRK3ysShfVhHLdZYoDSHNbdfEr_pc9yUEDWEwT2cTdf7vDSZcbCKxcy_gDiBjL15ofE94LCoXZu4VuQ5BTkImsh8RzgwL31sSib5VBVg=s2048" alt="SearchRequest"> | <img src="https://lh6.googleusercontent.com/16_o-x4RHI9TU7pypuH0E2dypPuYE2G2jP8VhTxWwiiZuNSVTxqdkprKOigJ2F0okPILkVNd9BnYyKjgEYTH9uKkuEtEm5TBqy9gJOxRli6DP7DRCqORo6o07ym1onjJVsCbOvEIAVSMYL6-oGroAVJyjw=s2048" alt="CreateRating"> |
 
 |                                                                                                          도서 평점 수정 및 삭제                                                                                                           |             마이페이지 1             |           마이페이지2           |
 |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------:|:--------------------------:|
@@ -161,13 +165,15 @@
 
 
 ## :clipboard: Documents
-[API 명세서](https://serverbookvillage.kro.kr/docs/index.html)
-
-[요구사항 정의서](https://docs.google.com/spreadsheets/d/1s_uDAJEEsSa-ojYmqWtKNOzHXdKeygg3pqBt5e6STzc/edit#gid=428803499)
-
-[ERD](https://www.erdcloud.com/d/WTsSXaEZSoBc5Ntw7)
-
-[테이블 명세서](https://docs.google.com/spreadsheets/d/1HKlI9rWg450lafp10r2BiF46fGzeD1FFI8UovCx5P1I/edit#gid=0)
+> [📜 API 명세서](https://serverbookvillage.kro.kr/docs/index.html)
+> 
+> [📜 요구사항 정의서](https://docs.google.com/spreadsheets/d/1s_uDAJEEsSa-ojYmqWtKNOzHXdKeygg3pqBt5e6STzc/edit#gid=428803499)
+> 
+> [📜 ERD](https://www.erdcloud.com/d/WTsSXaEZSoBc5Ntw7)
+> 
+> [📜 테이블 명세서](https://docs.google.com/spreadsheets/d/1HKlI9rWg450lafp10r2BiF46fGzeD1FFI8UovCx5P1I/edit#gid=0)
+>
+> [📜 화면 정의서](https://codestates.notion.site/e29978182b544be7bf575788202dba74)
 
 <!--logos -->
 [book_village_logo]: /logos/book_village_logo.svg
