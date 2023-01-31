@@ -61,7 +61,14 @@ const RateItems = (data) => {
             item={item}
             onClick={() => navigate(`/rateDetail/${item.bookId}`)}
           >
-            <img src={item.thumbnail} alt="img" />
+            {item.thumbnail === '' ? (
+              <img
+                src="https://dimg.donga.com/wps/NEWS/IMAGE/2011/11/17/41939226.1.jpg"
+                alt="img"
+              />
+            ) : (
+              <img src={item.thumbnail} alt="img" />
+            )}
             <div className="bookInfo">
               <p>{item.bookTitle}</p>
               <span className="bookStar">
