@@ -19,7 +19,7 @@
 
 > ### 🗓️ 2022.01.03 - 2022.02.03
 > ### [📺 Presentation Video]()
-> ### [📑 Presentation document](https://www.notion.so/codestates/book15-3da849ab3014484080e2cd214f5a67fd?p=8ae0d62db09c4077a14a402e09398bf2&pm=s)
+> ### [📑 Presentation document](https://www.notion.so/codestates/Demo-Day-8ae0d62db09c4077a14a402e09398bf2)
 
 ---
 
@@ -173,7 +173,7 @@
 > 
 > [📜 테이블 명세서](https://docs.google.com/spreadsheets/d/1HKlI9rWg450lafp10r2BiF46fGzeD1FFI8UovCx5P1I/edit#gid=0)
 >
-> [📜 화면 정의서](https://www.notion.so/codestates/book15-3da849ab3014484080e2cd214f5a67fd?p=e29978182b544be7bf575788202dba74&pm=s)
+> [📜 화면 정의서](https://codestates.notion.site/e29978182b544be7bf575788202dba74)
 
 <!--logos -->
 [book_village_logo]: /logos/book_village_logo.svg
