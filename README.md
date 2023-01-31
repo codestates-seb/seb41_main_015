@@ -12,7 +12,7 @@
 
 ## :link: Deployed Link
 
-> [⛪Book Village](https://bookvillage.kro.kr/)
+> ### [⛪Book Village](https://bookvillage.kro.kr/)
 
 ---
 ## 🗣️ Project
