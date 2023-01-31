@@ -25,7 +25,6 @@ const Callback = () => {
   // 홈으로 이동
   useEffect(() => {
     navigate('/');
-    window.location.reload();
   }, [sessionAccessToken]);
 
   return;
