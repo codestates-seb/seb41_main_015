@@ -24,7 +24,6 @@ const Callback = () => {
 
   useEffect(() => {
     navigate('/');
-    window.location.reload();
   }, [sessionAccessToken]);
 
   return;
