@@ -15,9 +15,9 @@
 > [⛪Book Village](https://bookvillage.kro.kr/)
 
 ---
-## GuidLine
+## 🗣️ Project
 
-> ### 🗓️ Period 2022.01.03 - 2022.02.03
+> ### 🗓️ 2022.01.03 - 2022.02.03
 > ### [📺 Presentation Video]()
 > ### [📑 Presentation document]()
 
