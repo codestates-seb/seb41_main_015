@@ -9,13 +9,18 @@
 서로의 지식을 나누고 책을 공유합니다.
 함께하는 독서 습관을 만들어주는 서비스, book village에 오신 걸 환영합니다!
 ---
-## GuidLine
-### :link: Deployed Link
+
+## :link: Deployed Link
 
 > [⛪Book Village](https://bookvillage.kro.kr/)
 
-### :date: Period
-> 2022.01.03 - 2022.02.03
+---
+## GuidLine
+
+> ### 🗓️ Period 2022.01.03 - 2022.02.03
+> ### [📺 Presentation Video]()
+> ### [📑 Presentation document]()
+
 ---
 
 ## 🖥️ Service operation
