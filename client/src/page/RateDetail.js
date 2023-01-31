@@ -129,6 +129,9 @@ const SStarIcon = styled.div`
   color: #6e6d6d;
   align-items: center;
   margin-bottom: 30px;
+  .rateTitle {
+    width: max-content;
+  }
   .rateStar {
     margin: 0 2px;
   }
@@ -190,7 +193,8 @@ const RateDetail = () => {
               <div className="flex">
                 <h2>{data.bookTitle}</h2>
                 <SStarIcon>
-                  평균 <BookStar className="rateStar" />
+                  <div className="rateTitle">평균</div>
+                  <BookStar className="rateStar" />
                   {data.avgRate}
                 </SStarIcon>
               </div>
