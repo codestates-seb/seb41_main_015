@@ -93,6 +93,7 @@ public class OAuth2MemberSuccessHandler extends SimpleUrlAuthenticationSuccessHa
             refreshTokenRepository.save(token);
             return refreshToken;
         }
+
         refreshTokenRepository.save(token);
         return refreshToken;
     }
