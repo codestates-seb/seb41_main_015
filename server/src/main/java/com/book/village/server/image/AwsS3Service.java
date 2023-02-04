@@ -41,8 +41,7 @@ public class AwsS3Service {
         }
         else if(
                 !(contentType.equals(ContentType.IMAGE_JPEG)) || !(contentType.equals(ContentType.IMAGE_PNG)) ||
-                        !(contentType.equals(ContentType.IMAGE_BMP)) || !(contentType.equals(ContentType.IMAGE_GIF)) ||
-                        !(contentType.equals(ContentType.IMAGE_JPEG))
+                        !(contentType.equals(ContentType.IMAGE_BMP)) || !(contentType.equals(ContentType.IMAGE_GIF))
         ){
                     throw new CustomLogicException(ExceptionCode.CONTENT_TYPE_MISMATCH);
         }
