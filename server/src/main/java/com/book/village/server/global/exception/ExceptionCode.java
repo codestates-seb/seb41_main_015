@@ -38,7 +38,10 @@ public enum ExceptionCode {
 
     RATE_USER_DIFFERENT(409, "rate writer is not matched"),
     RATE_NOT_FOUND(404, "rate not found"),
-    RATE_DUPLICATE(409, "rate duplicate");
+    RATE_DUPLICATE(409, "rate duplicate"),
+
+    INVALID_FILE_CONTENT_TYPE(404, "invalid content type"),
+    CONTENT_TYPE_MISMATCH(409, "content type mismatch");
 
     @Getter
     private final int code;

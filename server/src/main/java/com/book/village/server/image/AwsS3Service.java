@@ -5,10 +5,14 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.book.village.server.global.exception.CustomLogicException;
+import com.book.village.server.global.exception.ExceptionCode;
+import org.apache.http.entity.ContentType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -31,6 +35,17 @@ public class AwsS3Service {
     }
 
     public String uploadImg(MultipartFile multipartFile) throws IOException {
+        String contentType = multipartFile.getContentType();
+        if(ObjectUtils.isEmpty(contentType)) {
+            throw new CustomLogicException(ExceptionCode.INVALID_FILE_CONTENT_TYPE);
+        }
+        else if(
+                !(contentType.equals(ContentType.IMAGE_JPEG)) || !(contentType.equals(ContentType.IMAGE_PNG)) ||
+                        !(contentType.equals(ContentType.IMAGE_BMP)) || !(contentType.equals(ContentType.IMAGE_GIF)) ||
+                        !(contentType.equals(ContentType.IMAGE_JPEG))
+        ){
+                    throw new CustomLogicException(ExceptionCode.CONTENT_TYPE_MISMATCH);
+        }
         String s3FileName = UUID.randomUUID() + "-" + multipartFile.getOriginalFilename(); // 이름 랜덤생성 + 파일이름
 
         ObjectMetadata objMeta = new ObjectMetadata();
@@ -48,6 +63,19 @@ public class AwsS3Service {
 
     public List<String> uploadImgs(List<MultipartFile> multipartFile) {
         List<String> urlList = new ArrayList<>();
+        for(MultipartFile mf: multipartFile){
+            String contentType = mf.getContentType();
+            if(ObjectUtils.isEmpty(contentType)) {
+                throw new CustomLogicException(ExceptionCode.INVALID_FILE_CONTENT_TYPE);
+            }
+            else if(
+                    !(contentType.equals(ContentType.IMAGE_JPEG)) || !(contentType.equals(ContentType.IMAGE_PNG)) ||
+                            !(contentType.equals(ContentType.IMAGE_BMP)) || !(contentType.equals(ContentType.IMAGE_GIF)) ||
+                            !(contentType.equals(ContentType.IMAGE_JPEG))
+            ){
+                throw new CustomLogicException(ExceptionCode.CONTENT_TYPE_MISMATCH);
+            }
+        }
 
         multipartFile.forEach(file -> {
             String s3FileName = UUID.randomUUID() + "-" + file.getOriginalFilename();
