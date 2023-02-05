@@ -1,8 +1,7 @@
 package com.book.village.server.domain.member.service;
 
-import com.book.village.server.auth.jwt.JwtTokenizer;
+import com.book.village.server.auth.jwt.tokenizer.JwtTokenizer;
 import com.book.village.server.auth.jwt.repository.RefreshTokenRepository;
-import com.book.village.server.auth.jwt.service.RefreshTokenService;
 import com.book.village.server.auth.utils.CustomAuthorityUtils;
 import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.domain.member.repository.MemberRepository;

@@ -1,6 +1,6 @@
 package com.book.village.server.auth.handler;
 
-import com.book.village.server.auth.jwt.JwtTokenizer;
+import com.book.village.server.auth.jwt.tokenizer.JwtTokenizer;
 import com.book.village.server.auth.jwt.entity.RefreshToken;
 import com.book.village.server.auth.jwt.repository.RefreshTokenRepository;
 import com.book.village.server.auth.utils.CustomAuthorityUtils;

@@ -1,4 +1,4 @@
-package com.book.village.server.auth.jwt;
+package com.book.village.server.auth.jwt.tokenizer;
 
 import com.book.village.server.global.exception.CustomLogicException;
 import com.book.village.server.global.exception.ExceptionCode;

@@ -1,6 +1,6 @@
 package com.book.village.server.auth.filter;
 
-import com.book.village.server.auth.jwt.JwtTokenizer;
+import com.book.village.server.auth.jwt.tokenizer.JwtTokenizer;
 import com.book.village.server.auth.utils.CustomAuthorityUtils;
 import com.book.village.server.domain.member.entity.Member;
 import com.book.village.server.domain.member.service.MemberService;

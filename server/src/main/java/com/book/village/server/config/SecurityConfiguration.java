@@ -5,7 +5,7 @@ import com.book.village.server.auth.filter.JwtVerificationFilter;
 import com.book.village.server.auth.handler.MemberAccessDeniedHandler;
 import com.book.village.server.auth.handler.MemberAuthenticationEntryPoint;
 import com.book.village.server.auth.handler.OAuth2MemberSuccessHandler;
-import com.book.village.server.auth.jwt.JwtTokenizer;
+import com.book.village.server.auth.jwt.tokenizer.JwtTokenizer;
 import com.book.village.server.auth.jwt.repository.RefreshTokenRepository;
 import com.book.village.server.auth.service.CustomOAuth2MemberService;
 import com.book.village.server.auth.utils.CustomAuthorityUtils;
