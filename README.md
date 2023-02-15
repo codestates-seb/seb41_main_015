@@ -113,9 +113,9 @@
 
 ### FE
 
-| <a href=https://github.com/aemaaeng><img src="https://avatars.githubusercontent.com/u/78579776?v=4" width=100px/><br/><sub><b>@aemaaeng</b></sub></a><br/> | <a href=https://github.com/yejin32><img src="https://avatars.githubusercontent.com/u/93540726?v=4" width=100px/><br/><sub><b>@yejin32</b></sub></a><br/> | <a href=https://github.com/djWjfk><img src="https://avatars.githubusercontent.com/u/105706403?v=4" width=100px/><br/><sub><b>@djWjfk</b></sub></a><br/> | <a href=https://github.com/cjsrmachs><img src="https://avatars.githubusercontent.com/u/111436967?v=4" width=100px/><br/><sub><b>@cjsrmachs</b></sub></a><br/> |
-|:----------------------------------:|:----------:|:---------------------------:|:----------:|
-|                김혜민                 |    장예진     |             최윤지             |    최창훈     |
+| <a href=https://github.com/aemaaeng><img src="https://avatars.githubusercontent.com/u/78579776?v=4" width=100px/><br/><sub><b>@aemaaeng</b></sub></a><br/> | <a href=https://github.com/yejin32><img src="https://avatars.githubusercontent.com/u/93540726?v=4" width=100px/><br/><sub><b>@yejin32</b></sub></a><br/> | <a href=https://github.com/Yoonji23><img src="https://avatars.githubusercontent.com/u/105706403?v=4" width=100px/><br/><sub><b>@Yoonji23</b></sub></a><br/> | <a href=https://github.com/cjsrmachs><img src="https://avatars.githubusercontent.com/u/111436967?v=4" width=100px/><br/><sub><b>@cjsrmachs</b></sub></a><br/> |
+|:----------------------------------:|:----------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------:|
+|                김혜민                 |    장예진     |                                                                            최윤지                                                                            |    최창훈     |
 
 
 ### BE
